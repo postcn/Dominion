@@ -1,1 +1,16 @@
 c:\users\postcn\documents\visual studio 2012\Projects\Dominion\Dominion\bin\Debug\Dominion.exe.config
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe.config
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.pdb
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\nunit.framework.dll
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\nunit.framework.xml
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csprojResolveAssemblyReference.cache
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\MainWindow.baml
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\MainWindow.g.cs
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\App.g.cs
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion_MarkupCompile.cache
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.g.resources
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.Properties.Resources.resources
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csproj.GenerateResource.Cache
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
