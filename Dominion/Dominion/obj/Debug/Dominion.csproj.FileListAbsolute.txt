@@ -1,1 +1,2 @@
 c:\users\postcn\documents\visual studio 2012\Projects\Dominion\Dominion\bin\Debug\Dominion.exe.config
+C:\Users\Lashmd.ROSE-HULMAN\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe.config
