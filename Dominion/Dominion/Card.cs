@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Cards
+    class Card
     {
         //Instance Variables
         int type;
@@ -18,7 +18,7 @@ namespace Dominion
         int funcNum;
 
         //Constructor
-        Cards(int type, int cash, int buy, int actions, int vict, int draw, int funcNum){
+        public Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum){
             this.type = type;
             this.cash = cash;
             this.buy = buy;
@@ -26,6 +26,41 @@ namespace Dominion
             this.vict = vict;
             this.draw = draw;
             this.funcNum = funcNum;
+        }
+
+        public int getType()
+        {
+            return this.type;
+        }
+
+        public int getCash()
+        {
+            return this.cash;
+        }
+
+        public int getBuy()
+        {
+            return this.buy;
+        }
+
+        public int getActions()
+        {
+            return this.actions;
+        }
+
+        public int getVictoryPoints()
+        {
+            return this.vict;
+        }
+
+        public int getAdditionalDraws()
+        {
+            return this.draw;
+        }
+
+        public int getFunctionNumber()
+        {
+            return this.funcNum;
         }
     }
 }
