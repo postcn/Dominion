@@ -18,8 +18,7 @@ namespace Dominion
         int funcNum;
 
         //Constructor
-        Cards(int type, int cash, int buy, int actions, int vict, int draw, int funcNum)
-        {
+        Cards(int type, int cash, int buy, int actions, int vict, int draw, int funcNum){
             this.type = type;
             this.cash = cash;
             this.buy = buy;
@@ -27,7 +26,6 @@ namespace Dominion
             this.vict = vict;
             this.draw = draw;
             this.funcNum = funcNum;
-
         }
     }
 }
