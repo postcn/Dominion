@@ -8,6 +8,9 @@ namespace Dominion
 {
     class Card
     {
+        /*
+         * For type, 0 is a victory, 1 is a currency, and 2 is an action
+         */
         //Instance Variables
         int type;
         int cash;
