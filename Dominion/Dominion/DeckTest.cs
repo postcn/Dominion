@@ -16,12 +16,17 @@ namespace Dominion
         {
             this.d = new Deck();
         }
+        
+        //Test that we can properly initialize a deck.
+        //If this doesn't pass, then we can't actually do anything else in file.
         [Test()]
         public void testDeckInitializes() 
         {
             Assert.NotNull(d);
         }
 
+        //Tests that we can get the size of a deck properly
+        //Straightforward return so I'm not going to test it more than once.
         [Test()]
         public void testGetSize()
         {
@@ -30,6 +35,8 @@ namespace Dominion
             Assert.AreEqual(0, de.cardsLeft());
         }
 
+        //Tests if we can draw a card from the deck;
+        //Boundary case for lower boundary, only drawing one card
         [Test()]
         public void testDraw()
         {
@@ -38,6 +45,8 @@ namespace Dominion
             Assert.AreEqual(9, d.cardsLeft());
         }
 
+        //Tests if we can draw all the cards in a deck.
+        //Boundary case for upper boundary.
         [Test()]
         public void testDrawAll()
         {
@@ -51,6 +60,7 @@ namespace Dominion
         //This test works with randomness so it may fail
         //sometimes without actually being a failure.
         //This is just to ensure that we get sufficient differences
+        //when we reshuffle a deck.
         [Test()]
         public void testShuffle()
         {
@@ -73,6 +83,8 @@ namespace Dominion
             return val;
         }
 
+        //Tests the discard of all the cards in the deck
+        //This is the upper boundary case.
         [Test()]
         public void testDiscardAll()
         {
@@ -84,6 +96,9 @@ namespace Dominion
             Assert.AreEqual(10, d.getInDiscard().Count);
         }
 
+        //Discards a random number of cards, and makes sure that many cards show up in the discard pile.
+        //The random number of cards always is less than the cards left in the deck
+        //This represents the average case
         [Test()]
         public void testDiscardRandom()
         {
@@ -97,6 +112,8 @@ namespace Dominion
             Assert.AreEqual(num, d.getInDiscard().Count);
         }
 
+        //Test which determines whether or not the automatic reshuffle after discard is working.
+        //Low case, only does it once.
         [Test()]
         public void testDrawAndDiscardAllAutomaticShuffle()
         {
