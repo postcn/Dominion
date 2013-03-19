@@ -28,18 +28,23 @@ namespace Dominion
 
         private void Shuffle_Click(object sender, RoutedEventArgs e){
             player1Deck.reshuffle();
+            DescriptionLabel.Content = "Top card's Currency Value:";
             Description.Content = player1Deck.getInDeck()[0].getCash();
         }
 
         private void MakeDeck_Click(object sender, RoutedEventArgs e){
             player1Deck = new Deck();
+            DescriptionLabel.Content = "A new Deck has been initialized";
             Description.Content = "";
             //            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
             //          Description.Content = yo.getActions();
         }
 
         private void Draw_Click(object sender, RoutedEventArgs e){
-            player1Deck.draw();
+            Card firstCard;
+            firstCard = player1Deck.draw();
+            player1Deck.discard(firstCard);
+            DescriptionLabel.Content = "Cards Left in Deck:";
             Description.Content = player1Deck.cardsLeft();
             //            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
             //          Description.Content = yo.getActions();
