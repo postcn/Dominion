@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="28" Margin="414,268,0,0" VerticalAlignment="Top" Width="65" Click="Draw_Click"/>
+        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="173,141,0,0" VerticalAlignment="Top" Width="82"/>
+
     </Grid>
 </Window>

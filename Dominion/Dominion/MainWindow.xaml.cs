@@ -20,9 +20,13 @@ namespace Dominion
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
+        public MainWindow(){
             InitializeComponent();
+        }
+
+        private void Draw_Click(object sender, RoutedEventArgs e){
+            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
+            Description.Content = yo.getActions();
         }
     }
 }
