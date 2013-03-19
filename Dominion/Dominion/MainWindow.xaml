@@ -8,6 +8,8 @@
         <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="29" Margin="581,656,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
         <Button x:Name="MakeDeck" Content="Make Deck" HorizontalAlignment="Left" Height="29" Margin="691,656,0,0" VerticalAlignment="Top" Width="77" Click="MakeDeck_Click"/>
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="421,514,0,0" VerticalAlignment="Top" Width="280"/>
+        <Image x:Name="Copper" HorizontalAlignment="Left" Height="172" Margin="303,193,0,0" VerticalAlignment="Top" Source="..\Pictures\Copper.jpg" Width="111"/>
+        <Image x:Name="Estate" HorizontalAlignment="Left" Height="172" Margin="489,193,0,0" VerticalAlignment="Top" Width="111" Source="..\Pictures\Estate.jpg"/>
 
     </Grid>
 </Window>
