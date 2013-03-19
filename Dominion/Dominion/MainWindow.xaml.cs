@@ -23,10 +23,27 @@ namespace Dominion
         public MainWindow(){
             InitializeComponent();
         }
+        Deck player1Deck;
+       
+
+        private void Shuffle_Click(object sender, RoutedEventArgs e){
+            player1Deck.reshuffle();
+            Description.Content = player1Deck.getInDeck()[0].getCash();
+        }
+
+        private void MakeDeck_Click(object sender, RoutedEventArgs e){
+            player1Deck = new Deck();
+            Description.Content = "";
+            //            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
+            //          Description.Content = yo.getActions();
+        }
 
         private void Draw_Click(object sender, RoutedEventArgs e){
-            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
-            Description.Content = yo.getActions();
+            player1Deck.draw();
+            Description.Content = player1Deck.cardsLeft();
+            //            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
+            //          Description.Content = yo.getActions();
         }
+
     }
 }

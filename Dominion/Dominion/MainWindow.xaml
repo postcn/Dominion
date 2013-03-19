@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="28" Margin="414,268,0,0" VerticalAlignment="Top" Width="65" Click="Draw_Click"/>
-        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="173,141,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="173,141,0,0" VerticalAlignment="Top" Width="280"/>
+        <Button x:Name="Shuffle" Content="Shuffle" HorizontalAlignment="Left" Height="29" Margin="133,252,0,0" VerticalAlignment="Top" Width="83" Click="Shuffle_Click"/>
+        <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="20" Margin="295,271,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
+        <Button x:Name="MakeDeck" Content="Make Deck" HorizontalAlignment="Left" Height="20" Margin="405,271,0,0" VerticalAlignment="Top" Width="77" Click="MakeDeck_Click"/>
 
     </Grid>
 </Window>
