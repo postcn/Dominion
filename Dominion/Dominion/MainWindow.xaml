@@ -3,16 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="769" Width="878">
     <Grid Margin="0,0,-8,1">
+        <Image x:Name="Copper" HorizontalAlignment="Left" Height="172" Margin="307,225,0,0" VerticalAlignment="Top" Width="111" Source="Copper.jpg"/>
         <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="421,564,0,0" VerticalAlignment="Top" Width="280"/>
         <Button x:Name="Shuffle" Content="Shuffle" HorizontalAlignment="Left" Height="29" Margin="421,656,0,0" VerticalAlignment="Top" Width="83" Click="Shuffle_Click"/>
         <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="29" Margin="581,656,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
-        <Button x:Name="MakeDeck" Content="Make Deck" HorizontalAlignment="Left" Height="29" Margin="691,656,0,0" VerticalAlignment="Top" Width="77" Click="MakeDeck_Click"/>
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="421,514,0,0" VerticalAlignment="Top" Width="280"/>
-        <Image x:Name="Copper" HorizontalAlignment="Left" Height="119" Margin="306,215,0,0" VerticalAlignment="Top" Width="149" Source="yo.jpg"/>
-        <Image x:Name="Estate" HorizontalAlignment="Left" Height="172" Margin="487,225,0,0" VerticalAlignment="Top" Width="111" Source="Copper.jpg"/>
-        <Image x:Name="what_" HorizontalAlignment="Left" Height="118" Margin="45,404,0,0" VerticalAlignment="Top" Width="123" Source="Resources\Image1.jpg"/>
-        <Image x:Name="Copper_Copy" HorizontalAlignment="Left" Height="172" Margin="128,173,0,0" VerticalAlignment="Top" Width="111" Source="Copper - Copy.jpg"/>
-        <Image HorizontalAlignment="Left" Height="212" Margin="691,146,0,0" VerticalAlignment="Top" Width="134" Source="Copper.jpg"/>
+        <Image x:Name="Estate" HorizontalAlignment="Left" Height="172" Margin="487,225,0,0" VerticalAlignment="Top" Width="111" Source="Estate.jpg"/>
+        <Label x:Name="CardDrawnLabel" Content="Card Drawn" HorizontalAlignment="Left" Height="45" Margin="41,175,0,0" VerticalAlignment="Top" Width="138"/>
+        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="41,225,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
+        <Label x:Name="Counter" Content="Estate vs total  (drawn)" HorizontalAlignment="Left" Height="41" Margin="212,152,0,0" VerticalAlignment="Top" Width="144"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Height="29" Margin="227,656,0,0" VerticalAlignment="Top" Width="113" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

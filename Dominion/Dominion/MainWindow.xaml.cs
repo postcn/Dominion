@@ -22,22 +22,18 @@ namespace Dominion
         public MainWindow(){
             InitializeComponent();
         }
-        Deck player1Deck;
-       
+        Deck player1Deck = new Deck();
+        int count = 0;
+        int countE = 0;
+
 
         private void Shuffle_Click(object sender, RoutedEventArgs e){
+            count = 0;
+            countE = 0;
+            Counter.Content = "Estate vs total  (drawn)";
             player1Deck.reshuffle();
             DescriptionLabel.Content = "Top card's Currency Value:";
             Description.Content = player1Deck.getInDeck()[0].getCash();
-        }
-
-        private void MakeDeck_Click(object sender, RoutedEventArgs e){
-
-            player1Deck = new Deck();
-            DescriptionLabel.Content = "A new Deck has been initialized";
-            Description.Content = "";
-            //            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
-            //          Description.Content = yo.getActions();
         }
 
         private void Draw_Click(object sender, RoutedEventArgs e){
@@ -46,8 +42,36 @@ namespace Dominion
             player1Deck.discard(firstCard);
             DescriptionLabel.Content = "Cards Left in Deck:";
             Description.Content = player1Deck.cardsLeft();
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            //Description.Content = firstCard.ToString();
+            count++;
+            if(firstCard.getCash()==1){
+                image.UriSource = new Uri("Copper.jpg", UriKind.Relative);       
+            }
+            else{
+                image.UriSource = new Uri("Estate.jpg", UriKind.Relative);
+                countE++;
+            }
+            image.EndInit();
+            Hand_Card.Source = image;
+            String county;
+            county=countE+"/" +count;
+            Counter.Content = county;
+
             //            Card yo = new Card(1, 4, 0, 6, 2, 8, 9);
             //          Description.Content = yo.getActions();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e){
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri("Blank.jpg", UriKind.Relative);
+            image.EndInit();
+            Hand_Card.Source = image;
+            Description.Content = "Labez";
+            DescriptionLabel.Content = "Nothing Yet";
+            player1Deck.reshuffle();
         }
 
     }
