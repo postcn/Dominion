@@ -32,6 +32,7 @@ namespace Dominion
         }
 
         private void MakeDeck_Click(object sender, RoutedEventArgs e){
+
             player1Deck = new Deck();
             DescriptionLabel.Content = "A new Deck has been initialized";
             Description.Content = "";

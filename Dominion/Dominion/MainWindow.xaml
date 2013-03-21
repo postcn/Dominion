@@ -8,8 +8,11 @@
         <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="29" Margin="581,656,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
         <Button x:Name="MakeDeck" Content="Make Deck" HorizontalAlignment="Left" Height="29" Margin="691,656,0,0" VerticalAlignment="Top" Width="77" Click="MakeDeck_Click"/>
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="421,514,0,0" VerticalAlignment="Top" Width="280"/>
-        <Image x:Name="Copper" HorizontalAlignment="Left" Height="172" Margin="303,193,0,0" VerticalAlignment="Top" Source="..\Pictures\Copper.jpg" Width="111"/>
-        <Image x:Name="Estate" HorizontalAlignment="Left" Height="172" Margin="489,193,0,0" VerticalAlignment="Top" Width="111" Source="..\Pictures\Estate.jpg"/>
+        <Image x:Name="Copper" HorizontalAlignment="Left" Height="119" Margin="306,215,0,0" VerticalAlignment="Top" Width="149" Source="yo.jpg"/>
+        <Image x:Name="Estate" HorizontalAlignment="Left" Height="172" Margin="487,225,0,0" VerticalAlignment="Top" Width="111" Source="Copper.jpg"/>
+        <Image x:Name="what_" HorizontalAlignment="Left" Height="118" Margin="45,404,0,0" VerticalAlignment="Top" Width="123" Source="Resources\Image1.jpg"/>
+        <Image x:Name="Copper_Copy" HorizontalAlignment="Left" Height="172" Margin="128,173,0,0" VerticalAlignment="Top" Width="111" Source="Copper - Copy.jpg"/>
+        <Image HorizontalAlignment="Left" Height="212" Margin="691,146,0,0" VerticalAlignment="Top" Width="134" Source="Copper.jpg"/>
 
     </Grid>
 </Window>
