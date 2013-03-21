@@ -19,9 +19,11 @@ namespace Dominion
         int vict;
         int draw;
         int funcNum;
+        string cardName;
+        string desc;
 
         //Constructor
-        public Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum){
+        public Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum,string cardName,string desc){
             this.type = type;
             this.cash = cash;
             this.buy = buy;
@@ -29,6 +31,8 @@ namespace Dominion
             this.vict = vict;
             this.draw = draw;
             this.funcNum = funcNum;
+            this.cardName = cardName;
+            this.desc = desc;
         }
 
         public int getType()
@@ -64,6 +68,21 @@ namespace Dominion
         public int getFunctionNumber()
         {
             return this.funcNum;
+        }
+
+        public string toString()
+        {
+            return this.cardName;
+        }
+
+        public string getDescription()
+        {
+            return this.desc;
+        }
+
+        public string getName()
+        {
+            return this.cardName;
         }
     }
 }
