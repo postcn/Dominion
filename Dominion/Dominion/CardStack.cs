@@ -51,5 +51,10 @@ namespace Dominion
         {
             return (this.remaining < 1);
         }
+
+        public int cardsRemaining()
+        {
+            return this.remaining;
+        }
     }
 }

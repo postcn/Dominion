@@ -127,5 +127,34 @@ namespace Dominion
             test = new Card(3, 0, 2, 0, 99, 4, 99, "Null Card", "Null Card",99);
             Assert.AreEqual(99, test.getCost());
         }
+
+        [Test()]
+        public void testEquals()
+        {
+            Card test = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2);
+            Card estate = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2);
+            Object generic = new Object();
+            Assert.True(test.Equals(estate));
+            Assert.False(test.Equals(generic));
+            Card oneoff = new Card(1, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2);
+            oneoff = new Card(0, 1, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 1, 0, 1, 0, 0, "Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 1, 1, 0, 0, "Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 0, 0, 0, 0, "Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 0, 1, 1, 0, "Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 0, 1, 0, 1, "Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 0, 1, 0, 0, "Not Estate", "Single Victory Point", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Changed Description", 2);
+            Assert.False(test.Equals(oneoff));
+            oneoff = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 0);
+            Assert.False(test.Equals(oneoff));
+        }
     }
 }

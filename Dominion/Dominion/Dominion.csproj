@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CardStack.cs" />
+    <Compile Include="CardStackTest.cs" />
     <Compile Include="CardTest.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="DeckTest.cs" />

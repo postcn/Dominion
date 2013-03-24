@@ -91,5 +91,19 @@ namespace Dominion
         {
             return this.cost;
         }
+
+        override
+        public bool Equals(Object other)
+        {
+            if (other.GetType() != this.GetType())
+            {
+                return false;
+            }
+            Card otherCard = (Card)other;
+            return ((this.actions == otherCard.getActions()) && (this.desc == otherCard.getDescription()) && (this.cardName == otherCard.getName()) &&
+                (this.type == otherCard.getType()) && (this.funcNum == otherCard.getFunctionNumber()) && (this.cost == otherCard.getCost()) &&
+                (this.cash == otherCard.getCash()) && (this.buy == otherCard.getBuy()) && (this.vict == otherCard.getVictoryPoints()) &&
+                (this.draw == otherCard.getAdditionalDraws()));
+        }
     }
 }
