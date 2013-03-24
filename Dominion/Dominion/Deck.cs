@@ -21,12 +21,12 @@ namespace Dominion
             for (int i = 0; i < 7; i++)
             {
                 //7 copper cards,
-                this.inDeck.Add(new Card(1, 1, 0, 0, 0, 0, 0,"Copper","1 Currency"));
+                this.inDeck.Add(new Card(1, 1, 0, 0, 0, 0, 0,"Copper","1 Currency",0));
             }
             for (int i = 0; i < 3; i++)
             {
                 //3 estate victory cards
-                this.inDeck.Add(new Card(0, 0, 0, 0, 1, 0, 0,"Estate","1 Victory Point"));
+                this.inDeck.Add(new Card(0, 0, 0, 0, 1, 0, 0,"Estate","1 Victory Point",2));
             }
             this.inDiscard = new List<Card>();
         }
