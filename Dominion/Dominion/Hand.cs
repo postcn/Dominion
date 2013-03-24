@@ -29,6 +29,11 @@ namespace Dominion
                 return true;
             }
         }
+        public List<Card> getHand()
+        {
+            return yourHand;
+        }
+
         // Goes through your hand and calculates how much base currency you have in it.
         public Boolean getCurrency()
         {
