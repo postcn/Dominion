@@ -114,5 +114,13 @@ namespace Dominion
             Assert.True(this.stackFive.isEmpty());
             Assert.Null(test);
         }
+
+        [Test()]
+        public void testGetCard()
+        {
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), this.stackDefault.getCard());
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), this.stackOne.getCard());
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), this.stackFive.getCard());
+        }
     }
 }

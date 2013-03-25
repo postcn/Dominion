@@ -56,5 +56,10 @@ namespace Dominion
         {
             return this.remaining;
         }
+
+        public Card getCard()
+        {
+            return this.card;
+        }
     }
 }
