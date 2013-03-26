@@ -9,14 +9,21 @@ namespace Dominion
     class Player
     {
         private int victoryPts;
+        private int id;
         Deck myDeck;
         Hand myHand;
 
-        public Player()
+        public Player(int id)
         {
+            this.id = id;
             myDeck = new Deck();
             myHand = new Hand();
             victoryPts = 3;
+        }
+
+        public int getID()
+        {
+            return this.id;
         }
 
         public int getVictoryPts()

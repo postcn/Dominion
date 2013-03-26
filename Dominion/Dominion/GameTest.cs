@@ -98,5 +98,53 @@ namespace Dominion
             Assert.AreEqual(12, this.gameThreePlayer.calculateSupplyForVictory());
             Assert.AreEqual(12, this.gameFourPlayer.calculateSupplyForVictory());
         }
+
+        [Test()]
+        public void testNextTurnPlayerOnePlayer()
+        {
+            Assert.AreEqual(0, this.gameOnePlayer.nextTurnPlayer().getID());
+        }
+
+        [Test()]
+        public void testNextTurnPlayerTwoPlayer()
+        {
+            Assert.AreEqual(1, this.gameTwoPlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(0, this.gameTwoPlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(1, this.gameTwoPlayer.nextTurnPlayer().getID());
+        }
+
+        [Test()]
+        public void testNextTurnPlayerThreePlayer()
+        {
+            Assert.AreEqual(1, this.gameThreePlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(2, this.gameThreePlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(0, this.gameThreePlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(1, this.gameThreePlayer.nextTurnPlayer().getID());
+        }
+
+        [Test()]
+        public void testNextTurnPlayerFourPlayer()
+        {
+            Assert.AreEqual(1, this.gameFourPlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(2, this.gameFourPlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(3, this.gameFourPlayer.nextTurnPlayer().getID());
+            Assert.AreEqual(0, this.gameFourPlayer.nextTurnPlayer().getID());
+        }
+
+        [Test()]
+        public void testGetPlayer()
+        {
+            Assert.AreEqual(0, this.gameOnePlayer.getCurrentPlayer().getID());
+            Assert.AreEqual(0, this.gameTwoPlayer.getCurrentPlayer().getID());
+            this.gameTwoPlayer.nextTurn();
+            Assert.AreEqual(1, this.gameTwoPlayer.getCurrentPlayer().getID());
+            this.gameTwoPlayer.nextTurn();
+            Assert.AreEqual(0, this.gameTwoPlayer.getCurrentPlayer().getID());
+            Assert.AreEqual(0, this.gameThreePlayer.getCurrentPlayer().getID());
+            this.gameThreePlayer.nextTurn();
+            Assert.AreEqual(1, this.gameThreePlayer.getCurrentPlayer().getID());
+            this.gameThreePlayer.nextTurn();
+            Assert.AreEqual(2, this.gameThreePlayer.getCurrentPlayer().getID());
+        }
     }
 }
