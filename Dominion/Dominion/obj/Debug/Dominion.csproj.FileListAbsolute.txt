@@ -12,7 +12,6 @@ C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.P
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csproj.GenerateResource.Cache
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
-C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csprojResolveAssemblyReference.cache
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe.config
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.pdb
@@ -28,6 +27,10 @@ C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debu
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csproj.GenerateResource.Cache
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
+<<<<<<< HEAD
 C:\Users\jarvisnw\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe.config
 C:\Users\jarvisnw\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
 C:\Users\jarvisnw\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
+=======
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csprojResolveAssemblyReference.cache
+>>>>>>> 222cf1b9d47284fb8da4f905c3fcccba65304b83
