@@ -64,6 +64,11 @@ namespace Dominion
             //TODO: get cards out of possible list.
         }
 
+        public List<CardStack> getBuyables() 
+        {
+            return this.buyables;
+        }
+
         public int calculateSupplyForVictory()
         {
             if (this.numPlayers < 3)

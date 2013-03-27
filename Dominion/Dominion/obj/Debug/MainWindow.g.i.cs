@@ -58,7 +58,7 @@ namespace Dominion {
         
         #line 33 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.Button Draw;
+        internal System.Windows.Controls.Button Buy;
         
         #line default
         #line hidden
@@ -127,6 +127,22 @@ namespace Dominion {
         #line default
         #line hidden
         
+        
+        #line 43 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button Draw;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 44 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button Draw_Copy1;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -170,13 +186,7 @@ namespace Dominion {
             #line hidden
             return;
             case 3:
-            this.Draw = ((System.Windows.Controls.Button)(target));
-            
-            #line 33 "..\..\MainWindow.xaml"
-            this.Draw.Click += new System.Windows.RoutedEventHandler(this.Draw_Click);
-            
-            #line default
-            #line hidden
+            this.Buy = ((System.Windows.Controls.Button)(target));
             return;
             case 4:
             this.DescriptionLabel = ((System.Windows.Controls.Label)(target));
@@ -221,6 +231,18 @@ namespace Dominion {
             return;
             case 12:
             this.EstateButtomImage = ((System.Windows.Controls.Image)(target));
+            return;
+            case 13:
+            this.Draw = ((System.Windows.Controls.Button)(target));
+            
+            #line 43 "..\..\MainWindow.xaml"
+            this.Draw.Click += new System.Windows.RoutedEventHandler(this.Draw_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 14:
+            this.Draw_Copy1 = ((System.Windows.Controls.Button)(target));
             return;
             }
             this._contentLoaded = true;

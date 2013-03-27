@@ -28,10 +28,10 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,-8,1">
-        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="421,564,0,0" VerticalAlignment="Top" Width="280"/>
+        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="421,564,0,0" VerticalAlignment="Top" Width="220"/>
         <Button x:Name="Shuffle" Content="Shuffle" HorizontalAlignment="Left" Height="29" Margin="421,656,0,0" VerticalAlignment="Top" Width="83" Click="Shuffle_Click"/>
-        <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="29" Margin="581,656,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
-        <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="421,514,0,0" VerticalAlignment="Top" Width="280"/>
+        <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="786,580,0,0" VerticalAlignment="Top" Width="47"/>
+        <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="421,514,0,0" VerticalAlignment="Top" Width="220"/>
         <Label x:Name="CardDrawnLabel" Content="Card Drawn" HorizontalAlignment="Left" Height="45" Margin="10,152,0,0" VerticalAlignment="Top" Width="138"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="10,202,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
         <Label x:Name="Counter" Content="Estate vs total  (drawn)" HorizontalAlignment="Left" Height="41" Margin="10,10,0,0" VerticalAlignment="Top" Width="144"/>
@@ -39,7 +39,8 @@
         <Button x:Name="CopperButton" Style="{DynamicResource NoChromeButton}" Click="CopperImage_Click" Margin="300,247,490,354" >
             <Image x:Name= "CopperButtonImage" Source="Copper.jpg" Stretch="Uniform" Height="137" Width="78"/> </Button>
         <Button x:Name="EstateButton2" Style="{DynamicResource NoChromeButton}" Click="EstateImage_Click" Margin="460,247,330,354" >
-            <Image x:Name="EstateButtomImage" Source="Estate.jpg" Stretch="Uniform" Height="137" Width="78"/>
-        </Button>
+            <Image x:Name="EstateButtomImage" Source="Estate.jpg" Stretch="Uniform" Height="137" Width="78"/> </Button>
+        <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="29" Margin="581,656,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
+        <Button x:Name="Draw_Copy1" Content="Confirm" HorizontalAlignment="Left" Height="29" Margin="702,580,0,0" VerticalAlignment="Top" Width="55"/>
     </Grid>
 </Window>
