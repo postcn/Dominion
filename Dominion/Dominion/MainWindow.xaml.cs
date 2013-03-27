@@ -22,6 +22,7 @@ namespace Dominion
         public MainWindow(){
             InitializeComponent();
         }
+
         Deck player1Deck = new Deck();
         int count = 0;
         int countE = 0;
@@ -34,6 +35,7 @@ namespace Dominion
             player1Deck.reshuffle();
             DescriptionLabel.Content = "Top card's Currency Value:";
             Description.Content = player1Deck.getInDeck()[0].getCash();
+
         }
 
         private void Draw_Click(object sender, RoutedEventArgs e){
@@ -44,17 +46,19 @@ namespace Dominion
             Description.Content = player1Deck.cardsLeft();
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            //Description.Content = firstCard.ToString();
             count++;
             if(firstCard.getCash()==1){
-                image.UriSource = new Uri("Copper.jpg", UriKind.Relative);       
+                image.UriSource = new Uri("Copper.jpg", UriKind.RelativeOrAbsolute);
             }
             else{
-                image.UriSource = new Uri("Estate.jpg", UriKind.Relative);
+                image.UriSource = new Uri("Estate.jpg", UriKind.RelativeOrAbsolute);
                 countE++;
             }
             image.EndInit();
             Hand_Card.Source = image;
+            //
+            EstateButtomImage.Source = image;
+            //
             String county;
             county=countE+"/" +count;
             Counter.Content = county;
@@ -63,16 +67,35 @@ namespace Dominion
             //          Description.Content = yo.getActions();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e){
+        private void Reset_Click(object sender, RoutedEventArgs e){
             BitmapImage image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri("Blank.jpg", UriKind.Relative);
+            image.UriSource = new Uri("Blank.jpg", UriKind.RelativeOrAbsolute);
             image.EndInit();
             Hand_Card.Source = image;
+            //
+           /* BitmapImage image1 = new BitmapImage();
+            image1.BeginInit();
+            image1.UriSource = new Uri("Estate.jpg", UriKind.RelativeOrAbsolute);
+            image1.EndInit();
+          //  EstateButtomImage.Source = image1;
+            //*/
             Description.Content = "Labez";
             DescriptionLabel.Content = "Nothing Yet";
             player1Deck.reshuffle();
         }
-
+        private void CopperImage_Click(object sender, RoutedEventArgs e){
+            DescriptionLabel.Content = "Copper Selected";
+        }
+        private void EstateImage_Click(object sender, RoutedEventArgs e){
+            DescriptionLabel.Content = "Estate Selected";
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(EstateButtomImage.Source.ToString(), UriKind.RelativeOrAbsolute);
+            image.EndInit();
+            Hand_Card.Source = image;
+        }
+        //http://stackoverflow.com/questions/4151380/wpf-image-control-with-click-event
+        //http://stackoverflow.com/questions/5090435/image-button-on-visual-studio-2010
     }
 }

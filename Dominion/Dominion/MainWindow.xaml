@@ -2,17 +2,44 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="769" Width="878">
+    <Window.Resources>
+        <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="Chrome" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                                <Setter Property="Opacity" TargetName="Chrome" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="0,0,-8,1">
-        <Image x:Name="Copper" HorizontalAlignment="Left" Height="172" Margin="307,225,0,0" VerticalAlignment="Top" Width="111" Source="Copper.jpg"/>
         <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="421,564,0,0" VerticalAlignment="Top" Width="280"/>
         <Button x:Name="Shuffle" Content="Shuffle" HorizontalAlignment="Left" Height="29" Margin="421,656,0,0" VerticalAlignment="Top" Width="83" Click="Shuffle_Click"/>
         <Button x:Name="Draw" Content="Draw" HorizontalAlignment="Left" Height="29" Margin="581,656,0,0" VerticalAlignment="Top" Width="47" Click="Draw_Click"/>
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="421,514,0,0" VerticalAlignment="Top" Width="280"/>
-        <Image x:Name="Estate" HorizontalAlignment="Left" Height="172" Margin="487,225,0,0" VerticalAlignment="Top" Width="111" Source="Estate.jpg"/>
-        <Label x:Name="CardDrawnLabel" Content="Card Drawn" HorizontalAlignment="Left" Height="45" Margin="41,175,0,0" VerticalAlignment="Top" Width="138"/>
-        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="41,225,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
-        <Label x:Name="Counter" Content="Estate vs total  (drawn)" HorizontalAlignment="Left" Height="41" Margin="212,152,0,0" VerticalAlignment="Top" Width="144"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Height="29" Margin="227,656,0,0" VerticalAlignment="Top" Width="113" Click="Button_Click_1"/>
-
+        <Label x:Name="CardDrawnLabel" Content="Card Drawn" HorizontalAlignment="Left" Height="45" Margin="10,152,0,0" VerticalAlignment="Top" Width="138"/>
+        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="10,202,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
+        <Label x:Name="Counter" Content="Estate vs total  (drawn)" HorizontalAlignment="Left" Height="41" Margin="10,10,0,0" VerticalAlignment="Top" Width="144"/>
+        <Button Content="Reset" HorizontalAlignment="Left" Height="29" Margin="227,656,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click"/>
+        <Button x:Name="CopperButton" Style="{DynamicResource NoChromeButton}" Click="CopperImage_Click" Margin="300,247,490,354" >
+            <Image x:Name= "CopperButtonImage" Source="Copper.jpg" Stretch="Uniform" Height="137" Width="78"/> </Button>
+        <Button x:Name="EstateButton2" Style="{DynamicResource NoChromeButton}" Click="EstateImage_Click" Margin="460,247,330,354" >
+            <Image x:Name="EstateButtomImage" Source="Estate.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        </Button>
     </Grid>
 </Window>
