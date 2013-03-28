@@ -12,13 +12,17 @@ namespace Dominion
         private int id;
         Deck myDeck;
         Hand myHand;
+        List<Card> played;
+        int buysLeft;
 
         public Player(int id)
         {
             this.id = id;
             myDeck = new Deck();
             myHand = new Hand();
+            played = new List<Card>();
             victoryPts = 3;
+            this.buysLeft = 1;
         }
 
         public int getID()
@@ -59,6 +63,30 @@ namespace Dominion
                 }
             }
             victoryPts = tempPts;
+        }
+
+        public int getCurrency()
+        {
+            int inPlayed = 0;
+            foreach (Card c in this.played)
+            {
+                inPlayed += c.getCash();
+            }
+            inPlayed += this.myHand.getCurrency();
+            return inPlayed;
+        }
+
+        public Boolean buy(CardStack aStack)
+        {
+            int cost = aStack.getCard().getCost();
+            int currency = getCurrency();
+            if (!(aStack.isEmpty()) && (cost < currency))
+            {
+                this.myDeck.discard(aStack.buyOne());
+                this.buysLeft--;
+                return true;
+            }
+            return false;
         }
     }
 }
