@@ -146,5 +146,25 @@ namespace Dominion
             this.gameThreePlayer.nextTurn();
             Assert.AreEqual(2, this.gameThreePlayer.getCurrentPlayer().getID());
         }
+
+        [Test()]
+        public void testGetBuyablesDefaultCardsOnly()
+        {
+            //This test should fail once we add in new Action Cards.
+            //This failure should remind me to update the test when we get more default cards.
+            List<CardStack> buys = this.gameOnePlayer.getBuyables();
+            Assert.AreEqual(6, buys.Count);
+            List<String> names = new List<String>();
+            names.Add("Copper");
+            names.Add("Silver");
+            names.Add("Gold");
+            names.Add("Estate");
+            names.Add("Duchy");
+            names.Add("Province");
+            for (int i = 0; i < 6; i++)
+            {
+                Assert.AreEqual(names[i], buys[i].getCard().getName());
+            }
+        }
     }
 }
