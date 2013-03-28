@@ -65,14 +65,14 @@
     </Compile>
     <Compile Include="Card.cs" />
     <Compile Include="CardStack.cs" />
-    <Compile Include="CardStackTest.cs" />
-    <Compile Include="CardTest.cs" />
+    <Compile Include="Tests\CardStackTest.cs" />
+    <Compile Include="Tests\CardTest.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="DeckTest.cs" />
+    <Compile Include="Tests\DeckTest.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameTest.cs" />
+    <Compile Include="Tests\GameTest.cs" />
     <Compile Include="Hand.cs" />
-    <Compile Include="HandTest.cs" />
+    <Compile Include="Tests\HandTest.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
