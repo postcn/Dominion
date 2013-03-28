@@ -14,7 +14,7 @@ namespace Dominion
         public Hand()
         {
             currencyInHand = 0;
-            yourHand = null;
+            yourHand = new List<Card>();
         }
 
         public Boolean draw(Deck deck)
@@ -42,6 +42,7 @@ namespace Dominion
                 return 0;
             }
 
+            currencyInHand = 0;
             for (int i = 0; i < yourHand.Count; i++)
             {
                 if (yourHand[i].getType() == 1)
