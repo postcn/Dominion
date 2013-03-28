@@ -22,6 +22,7 @@ namespace Dominion
             }
             this.currentPlayer = 0;
             this.numPlayers = numPlayers;
+            this.setupBuyables();
         }
 
         public int nextTurn()
