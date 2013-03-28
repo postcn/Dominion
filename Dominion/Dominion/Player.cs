@@ -34,6 +34,12 @@ namespace Dominion
         {
             return this.myHand;
         }
+
+        public Deck getDeck()
+        {
+            return this.myDeck;
+        }
+
         public int getID()
         {
             return this.id;
