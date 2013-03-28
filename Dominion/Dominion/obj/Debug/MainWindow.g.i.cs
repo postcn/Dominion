@@ -112,7 +112,7 @@ namespace Dominion {
         #line hidden
         
         
-        #line 41 "..\..\MainWindow.xaml"
+        #line 42 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button EstateButton2;
         
@@ -120,7 +120,7 @@ namespace Dominion {
         #line hidden
         
         
-        #line 42 "..\..\MainWindow.xaml"
+        #line 43 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Image EstateButtomImage;
         
@@ -128,7 +128,7 @@ namespace Dominion {
         #line hidden
         
         
-        #line 43 "..\..\MainWindow.xaml"
+        #line 45 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Draw;
         
@@ -136,9 +136,17 @@ namespace Dominion {
         #line hidden
         
         
-        #line 44 "..\..\MainWindow.xaml"
+        #line 46 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Draw_Copy1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 47 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button Start;
         
         #line default
         #line hidden
@@ -187,6 +195,12 @@ namespace Dominion {
             return;
             case 3:
             this.Buy = ((System.Windows.Controls.Button)(target));
+            
+            #line 33 "..\..\MainWindow.xaml"
+            this.Buy.Click += new System.Windows.RoutedEventHandler(this.Buy_Click);
+            
+            #line default
+            #line hidden
             return;
             case 4:
             this.DescriptionLabel = ((System.Windows.Controls.Label)(target));
@@ -223,7 +237,7 @@ namespace Dominion {
             case 11:
             this.EstateButton2 = ((System.Windows.Controls.Button)(target));
             
-            #line 41 "..\..\MainWindow.xaml"
+            #line 42 "..\..\MainWindow.xaml"
             this.EstateButton2.Click += new System.Windows.RoutedEventHandler(this.EstateImage_Click);
             
             #line default
@@ -235,7 +249,7 @@ namespace Dominion {
             case 13:
             this.Draw = ((System.Windows.Controls.Button)(target));
             
-            #line 43 "..\..\MainWindow.xaml"
+            #line 45 "..\..\MainWindow.xaml"
             this.Draw.Click += new System.Windows.RoutedEventHandler(this.Draw_Click);
             
             #line default
@@ -243,6 +257,15 @@ namespace Dominion {
             return;
             case 14:
             this.Draw_Copy1 = ((System.Windows.Controls.Button)(target));
+            return;
+            case 15:
+            this.Start = ((System.Windows.Controls.Button)(target));
+            
+            #line 47 "..\..\MainWindow.xaml"
+            this.Start.Click += new System.Windows.RoutedEventHandler(this.Start_Click);
+            
+            #line default
+            #line hidden
             return;
             }
             this._contentLoaded = true;
