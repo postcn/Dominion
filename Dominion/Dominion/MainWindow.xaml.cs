@@ -13,138 +13,181 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dominion{
+namespace Dominion
+{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window{
-        public MainWindow(){
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
             InitializeComponent();
         }
         static Game myGame;
         Player player;
         List<CardStack> stacks;
         string currentCard;
-        string handcard;
-        //  Deck Deck = Player.getDeck();
+        string lastCard;
+        string handCard;
 
-        private void Cleanup_Click(object sender, RoutedEventArgs e){
+        private void Cleanup_Click(object sender, RoutedEventArgs e)
+        {
             player.cleanUp();
+            resetCards();
             currentCard = "";
             List<Image> handImage = new List<Image>();
-            List<Button> handButton = new List<Button>();
-            int length=5;
+            int length = 5;
             handImage.Add(HandImage1);
             handImage.Add(HandImage2);
             handImage.Add(HandImage3);
             handImage.Add(HandImage4);
             handImage.Add(HandImage5);
-            handButton.Add(HandButton1);
-            handButton.Add(HandButton2);
-            handButton.Add(HandButton3);
-            handButton.Add(HandButton4);
-            handButton.Add(HandButton5);
             int i;
-            Hand myHand=player.getHand();
-            for (i = 0; i < length; i++){
-                string name = myHand.getHand()[i].toString()+".jpg";
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(name, UriKind.RelativeOrAbsolute);
-                image.EndInit();
-                handImage[i].Source = image;
-                
+            Hand myHand = player.getHand();
+            for (i = 0; i < length; i++)
+            {
+                string name = myHand.getHand()[i].toString() + ".jpg";
+                setPicture(name, handImage[i]);
+
             }
             player.getCurrency();
 
         }
 
-        private void Reset_Click(object sender, RoutedEventArgs e){
-            BitmapImage image = new BitmapImage();
-             image.BeginInit();
-             image.UriSource = new Uri("Blank.jpg", UriKind.RelativeOrAbsolute);
-             image.EndInit();
-             Hand_Card.Source = image;
-             CardDrawnLabel.Content = "Card Bought";
-             Description.Content = "Labez";
-             DescriptionLabel.Content = "Nothing Yet";
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            setPicture("blank.jpg", Hand_Card);
+            CardDrawnLabel.Content = "Card Bought";
+            Description.Content = "Labez";
+            DescriptionLabel.Content = "Nothing Yet";
         }
-        private void CurrencyImage1_Click(object sender, RoutedEventArgs e){
-            currentCard = CurrencyImage1.Source.ToString();
-            setCurrentCard(currentCard);
+        private void CurrencyImage1_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(CurrencyImage1.Source.ToString());
+            hilightCard(CurrencyImage1, false);
         }
-        private void CurrencyImage2_Click(object sender, RoutedEventArgs e){
-            currentCard = CurrencyImage2.Source.ToString();
-            setCurrentCard(currentCard);
+        private void CurrencyImage2_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(CurrencyImage2.Source.ToString());
+            hilightCard(CurrencyImage2, false);
         }
-        private void CurrencyImage3_Click(object sender, RoutedEventArgs e){
-            currentCard = CurrencyImage3.Source.ToString();
-            setCurrentCard(currentCard);
+        private void CurrencyImage3_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(CurrencyImage3.Source.ToString());
+            hilightCard(CurrencyImage3, false);
         }
-        private void VictoryImage1_Click(object sender, RoutedEventArgs e){
-            currentCard = VictoryImage1.Source.ToString();
-            setCurrentCard(currentCard);
+        private void VictoryImage1_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(VictoryImage1.Source.ToString());
+            hilightCard(VictoryImage1, false);
         }
-        private void VictoryImage2_Click(object sender, RoutedEventArgs e){
-            currentCard = VictoryImage2.Source.ToString();
-            setCurrentCard(currentCard);
+        private void VictoryImage2_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(VictoryImage2.Source.ToString());
+            hilightCard(VictoryImage2, false);
         }
-        private void VictoryImage3_Click(object sender, RoutedEventArgs e){
-            currentCard = VictoryImage3.Source.ToString();
-            setCurrentCard(currentCard);
+        private void VictoryImage3_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(VictoryImage3.Source.ToString());
+            hilightCard(VictoryImage3, false);
         }
-        private void VictoryImage4_Click(object sender, RoutedEventArgs e){
-            currentCard = VictoryImage4.Source.ToString();
-            setCurrentCard(currentCard);
+        private void VictoryImage4_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(VictoryImage4.Source.ToString());
+            hilightCard(VictoryImage4, false);
         }
-        private void setCurrentCard(string str){
+        private void HandImage1_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(HandImage1.Source.ToString());
+            handCard = stripImageSource(HandImage1.Source.ToString());
+            hilightCard(HandImage1, true);
+            Buy.IsEnabled = false;
+        }
+        private void HandImage2_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(HandImage2.Source.ToString());
+            handCard = stripImageSource(HandImage2.Source.ToString());
+            hilightCard(HandImage2, true);
+            Buy.IsEnabled = false;
+        }
+        private void HandImage3_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(HandImage3.Source.ToString());
+            handCard = stripImageSource(HandImage3.Source.ToString());
+            hilightCard(HandImage3, true);
+            Buy.IsEnabled = false;
+        }
+        private void HandImage4_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(HandImage4.Source.ToString());
+            handCard = stripImageSource(HandImage4.Source.ToString());
+            hilightCard(HandImage4, true);
+            Buy.IsEnabled = false;
+        }
+        private void HandImage5_Click(object sender, RoutedEventArgs e)
+        {
+            currentCard = stripImageSource(HandImage5.Source.ToString());
+            handCard = stripImageSource(HandImage5.Source.ToString());
+            hilightCard(HandImage5, true);
+            Buy.IsEnabled = false;
+        }
+
+        private string stripImageSource(string str)
+        {
             int length = str.Count();
-            currentCard = str.Substring(42, length - 46);
-            Description.Content = currentCard;
+            str = str.Substring(42, length - 46);
+            return str;
         }
-        private void Buy_Click(object sender, RoutedEventArgs e){
-            if (currentCard.Equals("")){
-                Description.Content = "no card selected";
+        private void Buy_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentCard.Equals("") || handCard.Equals(currentCard))
+            {
+                Description.Content = "A Buyable Card isn't Selected";
+                resetCards();
+                return;
             }
-            Boolean work=false;
+            Boolean work = false;
             int i;
             int length = stacks.Count();
-            for(i=0;i<length;i++){
-                if(stacks[i].getCard().toString().Equals(currentCard)){
-                    work=player.buy(stacks[i]);
+            for (i = 0; i < length; i++)
+            {
+                if (stacks[i].getCard().toString().Equals(currentCard))
+                {
+                    work = player.buy(stacks[i]);
                 }
             }
 
-            if (!work){
+            if (!work)
+            {
                 Description.Content = "buy failed " + player.getCurrencyValue();
             }
-            else{
-                string name = currentCard+".jpg";
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(name, UriKind.RelativeOrAbsolute);
-                image.EndInit();
-                Hand_Card.Source = image;
+            else
+            {
+                Description.Content = "Buy Sucessful";
+                string name = currentCard + ".jpg";
+                setPicture(name, Hand_Card);
             }
+            resetCards();
         }
 
-        private void Start_Click(object sender, RoutedEventArgs e){
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
             myGame = new Game(1);
             player = myGame.getCurrentPlayer();
             stacks = myGame.getBuyables();
-            //Curr.IsEnabled = true;
             Reset.IsEnabled = true;
-            Buy.IsEnabled = true;
             Cleanup.IsEnabled = true;
             currentCard = "";
-            handcard = "";
+            lastCard = "";
+            handCard = "";
             //Confirm.IsEnabled = true;
             List<Image> victory = new List<Image>();
             List<Image> currency = new List<Image>();
-           // List<Image> action = new List<Image>();
+            // List<Image> action = new List<Image>();
             List<Button> victoryButton = new List<Button>();
             List<Button> currencyButton = new List<Button>();
-         //   List<Button> actionButton = new List<Button>();
+            //   List<Button> actionButton = new List<Button>();
             victory.Add(VictoryImage1);
             victory.Add(VictoryImage2);
             victory.Add(VictoryImage3);
@@ -165,20 +208,16 @@ namespace Dominion{
             for (i = 0; i < size; i++)
             {
                 string name = stacks[i].getCard().getName() + ".jpg";
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(name, UriKind.RelativeOrAbsolute);
-                image.EndInit();
                 if (stacks[i].getCard().getType() == 0)
                 {
-                    victory[victorys].Source = image;
+                    setPicture(name, victory[victorys]);
                     victory[victorys].IsEnabled = true;
                     victoryButton[victorys].IsEnabled = true;
                     victorys++;
                 }
                 else if (stacks[i].getCard().getType() == 1)
                 {
-                    currency[currencies].Source = image;
+                    setPicture(name, currency[currencies]);
                     currency[currencies].IsEnabled = true;
                     currencyButton[currencies].IsEnabled = true;
                     currencies++;
@@ -190,40 +229,120 @@ namespace Dominion{
                     //    actions++;
                 }
             }
+            List<Image> handImage = new List<Image>();
+            List<Button> handButton = new List<Button>();
+            int length = 5;
+            handImage.Add(HandImage1);
+            handImage.Add(HandImage2);
+            handImage.Add(HandImage3);
+            handImage.Add(HandImage4);
+            handImage.Add(HandImage5);
+            handButton.Add(HandButton1);
+            handButton.Add(HandButton2);
+            handButton.Add(HandButton3);
+            handButton.Add(HandButton4);
+            handButton.Add(HandButton5);
+            Hand myHand = player.getHand();
+            for (i = 0; i < length; i++)
+            {
+                handImage[i].IsEnabled = true;
+                handButton[i].IsEnabled = true;
+                string name = myHand.getHand()[i].toString() + ".jpg";
+                setPicture(name, handImage[i]);
+            }
+            player.getCurrency();
+            Start.IsEnabled = false;
+        }
+        private void hilightCard(Image pic, Boolean isHandCard)
+        {
+            resetCards();
+            string card;
+            Buy.IsEnabled = false;
+            if (!currentCard.Contains("1"))
+            {
+                card = currentCard + "1" + ".jpg";
+                if (!isHandCard)
+                {
+                    Buy.IsEnabled = true;
+                }
+            }
+            else
+            {
+                card = currentCard.Substring(0, currentCard.Count() - 1) + ".jpg";
+            }
 
+            lastCard = card.Substring(0, card.Count() - 4);
+            setPicture(card, pic);
 
+        }
+        private void resetCards()
+        {
+            if (lastCard != "")
+            {
+                Buy.IsEnabled = false;
+                string card = lastCard;
+                if (lastCard.Contains("1"))
+                {
+                    card = lastCard.Substring(0, lastCard.Count() - 1);
+                }
+                card = card + ".jpg";
+                List<Image> victory = new List<Image>();
+                List<Image> currency = new List<Image>();
                 List<Image> handImage = new List<Image>();
-                List<Button> handButton = new List<Button>();
-                int length = 5;
+                // List<Image> action = new List<Image>();
+                victory.Add(VictoryImage1);
+                victory.Add(VictoryImage2);
+                victory.Add(VictoryImage3);
+                victory.Add(VictoryImage4);
+                currency.Add(CurrencyImage1);
+                currency.Add(CurrencyImage2);
+                currency.Add(CurrencyImage3);
                 handImage.Add(HandImage1);
                 handImage.Add(HandImage2);
                 handImage.Add(HandImage3);
                 handImage.Add(HandImage4);
                 handImage.Add(HandImage5);
-                handButton.Add(HandButton1);
-                handButton.Add(HandButton2);
-                handButton.Add(HandButton3);
-                handButton.Add(HandButton4);
-                handButton.Add(HandButton5);
-                Hand myHand = player.getHand();
-                for (i = 0; i < length; i++) {
-                    handImage[i].IsEnabled = true;
-                    handButton[i].IsEnabled = true;
-                    string name = myHand.getHand()[i].toString() + ".jpg";
-                    BitmapImage image1 = new BitmapImage();
-                    image1.BeginInit();
-                    image1.UriSource = new Uri(name, UriKind.RelativeOrAbsolute);
-                    image1.EndInit();
-                    handImage[i].Source = image1;
-
+                int i;
+                for (i = 0; i < currency.Count(); i++)
+                {
+                    if (stripImageSource(currency[i].Source.ToString()).Equals(lastCard))
+                    {
+                        setPicture(card, currency[i]);
+                        return;
+                    }
                 }
-                player.getCurrency();
-            
+                for (i = 0; i < handImage.Count(); i++)
+                {
+                    if (stripImageSource(handImage[i].Source.ToString()).Equals(lastCard))
+                    {
+                        setPicture(card, handImage[i]);
+                        return;
+                    }
+                }
+                for (i = 0; i < victory.Count(); i++)
+                {
+                    if (victory[i].IsEnabled == true)
+                    {
+                        if (stripImageSource(victory[i].Source.ToString()).Equals(lastCard))
+                        {
+                            setPicture(card, victory[i]);
+                            return;
+                        }
+                    }
+                }
+            }
         }
-
-        private void Curr_Click(object sender, RoutedEventArgs e){
-            player.getCurrency();
+        private void setPicture(string str, Image pic)
+        {
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(str, UriKind.RelativeOrAbsolute);
+            image.EndInit();
+            pic.Source = image;
         }
+        //doens't check buys
+        //shuffle cards well (like from start)
+        //
         //http://stackoverflow.com/questions/4151380/wpf-image-control-with-click-event
         //http://stackoverflow.com/questions/5090435/image-button-on-visual-studio-2010
     }

@@ -137,6 +137,7 @@ namespace Dominion
             {
                 myHand.draw(myDeck);
             }
+            this.buysLeft = 1;
         }
     }
 }
