@@ -12,25 +12,3 @@ C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.P
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csproj.GenerateResource.Cache
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe.config
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.pdb
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\nunit.framework.dll
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\nunit.framework.xml
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csprojResolveAssemblyReference.cache
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\MainWindow.baml
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\MainWindow.g.cs
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\App.g.cs
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion_MarkupCompile.cache
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.g.resources
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.Properties.Resources.resources
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csproj.GenerateResource.Cache
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
-C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
-<<<<<<< HEAD
-C:\Users\jarvisnw\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe.config
-C:\Users\jarvisnw\Dominion\Dominion\Dominion\obj\Debug\Dominion.exe
-C:\Users\jarvisnw\Dominion\Dominion\Dominion\obj\Debug\Dominion.pdb
-=======
-C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csprojResolveAssemblyReference.cache
->>>>>>> 222cf1b9d47284fb8da4f905c3fcccba65304b83

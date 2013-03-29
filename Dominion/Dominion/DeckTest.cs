@@ -126,7 +126,6 @@ namespace Dominion
             //this draw should reshuffle the deck.
             d.draw();
             Assert.AreEqual(size-1, d.cardsLeft());
-        }
-            
+        }   
     }
 }

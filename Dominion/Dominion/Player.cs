@@ -40,6 +40,11 @@ namespace Dominion
             return this.myDeck;
         }
 
+        public void setDeck(Deck deck)
+        {
+            this.myDeck = deck;
+        }
+
         public int getID()
         {
             return this.id;
@@ -91,6 +96,7 @@ namespace Dominion
             this.currencyAvailable = inPlayed;
             return inPlayed;
         }
+
         public int getCurrencyValue()
         {
             return this.currencyAvailable;
@@ -100,7 +106,7 @@ namespace Dominion
         {
             int cost = aStack.getCard().getCost();
             int currency = this.currencyAvailable;
-            if (!(aStack.isEmpty()) && (cost <= currency))
+            if (!(aStack.isEmpty()) && (cost <= currency) && (this.buysLeft > 0))
             {
                 this.myDeck.discard(aStack.buyOne());
                 this.buysLeft--;
@@ -108,6 +114,12 @@ namespace Dominion
                 return true;
             }
             return false;
+        }
+
+        public int addBuys(int toAdd)
+        {
+            this.buysLeft += toAdd;
+            return this.buysLeft;
         }
 
         public void cleanUp()
