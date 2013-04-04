@@ -79,5 +79,19 @@ namespace Dominion
             Assert.AreEqual(copper, test.remove(copper));
             Assert.IsNull(test.remove(copper));
         }
+
+        [Test()]
+        public void testDiscard()
+        {
+            Hand test = new Hand();
+            Deck d = new Deck();
+            test.draw(d);
+            Assert.AreEqual(1, test.getHand().Count);
+            test.discard(test.getHand()[0], d);
+            Assert.AreEqual(0, test.getHand().Count);
+            Assert.AreEqual(1, d.getInDiscard().Count);
+            Assert.IsFalse(test.discard(new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0), d));
+            Assert.AreEqual(1, d.getInDiscard().Count);
+        }
     }
 }
