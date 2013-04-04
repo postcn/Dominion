@@ -27,3 +27,4 @@ C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debu
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.g.resources
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.Properties.Resources.resources
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csproj.GenerateResource.Cache
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.csprojResolveAssemblyReference.cache

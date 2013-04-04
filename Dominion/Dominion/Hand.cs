@@ -62,5 +62,33 @@ namespace Dominion
             deck.discard(picked);
             return true;
         }
+
+        public Boolean contains(Card toCheck)
+        {
+            if (this.yourHand == null)
+            {
+                return false;
+            }
+            foreach (Card c in this.yourHand)
+            {
+                if (c.Equals(toCheck))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Card remove(Card aCard)
+        {
+            if (this.yourHand.Remove(aCard))
+            {
+                return aCard;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

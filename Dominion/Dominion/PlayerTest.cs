@@ -103,5 +103,32 @@ namespace Dominion
             Assert.AreEqual(5, p.getDeck().getInDiscard().Count);
             Assert.AreEqual(0, p.getDeck().cardsLeft());
         }
+
+        [Test()]
+        public void testPlayCardNotInHand()
+        {
+            Assert.IsFalse(p.play(new Card(0,0,0,0,0,0,0,"NULL","NULL",0)));
+        }
+
+        [Test()]
+        public void testPlayNotAction()
+        {
+            Assert.IsFalse(p.play(new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency", 0)));
+        }
+
+        [Test()]
+        public void testPlayActionGoesIntoPlayed()
+        {
+            List<Card> toBuildFrom = new List<Card>();
+            for (int i = 0; i < 10; i++)
+            {
+                toBuildFrom.Add(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0));
+            }
+            Deck d = new Deck(toBuildFrom);
+            p.setDeck(d);
+            p.getHand().draw(p.getDeck());
+            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0));
+            Assert.AreEqual(1, p.getPlayed().Count);
+        }
     }
 }

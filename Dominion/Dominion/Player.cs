@@ -40,6 +40,11 @@ namespace Dominion
             return this.myDeck;
         }
 
+        public List<Card> getPlayed()
+        {
+            return this.played;
+        }
+
         public void setDeck(Deck deck)
         {
             this.myDeck = deck;
@@ -113,6 +118,21 @@ namespace Dominion
                 this.currencyAvailable -= aStack.getCard().getCost();
                 return true;
             }
+            return false;
+        }
+
+        public Boolean play(Card aCard)
+        {
+            if (!this.myHand.contains(aCard))
+            {
+                return false;
+            }
+
+            if (aCard.getType() != 2)
+            {
+                return false;
+            }
+            this.played.Add(this.myHand.remove(aCard));
             return false;
         }
 
