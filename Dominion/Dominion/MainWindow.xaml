@@ -33,10 +33,9 @@
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="37,542,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
         <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="45" Margin="10,152,0,0" VerticalAlignment="Top" Width="285" Foreground="White"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="10,202,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
-        <Button x:Name="Reset" Content="Reset" HorizontalAlignment="Left" Height="29" Margin="212,669,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click" IsEnabled="False"/>
-        <Button x:Name="Cleanup" Content="Cleanup" HorizontalAlignment="Left" Height="29" Margin="510,669,0,0" VerticalAlignment="Top" Width="59" Click="Cleanup_Click" IsEnabled="False"/>
+        <Button x:Name="Reset" Content="Reset" HorizontalAlignment="Left" Height="29" Margin="212,669,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click"/>
+        <Button x:Name="Cleanup" Content="Cleanup" HorizontalAlignment="Left" Height="29" Margin="510,669,0,0" VerticalAlignment="Top" Width="59" Click="Cleanup_Click"/>
         <Button x:Name="Confirm" Content="Confirm" HorizontalAlignment="Left" Height="29" Margin="660,669,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False"/>
-        <Button x:Name="Start" Content="Start Game" HorizontalAlignment="Left" Height="31" Margin="99,669,0,0" VerticalAlignment="Top" Width="88" Click="Start_Click"/>
         <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage1_Click" Margin="314,60,476,541" IsEnabled="False" >
             <Image x:Name= "VictoryImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78" IsEnabled="False"/>
         </Button>

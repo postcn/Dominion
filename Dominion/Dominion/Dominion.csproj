@@ -55,6 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="StartScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PrepScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +75,12 @@
     <Compile Include="CardStack.cs" />
     <Compile Include="CardStackTest.cs" />
     <Compile Include="CardTest.cs" />
+    <Compile Include="StartScreen.xaml.cs">
+      <DependentUpon>StartScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrepScreen.xaml.cs">
+      <DependentUpon>PrepScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="DeckTest.cs" />
     <Compile Include="Game.cs" />
