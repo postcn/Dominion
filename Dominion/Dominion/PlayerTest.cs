@@ -35,9 +35,12 @@ namespace Dominion
             //add two cards worth one victory point to the deck.
             temp.getInDeck().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2));
             temp.getInDiscard().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2));
+            //put a new victory card in the hand
+            p.getHand().getHand().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2));
+            Assert.AreEqual(6, p.getHand().getHand().Count);
             p.setVictoryPts();
 
-            Assert.AreEqual(5, p.getVictoryPts());
+            Assert.AreEqual(6, p.getVictoryPts());
         }
 
         [Test()]
@@ -129,6 +132,31 @@ namespace Dominion
             p.getHand().draw(p.getDeck());
             p.play(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0));
             Assert.AreEqual(1, p.getPlayed().Count);
+        }
+
+        [Test()]
+        public void testGetCurrency()
+        {
+            p.getPlayed().Add(new Card(2, 1, 0, 0, 0, 0, 0, "One Bonus Currency", "One Bonus Currency", 0));
+            Assert.AreEqual(6, p.getCurrency());//the starter hand will always be five copper until shuffled.
+        }
+
+        [Test()]
+        public void testPlayACardAndCleanup()
+        {
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            p.cleanUp();
+            Assert.AreEqual(6, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testPlayFuncOne()
+        {
+            //test play a smithy
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+ 3 Cards", 4));
+            p.play(new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+ 3 Cards", 4));
+            Assert.AreEqual(8, p.getHand().getHand().Count);
         }
     }
 }

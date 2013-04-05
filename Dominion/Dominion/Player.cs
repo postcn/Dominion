@@ -133,7 +133,16 @@ namespace Dominion
                 return false;
             }
             this.played.Add(this.myHand.remove(aCard));
-            return false;
+            switch (aCard.getFunctionNumber())
+            {
+                case 0:
+                    //No Action
+                    break;
+                case 1:
+                    CardFunctions.draw(this, aCard.getAdditionalDraws());
+                    break;
+            }
+            return true;
         }
 
         public int addBuys(int toAdd)

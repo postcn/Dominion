@@ -32,3 +32,7 @@ C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debu
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\PrepScreen.baml
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\StartScreen.g.cs
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\PrepScreen.g.cs
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\StartScreen.baml
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\PrepScreen.baml
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\StartScreen.g.cs
+C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\PrepScreen.g.cs

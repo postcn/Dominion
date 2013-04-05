@@ -18,6 +18,10 @@ namespace Dominion
         int actions;
         int vict;
         int draw;
+        /*
+         * For funcNum the following are defined
+         * 1: drawing only. Such as the smithy card.
+         */
         int funcNum;
         string cardName;
         string desc;
