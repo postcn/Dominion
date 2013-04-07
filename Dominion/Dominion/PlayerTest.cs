@@ -100,6 +100,13 @@ namespace Dominion
         }
 
         [Test()]
+        public void testAddAndGetBuys()
+        {
+            Assert.AreEqual(3, p.addBuys(2));
+            Assert.AreEqual(3, p.getBuysLeft());
+        }
+
+        [Test()]
         public void testCleanUp()
         {
             p.cleanUp();
@@ -116,7 +123,7 @@ namespace Dominion
         [Test()]
         public void testPlayNotAction()
         {
-            Assert.IsFalse(p.play(new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency", 0)));
+            Assert.IsFalse(p.play(CardMother.Copper()));
         }
 
         [Test()]
@@ -154,9 +161,45 @@ namespace Dominion
         public void testPlayFuncOne()
         {
             //test play a smithy
-            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+ 3 Cards", 4));
-            p.play(new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+ 3 Cards", 4));
+            p.getHand().getHand().Add(CardMother.Smithy());
+            p.play(CardMother.Smithy());
             Assert.AreEqual(8, p.getHand().getHand().Count);
+        }
+
+        [Test()]
+        public void testGetActions()
+        {
+            Assert.AreEqual(1, p.getActionsLeft());
+        }
+
+        [Test()]
+        public void testAddAndGetActions()
+        {
+            Assert.AreEqual(2,p.addActions(1));
+            Assert.AreEqual(2, p.getActionsLeft());
+        }
+
+        [Test()]
+        public void testPlayReducesActions()
+        {
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            Assert.AreEqual(0, p.getActionsLeft());
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            Assert.IsFalse(p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0)));
+        }
+
+        [Test()]
+        public void testFunctionTwo()
+        {
+            p.getHand().getHand().Add(CardMother.Laboratory());
+            p.play(CardMother.Laboratory());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(7, p.getHand().getHand().Count);
+            Card testMoreActions = new Card(2, 0, 0, 3, 0, 0, 2, "NULL TEST CARD", "NULL TEST CARD", 0);
+            p.getHand().getHand().Add(testMoreActions);
+            p.play(testMoreActions);
+            Assert.AreEqual(3, p.getActionsLeft());
         }
     }
 }

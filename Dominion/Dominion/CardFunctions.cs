@@ -15,5 +15,15 @@ namespace Dominion
                 p.getHand().draw(p.getDeck());
             }
         }
+
+        public static void actionAdd(Player p, int add)
+        {
+            p.addActions(add);
+        }
+
+        public static void buyAdd(Player p, int buys)
+        {
+            p.addBuys(buys);
+        }
     }
 }

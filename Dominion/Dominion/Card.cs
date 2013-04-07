@@ -21,6 +21,7 @@ namespace Dominion
         /*
          * For funcNum the following are defined
          * 1: drawing only. Such as the smithy card.
+         * 2: is drawing and action, such as the laboratory card
          */
         int funcNum;
         string cardName;

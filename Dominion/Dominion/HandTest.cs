@@ -75,7 +75,7 @@ namespace Dominion
             Hand test = new Hand();
             Deck d = new Deck();
             test.draw(d);
-            Card copper = new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency", 0);
+            Card copper = CardMother.Copper();
             Assert.AreEqual(copper, test.remove(copper));
             Assert.IsNull(test.remove(copper));
         }

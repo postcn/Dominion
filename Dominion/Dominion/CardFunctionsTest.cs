@@ -28,5 +28,21 @@ namespace Dominion
             CardFunctions.draw(p, 4);//all the cards in the deck
             Assert.AreEqual(10, p.getHand().getHand().Count);
         }
+
+        [Test()]
+        public void testAddActions()
+        {
+            CardFunctions.actionAdd(p, 1);
+            Assert.AreEqual(2, p.getActionsLeft());
+            CardFunctions.actionAdd(p, -1);
+            Assert.AreEqual(1, p.getActionsLeft());
+        }
+
+        [Test()]
+        public void testAddBuys()
+        {
+            CardFunctions.buyAdd(p, 1);
+            Assert.AreEqual(2, p.getBuysLeft());
+        }
     }
 }

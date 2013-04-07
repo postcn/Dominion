@@ -74,6 +74,7 @@
     <Compile Include="Card.cs" />
     <Compile Include="CardFunctions.cs" />
     <Compile Include="CardFunctionsTest.cs" />
+    <Compile Include="CardMother.cs" />
     <Compile Include="CardStack.cs" />
     <Compile Include="CardStackTest.cs" />
     <Compile Include="CardTest.cs" />

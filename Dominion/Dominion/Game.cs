@@ -54,14 +54,14 @@ namespace Dominion
 
             //Instantiate Currency
             this.buyables = new List<CardStack>();
-            this.buyables.Add(new CardStack(120, new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency Value", 0)));
-            this.buyables.Add(new CardStack(120, new Card(1, 2, 0, 0, 0, 0, 0, "Silver", "2 Currency Value", 3)));
-            this.buyables.Add(new CardStack(120, new Card(1, 3, 0, 0, 0, 0, 0, "Gold", "3 Currency Value", 6)));
+            this.buyables.Add(new CardStack(120, CardMother.Copper()));
+            this.buyables.Add(new CardStack(120, CardMother.Silver()));
+            this.buyables.Add(new CardStack(120, CardMother.Gold()));
             //Instantiate victory cards
             int numInStack = this.calculateSupplyForVictory();
-            this.buyables.Add(new CardStack(numInStack, new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2)));
-            this.buyables.Add(new CardStack(numInStack, new Card(0, 0, 0, 0, 3, 0, 0, "Duchy", "3 Victory Points", 5)));
-            this.buyables.Add(new CardStack(numInStack, new Card(0, 0, 0, 0, 6, 0, 0, "Province", "6 Victory Points", 8)));
+            this.buyables.Add(new CardStack(numInStack, CardMother.Estate()));
+            this.buyables.Add(new CardStack(numInStack, CardMother.Duchy()));
+            this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
             //TODO: get cards out of possible list.
         }
 

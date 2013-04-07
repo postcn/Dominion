@@ -15,6 +15,7 @@ namespace Dominion
         List<Card> played;
         int buysLeft;
         int currencyAvailable;
+        int actionsLeft;
 
         public Player(int id)
         {
@@ -29,6 +30,7 @@ namespace Dominion
             victoryPts = 3;
             this.buysLeft = 1;
             this.currencyAvailable = 0;
+            this.actionsLeft = 1;
         }
         public Hand getHand()
         {
@@ -58,6 +60,11 @@ namespace Dominion
         public int getVictoryPts()
         {
             return victoryPts;
+        }
+
+        public int getBuysLeft()
+        {
+            return this.buysLeft;
         }
 
         public void setVictoryPts()
@@ -132,23 +139,45 @@ namespace Dominion
             {
                 return false;
             }
-            this.played.Add(this.myHand.remove(aCard));
-            switch (aCard.getFunctionNumber())
+            if (this.actionsLeft > 0)
             {
-                case 0:
-                    //No Action
-                    break;
-                case 1:
-                    CardFunctions.draw(this, aCard.getAdditionalDraws());
-                    break;
+                this.actionsLeft--;
+                this.played.Add(this.myHand.remove(aCard));
+                switch (aCard.getFunctionNumber())
+                {
+                    case 0:
+                        //No Action
+                        break;
+                    case 1:
+                        //Draw only
+                        CardFunctions.draw(this, aCard.getAdditionalDraws());
+                        break;
+                    case 2:
+                        //Draw and Add Actions.
+                        CardFunctions.draw(this, aCard.getAdditionalDraws());
+                        CardFunctions.actionAdd(this, aCard.getActions());
+                        break;
+                }
+                return true;
             }
-            return true;
+            return false;
         }
 
         public int addBuys(int toAdd)
         {
             this.buysLeft += toAdd;
             return this.buysLeft;
+        }
+
+        public int addActions(int toAdd)
+        {
+            this.actionsLeft += toAdd;
+            return this.actionsLeft;
+        }
+
+        public int getActionsLeft()
+        {
+            return this.actionsLeft;
         }
 
         public void cleanUp()
@@ -167,6 +196,7 @@ namespace Dominion
                 myHand.draw(myDeck);
             }
             this.buysLeft = 1;
+            this.actionsLeft = 1;
         }
     }
 }
