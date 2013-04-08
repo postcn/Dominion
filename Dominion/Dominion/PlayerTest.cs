@@ -201,5 +201,20 @@ namespace Dominion
             p.play(testMoreActions);
             Assert.AreEqual(3, p.getActionsLeft());
         }
+
+        [Test()]
+        public void testFunctionThree()
+        {
+            p.getHand().getHand().Add(CardMother.Market());
+            Assert.IsTrue(p.play(CardMother.Market()));
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(2, p.getBuysLeft());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(6, p.getHand().getHand().Count);
+            p.getHand().getHand().Add(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0));
+            Assert.IsTrue(p.play(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0)));
+            Assert.AreEqual(3, p.getBuysLeft());
+            Assert.AreEqual(2, p.getActionsLeft());
+        }
     }
 }

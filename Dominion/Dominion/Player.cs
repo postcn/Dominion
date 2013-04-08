@@ -130,16 +130,7 @@ namespace Dominion
 
         public Boolean play(Card aCard)
         {
-            if (!this.myHand.contains(aCard))
-            {
-                return false;
-            }
-
-            if (aCard.getType() != 2)
-            {
-                return false;
-            }
-            if (this.actionsLeft > 0)
+            if (this.myHand.contains(aCard) && aCard.getType() == 2 && this.actionsLeft > 0)
             {
                 this.actionsLeft--;
                 this.played.Add(this.myHand.remove(aCard));
@@ -156,6 +147,12 @@ namespace Dominion
                         //Draw and Add Actions.
                         CardFunctions.draw(this, aCard.getAdditionalDraws());
                         CardFunctions.actionAdd(this, aCard.getActions());
+                        break;
+                    case 3:
+                        //Draw and Add and Buy
+                        CardFunctions.draw(this, aCard.getAdditionalDraws());
+                        CardFunctions.actionAdd(this, aCard.getActions());
+                        CardFunctions.buyAdd(this, aCard.getBuy());
                         break;
                 }
                 return true;
