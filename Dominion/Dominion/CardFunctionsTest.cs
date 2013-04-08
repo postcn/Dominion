@@ -18,6 +18,9 @@ namespace Dominion
             this.p = new Player(0);
         }
 
+        /// <summary>
+        /// Tests the draw function to see if the player can draw cards using the CardFunction
+        /// </summary>
         [Test()]
         public void testDraw()
         {
@@ -29,6 +32,9 @@ namespace Dominion
             Assert.AreEqual(10, p.getHand().getHand().Count);
         }
 
+        /// <summary>
+        /// Tests that we can successfully add actions to the player
+        /// </summary>
         [Test()]
         public void testAddActions()
         {
@@ -38,6 +44,9 @@ namespace Dominion
             Assert.AreEqual(1, p.getActionsLeft());
         }
 
+        /// <summary>
+        /// Tests that we can successfully add buys to the player
+        /// </summary>
         [Test()]
         public void testAddBuys()
         {

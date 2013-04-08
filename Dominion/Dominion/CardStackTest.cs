@@ -22,6 +22,10 @@ namespace Dominion
             this.stackOne = new CardStack(1, new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2));
         }
 
+        
+        /// <summary>
+        /// tests that the cardstack indeed initializes
+        /// </summary>
         [Test()]
         public void testInitializes()
         {
@@ -30,6 +34,9 @@ namespace Dominion
             Assert.NotNull(this.stackFive);
         }
 
+        /// <summary>
+        /// Tests that getRemaining returns properly when we don't draw any cards, min case
+        /// </summary>
         [Test()]
         public void testGetRemainingNoDraw()
         {
@@ -38,6 +45,9 @@ namespace Dominion
             Assert.AreEqual(1, this.stackOne.cardsRemaining());
         }
 
+        /// <summary>
+        /// Tests the ability to buy exactly one card, min+ case
+        /// </summary>
         [Test()]
         public void testBuyOneCard()
         {
@@ -52,6 +62,9 @@ namespace Dominion
             Assert.AreEqual(9, this.stackDefault.cardsRemaining());
         }
 
+        /// <summary>
+        /// Tests that the empty function works proper with a newly instantiated cardStack
+        /// </summary>
         [Test()]
         public void testEmpty()
         {
@@ -61,6 +74,9 @@ namespace Dominion
             Assert.False(s.isEmpty());
         }
 
+        /// <summary>
+        /// Tests the ability to draw all the cards from a cardStack, and have empty stacks left
+        /// </summary>
         [Test()]
         public void drawAll()
         {
@@ -88,6 +104,9 @@ namespace Dominion
             Assert.NotNull(test);
         }
 
+        /// <summary>
+        /// Tests that the card drawn returns null if there are no more cards in a card stack
+        /// </summary>
         [Test()]
         public void drawMoreThanAll()
         {
@@ -115,6 +134,9 @@ namespace Dominion
             Assert.Null(test);
         }
 
+       /// <summary>
+       /// Tests that the card stored is the proper card in each stack
+       /// </summary>
         [Test()]
         public void testGetCard()
         {

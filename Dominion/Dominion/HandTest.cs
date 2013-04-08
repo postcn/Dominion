@@ -17,6 +17,9 @@ namespace Dominion
             Assert.NotNull(test);
         }
 
+        /// <summary>
+        /// Tests the ability to draw a card from a deck into a hand
+        /// </summary>
         [Test()]
         public void testDraw()
         {
@@ -32,6 +35,9 @@ namespace Dominion
             Assert.AreEqual(10, test.getHand().Count);
         }
 
+        /// <summary>
+        /// Tests that the contains function works properly to find whether a card is in the hand
+        /// </summary>
         [Test()]
         public void testContains()
         {
@@ -52,6 +58,9 @@ namespace Dominion
             Assert.IsFalse(test.contains(other));
         }
 
+        /// <summary>
+        /// Tests whether the get currency function works properly for drawing cards and changing values.
+        /// </summary>
         [Test()]
         public void testGetCurrency()
         {
@@ -69,6 +78,9 @@ namespace Dominion
             Assert.AreEqual(7, test.getCurrency());
         }
 
+        /// <summary>
+        /// Tests whether remove works properly if we try to remove a card when there are no cards in the hand
+        /// </summary>
         [Test()]
         public void testRemoveCardNotInHand()
         {
@@ -78,8 +90,14 @@ namespace Dominion
             Card copper = CardMother.Copper();
             Assert.AreEqual(copper, test.remove(copper));
             Assert.IsNull(test.remove(copper));
+            test.draw(d);
+            Card estate = CardMother.Estate();
+            Assert.IsNull(test.remove(estate));
         }
 
+        /// <summary>
+        /// Tests whether the discard works properly to put it in the discard of the deck;
+        /// </summary>
         [Test()]
         public void testDiscard()
         {

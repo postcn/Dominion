@@ -12,6 +12,9 @@ namespace Dominion
     [TestFixture()]
     class CardTest
     {
+        /// <summary>
+        /// Tests that a card successfully initializes
+        /// </summary>
         [Test()]
         public void testInintializes() 
         {
@@ -19,6 +22,9 @@ namespace Dominion
             Assert.NotNull(test);
         }
 
+        /// <summary>
+        /// Tests that we can get the type of a card successfully
+        /// </summary>
         [Test()]
         public void testGetType()
         {
@@ -30,6 +36,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getType());
         }
 
+        /// <summary>
+        /// Tests that we can get the monetary value from the card successfully
+        /// </summary>
         [Test()]
         public void testGetCash()
         {
@@ -41,6 +50,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getType());
         }
 
+        /// <summary>
+        /// Tests that we can get the buy value from the card successfully
+        /// </summary>
         [Test()]
         public void testGetBuy()
         {
@@ -52,6 +64,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getBuy());
         }
 
+        /// <summary>
+        /// Tests that we can get the action value from the card successfully
+        /// </summary>
         [Test()]
         public void testGetActions()
         {
@@ -63,6 +78,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getActions());
         }
 
+        /// <summary>
+        /// Tests that we can get the victory point value from the card successfully
+        /// </summary>
         [Test()]
         public void testGetVictoryPoints()
         {
@@ -74,6 +92,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getVictoryPoints());
         }
 
+        /// <summary>
+        /// Tests that we can get the draw value from the card succesfully
+        /// </summary>
         [Test()]
         public void testGetDraws()
         {
@@ -85,6 +106,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getAdditionalDraws());
         }
 
+        /// <summary>
+        /// Tests that we can get the function number value from the card successfully
+        /// </summary>
         [Test()]
         public void testFunctionNumber()
         {
@@ -96,6 +120,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getFunctionNumber());
         }
 
+        /// <summary>
+        /// Tests the toString function for the card, same functionality as get name.
+        /// </summary>
         [Test()]
         public void testToString()
         {
@@ -103,6 +130,9 @@ namespace Dominion
             Assert.AreEqual("Card Name", test.toString());
         }
 
+        /// <summary>
+        /// Tests the get name function for the card, same functionality as toString
+        /// </summary>
         [Test()]
         public void testGetName()
         {
@@ -110,6 +140,9 @@ namespace Dominion
             Assert.AreEqual("Card Name", test.getName());
         }
 
+        /// <summary>
+        /// Tests that we can get the description from the card successfully
+        /// </summary>
         [Test()]
         public void testGetDescription()
         {
@@ -117,6 +150,9 @@ namespace Dominion
             Assert.AreEqual("This is the card description", test.getDescription());
         }
 
+        /// <summary>
+        /// Tests that we can get cost from the card successfully
+        /// </summary>
         [Test()]
         public void testGetCost()
         {
@@ -128,6 +164,9 @@ namespace Dominion
             Assert.AreEqual(99, test.getCost());
         }
 
+        /// <summary>
+        /// Tests that the equals of the card works properly
+        /// </summary>
         [Test()]
         public void testEquals()
         {

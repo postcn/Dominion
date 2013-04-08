@@ -1,110 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe" total="72" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-04-07" time="20:59:19">
+<test-results name="C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe" total="73" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-04-08" time="10:05:21">
   <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files\NUnit 2.6.2\bin" machine-name="POSTCN-1" user="postcn" user-domain="POSTCN-1" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe" executed="True" result="Success" success="True" time="0.561" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\bin\Debug\Dominion.exe" executed="True" result="Success" success="True" time="2.481" asserts="0">
     <results>
-      <test-suite type="Namespace" name="Dominion" executed="True" result="Success" success="True" time="0.548" asserts="0">
+      <test-suite type="Namespace" name="Dominion" executed="True" result="Success" success="True" time="2.475" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="CardFunctionsTest" executed="True" result="Success" success="True" time="0.076" asserts="0">
+          <test-suite type="TestFixture" name="CardFunctionsTest" executed="True" result="Success" success="True" time="1.416" asserts="0">
             <results>
-              <test-case name="Dominion.CardFunctionsTest.testAddActions" executed="True" result="Success" success="True" time="0.041" asserts="2" />
+              <test-case name="Dominion.CardFunctionsTest.testAddActions" executed="True" result="Success" success="True" time="1.393" asserts="2" />
               <test-case name="Dominion.CardFunctionsTest.testAddBuys" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-              <test-case name="Dominion.CardFunctionsTest.testDraw" executed="True" result="Success" success="True" time="0.003" asserts="3" />
+              <test-case name="Dominion.CardFunctionsTest.testDraw" executed="True" result="Success" success="True" time="0.002" asserts="3" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="CardStackTest" executed="True" result="Success" success="True" time="0.060" asserts="0">
+          <test-suite type="TestFixture" name="CardStackTest" executed="True" result="Success" success="True" time="0.745" asserts="0">
             <results>
-              <test-case name="Dominion.CardStackTest.drawAll" executed="True" result="Success" success="True" time="0.018" asserts="6" />
+              <test-case name="Dominion.CardStackTest.drawAll" executed="True" result="Success" success="True" time="0.714" asserts="6" />
               <test-case name="Dominion.CardStackTest.drawMoreThanAll" executed="True" result="Success" success="True" time="0.002" asserts="6" />
               <test-case name="Dominion.CardStackTest.testBuyOneCard" executed="True" result="Success" success="True" time="0.006" asserts="6" />
-              <test-case name="Dominion.CardStackTest.testEmpty" executed="True" result="Success" success="True" time="0.002" asserts="2" />
-              <test-case name="Dominion.CardStackTest.testGetCard" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+              <test-case name="Dominion.CardStackTest.testEmpty" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+              <test-case name="Dominion.CardStackTest.testGetCard" executed="True" result="Success" success="True" time="0.001" asserts="3" />
               <test-case name="Dominion.CardStackTest.testGetRemainingNoDraw" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-              <test-case name="Dominion.CardStackTest.testInitializes" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="Dominion.CardStackTest.testInitializes" executed="True" result="Success" success="True" time="0.000" asserts="3" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="CardTest" executed="True" result="Success" success="True" time="0.067" asserts="0">
+          <test-suite type="TestFixture" name="CardTest" executed="True" result="Success" success="True" time="0.047" asserts="0">
             <results>
               <test-case name="Dominion.CardTest.testEquals" executed="True" result="Success" success="True" time="0.002" asserts="11" />
               <test-case name="Dominion.CardTest.testFunctionNumber" executed="True" result="Success" success="True" time="0.001" asserts="3" />
               <test-case name="Dominion.CardTest.testGetActions" executed="True" result="Success" success="True" time="0.001" asserts="3" />
-              <test-case name="Dominion.CardTest.testGetBuy" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="Dominion.CardTest.testGetBuy" executed="True" result="Success" success="True" time="0.000" asserts="3" />
               <test-case name="Dominion.CardTest.testGetCash" executed="True" result="Success" success="True" time="0.001" asserts="3" />
               <test-case name="Dominion.CardTest.testGetCost" executed="True" result="Success" success="True" time="0.001" asserts="3" />
               <test-case name="Dominion.CardTest.testGetDescription" executed="True" result="Success" success="True" time="0.000" asserts="1" />
               <test-case name="Dominion.CardTest.testGetDraws" executed="True" result="Success" success="True" time="0.001" asserts="3" />
-              <test-case name="Dominion.CardTest.testGetName" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-              <test-case name="Dominion.CardTest.testGetType" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+              <test-case name="Dominion.CardTest.testGetName" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="Dominion.CardTest.testGetType" executed="True" result="Success" success="True" time="0.000" asserts="3" />
               <test-case name="Dominion.CardTest.testGetVictoryPoints" executed="True" result="Success" success="True" time="0.001" asserts="3" />
-              <test-case name="Dominion.CardTest.testInintializes" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="Dominion.CardTest.testInintializes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
               <test-case name="Dominion.CardTest.testToString" executed="True" result="Success" success="True" time="0.001" asserts="1" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="DeckTest" executed="True" result="Success" success="True" time="0.050" asserts="0">
+          <test-suite type="TestFixture" name="DeckTest" executed="True" result="Success" success="True" time="0.035" asserts="0">
             <results>
-              <test-case name="Dominion.DeckTest.testDeckInitializes" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-              <test-case name="Dominion.DeckTest.testDiscardAll" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+              <test-case name="Dominion.DeckTest.testDeckInitializes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="Dominion.DeckTest.testDiscardAll" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.DeckTest.testDiscardRandom" executed="True" result="Success" success="True" time="0.003" asserts="1" />
-              <test-case name="Dominion.DeckTest.testDraw" executed="True" result="Success" success="True" time="0.000" asserts="2" />
-              <test-case name="Dominion.DeckTest.testDrawAll" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+              <test-case name="Dominion.DeckTest.testDraw" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+              <test-case name="Dominion.DeckTest.testDrawAll" executed="True" result="Success" success="True" time="0.003" asserts="1" />
               <test-case name="Dominion.DeckTest.testDrawAndDiscardAllAutomaticShuffle" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-              <test-case name="Dominion.DeckTest.testGetSize" executed="True" result="Success" success="True" time="0.001" asserts="2" />
-              <test-case name="Dominion.DeckTest.testShuffle" executed="True" result="Success" success="True" time="0.006" asserts="100" />
+              <test-case name="Dominion.DeckTest.testGetSize" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="Dominion.DeckTest.testShuffle" executed="True" result="Success" success="True" time="0.003" asserts="100" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="GameTest" executed="True" result="Success" success="True" time="0.076" asserts="0">
+          <test-suite type="TestFixture" name="GameTest" executed="True" result="Success" success="True" time="0.031" asserts="0">
             <results>
-              <test-case name="Dominion.GameTest.testCalculateVictorySupply" executed="True" result="Success" success="True" time="0.006" asserts="4" />
-              <test-case name="Dominion.GameTest.testGetBuyablesDefaultCardsOnly" executed="True" result="Success" success="True" time="0.002" asserts="7" />
-              <test-case name="Dominion.GameTest.testGetPlayer" executed="True" result="Success" success="True" time="0.002" asserts="7" />
-              <test-case name="Dominion.GameTest.testInitialization" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+              <test-case name="Dominion.GameTest.testCalculateVictorySupply" executed="True" result="Success" success="True" time="0.003" asserts="4" />
+              <test-case name="Dominion.GameTest.testGetBuyablesDefaultCardsOnly" executed="True" result="Success" success="True" time="0.001" asserts="7" />
+              <test-case name="Dominion.GameTest.testGetPlayer" executed="True" result="Success" success="True" time="0.001" asserts="7" />
+              <test-case name="Dominion.GameTest.testInitialization" executed="True" result="Success" success="True" time="0.000" asserts="4" />
               <test-case name="Dominion.GameTest.testNextTurnPlayerFourPlayer" executed="True" result="Success" success="True" time="0.001" asserts="4" />
               <test-case name="Dominion.GameTest.testNextTurnPlayerOnePlayer" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.GameTest.testNextTurnPlayerThreePlayer" executed="True" result="Success" success="True" time="0.001" asserts="4" />
-              <test-case name="Dominion.GameTest.testNextTurnPlayerTwoPlayer" executed="True" result="Success" success="True" time="0.000" asserts="3" />
-              <test-case name="Dominion.GameTest.testTurnFourPlayer" executed="True" result="Success" success="True" time="0.002" asserts="6" />
+              <test-case name="Dominion.GameTest.testNextTurnPlayerTwoPlayer" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="Dominion.GameTest.testTurnFourPlayer" executed="True" result="Success" success="True" time="0.001" asserts="6" />
               <test-case name="Dominion.GameTest.testTurnOnePlayer" executed="True" result="Success" success="True" time="0.001" asserts="3" />
               <test-case name="Dominion.GameTest.testTurnThreePlayer" executed="True" result="Success" success="True" time="0.001" asserts="4" />
-              <test-case name="Dominion.GameTest.testTurnTwoPlayer" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+              <test-case name="Dominion.GameTest.testTurnTwoPlayer" executed="True" result="Success" success="True" time="0.001" asserts="3" />
               <test-case name="Dominion.GameTest.testZeroPlayerTurn" executed="True" result="Success" success="True" time="0.001" asserts="4" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="HandTest" executed="True" result="Success" success="True" time="0.033" asserts="0">
+          <test-suite type="TestFixture" name="HandTest" executed="True" result="Success" success="True" time="0.015" asserts="0">
             <results>
-              <test-case name="Dominion.HandTest.testContains" executed="True" result="Success" success="True" time="0.003" asserts="5" />
-              <test-case name="Dominion.HandTest.testDiscard" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+              <test-case name="Dominion.HandTest.testContains" executed="True" result="Success" success="True" time="0.001" asserts="5" />
+              <test-case name="Dominion.HandTest.testDiscard" executed="True" result="Success" success="True" time="0.001" asserts="5" />
               <test-case name="Dominion.HandTest.testDraw" executed="True" result="Success" success="True" time="0.001" asserts="3" />
-              <test-case name="Dominion.HandTest.testGetCurrency" executed="True" result="Success" success="True" time="0.002" asserts="4" />
-              <test-case name="Dominion.HandTest.testInintializes" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-              <test-case name="Dominion.HandTest.testRemoveCardNotInHand" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="Dominion.HandTest.testGetCurrency" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+              <test-case name="Dominion.HandTest.testInintializes" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="Dominion.HandTest.testRemoveCardNotInHand" executed="True" result="Success" success="True" time="0.000" asserts="3" />
             </results>
           </test-suite>
-          <test-suite type="TestFixture" name="PlayerTest" executed="True" result="Success" success="True" time="0.142" asserts="0">
+          <test-suite type="TestFixture" name="PlayerTest" executed="True" result="Success" success="True" time="0.157" asserts="0">
             <results>
               <test-case name="Dominion.PlayerTest.testAddAndGetActions" executed="True" result="Success" success="True" time="0.001" asserts="2" />
-              <test-case name="Dominion.PlayerTest.testAddAndGetBuys" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+              <test-case name="Dominion.PlayerTest.testAddAndGetBuys" executed="True" result="Success" success="True" time="0.000" asserts="2" />
               <test-case name="Dominion.PlayerTest.testAddBuys" executed="True" result="Success" success="True" time="0.001" asserts="3" />
-              <test-case name="Dominion.PlayerTest.testBuyAndVictory" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+              <test-case name="Dominion.PlayerTest.testAddBuysAndMultipleBuy" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="Dominion.PlayerTest.testBuyAndVictory" executed="True" result="Success" success="True" time="0.002" asserts="1" />
               <test-case name="Dominion.PlayerTest.testBuyFailureBecauseOfCurrency" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-              <test-case name="Dominion.PlayerTest.testCleanUp" executed="True" result="Success" success="True" time="0.003" asserts="2" />
-              <test-case name="Dominion.PlayerTest.testFailBuyEmptyStack" executed="True" result="Success" success="True" time="0.001" asserts="3" />
-              <test-case name="Dominion.PlayerTest.testFailMultipleBuys" executed="True" result="Success" success="True" time="0.001" asserts="2" />
-              <test-case name="Dominion.PlayerTest.testFunctionThree" executed="True" result="Success" success="True" time="0.004" asserts="8" />
+              <test-case name="Dominion.PlayerTest.testCleanUp" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="Dominion.PlayerTest.testFailBuyEmptyStack" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+              <test-case name="Dominion.PlayerTest.testFailMultipleBuys" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="Dominion.PlayerTest.testFunctionThree" executed="True" result="Success" success="True" time="0.060" asserts="8" />
               <test-case name="Dominion.PlayerTest.testFunctionTwo" executed="True" result="Success" success="True" time="0.002" asserts="3" />
               <test-case name="Dominion.PlayerTest.testGetActions" executed="True" result="Success" success="True" time="0.000" asserts="1" />
               <test-case name="Dominion.PlayerTest.testGetCurrency" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.PlayerTest.TestgetCurrencyValue" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-              <test-case name="Dominion.PlayerTest.testGetID" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="Dominion.PlayerTest.testGetID" executed="True" result="Success" success="True" time="0.000" asserts="3" />
               <test-case name="Dominion.PlayerTest.TestgetVictoryPts" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.PlayerTest.testPlayACardAndCleanup" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.PlayerTest.testPlayActionGoesIntoPlayed" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-              <test-case name="Dominion.PlayerTest.testPlayCardNotInHand" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="Dominion.PlayerTest.testPlayCardNotInHand" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.PlayerTest.testPlayFuncOne" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="Dominion.PlayerTest.testPlayNotAction" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-              <test-case name="Dominion.PlayerTest.testPlayReducesActions" executed="True" result="Success" success="True" time="0.001" asserts="2" />
-              <test-case name="Dominion.PlayerTest.TestsetVictoryPts" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="Dominion.PlayerTest.testPlayReducesActions" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="Dominion.PlayerTest.TestsetVictoryPts" executed="True" result="Success" success="True" time="0.001" asserts="2" />
             </results>
           </test-suite>
         </results>

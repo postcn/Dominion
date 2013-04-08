@@ -24,6 +24,9 @@ namespace Dominion
             this.gameFourPlayer = new Game(4);
         }
 
+        /// <summary>
+        /// Tests that games successfully initialize
+        /// </summary>
         [Test()]
         public void testInitialization()
         {
@@ -33,6 +36,9 @@ namespace Dominion
             Assert.NotNull(this.gameFourPlayer);
         }
 
+        /// <summary>
+        /// Tests the current player without taking any turns
+        /// </summary>
         [Test()]
         public void testZeroPlayerTurn()
         {
@@ -42,6 +48,9 @@ namespace Dominion
             Assert.AreEqual(0, this.gameFourPlayer.getCurrentPlayerNumber());
         }
 
+        /// <summary>
+        /// Tests the turn for the game with only one player, never changes player number
+        /// </summary>
         [Test()]
         public void testTurnOnePlayer()
         {
@@ -52,6 +61,9 @@ namespace Dominion
             Assert.AreEqual(0, this.gameOnePlayer.getCurrentPlayerNumber());
         }
 
+        /// <summary>
+        /// tests the turn for the game with two players, should alternate player number between 0-1
+        /// </summary>
         [Test()]
         public void testTurnTwoPlayer()
         {
@@ -62,6 +74,9 @@ namespace Dominion
             Assert.AreEqual(0, this.gameTwoPlayer.getCurrentPlayerNumber());
         }
 
+        /// <summary>
+        /// tests that we can take turns with three players, will oscillate 0 - 1 - 2
+        /// </summary>
         [Test()]
         public void testTurnThreePlayer()
         {
@@ -74,6 +89,9 @@ namespace Dominion
             Assert.AreEqual(0, this.gameThreePlayer.getCurrentPlayerNumber());
         }
 
+        /// <summary>
+        /// Tests that we can take turns with four players, will oscillate 0 - 1 - 2 - 3
+        /// </summary>
         [Test()]
         public void testTurnFourPlayer()
         {
@@ -90,6 +108,9 @@ namespace Dominion
             Assert.AreEqual(1, this.gameFourPlayer.getCurrentPlayerNumber());
         }
 
+        /// <summary>
+        /// Tests the calculation of the supply piles based on the number of players
+        /// </summary>
         [Test()]
         public void testCalculateVictorySupply()
         {
@@ -99,12 +120,18 @@ namespace Dominion
             Assert.AreEqual(12, this.gameFourPlayer.calculateSupplyForVictory());
         }
 
+        /// <summary>
+        /// Tests the ability to call nextTurnPlayer with one player game
+        /// </summary>
         [Test()]
         public void testNextTurnPlayerOnePlayer()
         {
             Assert.AreEqual(0, this.gameOnePlayer.nextTurnPlayer().getID());
         }
 
+        /// <summary>
+        /// Tests ability to use next turn player with two player game
+        /// </summary>
         [Test()]
         public void testNextTurnPlayerTwoPlayer()
         {
@@ -113,6 +140,9 @@ namespace Dominion
             Assert.AreEqual(1, this.gameTwoPlayer.nextTurnPlayer().getID());
         }
 
+        /// <summary>
+        /// Tests that we can use next turn player with three player games
+        /// </summary>
         [Test()]
         public void testNextTurnPlayerThreePlayer()
         {
@@ -122,6 +152,9 @@ namespace Dominion
             Assert.AreEqual(1, this.gameThreePlayer.nextTurnPlayer().getID());
         }
 
+        /// <summary>
+        /// Test that we can use next turn playe rwith the four player game
+        /// </summary>
         [Test()]
         public void testNextTurnPlayerFourPlayer()
         {
@@ -131,6 +164,9 @@ namespace Dominion
             Assert.AreEqual(0, this.gameFourPlayer.nextTurnPlayer().getID());
         }
 
+        /// <summary>
+        /// Tests that we can use get player for all the games
+        /// </summary>
         [Test()]
         public void testGetPlayer()
         {
@@ -147,6 +183,9 @@ namespace Dominion
             Assert.AreEqual(2, this.gameThreePlayer.getCurrentPlayer().getID());
         }
 
+        /// <summary>
+        /// Tests the population of the buyable piles, this one has no cards other than the default that are in every game
+        /// </summary>
         [Test()]
         public void testGetBuyablesDefaultCardsOnly()
         {

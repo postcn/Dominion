@@ -22,12 +22,18 @@ namespace Dominion
             p2 = new Player(2);
         }
 
+        /// <summary>
+        /// Tests the getter for the victory points
+        /// </summary>
         [Test()]
         public void TestgetVictoryPts()
         {
             Assert.AreEqual(3, p.getVictoryPts());
         }
 
+        /// <summary>
+        /// Tests that we can get the possible victory points from all places that cards may be located.
+        /// </summary>
         [Test()]
         public void TestsetVictoryPts()
         {
@@ -43,12 +49,18 @@ namespace Dominion
             Assert.AreEqual(6, p.getVictoryPts());
         }
 
+        /// <summary>
+        /// Tests the getter for the currency value
+        /// </summary>
         [Test()]
         public void TestgetCurrencyValue()
         {
             Assert.AreEqual(0, p.getCurrencyValue());
         }
 
+        /// <summary>
+        /// Tests the getter for the id
+        /// </summary>
         [Test()]
         public void testGetID()
         {
@@ -57,6 +69,9 @@ namespace Dominion
             Assert.AreEqual(2, p2.getID());
         }
 
+        /// <summary>
+        /// tests buying a card and it being a victory point
+        /// </summary>
         [Test()]
         public void testBuyAndVictory()
         {
@@ -66,6 +81,9 @@ namespace Dominion
             Assert.AreEqual(5, p.getVictoryPts());
         }
 
+        /// <summary>
+        /// Tets buying failure because there isn't enough currency in the hand.
+        /// </summary>
         [Test()]
         public void testBuyFailureBecauseOfCurrency()
         {
@@ -73,6 +91,9 @@ namespace Dominion
             Assert.IsFalse(p.buy(s));
         }
 
+        /// <summary>
+        /// Tests buying failure because player runs out of possible buys.
+        /// </summary>
         [Test()]
         public void testFailMultipleBuys()
         {
@@ -81,6 +102,9 @@ namespace Dominion
             Assert.IsFalse(p.buy(s));
         }
 
+        /// <summary>
+        /// Tests buying failure because there are no cards left in the card stack
+        /// </summary>
         [Test()]
         public void testFailBuyEmptyStack()
         {
@@ -91,6 +115,9 @@ namespace Dominion
             Assert.IsFalse(p.buy(s));
         }
 
+        /// <summary>
+        /// Tests the ability to add buys to the player
+        /// </summary>
         [Test()]
         public void testAddBuys()
         {
@@ -99,6 +126,9 @@ namespace Dominion
             Assert.AreEqual(0, p1.addBuys(-1));
         }
 
+        /// <summary>
+        /// Tests the adder and getter for the buys
+        /// </summary>
         [Test()]
         public void testAddAndGetBuys()
         {
@@ -106,26 +136,52 @@ namespace Dominion
             Assert.AreEqual(3, p.getBuysLeft());
         }
 
+        /// <summary>
+        /// Tests the add buys and then making multiple buys.
+        /// </summary>
+        [Test()]
+        public void testAddBuysAndMultipleBuy()
+        {
+            p.addBuys(1);
+            CardStack c = new CardStack(120,CardMother.Copper());
+            Assert.IsTrue(p.buy(c));
+            Assert.IsTrue(p.buy(c));
+            Assert.IsFalse(p.buy(c));
+        }
+
+        /// <summary>
+        /// Asserts that the cleanup discards the current hand and draws the next five cards
+        /// </summary>
         [Test()]
         public void testCleanUp()
         {
             p.cleanUp();
             Assert.AreEqual(5, p.getDeck().getInDiscard().Count);
             Assert.AreEqual(0, p.getDeck().cardsLeft());
+            Assert.AreEqual(5, p.getHand().getHand().Count);
         }
 
+        /// <summary>
+        /// Checks that play is false because card is not in hand.
+        /// </summary>
         [Test()]
         public void testPlayCardNotInHand()
         {
             Assert.IsFalse(p.play(new Card(0,0,0,0,0,0,0,"NULL","NULL",0)));
         }
 
+        /// <summary>
+        /// Checks that play is false because we are trying to play a non-action card
+        /// </summary>
         [Test()]
         public void testPlayNotAction()
         {
             Assert.IsFalse(p.play(CardMother.Copper()));
         }
 
+        /// <summary>
+        /// Checks that playing an action card will place it into the played list for the player
+        /// </summary>
         [Test()]
         public void testPlayActionGoesIntoPlayed()
         {
@@ -141,6 +197,9 @@ namespace Dominion
             Assert.AreEqual(1, p.getPlayed().Count);
         }
 
+        /// <summary>
+        /// Tests get currency when we have "played" an action card with bonus currency
+        /// </summary>
         [Test()]
         public void testGetCurrency()
         {
@@ -148,6 +207,9 @@ namespace Dominion
             Assert.AreEqual(6, p.getCurrency());//the starter hand will always be five copper until shuffled.
         }
 
+        /// <summary>
+        /// Tests that a card in the played pile successfully gets shuffled into deck
+        /// </summary>
         [Test()]
         public void testPlayACardAndCleanup()
         {
@@ -157,6 +219,9 @@ namespace Dominion
             Assert.AreEqual(6, p.getDeck().getInDiscard().Count);
         }
 
+        /// <summary>
+        /// Tests the ability to play function one, drawing only, such as the smithy card.
+        /// </summary>
         [Test()]
         public void testPlayFuncOne()
         {
@@ -166,12 +231,18 @@ namespace Dominion
             Assert.AreEqual(8, p.getHand().getHand().Count);
         }
 
+        /// <summary>
+        /// Tests the ability to get the actions remaining for a player
+        /// </summary>
         [Test()]
         public void testGetActions()
         {
             Assert.AreEqual(1, p.getActionsLeft());
         }
 
+        /// <summary>
+        /// Tests that we can add and get actions properly
+        /// </summary>
         [Test()]
         public void testAddAndGetActions()
         {
@@ -179,6 +250,9 @@ namespace Dominion
             Assert.AreEqual(2, p.getActionsLeft());
         }
 
+        /// <summary>
+        /// Tests that playing a card reduces the number of actions left
+        /// </summary>
         [Test()]
         public void testPlayReducesActions()
         {
@@ -189,6 +263,9 @@ namespace Dominion
             Assert.IsFalse(p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0)));
         }
 
+        /// <summary>
+        /// Tests that function two works, adding actions and cards
+        /// </summary>
         [Test()]
         public void testFunctionTwo()
         {
@@ -202,6 +279,9 @@ namespace Dominion
             Assert.AreEqual(3, p.getActionsLeft());
         }
 
+        /// <summary>
+        /// Tests that function three works, drawing a card, adding an action, and a buy
+        /// </summary>
         [Test()]
         public void testFunctionThree()
         {
