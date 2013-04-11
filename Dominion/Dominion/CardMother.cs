@@ -6,8 +6,30 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
+    /*
+         * For funcNum the following are defined
+         * 1: drawing only. Such as the smithy card.
+         * 2: is drawing and action, such as the laboratory card
+         * 3: is drawing and action and buys, such as the market card
+         */
+    //Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum,string cardName,string desc,int cost)
     class CardMother
     {
+        public static Card Festival()
+        {
+            return new Card(2, 2, 1, 2, 0, 0, 3, "Festival", "+2 Actions +1 Buy +2 Currency", 5);
+        }
+
+        public static Card Village()
+        {
+            return new Card(2, 0, 0, 2, 0, 1, 2, "Village", "+1 Card +2 Actions", 3);
+        }
+
+        public static Card Woodcutter()
+        {
+            return new Card(2, 2, 1, 0, 0, 0, 3, "Woodcutter", "+1 Buy +2 Coins", 3);
+        }
+
         public static Card Smithy()
         {
             return new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
