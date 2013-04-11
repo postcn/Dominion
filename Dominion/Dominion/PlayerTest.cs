@@ -296,5 +296,40 @@ namespace Dominion
             Assert.AreEqual(3, p.getBuysLeft());
             Assert.AreEqual(2, p.getActionsLeft());
         }
+        //Tests that function four works which just adds a buy.
+        [Test()]
+        public void testFunctionFour()
+        {
+            p.getHand().getHand().Add(CardMother.Woodcutter());
+            Assert.IsTrue(p.play(CardMother.Woodcutter()));
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(2, p.getBuysLeft());
+            Assert.AreEqual(0, p.getActionsLeft());
+            Assert.AreEqual(5, p.getHand().getHand().Count);
+        }
+
+        //Tests that function five works which adds a card and two actions.
+        [Test()]
+        public void testFunctionFive()
+        {
+            p.getHand().getHand().Add(CardMother.Village());
+            Assert.IsTrue(p.play(CardMother.Village()));
+            Assert.AreEqual(6, p.getCurrency());
+            Assert.AreEqual(1, p.getBuysLeft());
+            Assert.AreEqual(2, p.getActionsLeft());
+            Assert.AreEqual(6, p.getHand().getHand().Count);
+        }
+
+        //Tests that function six works which adds a card and two actions.
+        [Test()]
+        public void testFunctionSix()
+        {
+            p.getHand().getHand().Add(CardMother.Festival());
+            Assert.IsTrue(p.play(CardMother.Festival()));
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(2, p.getBuysLeft());
+            Assert.AreEqual(2, p.getActionsLeft());
+            Assert.AreEqual(5, p.getHand().getHand().Count);
+        }
     }
 }

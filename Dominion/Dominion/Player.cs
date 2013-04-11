@@ -154,6 +154,20 @@ namespace Dominion
                         CardFunctions.actionAdd(this, aCard.getActions());
                         CardFunctions.buyAdd(this, aCard.getBuy());
                         break;
+                    case 4:
+                        //Add buy
+                        CardFunctions.buyAdd(this, aCard.getBuy());
+                        break;
+                    case 5:
+                        //Add actions and draw
+                        CardFunctions.draw(this, aCard.getAdditionalDraws());
+                        CardFunctions.actionAdd(this, aCard.getActions());
+                        break;
+                    case 6:
+                        //Add actions and buy
+                        CardFunctions.actionAdd(this, aCard.getActions());
+                        CardFunctions.buyAdd(this, aCard.getBuy());
+                        break;
                 }
                 return true;
             }

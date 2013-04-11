@@ -17,17 +17,17 @@ namespace Dominion
     {
         public static Card Festival()
         {
-            return new Card(2, 2, 1, 2, 0, 0, 3, "Festival", "+2 Actions +1 Buy +2 Currency", 5);
+            return new Card(2, 2, 1, 2, 0, 0, 6, "Festival", "+2 Actions +1 Buy +2 Currency", 5);
         }
 
         public static Card Village()
         {
-            return new Card(2, 0, 0, 2, 0, 1, 2, "Village", "+1 Card +2 Actions", 3);
+            return new Card(2, 0, 0, 2, 0, 1, 5, "Village", "+1 Card +2 Actions", 3);
         }
 
         public static Card Woodcutter()
         {
-            return new Card(2, 2, 1, 0, 0, 0, 3, "Woodcutter", "+1 Buy +2 Coins", 3);
+            return new Card(2, 2, 1, 0, 0, 0, 4, "Woodcutter", "+1 Buy +2 Coins", 3);
         }
 
         public static Card Smithy()
