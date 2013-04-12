@@ -33,6 +33,8 @@ namespace Dominion{
         List<string> playerNames;
         List<CardStack> stacks;
         string currentCard,lastCard, handCard;
+        List<Image> victoryImage, currencyImage,handImage;
+        List<Button> currencyButton,victoryButton,handButton;
 
         /*********************************************************
          add playerinit and change start_click to initializegame
@@ -45,24 +47,29 @@ namespace Dominion{
             lastCard = "";
             handCard = "";
             playernum = 0;
+
+            victoryButton = new List<Button>();
+            currencyButton = new List<Button>();
+            currencyImage = new List<Image>();
+            victoryImage = new List<Image>();
             //Confirm.IsEnabled = true;
-            List<Image> victory = new List<Image>();
-            List<Image> currency = new List<Image>();
+         //   List<Image> victory = new List<Image>();
+         //   List<Image> currency = new List<Image>();
             // List<Image> action = new List<Image>();
-            List<Button> victoryButton = new List<Button>();
-            List<Button> currencyButton = new List<Button>();
+         //   List<Button> victoryButton = new List<Button>();
+         //   List<Button> currencyButton = new List<Button>();
             //   List<Button> actionButton = new List<Button>();
-            victory.Add(VictoryImage1);
-            victory.Add(VictoryImage2);
-            victory.Add(VictoryImage3);
-            victory.Add(VictoryImage4);
+            victoryImage.Add(VictoryImage1);
+            victoryImage.Add(VictoryImage2);
+            victoryImage.Add(VictoryImage3);
+            victoryImage.Add(VictoryImage4);
             victoryButton.Add(VictoryButton1);
             victoryButton.Add(VictoryButton2);
             victoryButton.Add(VictoryButton3);
             victoryButton.Add(VictoryButton4);
-            currency.Add(CurrencyImage1);
-            currency.Add(CurrencyImage2);
-            currency.Add(CurrencyImage3);
+            currencyImage.Add(CurrencyImage1);
+            currencyImage.Add(CurrencyImage2);
+            currencyImage.Add(CurrencyImage3);
             currencyButton.Add(CurrencyButton1);
             currencyButton.Add(CurrencyButton2);
             currencyButton.Add(CurrencyButton3);
@@ -72,13 +79,13 @@ namespace Dominion{
             for (i = 0; i < size; i++) {
                 string name = stacks[i].getCard().getName() + ".jpg";
                 if (stacks[i].getCard().getType() == 0) {
-                    setPicture(name, victory[victorys]);
-                    victory[victorys].IsEnabled = true;
+                    setPicture(name, victoryImage[victorys]);
+                    victoryImage[victorys].IsEnabled = true;
                     victoryButton[victorys].IsEnabled = true;
                     victorys++;
                 } else if (stacks[i].getCard().getType() == 1) {
-                    setPicture(name, currency[currencies]);
-                    currency[currencies].IsEnabled = true;
+                    setPicture(name, currencyImage[currencies]);
+                    currencyImage[currencies].IsEnabled = true;
                     currencyButton[currencies].IsEnabled = true;
                     currencies++;
                 } else {
@@ -87,8 +94,8 @@ namespace Dominion{
                     //    actions++;
                 }
             }
-            List<Image> handImage = new List<Image>();
-            List<Button> handButton = new List<Button>();
+            handImage = new List<Image>();
+            handButton = new List<Button>();
             int length = 5;
             handImage.Add(HandImage1);
             handImage.Add(HandImage2);
@@ -147,37 +154,26 @@ namespace Dominion{
             Description.Content = "Labez";
             DescriptionLabel.Content = "Nothing Yet";
         }
-        /// *********************************************************
-        /// less
-        /// *********************************************************
-        private void CurrencyImage1_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(CurrencyImage1.Source.ToString());
-            hilightCard(CurrencyImage1, false);
+
+        private void CurrencyImage_Click(object sender, RoutedEventArgs e) {
+            Image_Click(sender, currencyButton, currencyImage, false);
         }
-        private void CurrencyImage2_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(CurrencyImage2.Source.ToString());
-            hilightCard(CurrencyImage2, false);
+        private void VictoryImage_Click(object sender, RoutedEventArgs e) {
+            Image_Click(sender, victoryButton, victoryImage, false);
         }
-        private void CurrencyImage3_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(CurrencyImage3.Source.ToString());
-            hilightCard(CurrencyImage3, false);
+        private void HandImage_Click(object sender, RoutedEventArgs e) {
+            Image_Click(sender, handButton, handImage, true);   
         }
-        private void VictoryImage1_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(VictoryImage1.Source.ToString());
-            hilightCard(VictoryImage1, false);
+        private void Image_Click(object sender,List<Button> buttons,List<Image> images,Boolean handcard) {
+            Button obj = (Button) sender;
+            for (int i = 0; i < buttons.Count(); i++) {
+                if (buttons[i] == obj) {
+                    currentCard = stripImageSource(images[i].Source.ToString());
+                    hilightCard(images[i], handcard);
+                }
+            }
         }
-        private void VictoryImage2_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(VictoryImage2.Source.ToString());
-            hilightCard(VictoryImage2, false);
-        }
-        private void VictoryImage3_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(VictoryImage3.Source.ToString());
-            hilightCard(VictoryImage3, false);
-        }
-        private void VictoryImage4_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(VictoryImage4.Source.ToString());
-            hilightCard(VictoryImage4, false);
-        }
+    /*
         private void HandImage1_Click(object sender, RoutedEventArgs e){
             currentCard = stripImageSource(HandImage1.Source.ToString());
             handCard = stripImageSource(HandImage1.Source.ToString());
@@ -207,7 +203,7 @@ namespace Dominion{
             handCard = stripImageSource(HandImage5.Source.ToString());
             hilightCard(HandImage5, true);
             Buy.IsEnabled = false;
-        }
+        }*/
 
         private string stripImageSource(string str){
             int length = str.Count();
