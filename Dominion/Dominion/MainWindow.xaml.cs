@@ -40,7 +40,7 @@ namespace Dominion{
          add playerinit and change start_click to initializegame
          ********************************************************/
         private void Initialize() {
-            myGame = new Game(1);
+            myGame = new Game(totalPlayers);
             player = myGame.getCurrentPlayer();
             stacks = myGame.getBuyables();
             currentCard = "";
@@ -117,9 +117,10 @@ namespace Dominion{
             player.getCurrency();
         }
         private void playerCont() {
-            player.cleanUp();
+            //player.cleanUp();
             resetCards();
             currentCard = "";
+            Description.Content = myGame.getCurrentPlayerNumber();
             List<Image> handImage = new List<Image>();
             int length = 5;
             handImage.Add(HandImage1);
@@ -137,13 +138,17 @@ namespace Dominion{
     
         private void Cleanup_Click(object sender, RoutedEventArgs e){
             this.Hide();
-            if (playernum+1 == totalPlayers) {
+
+            /*if (playernum+1 == totalPlayers) {
                 playernum = 0;
             }else{
                 playernum++;
-            }
+            }*/
+            playernum = myGame.nextTurn();
             PrepScreen prep = new PrepScreen(playerNames[playernum],this);
             prep.Show();
+            player = myGame.getCurrentPlayer();
+            player.cleanUp();
             playerCont();
             //switch to next player
         }
@@ -173,42 +178,17 @@ namespace Dominion{
                 }
             }
         }
-    /*
-        private void HandImage1_Click(object sender, RoutedEventArgs e){
+    /*private void HandImage1_Click(object sender, RoutedEventArgs e){
             currentCard = stripImageSource(HandImage1.Source.ToString());
             handCard = stripImageSource(HandImage1.Source.ToString());
             hilightCard(HandImage1, true);
-            Buy.IsEnabled = false;
-        }
-        private void HandImage2_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(HandImage2.Source.ToString());
-            handCard = stripImageSource(HandImage2.Source.ToString());
-            hilightCard(HandImage2, true);
-            Buy.IsEnabled = false;
-        }
-        private void HandImage3_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(HandImage3.Source.ToString());
-            handCard = stripImageSource(HandImage3.Source.ToString());
-            hilightCard(HandImage3, true);
-            Buy.IsEnabled = false;
-        }
-        private void HandImage4_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(HandImage4.Source.ToString());
-            handCard = stripImageSource(HandImage4.Source.ToString());
-            hilightCard(HandImage4, true);
-            Buy.IsEnabled = false;
-        }
-        private void HandImage5_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(HandImage5.Source.ToString());
-            handCard = stripImageSource(HandImage5.Source.ToString());
-            hilightCard(HandImage5, true);
             Buy.IsEnabled = false;
         }*/
 
         private string stripImageSource(string str){
             int length = str.Count();
-            str = str.Substring(42, length - 46);
-            return str;
+            
+            return str.Substring(42, length - 46);
         }
         private void Buy_Click(object sender, RoutedEventArgs e){
             if (currentCard.Equals("") || handCard.Equals(currentCard)){

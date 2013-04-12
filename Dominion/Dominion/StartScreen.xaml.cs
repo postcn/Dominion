@@ -21,8 +21,7 @@ namespace Dominion {
         public StartScreen() {
             InitializeComponent();
             PlayNumText.Focus();
-            PlayNumText.SelectionStart = 0;
-            PlayNumText.SelectionLength = PlayNumText.Text.Length;
+            HilightBox(PlayNumText);
             NameBox1.Visibility = Visibility.Hidden;
             NameBox2.Visibility = Visibility.Hidden;
             NameBox3.Visibility = Visibility.Hidden;
@@ -45,8 +44,7 @@ namespace Dominion {
                     if (numValue > maxplayers || numValue < 2) {
                         MessageBox.Show("There Must Be 2-" + maxplayers + "Players", "Input Error");
                         PlayNumText.Focus();
-                        PlayNumText.SelectionStart = 0;
-                        PlayNumText.SelectionLength = PlayNumText.Text.Length;
+                        HilightBox(PlayNumText);
                     } else {
                         enableBox(NameBox1);
                         enableBox(NameBox2);
@@ -58,8 +56,7 @@ namespace Dominion {
                         }
                         ConfirmButton.Content = "Start Game";
                         NameBox1.Focus();
-                        NameBox1.SelectionStart = 0;
-                        NameBox1.SelectionLength = NameBox1.Text.Length;
+                        HilightBox(NameBox1);
                         PlayNumText.IsTabStop = false;
                         ready = true;
 
@@ -67,8 +64,7 @@ namespace Dominion {
                 } else {
                     MessageBox.Show("'" + input + "' " + "is not a valid number of players", "Input Error");
                     PlayNumText.Focus();
-                    PlayNumText.SelectionStart = 0;
-                    PlayNumText.SelectionLength = PlayNumText.Text.Length;
+                    HilightBox(PlayNumText);
                 }
             } else {
                 playernames.Add(NameBox1.Text);
@@ -105,8 +101,14 @@ namespace Dominion {
             Box.Visibility = Visibility.Visible;
             Box.IsEnabled = true;
         }
-
-        private void NameBox1Focus(object sender, RoutedEventArgs e) {
+        private void NameBoxFocus(object sender, RoutedEventArgs e) {
+            HilightBox((TextBox) sender);
+        }
+        private void HilightBox(TextBox obj) {
+            obj.SelectionStart = 0;
+            obj.SelectionLength = obj.Text.Length;
+        }
+        /*private void NameBox1Focus(object sender, RoutedEventArgs e) {
             NameBox1.SelectionStart = 0;
             NameBox1.SelectionLength = NameBox1.Text.Length;
         }
@@ -121,6 +123,6 @@ namespace Dominion {
         private void NameBox4Focus(object sender, RoutedEventArgs e) {
             NameBox4.SelectionStart = 0;
             NameBox4.SelectionLength = NameBox4.Text.Length;
-        }
+        }*/
     }
 }
