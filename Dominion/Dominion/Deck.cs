@@ -50,6 +50,9 @@ namespace Dominion
         {
             return this.inDeck.Count;
         }
+        public int size() {
+            return this.inDeck.Count+this.inDiscard.Count;
+        }
 
         /// <summary>
         /// Method which draws a card from the deck. If the deck has no cards in it, it will automatically reshuffle the cards in the discard pile back into the deck.

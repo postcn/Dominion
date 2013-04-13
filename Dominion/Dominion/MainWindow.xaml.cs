@@ -41,6 +41,7 @@ namespace Dominion{
          ********************************************************/
         private void Initialize() {
             myGame = new Game(totalPlayers);
+//            myGame = new Game(1);
             player = myGame.getCurrentPlayer();
             stacks = myGame.getBuyables();
             currentCard = "";
@@ -73,7 +74,6 @@ namespace Dominion{
             currencyButton.Add(CurrencyButton1);
             currencyButton.Add(CurrencyButton2);
             currencyButton.Add(CurrencyButton3);
-
             int size = stacks.Count();
             int i, victorys = 0, currencies = 0, actions = 0;
             for (i = 0; i < size; i++) {
@@ -102,15 +102,125 @@ namespace Dominion{
             handImage.Add(HandImage3);
             handImage.Add(HandImage4);
             handImage.Add(HandImage5);
+            handImage.Add(HandImage6);
+            handImage.Add(HandImage7);
+            handImage.Add(HandImage8);
+            handImage.Add(HandImage9);
+            handImage.Add(HandImage10);
+            handImage.Add(HandImage11);
+            handImage.Add(HandImage12);
+            handImage.Add(HandImage13);
+            handImage.Add(HandImage14);
+            handImage.Add(HandImage15);
+            handImage.Add(HandImage16);
+            handImage.Add(HandImage17);
+            handImage.Add(HandImage18);
+            handImage.Add(HandImage19);
+            handImage.Add(HandImage20);
+            handImage.Add(HandImage11);
+            handImage.Add(HandImage12);
+            handImage.Add(HandImage13);
+            handImage.Add(HandImage14);
+            handImage.Add(HandImage15);
+            handImage.Add(HandImage16);
+            handImage.Add(HandImage17);
+            handImage.Add(HandImage18);
+            handImage.Add(HandImage19);
+            handImage.Add(HandImage20);
+            handImage.Add(HandImage21);
+            handImage.Add(HandImage22);
+            handImage.Add(HandImage23);
+            handImage.Add(HandImage24);
+            handImage.Add(HandImage25);
+            handImage.Add(HandImage26);
+            handImage.Add(HandImage27);
+            handImage.Add(HandImage28);
+            handImage.Add(HandImage29);
+            handImage.Add(HandImage30);
+            handImage.Add(HandImage31);
+            handImage.Add(HandImage32);
+            handImage.Add(HandImage33);
+            handImage.Add(HandImage34);
+            handImage.Add(HandImage35);
+            handImage.Add(HandImage36);
+            handImage.Add(HandImage37);
+            handImage.Add(HandImage38);
+            handImage.Add(HandImage39);
+            handImage.Add(HandImage40);
+            handImage.Add(HandImage41);
+            handImage.Add(HandImage42);
+            handImage.Add(HandImage43);
+            handImage.Add(HandImage44);
+            handImage.Add(HandImage45);
+            handImage.Add(HandImage46);
+            handImage.Add(HandImage47);
+            handImage.Add(HandImage48);
+            handImage.Add(HandImage49);
+            handImage.Add(HandImage50);
             handButton.Add(HandButton1);
             handButton.Add(HandButton2);
             handButton.Add(HandButton3);
             handButton.Add(HandButton4);
             handButton.Add(HandButton5);
+            handButton.Add(HandButton6);
+            handButton.Add(HandButton7);
+            handButton.Add(HandButton8);
+            handButton.Add(HandButton9);
+            handButton.Add(HandButton10);
+            handButton.Add(HandButton11);
+            handButton.Add(HandButton12);
+            handButton.Add(HandButton13);
+            handButton.Add(HandButton14);
+            handButton.Add(HandButton15);
+            handButton.Add(HandButton16);
+            handButton.Add(HandButton17);
+            handButton.Add(HandButton18);
+            handButton.Add(HandButton19);
+            handButton.Add(HandButton20);
+            handButton.Add(HandButton10);
+            handButton.Add(HandButton11);
+            handButton.Add(HandButton12);
+            handButton.Add(HandButton13);
+            handButton.Add(HandButton14);
+            handButton.Add(HandButton15);
+            handButton.Add(HandButton16);
+            handButton.Add(HandButton17);
+            handButton.Add(HandButton18);
+            handButton.Add(HandButton19);
+            handButton.Add(HandButton20);
+            handButton.Add(HandButton20);
+            handButton.Add(HandButton21);
+            handButton.Add(HandButton22);
+            handButton.Add(HandButton23);
+            handButton.Add(HandButton24);
+            handButton.Add(HandButton25);
+            handButton.Add(HandButton26);
+            handButton.Add(HandButton27);
+            handButton.Add(HandButton28);
+            handButton.Add(HandButton29);
+            handButton.Add(HandButton30);
+            handButton.Add(HandButton31);
+            handButton.Add(HandButton32);
+            handButton.Add(HandButton33);
+            handButton.Add(HandButton34);
+            handButton.Add(HandButton35);
+            handButton.Add(HandButton36);
+            handButton.Add(HandButton37);
+            handButton.Add(HandButton38);
+            handButton.Add(HandButton39);
+            handButton.Add(HandButton40);
+            handButton.Add(HandButton41);
+            handButton.Add(HandButton42);
+            handButton.Add(HandButton43);
+            handButton.Add(HandButton44);
+            handButton.Add(HandButton45);
+            handButton.Add(HandButton46);
+            handButton.Add(HandButton47);
+            handButton.Add(HandButton48);
+            handButton.Add(HandButton49);
+            handButton.Add(HandButton50);
             Hand myHand = player.getHand();
             for (i = 0; i < length; i++) {
-                handImage[i].IsEnabled = true;
-                handButton[i].IsEnabled = true;
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 setPicture(name, handImage[i]);
             }
@@ -120,14 +230,11 @@ namespace Dominion{
             //player.cleanUp();
             resetCards();
             currentCard = "";
-            Description.Content = myGame.getCurrentPlayerNumber();
-            List<Image> handImage = new List<Image>();
-            int length = 5;
-            handImage.Add(HandImage1);
-            handImage.Add(HandImage2);
-            handImage.Add(HandImage3);
-            handImage.Add(HandImage4);
-            handImage.Add(HandImage5);
+
+           // player.getHand().draw(player.getDeck());
+            int length=player.getHand().size();
+            int panelsize = 400 + (length-5) * 80;
+            stackpan.Width = panelsize;
             Hand myHand = player.getHand();
             for (int i = 0; i < length; i++) {
                 string name = myHand.getHand()[i].toString() + ".jpg";
@@ -138,12 +245,6 @@ namespace Dominion{
     
         private void Cleanup_Click(object sender, RoutedEventArgs e){
             this.Hide();
-
-            /*if (playernum+1 == totalPlayers) {
-                playernum = 0;
-            }else{
-                playernum++;
-            }*/
             playernum = myGame.nextTurn();
             PrepScreen prep = new PrepScreen(playerNames[playernum],this);
             prep.Show();
@@ -186,8 +287,7 @@ namespace Dominion{
         }*/
 
         private string stripImageSource(string str){
-            int length = str.Count();
-            
+            int length = str.Count();   
             return str.Substring(42, length - 46);
         }
         private void Buy_Click(object sender, RoutedEventArgs e){
@@ -197,9 +297,8 @@ namespace Dominion{
                 return;
             }
             Boolean work = false;
-            int i;
             int length = stacks.Count();
-            for (i = 0; i < length; i++){
+            for (int i = 0; i < length; i++){
                 if (stacks[i].getCard().toString().Equals(currentCard)){
                     work = player.buy(stacks[i]);
                 }
