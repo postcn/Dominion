@@ -23,6 +23,10 @@ namespace Dominion
          * 1: drawing only. Such as the smithy card.
          * 2: is drawing and action, such as the laboratory card
          * 3: is drawing and action and buys, such as the market card
+         * 4: is extra currency and buys, woodcutter
+         * 5: is extra actions and cards, village
+         * 6: is extra actions, buys, and currency, Festival
+         * 7: is witch, curse gain and draw
          */
         int funcNum;
         string cardName;

@@ -192,7 +192,7 @@ namespace Dominion
             //This test should fail once we add in new Action Cards.
             //This failure should remind me to update the test when we get more default cards.
             List<CardStack> buys = this.gameOnePlayer.getBuyables();
-            Assert.AreEqual(6, buys.Count);
+            Assert.AreEqual(7, buys.Count);
             List<String> names = new List<String>();
             names.Add("Copper");
             names.Add("Silver");
@@ -200,9 +200,21 @@ namespace Dominion
             names.Add("Estate");
             names.Add("Duchy");
             names.Add("Province");
-            for (int i = 0; i < 6; i++)
+            names.Add("Curse");
+            for (int i = 0; i < 7; i++)
             {
                 Assert.AreEqual(names[i], buys[i].getCard().getName());
+            }
+        }
+
+        [Test()]
+        public void testGetPlayers()
+        {
+            Game g = new Game(4);
+            List<Player> players = g.getPlayers();
+            for (int i = 0; i < players.Count; i++)
+            {
+                Assert.AreEqual(i, players[i].getID());
             }
         }
     }

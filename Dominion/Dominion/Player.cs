@@ -16,6 +16,8 @@ namespace Dominion
         int buysLeft;
         int currencyAvailable;
         int actionsLeft;
+        String name;
+        Game game;
 
         public Player(int id)
         {
@@ -31,6 +33,8 @@ namespace Dominion
             this.buysLeft = 1;
             this.currencyAvailable = 0;
             this.actionsLeft = 1;
+            this.name = null;
+            this.game = null;
         }
         public Hand getHand()
         {
@@ -128,8 +132,9 @@ namespace Dominion
             return false;
         }
 
-        public Boolean play(Card aCard)
+        public StatusObject play(Card aCard)
         {
+            StatusObject retVal = new StatusObject(false);
             if (this.myHand.contains(aCard) && aCard.getType() == 2 && this.actionsLeft > 0)
             {
                 this.actionsLeft--;
@@ -168,10 +173,15 @@ namespace Dominion
                         CardFunctions.actionAdd(this, aCard.getActions());
                         CardFunctions.buyAdd(this, aCard.getBuy());
                         break;
+                    case 7:
+                        //add cards and gain curses.
+                        CardFunctions.draw(this, aCard.getAdditionalDraws());
+                        CardFunctions.gainCurses(this);
+                        break;
                 }
-                return true;
+                retVal.setPlayed(true);
             }
-            return false;
+            return retVal;
         }
 
         public int addBuys(int toAdd)
@@ -208,6 +218,37 @@ namespace Dominion
             }
             this.buysLeft = 1;
             this.actionsLeft = 1;
+        }
+
+        public void setName(String name)
+        {
+            this.name = name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+
+        public void setGame(Game game)
+        {
+            this.game = game;
+        }
+
+        public Game getGame()
+        {
+            return this.game;
+        }
+
+        override
+        public bool Equals(Object other)
+        {
+            if (other.GetType() != this.GetType())
+            {
+                return false;
+            }
+            Player otherPlayer = (Player)other;
+            return (otherPlayer.id == this.id && otherPlayer.name == this.name);
         }
     }
 }

@@ -53,5 +53,30 @@ namespace Dominion
             CardFunctions.buyAdd(p, 1);
             Assert.AreEqual(2, p.getBuysLeft());
         }
+
+        /// <summary>
+        /// Tests that we can cause all the other players to gain curses.
+        /// </summary>
+        [Test()]
+        public void testGainCurses()
+        {
+            Game mini = new Game(1);
+            Player p = mini.getCurrentPlayer();
+            CardFunctions.gainCurses(p);
+            p.setVictoryPts();
+            Assert.AreEqual(3, p.getVictoryPts());
+
+            Game big = new Game(4);
+            p = big.getCurrentPlayer();
+            CardFunctions.gainCurses(p);
+            p.setVictoryPts();
+            //Assert.AreEqual(3, p.getVictoryPts());
+            for (int i = 0; i < 3; i++)
+            {
+                p = big.nextTurnPlayer();
+                p.setVictoryPts();
+                Assert.AreEqual(2, p.getVictoryPts());
+            }
+        }
     }
 }

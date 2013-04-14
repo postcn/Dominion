@@ -23,6 +23,7 @@ namespace Dominion
             this.currentPlayer = 0;
             this.numPlayers = numPlayers;
             this.setupBuyables();
+            this.initializePlayersToGame();
         }
 
         public int nextTurn()
@@ -62,6 +63,9 @@ namespace Dominion
             this.buyables.Add(new CardStack(numInStack, CardMother.Estate()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Duchy()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
+            //TODO find actual number
+            this.buyables.Add(new CardStack(120, CardMother.Curse()));
+
             //TODO: get cards out of possible list.
         }
 
@@ -79,6 +83,19 @@ namespace Dominion
             else 
             {
                 return 12;
+            }
+        }
+
+        public List<Player> getPlayers()
+        {
+            return this.players;
+        }
+
+        public void initializePlayersToGame()
+        {
+            foreach (Player p in this.players)
+            {
+                p.setGame(this);
             }
         }
     }

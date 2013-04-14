@@ -126,6 +126,18 @@ namespace Dominion
             //this draw should reshuffle the deck.
             d.draw();
             Assert.AreEqual(size-1, d.cardsLeft());
-        }   
+        }
+
+        [Test()]
+        public void testSize()
+        {
+            Assert.AreEqual(10, d.size());
+            int left = 10;
+            for (int i = 0; i < left; i++)
+            {
+                d.discard(CardMother.Copper());
+            }
+            Assert.AreEqual(20, d.size());
+        }
     }
 }
