@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Hand
+    public class Hand
     {
         List<Card> yourHand;
         int currencyInHand;

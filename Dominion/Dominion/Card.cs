@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Card
+    public class Card
     {
         /*
          * For type, 0 is a victory, 1 is a currency, and 2 is an action

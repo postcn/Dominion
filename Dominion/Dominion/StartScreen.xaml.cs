@@ -22,37 +22,37 @@ namespace Dominion {
             InitializeComponent();
             PlayNumText.Focus();
             HilightBox(PlayNumText);
-            NameBox1.Visibility = Visibility.Hidden;
-            NameBox2.Visibility = Visibility.Hidden;
-            NameBox3.Visibility = Visibility.Hidden;
-            NameBox4.Visibility = Visibility.Hidden;
         }
 
+        List<TextBox> nameBox;
         int maxplayers = 4;
         Boolean ready = false;
         MainWindow main;
-        List<string> playernames;
-        /***********************
-        maybe add player names
-         **********************/
+        int numValue;
+
         private void ConfirmNames(object sender, RoutedEventArgs e) {
             if (!ready) {
                 string input = PlayNumText.Text;
-                int numValue = 0;
+                numValue = 0;
                 bool result = Int32.TryParse(input, out numValue);
                 if (true == result) {
                     if (numValue > maxplayers || numValue < 2) {
-                        MessageBox.Show("There Must Be 2-" + maxplayers + "Players", "Input Error");
+                        MessageBox.Show("There Must Be 2-" + maxplayers + " Players", "Input Error");
+                        numValue = 0;
                         PlayNumText.Focus();
                         HilightBox(PlayNumText);
                     } else {
-                        enableBox(NameBox1);
-                        enableBox(NameBox2);
+                        nameBox = new List<TextBox>();
+                        nameBox.Add(NameBox1);
+                        nameBox.Add(NameBox2);
                         if (numValue > 2) {
-                            enableBox(NameBox3);
+                            nameBox.Add(NameBox3);
                         }
                         if (numValue == 4) {
-                            enableBox(NameBox4);
+                            nameBox.Add(NameBox4);
+                        }
+                        for (int i = 0; i < numValue; i++) {
+                            enableBox(nameBox[i]);
                         }
                         ConfirmButton.Content = "Start Game";
                         NameBox1.Focus();
@@ -67,31 +67,25 @@ namespace Dominion {
                     HilightBox(PlayNumText);
                 }
             } else {
-                playernames.Add(NameBox1.Text);
-                playernames.Add(NameBox2.Text);
-                if (NameBox3.IsEnabled) {
-                    playernames.Add(NameBox3.Text);
+                Game mygame = new Game(numValue);
+                List<Player> players = mygame.getPlayers();
+                for (int i = 0; i < numValue; i++) {
+                    players[i].setName(nameBox[i].Text);
                 }
-                if (NameBox4.IsEnabled) {
-                    playernames.Add(NameBox4.Text);
-                }
-                main = new MainWindow(playernames);
-                PrepScreen Prep = new PrepScreen(playernames[0], main);
+                main = new MainWindow(mygame);
+                PrepScreen Prep = new PrepScreen(players[0].getName(),main);
                 Prep.Show();
                 Close();
             }
         }
-
+        /*
+         * maybe on lose focus change number of text boxes like territory wars would
+         */
         private void ChangeNumber(object sender, RoutedEventArgs e) {
-            NameBox1.Visibility = Visibility.Hidden;
-            NameBox1.IsEnabled = false;
-            NameBox2.Visibility = Visibility.Hidden;
-            NameBox2.IsEnabled = false;
-            NameBox3.Visibility = Visibility.Hidden;
-            NameBox3.IsEnabled = false;
-            NameBox4.Visibility = Visibility.Hidden;
-            NameBox4.IsEnabled = false;
-            playernames = new List<string>();
+            for (int i = 0; i < numValue; i++) {
+                nameBox[i].Visibility = Visibility.Hidden;
+                nameBox[i].IsEnabled = false;
+            }
             ConfirmButton.Content = "Confirm";
             ready = false;
             PlayNumText.IsTabStop = true;
@@ -108,21 +102,5 @@ namespace Dominion {
             obj.SelectionStart = 0;
             obj.SelectionLength = obj.Text.Length;
         }
-        /*private void NameBox1Focus(object sender, RoutedEventArgs e) {
-            NameBox1.SelectionStart = 0;
-            NameBox1.SelectionLength = NameBox1.Text.Length;
-        }
-        private void NameBox2Focus(object sender, RoutedEventArgs e) {
-            NameBox2.SelectionStart = 0;
-            NameBox2.SelectionLength = NameBox2.Text.Length;
-        }
-        private void NameBox3Focus(object sender, RoutedEventArgs e) {
-            NameBox3.SelectionStart = 0;
-            NameBox3.SelectionLength = NameBox3.Text.Length;
-        }
-        private void NameBox4Focus(object sender, RoutedEventArgs e) {
-            NameBox4.SelectionStart = 0;
-            NameBox4.SelectionLength = NameBox4.Text.Length;
-        }*/
     }
 }

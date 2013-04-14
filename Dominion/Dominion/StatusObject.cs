@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class StatusObject
+    public class StatusObject
     {
         Boolean played;
 

@@ -13,61 +13,73 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dominion{
+namespace Dominion {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window{
-        public MainWindow(List<String> players){
+    public partial class MainWindow : Window {
+        public MainWindow(Game game) {
             InitializeComponent();
-            this.totalPlayers = players.Count();
-            this.playerNames = players;
+            myGame = game;
             Initialize();
         }
-        static Game myGame;
+        Game myGame;
         /*************************
         add tooltips and tab indecies and maybe tool tips based upon if button is enabled or not and which phase we are in
         *************************/
-        int totalPlayers,playernum;
         Player player;
-        List<string> playerNames;
         List<CardStack> stacks;
-        string currentCard,lastCard, handCard;
-        List<Image> victoryImage, currencyImage,handImage,actionImage;
-        List<Button> currencyButton,victoryButton,handButton,actionButton;
+        string currentCard, lastCard, handCard,phase;
+        List<Image> victoryImage, currencyImage, handImage, actionImage;
+        List<Button> currencyButton, victoryButton, handButton, actionButton;
 
         private void Confirm_Click(object sender, RoutedEventArgs e) {
+            //StatusObject status = ;
+            int length = stacks.Count();
+            for (int i = 0; i < length; i++) {
+                if (stacks[i].getCard().toString().Equals(currentCard)) {
+                  //  status = player.play(stacks[i]);
+                }
+            }
 
         }
         private void PlayerCont() {
-            //player.cleanUp();
-            ResetCards();
+            ResetUnknownHilightedCards();
             currentCard = "";
-
-           // player.getHand().draw(player.getDeck());
-            int length=player.getHand().size();
-            int panelsize = 400 + (length-5) * 80;
+            // player.getHand().draw(player.getDeck());
+            int length = player.getHand().size();
+            int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
             Hand myHand = player.getHand();
             for (int i = 0; i < length; i++) {
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
             }
-            player.getCurrency();
-        }
-    
-        private void Cleanup_Click(object sender, RoutedEventArgs e){
-            this.Hide();
-            playernum = myGame.nextTurn();
-            PrepScreen prep = new PrepScreen(playerNames[playernum],this);
-            prep.Show();
-            player = myGame.getCurrentPlayer();
-            player.cleanUp();
-            PlayerCont();
-            //switch to next player
+            int actions = player.getActionsLeft();
+            int currency = player.getCurrency();
+            int buys = player.getBuysLeft();
         }
 
-        private void Reset_Click(object sender, RoutedEventArgs e){
+        private void Cleanup_Click(object sender, RoutedEventArgs e) {
+            this.Hide();
+            player = myGame.nextTurnPlayer();
+            PrepScreen prep = new PrepScreen(player.getName(), this);
+            prep.Show();
+            player = myGame.getCurrentPlayer();
+            SetPicture("blank.jpg", Selected_Card);
+            player.cleanUp();
+            phase = "buy";
+            PlayerCont();
+        }
+        private void EndPhase_Click(object sender, RoutedEventArgs e) {
+            //set tool tips based on phase
+            Buy.IsEnabled = false;
+            phase = "action";
+            ResetUnknownHilightedCards();
+            SetPicture("blank.jpg", Selected_Card);
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e) {
             SetPicture("blank.jpg", Hand_Card);
             CardDrawnLabel.Content = "Card Bought";
             Description.Content = "Labez";
@@ -81,13 +93,13 @@ namespace Dominion{
             Image_Click(sender, victoryButton, victoryImage, false);
         }
         private void HandImage_Click(object sender, RoutedEventArgs e) {
-            Image_Click(sender, handButton, handImage, true);   
+            Image_Click(sender, handButton, handImage, true);
         }
         private void ActionImage_Click(object sender, RoutedEventArgs e) {
             Image_Click(sender, actionButton, actionImage, false);
         }
-        private void Image_Click(object sender,List<Button> buttons,List<Image> images,Boolean handcard) {
-            Button obj = (Button) sender;
+        private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {
+            Button obj = (Button)sender;
             for (int i = 0; i < buttons.Count(); i++) {
                 if (buttons[i] == obj) {
                     currentCard = StripImageSource(images[i].Source.ToString());
@@ -95,60 +107,74 @@ namespace Dominion{
                 }
             }
         }
-    /*private void HandImage1_Click(object sender, RoutedEventArgs e){
-            currentCard = stripImageSource(HandImage1.Source.ToString());
-            handCard = stripImageSource(HandImage1.Source.ToString());
-            hilightCard(HandImage1, true);
-            Buy.IsEnabled = false;
-        }*/
+        /*private void HandImage1_Click(object sender, RoutedEventArgs e){
+                currentCard = stripImageSource(HandImage1.Source.ToString());
+                handCard = stripImageSource(HandImage1.Source.ToString());
+                hilightCard(HandImage1, true);
+                Buy.IsEnabled = false;
+            }*/
 
-        private string StripImageSource(string str){
-            int length = str.Count();   
+        private string StripImageSource(string str) {
+            int length = str.Count();
             return str.Substring(42, length - 46);
         }
-        private void Buy_Click(object sender, RoutedEventArgs e){
-            if (currentCard.Equals("") || handCard.Equals(currentCard)){
-                Description.Content = "A Buyable Card isn't Selected";
-                ResetCards();
-                return;
-            }
+        private void Buy_Click(object sender, RoutedEventArgs e) {
+            /* if (currentCard.Equals("") || handCard.Equals(currentCard)){
+                 Description.Content = "A Buyable Card isn't Selected";
+                 ResetCards();
+                 return;
+             }*/
             Boolean work = false;
             int length = stacks.Count();
-            for (int i = 0; i < length; i++){
-                if (stacks[i].getCard().toString().Equals(currentCard)){
+            for (int i = 0; i < length; i++) {
+                if (stacks[i].getCard().toString().Equals(currentCard)) {
                     work = player.buy(stacks[i]);
+                    //set a variable here then only reset this card 
                 }
             }
 
-            if (!work){
+            if (!work) {
                 Description.Content = "buy failed " + player.getCurrencyValue();
-            }else{
+            } else {
                 Description.Content = "Buy Sucessful";
                 string name = currentCard + ".jpg";
                 SetPicture(name, Hand_Card);
             }
-            ResetCards();
+            ResetUnknownHilightedCards();
+            //reset only hilighted one? as determined by the for loop?
         }
 
-       
-        private void HilightCard(Image pic, Boolean isHandCard){
-            ResetCards();
+
+        private void HilightCard(Image pic, Boolean isHandCard) {
+            Boolean work=false;
+            ResetUnknownHilightedCards();
             string card;
             Buy.IsEnabled = false;
-            if (!currentCard.Contains("1")){
+            Confirm.IsEnabled = false;
+            string selected="blank";
+            if (!currentCard.Contains("1")) {
+                 selected = currentCard;
                 card = currentCard + "1" + ".jpg";
-                if (!isHandCard){
+                if (!isHandCard&&phase.Equals("buy")) {
+                    work = true;
                     Buy.IsEnabled = true;
                 }
-            }else{
+                if(isHandCard&&phase.Equals("action")){
+                    work = true;
+                    Confirm.IsEnabled=true;
+                }
+            } else {
                 card = currentCard.Substring(0, currentCard.Count() - 1) + ".jpg";
+                SetPicture("blank.jpg", Selected_Card);
             }
 
             lastCard = card.Substring(0, card.Count() - 4);
-            SetPicture(card, pic);
-
+            if (work) {
+                SetPicture(card, pic);
+                SetPicture(selected + ".jpg", Selected_Card);
+            }
         }
-       
+
         private void SetPicture(string str, Image pic) {
             BitmapImage image = new BitmapImage();
             image.BeginInit();
@@ -156,9 +182,10 @@ namespace Dominion{
             image.EndInit();
             pic.Source = image;
         }
-        private void ResetCards() {
+        private void ResetUnknownHilightedCards() {
             if (lastCard != "") {
                 Buy.IsEnabled = false;
+                Confirm.IsEnabled = false;
                 string card = lastCard;
                 if (lastCard.Contains("1")) {
                     card = lastCard.Substring(0, lastCard.Count() - 1);
@@ -168,27 +195,21 @@ namespace Dominion{
                 for (i = 0; i < currencyImage.Count(); i++) {
                     if (StripImageSource(currencyImage[i].Source.ToString()).Equals(lastCard)) {
                         SetPicture(card, currencyImage[i]);
-                        return;
-                    }
-                }
-                for (i = 0; i < handImage.Count(); i++) {
-                    if (StripImageSource(handImage[i].Source.ToString()).Equals(lastCard)) {
-                        SetPicture(card, handImage[i]);
-                        return;
                     }
                 }
                 for (i = 0; i < victoryImage.Count(); i++) {
-                    if (victoryImage[i].IsEnabled == true) {
-                        if (StripImageSource(victoryImage[i].Source.ToString()).Equals(lastCard)) {
-                            SetPicture(card, victoryImage[i]);
-                            return;
-                        }
+                    if (StripImageSource(victoryImage[i].Source.ToString()).Equals(lastCard)) {
+                        SetPicture(card, victoryImage[i]);
                     }
                 }
                 for (i = 0; i < actionImage.Count(); i++) {
                     if (StripImageSource(actionImage[i].Source.ToString()).Equals(lastCard)) {
                         SetPicture(card, actionImage[i]);
-                        return;
+                    }
+                }
+                for (i = 0; i < handImage.Count(); i++) {
+                    if (StripImageSource(handImage[i].Source.ToString()).Equals(lastCard)) {
+                        SetPicture(card, handImage[i]);
                     }
                 }
             }
@@ -197,23 +218,15 @@ namespace Dominion{
          add playerinit and change start_click to initializegame
          ********************************************************/
         private void Initialize() {
-            myGame = new Game(totalPlayers);
-            //            myGame = new Game(1);
             player = myGame.getCurrentPlayer();
             stacks = myGame.getBuyables();
             currentCard = "";
             lastCard = "";
             handCard = "";
-            playernum = 0;
+            phase = "buy";
             InitializeButtonImages();
 
             //Confirm.IsEnabled = true;
-            //   List<Image> victory = new List<Image>();
-            //   List<Image> currency = new List<Image>();
-            // List<Image> action = new List<Image>();
-            //   List<Button> victoryButton = new List<Button>();
-            //   List<Button> currencyButton = new List<Button>();
-            //   List<Button> actionButton = new List<Button>();
             int size = stacks.Count();
             int i, victorys = 0, currencies = 0, actions = 0;
             for (i = 0; i < size; i++) {
@@ -239,10 +252,6 @@ namespace Dominion{
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
             }
-            //
-            ActionButton1.IsEnabled = true;
-            SetPicture("Adventurer.jpg", actionImage[0]);
-            //
             player.getCurrency();
         }
         private void InitializeButtonImages() {
@@ -411,7 +420,6 @@ namespace Dominion{
             handButton.Add(HandButton49);
             handButton.Add(HandButton50);
         }
-        //doens't check buys
         //shuffle cards well (like from start)
         //
         //http://stackoverflow.com/questions/4151380/wpf-image-control-with-click-event

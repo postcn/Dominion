@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Deck
+    public class Deck
     {
         List<Card> inDeck;
         List<Card> inDiscard;

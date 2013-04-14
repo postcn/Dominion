@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Player
+    public class Player
     {
         private int victoryPts;
         private int id;

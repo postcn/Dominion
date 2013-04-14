@@ -9,9 +9,9 @@ namespace Dominion
     /// <summary>
     /// Class which is designed for piles of cards to buy.
     /// </summary>
-    class CardStack
+    public class CardStack
     {
-        Card card;
+       Card card;
         int remaining;
 
         /// <summary>
