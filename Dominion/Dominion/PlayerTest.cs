@@ -167,7 +167,7 @@ namespace Dominion
         [Test()]
         public void testPlayCardNotInHand()
         {
-            Assert.IsFalse(p.play(new Card(0,0,0,0,0,0,0,"NULL","NULL",0)));
+            Assert.IsFalse(p.play(new Card(0,0,0,0,0,0,0,"NULL","NULL",0)).wasPlayedProperly());
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Dominion
         [Test()]
         public void testPlayNotAction()
         {
-            Assert.IsFalse(p.play(CardMother.Copper()));
+            Assert.IsFalse(p.play(CardMother.Copper()).wasPlayedProperly());
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace Dominion
             p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
             Assert.AreEqual(0, p.getActionsLeft());
             p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
-            Assert.IsFalse(p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0)));
+            Assert.IsFalse(p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0)).wasPlayedProperly());
         }
 
         /// <summary>
@@ -286,13 +286,13 @@ namespace Dominion
         public void testFunctionThree()
         {
             p.getHand().getHand().Add(CardMother.Market());
-            Assert.IsTrue(p.play(CardMother.Market()));
+            Assert.IsTrue(p.play(CardMother.Market()).wasPlayedProperly());
             Assert.AreEqual(7, p.getCurrency());
             Assert.AreEqual(2, p.getBuysLeft());
             Assert.AreEqual(1, p.getActionsLeft());
             Assert.AreEqual(6, p.getHand().getHand().Count);
             p.getHand().getHand().Add(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0));
-            Assert.IsTrue(p.play(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0)));
+            Assert.IsTrue(p.play(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0)).wasPlayedProperly());
             Assert.AreEqual(3, p.getBuysLeft());
             Assert.AreEqual(2, p.getActionsLeft());
         }
@@ -301,7 +301,7 @@ namespace Dominion
         public void testFunctionFour()
         {
             p.getHand().getHand().Add(CardMother.Woodcutter());
-            Assert.IsTrue(p.play(CardMother.Woodcutter()));
+            Assert.IsTrue(p.play(CardMother.Woodcutter()).wasPlayedProperly());
             Assert.AreEqual(7, p.getCurrency());
             Assert.AreEqual(2, p.getBuysLeft());
             Assert.AreEqual(0, p.getActionsLeft());
@@ -313,7 +313,7 @@ namespace Dominion
         public void testFunctionFive()
         {
             p.getHand().getHand().Add(CardMother.Village());
-            Assert.IsTrue(p.play(CardMother.Village()));
+            Assert.IsTrue(p.play(CardMother.Village()).wasPlayedProperly());
             Assert.AreEqual(6, p.getCurrency());
             Assert.AreEqual(1, p.getBuysLeft());
             Assert.AreEqual(2, p.getActionsLeft());
@@ -325,11 +325,188 @@ namespace Dominion
         public void testFunctionSix()
         {
             p.getHand().getHand().Add(CardMother.Festival());
-            Assert.IsTrue(p.play(CardMother.Festival()));
+            Assert.IsTrue(p.play(CardMother.Festival()).wasPlayedProperly());
             Assert.AreEqual(7, p.getCurrency());
             Assert.AreEqual(2, p.getBuysLeft());
             Assert.AreEqual(2, p.getActionsLeft());
             Assert.AreEqual(5, p.getHand().getHand().Count);
+        }
+
+        [Test()]
+        public void testFunctionSeven()
+        {
+            Game g = new Game(2);
+            Player p = g.getCurrentPlayer();
+            Player p2 = g.getPlayers()[1];
+            p.getHand().getHand().Add(CardMother.Witch());
+            Assert.IsTrue(p.play(CardMother.Witch()).wasPlayedProperly());
+            Assert.AreEqual(7,p.getHand().size());
+            p.setVictoryPts();
+            p2.setVictoryPts();
+            Assert.AreEqual(3, p.getVictoryPts());
+            Assert.AreEqual(2, p2.getVictoryPts());
+        }
+
+        [Test()]
+        public void testSetAndGetName()
+        {
+            Assert.IsNull(p.getName());
+            String name = "Jim Bob Schuler";
+            p.setName(name);
+            Assert.AreEqual(name, p.getName());
+        }
+
+        [Test()]
+        public void testEqualFailID()
+        {
+            Player two = new Player(2);
+            Assert.IsFalse(two.Equals(p));
+        }
+
+        [Test()]
+        public void testEqualFailNonPlayer()
+        {
+            Game g = new Game(0);
+            Assert.IsFalse(p.Equals(g));
+        }
+
+        [Test()]
+        public void testEqualFailStringName()
+        {
+            p.setName("George");
+            Player two = new Player(0);
+            two.setName("Fred");
+            Assert.IsFalse(p.Equals(two));
+        }
+
+        [Test()]
+        public void testEqualsPass()
+        {
+            String name = "Paige";
+            Player two = new Player(0);
+            Assert.IsTrue(two.Equals(p));
+            p.setName(name);
+            two.setName(name);
+            Assert.IsTrue(p.Equals(two));
+        }
+
+        [Test()]
+        public void testGetAndSetGain()
+        {
+            Assert.IsFalse(p.getGain());
+            p.setGain(true);
+            Assert.IsTrue(p.getGain());
+        }
+
+        [Test()]
+        public void testGetAndSetBonus()
+        {
+            Assert.AreEqual(0, p.getCurrencyForGainBonus());
+            p.setCurrencyForGainBonus(2);
+            Assert.AreEqual(2, p.getCurrencyForGainBonus());
+        }
+
+        [Test()]
+        public void testTrashForGain()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            p.setCurrencyForGainBonus(1);
+            Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            Assert.AreEqual(1, p.getCurrencyForGain());
+            Assert.IsTrue(p.getGain());
+            Assert.AreEqual(4, p.getHand().size());
+        }
+
+        [Test()]
+        public void testGainFailNotInHand()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            p.setCurrencyForGainBonus(1);
+            Assert.IsFalse(p.trashForGain(CardMother.Estate()).wasTrashedCorrectly());
+            Assert.AreEqual(0, p.getCurrencyForGain());
+            Assert.IsTrue(p.getGain());
+            Assert.AreEqual(5, p.getHand().size());
+        }
+
+        [Test()]
+        public void testGainFailNoCardsInStack()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            p.setCurrencyForGainBonus(2);
+            Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            Assert.AreEqual(2, p.getCurrencyForGain());
+            Assert.IsTrue(p.getGain());
+            CardStack copper = new CardStack(0, CardMother.Copper());
+            Assert.IsFalse(p.gainCard(copper).getGainedProperly());
+        }
+
+        [Test()]
+        public void testGainFailNotEnoughMoney()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            p.setCurrencyForGainBonus(2);
+            Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            Assert.AreEqual(2, p.getCurrencyForGain());
+            Assert.IsTrue(p.getGain());
+            CardStack silver = new CardStack(1, CardMother.Silver());
+            Assert.IsFalse(p.gainCard(silver).getGainedProperly());
+        }
+
+        [Test()]
+        public void testGainFailNotGainInPlayer()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            p.setCurrencyForGainBonus(2);
+            Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            Assert.AreEqual(2, p.getCurrencyForGain());
+            Assert.IsTrue(p.getGain());
+            p.setGain(false);
+            CardStack copper = new CardStack(1, CardMother.Copper());
+            Assert.IsFalse(p.gainCard(copper).getGainedProperly());
+        }
+
+        [Test()]
+        public void testGainPass()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            p.setCurrencyForGainBonus(2);
+            Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            Assert.AreEqual(2, p.getCurrencyForGain());
+            Assert.IsTrue(p.getGain());
+            CardStack estate = new CardStack(1, CardMother.Estate());
+            Assert.IsTrue(p.gainCard(estate).getGainedProperly());
+            Assert.AreEqual(CardMother.Estate(),p.getDeck().getInDiscard()[0]);
+            Assert.IsFalse(p.getGain());
+            Assert.AreEqual(0, p.getCurrencyForGain());
+        }
+
+        [Test()]
+        public void testRemodelSequence()
+        {
+            p.getHand().getHand().Add(CardMother.Remodel());
+            Assert.IsTrue(p.play(CardMother.Remodel()).wasPlayedProperly());
+            CardStack estate = new CardStack(1, CardMother.Estate());
+            Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            Assert.IsTrue(p.gainCard(estate).getGainedProperly());
+            Assert.AreEqual(CardMother.Estate(),p.getDeck().getInDiscard()[0]);
+        }
+
+        [Test()]
+        public void testRemodelSequenceWorthMore()
+        {
+            p.getHand().getHand().Add(CardMother.Remodel());
+            p.getHand().getHand().Add(CardMother.Remodel());
+            Assert.IsTrue(p.play(CardMother.Remodel()).wasPlayedProperly());
+            CardStack gold = new CardStack(1, CardMother.Gold());
+            Assert.IsTrue(p.trashForGain(CardMother.Remodel()).wasTrashedCorrectly());
+            Assert.IsTrue(p.gainCard(gold).getGainedProperly());
+            Assert.AreEqual(CardMother.Gold(), p.getDeck().getInDiscard()[0]);
         }
     }
 }

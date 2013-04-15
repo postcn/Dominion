@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Hand
+    public class Hand
     {
         List<Card> yourHand;
         int currencyInHand;
@@ -26,7 +26,9 @@ namespace Dominion
         {
             return yourHand;
         }
-
+        public int size() {
+            return yourHand.Count();
+        }
         // Goes through your hand and calculates how much base currency you have in it.
         public int getCurrency()
         {

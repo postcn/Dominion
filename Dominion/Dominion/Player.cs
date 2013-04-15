@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Player
+    public class Player
     {
         private int victoryPts;
         private int id;
@@ -16,9 +16,17 @@ namespace Dominion
         int buysLeft;
         int currencyAvailable;
         int actionsLeft;
+        String name;
+        Game game;
+        Boolean gain;
+        int currencyForGain;
+        int currencyForGainBonus;
 
         public Player(int id)
         {
+            this.gain = false;
+            this.currencyForGain = 0;
+            this.currencyForGainBonus = 0;
             this.id = id;
             myDeck = new Deck();
             myHand = new Hand();
@@ -31,6 +39,8 @@ namespace Dominion
             this.buysLeft = 1;
             this.currencyAvailable = 0;
             this.actionsLeft = 1;
+            this.name = null;
+            this.game = null;
         }
         public Hand getHand()
         {
@@ -128,8 +138,9 @@ namespace Dominion
             return false;
         }
 
-        public Boolean play(Card aCard)
+        public StatusObject play(Card aCard)
         {
+            StatusObject retVal = new StatusObject(false);
             if (this.myHand.contains(aCard) && aCard.getType() == 2 && this.actionsLeft > 0)
             {
                 this.actionsLeft--;
@@ -168,10 +179,19 @@ namespace Dominion
                         CardFunctions.actionAdd(this, aCard.getActions());
                         CardFunctions.buyAdd(this, aCard.getBuy());
                         break;
+                    case 7:
+                        //add cards and gain curses.
+                        CardFunctions.draw(this, aCard.getAdditionalDraws());
+                        CardFunctions.gainCurses(this);
+                        break;
+                    case 8:
+                        //Remodel a card, trash and gain
+                        CardFunctions.gainCardRemodel(this, retVal);
+                        break;
                 }
-                return true;
+                retVal.setPlayed(true);
             }
-            return false;
+            return retVal;
         }
 
         public int addBuys(int toAdd)
@@ -208,6 +228,100 @@ namespace Dominion
             }
             this.buysLeft = 1;
             this.actionsLeft = 1;
+        }
+
+        public void setName(String name)
+        {
+            this.name = name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+
+        public void setGame(Game game)
+        {
+            this.game = game;
+        }
+
+        public Game getGame()
+        {
+            return this.game;
+        }
+
+        override
+        public bool Equals(Object other)
+        {
+            if (other.GetType() != this.GetType())
+            {
+                return false;
+            }
+            Player otherPlayer = (Player)other;
+            return (otherPlayer.id == this.id && otherPlayer.name == this.name);
+        }
+
+        public void setCurrencyForGainBonus(int bonus)
+        {
+            this.currencyForGainBonus = bonus;
+        }
+
+        public int getCurrencyForGainBonus()
+        {
+            return this.currencyForGainBonus;
+        }
+
+        public int getCurrencyForGain()
+        {
+            return this.currencyForGain;
+        }
+
+        public Boolean getGain()
+        {
+            return this.gain;
+        }
+
+        public void setGain(Boolean val)
+        {
+            this.gain = val;
+        }
+
+        public StatusObject trashForGain(Card c)
+        {
+            StatusObject o = new StatusObject(false);
+            if (this.gain)
+            {
+                if (!this.myHand.contains(c))
+                {
+                    return o;
+                }
+                this.myHand.remove(c);//don't put it anywhere so trashed
+                this.currencyForGain = c.getCost() + this.currencyForGainBonus;
+                this.currencyForGainBonus = 0;
+                o.setTrashedCorrectly(true);
+            }
+            return o;
+        }
+
+        public StatusObject gainCard(CardStack cs)
+        {
+            StatusObject o = new StatusObject(false);
+            if (cs.isEmpty())
+            {
+                return o;
+            }
+            if (!this.gain)
+            {
+                return o;
+            }
+            if (this.currencyForGain >= cs.getCard().getCost())
+            {
+                this.getDeck().discard(cs.buyOne());
+                this.currencyForGain = 0;
+                this.gain = false;
+                o.setGainedProperly(true);
+            }
+            return o;
         }
     }
 }

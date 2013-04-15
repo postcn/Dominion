@@ -111,5 +111,15 @@ namespace Dominion
             Assert.IsFalse(test.discard(new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0), d));
             Assert.AreEqual(1, d.getInDiscard().Count);
         }
+
+        [Test()]
+        public void testSize()
+        {
+            Hand test = new Hand();
+            Deck d = new Deck();
+            Assert.AreEqual(0,test.size());
+            test.draw(d);
+            Assert.AreEqual(1, test.size());
+        }
     }
 }

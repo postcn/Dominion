@@ -25,5 +25,24 @@ namespace Dominion
         {
             p.addBuys(buys);
         }
+
+        public static void gainCurses(Player p)
+        {
+            Game g = p.getGame();
+            foreach (Player play in g.getPlayers())
+            {
+                if (!p.Equals(play))
+                {
+                    play.getDeck().discard(g.getBuyables()[6].buyOne());//will always be the curse for the game setup.
+                }
+            }
+        }
+
+        public static void gainCardRemodel(Player p, StatusObject o)
+        {
+            p.setGain(true);
+            p.setCurrencyForGainBonus(2);
+            o.setTrashForGain(true);
+        }
     }
 }

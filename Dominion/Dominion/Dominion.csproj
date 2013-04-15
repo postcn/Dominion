@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="StatusObject.cs" />
+    <Compile Include="StatusObjectTest.cs" />
     <Page Include="StartScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -165,6 +167,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Silver1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Adventurer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Adventurer1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Blank.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Laboratory.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Laboratory1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Feast.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Feast1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

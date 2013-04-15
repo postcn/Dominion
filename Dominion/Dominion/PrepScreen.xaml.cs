@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Dominion {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PrepScreen.xaml
     /// </summary>
     public partial class PrepScreen : Window {
         public PrepScreen(String player, MainWindow main) {

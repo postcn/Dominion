@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
-    class Deck
+    public class Deck
     {
         List<Card> inDeck;
         List<Card> inDiscard;
@@ -49,6 +49,9 @@ namespace Dominion
         public int cardsLeft()
         {
             return this.inDeck.Count;
+        }
+        public int size() {
+            return this.inDeck.Count+this.inDiscard.Count;
         }
 
         /// <summary>
