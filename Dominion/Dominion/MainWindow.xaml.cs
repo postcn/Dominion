@@ -60,10 +60,12 @@ namespace Dominion {
             Actions_Label.Content = player.getActionsLeft();
             Buys_Label.Content = player.getBuysLeft();
             Phase_Label.Content = phase;
-            if (phase.Equals("Buy Phase")) {
-                Currency_Label.Content = player.getCurrencyValue();
+            if (phase.Equals("Action Phase")) {
+                Currency_Label.Content = player.getCurrency();
+               // Currency_Label.Content = player.getCurrencyValue();
             } else {
-                Currency_Label.Content = "N/A";
+                Currency_Label.Content = player.getCurrencyValue();
+                // Currency_Label.Content = "N/A";
             }
         }
 
@@ -75,7 +77,7 @@ namespace Dominion {
             player = myGame.getCurrentPlayer();
             SetPicture("blank.jpg", Selected_Card);
             player.cleanUp();
-            phase = "Buy Phase";
+            phase = "Action Phase";
             Phase_Label.Content = phase;
             End_Phase.IsEnabled = true;
             player.getCurrency();
@@ -84,7 +86,7 @@ namespace Dominion {
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //set tool tips based on phase
             Buy.IsEnabled = false;
-            phase = "Action Phase";
+            phase = "Buy Phase";
             Phase_Label.Content = phase;
             ResetUnknownHilightedCards();
             SetPicture("blank.jpg", Selected_Card);
@@ -252,7 +254,7 @@ namespace Dominion {
             currentCard = "";
             lastCard = "";
             handCard = "";
-            phase = "Buy Phase";
+            phase = "Action Phase";
             InitializeButtonImages();
 
             //Confirm.IsEnabled = true;
