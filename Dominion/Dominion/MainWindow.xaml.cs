@@ -34,11 +34,18 @@ namespace Dominion {
         List<Button> currencyButton, victoryButton, handButton, actionButton;
 
         private void Confirm_Click(object sender, RoutedEventArgs e) {
-            //StatusObject status = ;
-            Card playCard = CardStackFromHilighted(currentCard)[0].getCard();
+            if (myGame.getCurrentPlayerNumber() == 0) {
+                Card card = new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
+                player.getHand().getHand().Add(card);
+                StatusObject status = player.play(CardMother.Smithy());
+                Description.Content = status.wasPlayedProperly();
+                RefreshWindow();
+            }
+            // Card playCard = CardStackFromHilighted(currentCard)[0].getCard();
 
         }
-        private void PlayerCont() {
+
+        private void RefreshWindow() {
             ResetUnknownHilightedCards();
             currentCard = "";
             // player.getHand().draw(player.getDeck());
@@ -50,9 +57,14 @@ namespace Dominion {
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
             }
-            int actions = player.getActionsLeft();
-            int currency = player.getCurrency();
-            int buys = player.getBuysLeft();
+            Actions_Label.Content = player.getActionsLeft();
+            Buys_Label.Content = player.getBuysLeft();
+            Phase_Label.Content = phase;
+            if (phase.Equals("Buy Phase")) {
+                Currency_Label.Content = player.getCurrencyValue();
+            } else {
+                Currency_Label.Content = "N/A";
+            }
         }
 
         private void Cleanup_Click(object sender, RoutedEventArgs e) {
@@ -63,15 +75,20 @@ namespace Dominion {
             player = myGame.getCurrentPlayer();
             SetPicture("blank.jpg", Selected_Card);
             player.cleanUp();
-            phase = "buy";
-            PlayerCont();
+            phase = "Buy Phase";
+            Phase_Label.Content = phase;
+            End_Phase.IsEnabled = true;
+            player.getCurrency();
+            RefreshWindow();
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //set tool tips based on phase
             Buy.IsEnabled = false;
-            phase = "action";
+            phase = "Action Phase";
+            Phase_Label.Content = phase;
             ResetUnknownHilightedCards();
             SetPicture("blank.jpg", Selected_Card);
+            End_Phase.IsEnabled = false;
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e) {
@@ -115,7 +132,7 @@ namespace Dominion {
          */
         private List<CardStack> CardStackFromHilighted(String str) {
             int length = stacks.Count();
-            List<CardStack> cardStacks = null;
+            List<CardStack> cardStacks = new List<CardStack>();
             for (int i = 0; i < length; i++) {
                 if (stacks[i].getCard().toString().Equals(currentCard)) {
                     cardStacks.Add(stacks[i]);
@@ -152,6 +169,7 @@ namespace Dominion {
                 SetPicture(name, Hand_Card);
             }
             ResetUnknownHilightedCards();
+            RefreshWindow();
             //reset only hilighted one? as determined by the for loop?
         }
 
@@ -166,11 +184,11 @@ namespace Dominion {
             if (!currentCard.Contains("1")) {
                  selected = currentCard;
                 card = currentCard + "1" + ".jpg";
-                if (!isHandCard&&phase.Equals("buy")) {
+                if (!isHandCard&&phase.Equals("Buy Phase")) {
                     work = true;
                     Buy.IsEnabled = true;
                 }
-                if(isHandCard&&phase.Equals("action")){
+                if(isHandCard&&phase.Equals("Action Phase")){
                     work = true;
                     Confirm.IsEnabled=true;
                 }
@@ -234,7 +252,7 @@ namespace Dominion {
             currentCard = "";
             lastCard = "";
             handCard = "";
-            phase = "buy";
+            phase = "Buy Phase";
             InitializeButtonImages();
 
             //Confirm.IsEnabled = true;
@@ -256,14 +274,15 @@ namespace Dominion {
                     actions++;
                 }
             }
-
-            int handsize = 5;
-            Hand myHand = player.getHand();
-            for (i = 0; i < handsize; i++) {
-                string name = myHand.getHand()[i].toString() + ".jpg";
-                SetPicture(name, handImage[i]);
-            }
             player.getCurrency();
+            RefreshWindow();
+       //     int handsize = 5;
+        //    Hand myHand = player.getHand();
+         //   for (i = 0; i < handsize; i++) {
+         //       string name = myHand.getHand()[i].toString() + ".jpg";
+         //       SetPicture(name, handImage[i]);
+         //   }
+          //  player.getCurrency();
         }
         private void InitializeButtonImages() {
             victoryButton = new List<Button>();
