@@ -35,12 +35,7 @@ namespace Dominion {
 
         private void Confirm_Click(object sender, RoutedEventArgs e) {
             //StatusObject status = ;
-            int length = stacks.Count();
-            for (int i = 0; i < length; i++) {
-                if (stacks[i].getCard().toString().Equals(currentCard)) {
-                  //  status = player.play(stacks[i]);
-                }
-            }
+            Card playCard = CardStackFromHilighted(currentCard)[0].getCard();
 
         }
         private void PlayerCont() {
@@ -114,6 +109,20 @@ namespace Dominion {
                 Buy.IsEnabled = false;
             }*/
 
+        /*
+         * currently gets send one string going to need to make funciton to get list of strings that are hilighted for thef card
+         * returns all cardstacks that are currently selected
+         */
+        private List<CardStack> CardStackFromHilighted(String str) {
+            int length = stacks.Count();
+            List<CardStack> cardStacks = null;
+            for (int i = 0; i < length; i++) {
+                if (stacks[i].getCard().toString().Equals(currentCard)) {
+                    cardStacks.Add(stacks[i]);
+                }
+            }
+            return cardStacks;
+        }
         private string StripImageSource(string str) {
             int length = str.Count();
             return str.Substring(42, length - 46);
@@ -126,12 +135,14 @@ namespace Dominion {
              }*/
             Boolean work = false;
             int length = stacks.Count();
-            for (int i = 0; i < length; i++) {
-                if (stacks[i].getCard().toString().Equals(currentCard)) {
-                    work = player.buy(stacks[i]);
+            work= player.buy(CardStackFromHilighted(currentCard)[0]);
+
+            //for (int i = 0; i < length; i++) {
+             //   if (stacks[i].getCard().toString().Equals(currentCard)) {
+            //        work = player.buy(stacks[i]);
                     //set a variable here then only reset this card 
-                }
-            }
+            //    }
+            //}
 
             if (!work) {
                 Description.Content = "buy failed " + player.getCurrencyValue();
