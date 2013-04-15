@@ -25,5 +25,29 @@ namespace Dominion
             o.setPlayed(true);
             Assert.IsTrue(o.wasPlayedProperly());
         }
+
+        [Test()]
+        public void testTrashForGain()
+        {
+            Assert.IsFalse(o.trashForGainCheck());
+            o.setTrashForGain(true);
+            Assert.IsTrue(o.trashForGainCheck());
+        }
+
+        [Test()]
+        public void testGainedProperly()
+        {
+            Assert.IsFalse(o.getGainedProperly());
+            o.setGainedProperly(true);
+            Assert.IsTrue(o.getGainedProperly());
+        }
+
+        [Test()]
+        public void testTrashedProperly()
+        {
+            Assert.IsFalse(o.wasTrashedCorrectly());
+            o.setTrashedCorrectly(true);
+            Assert.IsTrue(o.wasTrashedCorrectly());
+        }
     }
 }

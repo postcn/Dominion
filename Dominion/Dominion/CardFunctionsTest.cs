@@ -70,13 +70,23 @@ namespace Dominion
             p = big.getCurrentPlayer();
             CardFunctions.gainCurses(p);
             p.setVictoryPts();
-            //Assert.AreEqual(3, p.getVictoryPts());
+            Assert.AreEqual(3, p.getVictoryPts());
             for (int i = 0; i < 3; i++)
             {
                 p = big.nextTurnPlayer();
                 p.setVictoryPts();
                 Assert.AreEqual(2, p.getVictoryPts());
             }
+        }
+
+        [Test()]
+        public void testGainCardRemodel()
+        {
+            StatusObject o = new StatusObject(false);
+            CardFunctions.gainCardRemodel(p, o);
+            Assert.IsTrue(p.getGain());
+            Assert.IsTrue(o.trashForGainCheck());
+            Assert.AreEqual(2, p.getCurrencyForGainBonus());
         }
     }
 }

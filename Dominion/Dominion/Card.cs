@@ -27,6 +27,7 @@ namespace Dominion
          * 5: is extra actions and cards, village
          * 6: is extra actions, buys, and currency, Festival
          * 7: is witch, curse gain and draw
+         * 8: is Remodel
          */
         int funcNum;
         string cardName;

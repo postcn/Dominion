@@ -18,9 +18,15 @@ namespace Dominion
         int actionsLeft;
         String name;
         Game game;
+        Boolean gain;
+        int currencyForGain;
+        int currencyForGainBonus;
 
         public Player(int id)
         {
+            this.gain = false;
+            this.currencyForGain = 0;
+            this.currencyForGainBonus = 0;
             this.id = id;
             myDeck = new Deck();
             myHand = new Hand();
@@ -178,6 +184,10 @@ namespace Dominion
                         CardFunctions.draw(this, aCard.getAdditionalDraws());
                         CardFunctions.gainCurses(this);
                         break;
+                    case 8:
+                        //Remodel a card, trash and gain
+                        CardFunctions.gainCardRemodel(this, retVal);
+                        break;
                 }
                 retVal.setPlayed(true);
             }
@@ -249,6 +259,69 @@ namespace Dominion
             }
             Player otherPlayer = (Player)other;
             return (otherPlayer.id == this.id && otherPlayer.name == this.name);
+        }
+
+        public void setCurrencyForGainBonus(int bonus)
+        {
+            this.currencyForGainBonus = bonus;
+        }
+
+        public int getCurrencyForGainBonus()
+        {
+            return this.currencyForGainBonus;
+        }
+
+        public int getCurrencyForGain()
+        {
+            return this.currencyForGain;
+        }
+
+        public Boolean getGain()
+        {
+            return this.gain;
+        }
+
+        public void setGain(Boolean val)
+        {
+            this.gain = val;
+        }
+
+        public StatusObject trashForGain(Card c)
+        {
+            StatusObject o = new StatusObject(false);
+            if (this.gain)
+            {
+                if (!this.myHand.contains(c))
+                {
+                    return o;
+                }
+                this.myHand.remove(c);//don't put it anywhere so trashed
+                this.currencyForGain = c.getCost() + this.currencyForGainBonus;
+                this.currencyForGainBonus = 0;
+                o.setTrashedCorrectly(true);
+            }
+            return o;
+        }
+
+        public StatusObject gainCard(CardStack cs)
+        {
+            StatusObject o = new StatusObject(false);
+            if (cs.isEmpty())
+            {
+                return o;
+            }
+            if (!this.gain)
+            {
+                return o;
+            }
+            if (this.currencyForGain >= cs.getCard().getCost())
+            {
+                this.getDeck().discard(cs.buyOne());
+                this.currencyForGain = 0;
+                this.gain = false;
+                o.setGainedProperly(true);
+            }
+            return o;
         }
     }
 }

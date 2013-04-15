@@ -37,5 +37,12 @@ namespace Dominion
                 }
             }
         }
+
+        public static void gainCardRemodel(Player p, StatusObject o)
+        {
+            p.setGain(true);
+            p.setCurrencyForGainBonus(2);
+            o.setTrashForGain(true);
+        }
     }
 }

@@ -84,5 +84,10 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 2, 7, "Witch", "+2 Cards. Each other player gains a Curse card.", 5);
         }
+
+        public static Card Remodel()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 8, "Remodel", "Trash a card from your hand. Gain a a card costing up to 2 Coins more than the trashed card.", 4);
+        }
     }
 }
