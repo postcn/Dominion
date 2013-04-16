@@ -23,6 +23,7 @@ namespace Dominion {
             myGame = game;
             Initialize();
         }
+        int turn=0;
         Game myGame;
         /*************************
         add tooltips and tab indecies and maybe tool tips based upon if button is enabled or not and which phase we are in
@@ -32,27 +33,32 @@ namespace Dominion {
         string currentCard, lastCard, handCard,phase;
         List<Image> victoryImage, currencyImage, handImage, actionImage;
         List<Button> currencyButton, victoryButton, handButton, actionButton;
+        int totalplayers;
 
         private void Confirm_Click(object sender, RoutedEventArgs e) {
-            if (myGame.getCurrentPlayerNumber() == 0) {
-                Card card = new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
-                player.getHand().getHand().Add(card);
-                StatusObject status = player.play(CardMother.Smithy());
-                Description.Content = status.wasPlayedProperly();
-                RefreshWindow();
-            }
+                
+              //  Card card = new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
+               // player.getHand().getHand().Add(card);
+               // StatusObject status = player.play(CardMother.Smithy());
+            
+            //StatusObject status = player.play(CardStackFromHilighted(currentCard)[0].getCard());
+            StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
+            Description.Content = status.wasPlayedProperly();
+            //resetstuff();
+            RefreshWindow();
             // Card playCard = CardStackFromHilighted(currentCard)[0].getCard();
-
         }
 
         private void RefreshWindow() {
-            ResetUnknownHilightedCards();
+            //ResetUnknownHilightedCards();
             currentCard = "";
             // player.getHand().draw(player.getDeck());
-            int length = player.getHand().size();
+            
+            Hand myHand = player.getHand();
+           // int length = myHand.size();
+            int length = myHand.getHand().Count();
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
-            Hand myHand = player.getHand();
             for (int i = 0; i < length; i++) {
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
@@ -62,13 +68,16 @@ namespace Dominion {
             Phase_Label.Content = phase;
             if (phase.Equals("Action Phase")) {
                 Currency_Label.Content = player.getCurrency();
-               // Currency_Label.Content = player.getCurrencyValue();
             } else {
                 Currency_Label.Content = player.getCurrencyValue();
-                // Currency_Label.Content = "N/A";
             }
         }
-
+       /* private void resetstuff() {
+            stackpan.Width = 400;
+            for (int i = 0; i < 50; i++) {
+                SetPicture("blank.jpg",handImage[i]);
+            }
+        }*/
         private void Cleanup_Click(object sender, RoutedEventArgs e) {
             this.Hide();
             player = myGame.nextTurnPlayer();
@@ -78,10 +87,14 @@ namespace Dominion {
             SetPicture("blank.jpg", Selected_Card);
             player.cleanUp();
             phase = "Action Phase";
+            Player_Label.Content = player.getName() + "'s";
             Phase_Label.Content = phase;
             End_Phase.IsEnabled = true;
             player.getCurrency();
             RefreshWindow();
+            ResetUnknownHilightedCards();
+            turn++;
+            Turn_Label.Content = Math.Floor(turn*1.0 / totalplayers)+1;
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //set tool tips based on phase
@@ -132,15 +145,23 @@ namespace Dominion {
          * currently gets send one string going to need to make funciton to get list of strings that are hilighted for thef card
          * returns all cardstacks that are currently selected
          */
-        private List<CardStack> CardStackFromHilighted(String str) {
-            int length = stacks.Count();
+        private CardStack CardStackFromHilighted(String str){
+       // private List<CardStack> CardStackFromHilighted(String str) {
+           /* int length = stacks.Count();
             List<CardStack> cardStacks = new List<CardStack>();
             for (int i = 0; i < length; i++) {
                 if (stacks[i].getCard().toString().Equals(currentCard)) {
                     cardStacks.Add(stacks[i]);
                 }
             }
-            return cardStacks;
+            return cardStacks;*/
+            int length = stacks.Count();
+            for (int i = 0; i < length; i++) {
+                if (stacks[i].getCard().toString().Equals(currentCard)) {
+                    return stacks[i];
+                }
+            }
+            return null;
         }
         private string StripImageSource(string str) {
             int length = str.Count();
@@ -154,8 +175,9 @@ namespace Dominion {
              }*/
             Boolean work = false;
             int length = stacks.Count();
-            work= player.buy(CardStackFromHilighted(currentCard)[0]);
-
+            CardStack cardstack = CardStackFromHilighted(currentCard);
+            work = player.buy(cardstack);
+           // work= player.buy(CardStackFromHilighted(currentCard)[0]);
             //for (int i = 0; i < length; i++) {
              //   if (stacks[i].getCard().toString().Equals(currentCard)) {
             //        work = player.buy(stacks[i]);
@@ -169,8 +191,16 @@ namespace Dominion {
                 Description.Content = "Buy Sucessful";
                 string name = currentCard + ".jpg";
                 SetPicture(name, Hand_Card);
+                if (cardstack.cardsRemaining() == 0) {
+                    for (int i = 0; i < 10; i++) {
+                        if (StripImageSource(actionImage[i].Source.ToString()).Equals(lastCard)) {
+                            SetPicture("blank.jpg",actionImage[i]);
+                            actionButton[i].IsEnabled = false;
+                        }
+                    }
+                }
+                ResetUnknownHilightedCards();
             }
-            ResetUnknownHilightedCards();
             RefreshWindow();
             //reset only hilighted one? as determined by the for loop?
         }
@@ -255,8 +285,9 @@ namespace Dominion {
             lastCard = "";
             handCard = "";
             phase = "Action Phase";
+            totalplayers = myGame.getPlayers().Count();
             InitializeButtonImages();
-
+            Player_Label.Content = player.getName()+"'s";
             //Confirm.IsEnabled = true;
             int size = stacks.Count();
             int i, victorys = 0, currencies = 0, actions = 0;
@@ -349,16 +380,6 @@ namespace Dominion {
             handImage.Add(HandImage18);
             handImage.Add(HandImage19);
             handImage.Add(HandImage20);
-            handImage.Add(HandImage11);
-            handImage.Add(HandImage12);
-            handImage.Add(HandImage13);
-            handImage.Add(HandImage14);
-            handImage.Add(HandImage15);
-            handImage.Add(HandImage16);
-            handImage.Add(HandImage17);
-            handImage.Add(HandImage18);
-            handImage.Add(HandImage19);
-            handImage.Add(HandImage20);
             handImage.Add(HandImage21);
             handImage.Add(HandImage22);
             handImage.Add(HandImage23);
@@ -409,18 +430,6 @@ namespace Dominion {
             handButton.Add(HandButton18);
             handButton.Add(HandButton19);
             handButton.Add(HandButton20);
-            handButton.Add(HandButton10);
-            handButton.Add(HandButton11);
-            handButton.Add(HandButton12);
-            handButton.Add(HandButton13);
-            handButton.Add(HandButton14);
-            handButton.Add(HandButton15);
-            handButton.Add(HandButton16);
-            handButton.Add(HandButton17);
-            handButton.Add(HandButton18);
-            handButton.Add(HandButton19);
-            handButton.Add(HandButton20);
-            handButton.Add(HandButton20);
             handButton.Add(HandButton21);
             handButton.Add(HandButton22);
             handButton.Add(HandButton23);
@@ -451,6 +460,20 @@ namespace Dominion {
             handButton.Add(HandButton48);
             handButton.Add(HandButton49);
             handButton.Add(HandButton50);
+        }
+
+        private void End_Game_Click(object sender, RoutedEventArgs e) {
+            int highscore = myGame.getPlayers()[0].getVictoryPts();
+            int highplayer = 0;
+            //check ties aka redue this
+            for (int i = 1; i < totalplayers; i++) {
+                if (player.getVictoryPts() > highscore) {
+                    highscore = myGame.getPlayers()[i].getVictoryPts();
+                    highplayer = myGame.getPlayers()[i].getID();
+                }
+            }
+            MessageBox.Show(myGame.getPlayers()[highplayer].getName()+" wins with "+highscore+" victory points");
+            this.Close();
         }
         //shuffle cards well (like from start)
         //
