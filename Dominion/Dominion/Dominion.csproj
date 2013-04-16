@@ -189,6 +189,54 @@
   <ItemGroup>
     <Resource Include="Feast1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Festival.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Festival1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Market.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Market1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Remodel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Remodel1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Smithy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Smithy1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Village.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Village1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Woodcutter1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Witch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Witch1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Woodcutter.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Workshop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Workshop1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

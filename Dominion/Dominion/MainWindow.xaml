@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Dominion.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="944" Width="969" ResizeMode="CanMinimize">
+        Title="MainWindow" Height="944" Width="969" ResizeMode="CanMinimize" Left="0" Top="0">
     <Window.Resources>
         <Style x:Key="NoChromeButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent"/>
@@ -28,37 +28,37 @@
         </Style>
     </Window.Resources>
     <Grid Margin="0,0,0,0" Background="#FF343131">
-        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,331,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
+        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,381,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
-        <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="10,281,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
-        <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="45" Margin="8,10,0,0" VerticalAlignment="Top" Width="285" Foreground="White"/>
-        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="8,60,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
+        <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="10,331,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
+        <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="45" Margin="8,60,0,0" VerticalAlignment="Top" Width="285" Foreground="White"/>
+        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="8,110,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
         <Button x:Name="Reset" Content="Reset" HorizontalAlignment="Left" Height="29" Margin="364,848,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click"/>
         <Button x:Name="Cleanup" Content="Cleanup" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="Cleanup_Click"/>
-        <Button x:Name="Confirm" Content="Confirm" HorizontalAlignment="Left" Height="29" Margin="660,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False"/>
-        <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="304,42,567,731" IsEnabled="False" >
+        <Button x:Name="Confirm" Content="Confirm" HorizontalAlignment="Left" Height="29" Margin="660,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Confirm_Click"/>
+        <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="304,92,567,681" IsEnabled="False" >
             <Image x:Name= "VictoryImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton2" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="405,42,466,731" IsEnabled="False" >
+        <Button x:Name="VictoryButton2" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="405,92,466,681" IsEnabled="False" >
             <Image x:Name= "VictoryImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton3" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="504,42,367,731" IsEnabled="False" >
+        <Button x:Name="VictoryButton3" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="504,92,367,681" IsEnabled="False" >
             <Image x:Name= "VictoryImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton4" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="601,42,270,731" IsEnabled="False" >
+        <Button x:Name="VictoryButton4" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="601,92,270,681" IsEnabled="False" >
             <Image x:Name= "VictoryImage4" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton1" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="304,186,567,587" IsEnabled="False" >
+        <Button x:Name="CurrencyButton1" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="304,236,567,537" IsEnabled="False" >
             <Image x:Name= "CurrencyImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton2" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="405,186,466,587" IsEnabled="False" >
+        <Button x:Name="CurrencyButton2" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="405,236,466,537" IsEnabled="False" >
             <Image x:Name= "CurrencyImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton3" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="504,186,367,587" IsEnabled="False" >
+        <Button x:Name="CurrencyButton3" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="504,236,367,537" IsEnabled="False" >
             <Image x:Name= "CurrencyImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <ScrollViewer Margin="0,564,10,145" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <StackPanel x:Name="stackpan" Height="194" Width="400" Orientation="Horizontal" HorizontalAlignment="Center">
+        <ScrollViewer Margin="0,614,10,103" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="stackpan" Height="182" Width="400" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="HandButton1" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
                     <Image x:Name= "HandImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
                 </Button>
@@ -211,37 +211,45 @@
                 </Button>
             </StackPanel>
         </ScrollViewer>
-        <Button x:Name="ActionButton1" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="240,328,631,445" IsEnabled="False" >
+        <Button x:Name="ActionButton1" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="240,378,631,395" IsEnabled="False" >
             <Image x:Name= "ActionImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton2" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="338,328,533,445" IsEnabled="False" >
+        <Button x:Name="ActionButton2" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="338,378,533,395" IsEnabled="False" >
             <Image x:Name= "ActionImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton3" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="429,328,442,445" IsEnabled="False" >
+        <Button x:Name="ActionButton3" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="429,378,442,395" IsEnabled="False" >
             <Image x:Name= "ActionImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton4" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="526,328,345,445" IsEnabled="False" >
+        <Button x:Name="ActionButton4" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="526,378,345,395" IsEnabled="False" >
             <Image x:Name= "ActionImage4" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton5" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,328,248,445" IsEnabled="False" >
+        <Button x:Name="ActionButton5" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,378,248,395" IsEnabled="False" >
             <Image x:Name= "ActionImage5" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton6" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="241,459,630,314" IsEnabled="False" >
+        <Button x:Name="ActionButton6" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="241,509,630,264" IsEnabled="False" >
             <Image x:Name= "ActionImage6" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton7" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="338,459,533,314" IsEnabled="False" >
+        <Button x:Name="ActionButton7" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="338,509,533,264" IsEnabled="False" >
             <Image x:Name= "ActionImage7" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton8" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="429,459,442,314" IsEnabled="False" >
+        <Button x:Name="ActionButton8" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="429,509,442,264" IsEnabled="False" >
             <Image x:Name= "ActionImage8" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton9" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="526,459,345,314" IsEnabled="False" >
+        <Button x:Name="ActionButton9" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="526,509,345,264" IsEnabled="False" >
             <Image x:Name= "ActionImage9" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,459,248,314" IsEnabled="False" >
+        <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,509,248,264" IsEnabled="False" >
             <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="203" Margin="802,60,0,0" VerticalAlignment="Top" Width="127" Source="Blank.jpg"/>
+        <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="266" Margin="754,110,0,0" VerticalAlignment="Top" Width="175" Source="Blank.jpg"/>
         <Button x:Name="End_Phase" Content="End Phase" HorizontalAlignment="Left" Height="29" Margin="584,848,0,0" VerticalAlignment="Top" Width="71" Click="EndPhase_Click"/>
+        <Label x:Name="Status_Label" Content="Actions:&#xA;Buys:&#xA;Currency:&#xD;&#xA;Turn:" HorizontalAlignment="Left" Height="76" Margin="40,818,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
+        <Label x:Name="Actions_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="108,818,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
+        <Label x:Name="Buys_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="108,835,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
+        <Label x:Name="Currency_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="108,852,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
+        <Label x:Name="Phase_Label" Content="" HorizontalContentAlignment="Center" Height="54" Margin="304,51,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
+        <Label x:Name="Player_Label" Content="&#xD;&#xA;" HorizontalContentAlignment="Center" Height="49" Margin="304,0,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
+        <Button x:Name="End_Game" Content="End Game" HorizontalAlignment="Left" Height="29" Margin="820,848,0,0" VerticalAlignment="Top" Width="65" Click="End_Game_Click" RenderTransformOrigin="0.762,-0.19"/>
+        <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="108,868,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
     </Grid>
 </Window>
