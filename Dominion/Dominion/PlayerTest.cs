@@ -217,6 +217,7 @@ namespace Dominion
             p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
             p.cleanUp();
             Assert.AreEqual(6, p.getDeck().getInDiscard().Count);
+            Assert.AreEqual(0,p.getPlayed().Count);
         }
 
         /// <summary>

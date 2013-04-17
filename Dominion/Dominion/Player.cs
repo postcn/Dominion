@@ -228,6 +228,7 @@ namespace Dominion
             }
             this.buysLeft = 1;
             this.actionsLeft = 1;
+            this.played = new List<Card>();
         }
 
         public void setName(String name)

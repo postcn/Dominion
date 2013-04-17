@@ -19,8 +19,12 @@ namespace Dominion
 
         public Boolean draw(Deck deck)
         {
-            yourHand.Add(deck.draw());
-            return true;
+            if (!deck.isEmpty())
+            {
+                yourHand.Add(deck.draw());
+                return true;
+            }
+            return false;
         }
         public List<Card> getHand()
         {
