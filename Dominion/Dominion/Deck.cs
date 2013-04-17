@@ -128,5 +128,10 @@ namespace Dominion
             this.inDiscard.Clear();
             Shuffle<Card>(this.inDeck);
         }
+
+        public Boolean isEmpty()
+        {
+            return (this.inDeck.Count == 0 && this.inDiscard.Count == 0);
+        }
     }
 }

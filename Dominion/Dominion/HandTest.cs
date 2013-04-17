@@ -33,6 +33,8 @@ namespace Dominion
                 test.draw(d);
             }
             Assert.AreEqual(10, test.getHand().Count);
+            Assert.IsFalse(test.draw(d));
+            Assert.AreEqual(10, test.getHand().Count);
         }
 
         /// <summary>

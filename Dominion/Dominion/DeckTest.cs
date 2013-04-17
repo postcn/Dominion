@@ -139,5 +139,19 @@ namespace Dominion
             }
             Assert.AreEqual(20, d.size());
         }
+
+        [Test()]
+        public void testEmpty()
+        {
+            Assert.IsFalse(d.isEmpty());
+            int left = d.cardsLeft();
+            for (int i = 0; i < left; i++)
+            {
+                d.draw();
+            }
+            Assert.IsTrue(d.isEmpty());
+            d.discard(CardMother.Copper());
+            Assert.IsFalse(d.isEmpty());
+        }
     }
 }
