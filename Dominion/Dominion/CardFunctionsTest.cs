@@ -88,5 +88,15 @@ namespace Dominion
             Assert.IsTrue(o.trashForGainCheck());
             Assert.AreEqual(2, p.getCurrencyForGainBonus());
         }
+
+        [Test()]
+        public void testGainCardFeast()
+        {
+            StatusObject o = new StatusObject(false);
+            CardFunctions.gainCardFeast(p, o);
+            Assert.IsTrue(p.getGain());
+            Assert.IsTrue(o.trashForGainCheck());
+            Assert.AreEqual(1, p.getCurrencyForGainBonus());
+        }
     }
 }

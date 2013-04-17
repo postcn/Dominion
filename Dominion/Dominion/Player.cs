@@ -188,6 +188,10 @@ namespace Dominion
                         //Remodel a card, trash and gain
                         CardFunctions.gainCardRemodel(this, retVal);
                         break;
+                    case 9:
+                        //Feast, trash and gain
+                        CardFunctions.gainCardFeast(this, retVal);
+                        break;
                 }
                 retVal.setPlayed(true);
             }
@@ -292,14 +296,21 @@ namespace Dominion
             StatusObject o = new StatusObject(false);
             if (this.gain)
             {
-                if (!this.myHand.contains(c))
+                //check if card is in hand or if its feast (which has already been played)
+                if (this.myHand.contains(c))
                 {
-                    return o;
+                    this.myHand.remove(c);//don't put it anywhere so trashed
+                    this.currencyForGain = c.getCost() + this.currencyForGainBonus;
+                    this.currencyForGainBonus = 0;
+                    o.setTrashedCorrectly(true);
                 }
-                this.myHand.remove(c);//don't put it anywhere so trashed
-                this.currencyForGain = c.getCost() + this.currencyForGainBonus;
-                this.currencyForGainBonus = 0;
-                o.setTrashedCorrectly(true);
+                else if (c.Equals(CardMother.Feast()))
+                {
+                    this.played.Remove(c);//Take feast out of played so its trashed
+                    this.currencyForGain = c.getCost() + this.currencyForGainBonus;
+                    this.currencyForGainBonus = 0;
+                    o.setTrashedCorrectly(true);
+                }
             }
             return o;
         }

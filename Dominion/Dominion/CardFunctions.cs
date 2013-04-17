@@ -44,5 +44,13 @@ namespace Dominion
             p.setCurrencyForGainBonus(2);
             o.setTrashForGain(true);
         }
+
+        public static void gainCardFeast(Player p, StatusObject o)
+        {
+            p.setGain(true);
+            //You gain a card worth 5 which is 1 more than cost of feast.
+            p.setCurrencyForGainBonus(1);
+            o.setTrashForGain(true);
+        }
     }
 }

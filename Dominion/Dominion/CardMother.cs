@@ -89,5 +89,10 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 0, 8, "Remodel", "Trash a card from your hand. Gain a a card costing up to 2 Coins more than the trashed card.", 4);
         }
+
+        public static Card Feast()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 9, "Feast", "Trash this card and gain a card costing up to 5 coins", 4);
+        }
     }
 }
