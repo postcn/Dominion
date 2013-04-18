@@ -39,8 +39,9 @@ namespace Dominion {
                     Game mygame = new Game(1);
                     mygame.getPlayers()[0].setName("Admin");
                     main = new MainWindow(mygame);
-                    PrepScreen Prep = new PrepScreen("Admin", main);
-                    Prep.Show();
+                    main.Show();
+                   // PrepScreen Prep = new PrepScreen("Admin", main);
+                    //Prep.Show();
                     Close();
                     return;
                 }

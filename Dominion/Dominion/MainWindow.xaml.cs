@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Dominion {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -30,20 +31,22 @@ namespace Dominion {
         *************************/
         Player player;
         List<CardStack> stacks;
-        string currentCard, lastCard, handCard,phase,actiondone="";
+        string currentCard, lastCard,phase,actiondone="";
         List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage;
         List<Button> currencyButton, victoryButton, handButton, actionButton,FieldButton;
         int totalplayers;
         //******************
         int actionsout = 0;
         //*****************
-        private void Confirm_Click(object sender, RoutedEventArgs e) {
+        private void Play_Click(object sender, RoutedEventArgs e) {
             if (!actiondone.Contains("Trash")) {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
-                Confirm.IsEnabled = false;
+                Play.IsEnabled = false;
                 if (status.trashForGainCheck()) {
                     actiondone = "TrashGain";
+                    Play.Content = "Confirm";
+                    Play.ToolTip = "Trashes The Selected Card";
                     End_Turn.IsEnabled = false;
                     End_Phase.IsEnabled = false;
                 } else if (status.wasTrashedCorrectly()) {
@@ -72,6 +75,8 @@ namespace Dominion {
             } 
         }
         private void GainCards() {
+            Play.Content = "Play";
+            Play.ToolTip = "Plays The Selected Card";
             actiondone = "Gain";
             Buy.Content = "Gain";
             Gain_Label.Content = "Gain:            " + player.getCurrencyForGain();
@@ -87,7 +92,7 @@ namespace Dominion {
             int length = myHand.getHand().Count();
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
-            Confirm.IsEnabled = false;
+            Play.IsEnabled = false;
             for (int i = 0; i < length; i++) {
                 if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
                     actioncard = true;
@@ -305,7 +310,7 @@ namespace Dominion {
             ResetUnknownHilightedCards();
             string card;
             Buy.IsEnabled = false;
-            Confirm.IsEnabled = false;
+            Play.IsEnabled = false;
             string selected="blank";
             if (!currentCard.Contains("1")) {
                  selected = currentCard;
@@ -316,7 +321,7 @@ namespace Dominion {
                 }
                 if(isHandCard&&phase.Equals("Action Phase")&&!actiondone.Equals("Gain")){
                     work = true;
-                    Confirm.IsEnabled=true;
+                    Play.IsEnabled=true;
                 }
             } else {
                 card = currentCard.Substring(0, currentCard.Count() - 1) + ".jpg";
@@ -340,7 +345,7 @@ namespace Dominion {
         private void ResetUnknownHilightedCards() {
             if (lastCard != "") {
                 Buy.IsEnabled = false;
-                Confirm.IsEnabled = false;
+                Play.IsEnabled = false;
                 string card = lastCard;
                 if (lastCard.Contains("1")) {
                     card = lastCard.Substring(0, lastCard.Count() - 1);
@@ -381,12 +386,10 @@ namespace Dominion {
             stacks = myGame.getBuyables();
             currentCard = "";
             lastCard = "";
-            handCard = "";
             phase = "Action Phase";
             totalplayers = myGame.getPlayers().Count();
             InitializeButtonImages();
             Player_Label.Content = player.getName()+"'s";
-            //Confirm.IsEnabled = true;
             int size = stacks.Count();
             int i, victorys = 0, currencies = 0, actions = 0;
             for (i = 0; i < size; i++) {
@@ -409,6 +412,7 @@ namespace Dominion {
             RefreshWindow();
         }
         private void InitializeButtonImages() {
+            //MainGrid
             victoryButton = new List<Button>();
             currencyButton = new List<Button>();
             actionButton = new List<Button>();
@@ -617,6 +621,7 @@ namespace Dominion {
             }
             this.Close();
         }
+
         //shuffle cards well (like from start)
         //
         //http://stackoverflow.com/questions/4151380/wpf-image-control-with-click-event

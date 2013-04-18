@@ -27,15 +27,15 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,0,0" Background="#FF343131">
+    <Grid x:Name="MainGrid" Margin="0,0,0,0" Background="#FF343131">
         <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,381,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="10,331,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
         <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="45" Margin="8,60,0,0" VerticalAlignment="Top" Width="285" Foreground="White"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="8,110,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
-        <Button x:Name="Reset" Content="Reset" HorizontalAlignment="Left" Height="29" Margin="364,848,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click" Cursor="None"/>
-        <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click"/>
-        <Button x:Name="Confirm" Content="Confirm" HorizontalAlignment="Left" Height="29" Margin="660,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Confirm_Click"/>
+        <Button x:Name="Reset" Content="Reset" HorizontalAlignment="Left" Height="29" Margin="364,848,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click" Cursor=""/>
+        <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click" ToolTip="Ends Your Turn"/>
+        <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Height="29" Margin="673,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Play_Click" ToolTip="Plays The Selected Card"/>
         <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="304,92,567,681" IsEnabled="False" >
             <Image x:Name= "VictoryImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
@@ -242,15 +242,17 @@
             <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
         <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="266" Margin="754,110,0,0" VerticalAlignment="Top" Width="175" Source="Blank.jpg"/>
-        <Button x:Name="End_Phase" Content="End Phase" HorizontalAlignment="Left" Height="29" Margin="584,848,0,0" VerticalAlignment="Top" Width="71" Click="EndPhase_Click"/>
-        <Label x:Name="Status_Label" Content="Actions:&#xA;Buys:&#xA;Currency:&#xD;&#xA;Turn:" HorizontalAlignment="Left" Height="76" Margin="40,818,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
-        <Label x:Name="Actions_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="108,818,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
-        <Label x:Name="Buys_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="108,835,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
-        <Label x:Name="Currency_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="108,852,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
+        <Button x:Name="End_Phase" Content="End Phase" HorizontalAlignment="Left" Height="29" Margin="584,848,0,0" VerticalAlignment="Top" Width="71" Click="EndPhase_Click" ToolTip="Ends The Action Phase; Putting You In The Buy Phase"/>
         <Label x:Name="Phase_Label" Content="" HorizontalContentAlignment="Center" Height="54" Margin="304,51,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
         <Label x:Name="Player_Label" Content="&#xD;&#xA;" HorizontalContentAlignment="Center" Height="49" Margin="304,0,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
-        <Button x:Name="End_Game" Content="End Game" HorizontalAlignment="Left" Height="29" Margin="820,848,0,0" VerticalAlignment="Top" Width="65" Click="End_Game_Click" RenderTransformOrigin="0.762,-0.19"/>
-        <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="108,868,0,0" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
-        <Label x:Name="Gain_Label" Content="" HorizontalAlignment="Left" Height="26" Margin="41,801,0,0" VerticalAlignment="Top" Width="131" Background="#00000000" Foreground="White"/>
+        <Button x:Name="End_Game" Content="End Game" HorizontalAlignment="Left" Height="29" Margin="820,848,0,0" VerticalAlignment="Top" Width="65" Click="End_Game_Click" RenderTransformOrigin="0.762,-0.19" ToolTip="Ends The Game And Calculates Who Won" Cursor="None"/>
+        <Grid HorizontalAlignment="Left" Height="77" Margin="44,829,0,0" VerticalAlignment="Top" Width="114" ToolTip="Displays Your:&#xA; Actions, Buys, Currency, Gain Amount, and The Current Turn">
+            <Label x:Name="Status_Label" Content="Actions:&#xA;Buys:&#xA;Currency:&#xA;Turn:" HorizontalAlignment="Left" Height="76" Margin="11,2,0,-11" VerticalAlignment="Top" Width="63" Background="#00000000" Foreground="White"/>
+            <Label x:Name="Actions_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="79,2,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
+            <Label x:Name="Buys_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="79,19,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
+            <Label x:Name="Currency_Label" Content="0" HorizontalAlignment="Left" Height="26" Margin="79,36,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
+            <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="79,52,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
+            <Label x:Name="Gain_Label" Content="" HorizontalAlignment="Left" Height="26" Margin="12,-15,0,0" VerticalAlignment="Top" Width="96" Background="#00000000" Foreground="White"/>
+        </Grid>
     </Grid>
 </Window>
