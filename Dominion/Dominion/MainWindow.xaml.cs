@@ -30,38 +30,50 @@ namespace Dominion {
         *************************/
         Player player;
         List<CardStack> stacks;
-        string currentCard, lastCard, handCard,phase;
+        string currentCard, lastCard, handCard,phase,actiondone="";
         List<Image> victoryImage, currencyImage, handImage, actionImage;
         List<Button> currencyButton, victoryButton, handButton, actionButton;
         int totalplayers;
 
         private void Confirm_Click(object sender, RoutedEventArgs e) {
-                
-              //  Card card = new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
-               // player.getHand().getHand().Add(card);
-               // StatusObject status = player.play(CardMother.Smithy());
-            
-            //StatusObject status = player.play(CardStackFromHilighted(currentCard)[0].getCard());
-            StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
-            Description.Content = status.wasPlayedProperly();
-            //resetstuff();
-            RefreshWindow();
-            // Card playCard = CardStackFromHilighted(currentCard)[0].getCard();
+            if (!actiondone.Contains("Trash")) {
+                StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
+                DescriptionLabel.Content = status.wasPlayedProperly();
+                Confirm.IsEnabled = false;
+                if (status.trashForGainCheck()) {
+                    actiondone = "TrashGain";
+                    Cleanup.IsEnabled = false;
+                    End_Phase.IsEnabled = false;
+                }
+                RefreshWindow();
+            } else if(actiondone.Contains("Gain")) {
+                StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
+                if (status.wasTrashedCorrectly()) {
+                    CardDrawnLabel.Content = status.wasTrashedCorrectly();
+                    actiondone = "Gain";
+                    RefreshWindow();
+                }
+            } 
         }
 
         private void RefreshWindow() {
-            //ResetUnknownHilightedCards();
+            DescriptionLabel.Content = actiondone;
             currentCard = "";
-            // player.getHand().draw(player.getDeck());
-            
+            Boolean actioncard = false;
             Hand myHand = player.getHand();
-           // int length = myHand.size();
             int length = myHand.getHand().Count();
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
             for (int i = 0; i < length; i++) {
+                if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
+                    actioncard = true;
+                }
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
+            }
+            if ((!actioncard||player.getActionsLeft()==0)&&actiondone.Equals("")) {
+                phase = "Buy Phase";
+                End_Phase.IsEnabled = false;
             }
             Actions_Label.Content = player.getActionsLeft();
             Buys_Label.Content = player.getBuysLeft();
@@ -69,6 +81,7 @@ namespace Dominion {
             if (phase.Equals("Action Phase")) {
                 Currency_Label.Content = player.getCurrency();
             } else {
+                player.getCurrency();
                 Currency_Label.Content = player.getCurrencyValue();
             }
         }
@@ -86,6 +99,7 @@ namespace Dominion {
             player = myGame.getCurrentPlayer();
             SetPicture("blank.jpg", Selected_Card);
             player.cleanUp();
+            actiondone = "";
             phase = "Action Phase";
             Player_Label.Content = player.getName() + "'s";
             Phase_Label.Content = phase;
@@ -145,6 +159,17 @@ namespace Dominion {
          * currently gets send one string going to need to make funciton to get list of strings that are hilighted for thef card
          * returns all cardstacks that are currently selected
          */
+        private Card CardFromString(String str){
+            int length = stacks.Count();
+            Card card=null;
+            for (int i = 0; i < length; i++) {
+                if (stacks[i].getCard().toString().Equals(str)) {
+                    card = stacks[i].getCard();
+                }
+            }
+            return card;
+        }
+
         private CardStack CardStackFromHilighted(String str){
        // private List<CardStack> CardStackFromHilighted(String str) {
            /* int length = stacks.Count();
@@ -168,38 +193,43 @@ namespace Dominion {
             return str.Substring(42, length - 46);
         }
         private void Buy_Click(object sender, RoutedEventArgs e) {
-            /* if (currentCard.Equals("") || handCard.Equals(currentCard)){
-                 Description.Content = "A Buyable Card isn't Selected";
-                 ResetCards();
-                 return;
-             }*/
-            Boolean work = false;
-            int length = stacks.Count();
-            CardStack cardstack = CardStackFromHilighted(currentCard);
-            work = player.buy(cardstack);
-           // work= player.buy(CardStackFromHilighted(currentCard)[0]);
-            //for (int i = 0; i < length; i++) {
-             //   if (stacks[i].getCard().toString().Equals(currentCard)) {
-            //        work = player.buy(stacks[i]);
-                    //set a variable here then only reset this card 
-            //    }
-            //}
-
-            if (!work) {
-                Description.Content = "buy failed " + player.getCurrencyValue();
-            } else {
-                Description.Content = "Buy Sucessful";
-                string name = currentCard + ".jpg";
-                SetPicture(name, Hand_Card);
-                if (cardstack.cardsRemaining() == 0) {
-                    for (int i = 0; i < 10; i++) {
-                        if (StripImageSource(actionImage[i].Source.ToString()).Equals(lastCard)) {
-                            SetPicture("blank.jpg",actionImage[i]);
-                            actionButton[i].IsEnabled = false;
+            if (actiondone.Equals("")) {
+                Boolean work = false;
+                int length = stacks.Count();
+                CardStack cardstack = CardStackFromHilighted(currentCard);
+                work = player.buy(cardstack);
+                if (!work) {
+                    Description.Content = "buy failed " + player.getCurrencyValue();
+                } else {
+                    Description.Content = "Buy Sucessful";
+                    string name = currentCard + ".jpg";
+                    SetPicture(name, Hand_Card);
+                    if (cardstack.cardsRemaining() == 0) {
+                        for (int i = 0; i < 10; i++) {
+                            if (StripImageSource(actionImage[i].Source.ToString()).Equals(lastCard)) {
+                                SetPicture("blank.jpg", actionImage[i]);
+                                actionButton[i].IsEnabled = false;
+                            }
                         }
                     }
+                    ResetUnknownHilightedCards();
                 }
-                ResetUnknownHilightedCards();
+            } else if(actiondone.Equals("Gain")) {
+                int length = stacks.Count();
+                CardStack cardstack = CardStackFromHilighted(currentCard);
+                if (cardstack.cardsRemaining() == 0) {
+                    Description.Content = "none left for gain puposes";
+                    RefreshWindow();
+                    return;
+                }
+                StatusObject status=player.gainCard(cardstack);
+                if (status.getGainedProperly()) {
+                    ResetUnknownHilightedCards();
+                    Cleanup.IsEnabled = true;
+                    actiondone = "";
+                } else {
+                    return;
+                }
             }
             RefreshWindow();
             //reset only hilighted one? as determined by the for loop?
@@ -216,11 +246,11 @@ namespace Dominion {
             if (!currentCard.Contains("1")) {
                  selected = currentCard;
                 card = currentCard + "1" + ".jpg";
-                if (!isHandCard&&phase.Equals("Buy Phase")) {
+                if (!isHandCard&&(phase.Equals("Buy Phase")||actiondone.Equals("Gain"))) {
                     work = true;
                     Buy.IsEnabled = true;
                 }
-                if(isHandCard&&phase.Equals("Action Phase")){
+                if(isHandCard&&phase.Equals("Action Phase")&&!actiondone.Equals("Gain")){
                     work = true;
                     Confirm.IsEnabled=true;
                 }
@@ -309,13 +339,6 @@ namespace Dominion {
             }
             player.getCurrency();
             RefreshWindow();
-       //     int handsize = 5;
-        //    Hand myHand = player.getHand();
-         //   for (i = 0; i < handsize; i++) {
-         //       string name = myHand.getHand()[i].toString() + ".jpg";
-         //       SetPicture(name, handImage[i]);
-         //   }
-          //  player.getCurrency();
         }
         private void InitializeButtonImages() {
             victoryButton = new List<Button>();
@@ -461,12 +484,13 @@ namespace Dominion {
             handButton.Add(HandButton49);
             handButton.Add(HandButton50);
         }
-
+        //fix this
         private void End_Game_Click(object sender, RoutedEventArgs e) {
             int highscore = myGame.getPlayers()[0].getVictoryPts();
             int highplayer = 0;
             //check ties aka redue this
             for (int i = 1; i < totalplayers; i++) {
+                myGame.nextTurn();
                 if (player.getVictoryPts() > highscore) {
                     highscore = myGame.getPlayers()[i].getVictoryPts();
                     highplayer = myGame.getPlayers()[i].getID();
