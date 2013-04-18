@@ -94,5 +94,10 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 0, 9, "Feast", "Trash this card and gain a card costing up to 5 coins", 4);
         }
+
+        public static Card Workshop()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 10, "Workshop", "Gain a card costing up to 4 coins", 3);
+        }
     }
 }

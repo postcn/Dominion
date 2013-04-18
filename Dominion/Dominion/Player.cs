@@ -192,6 +192,10 @@ namespace Dominion
                         //Feast, trash and gain
                         CardFunctions.gainCardFeast(this, retVal);
                         break;
+                    case 10:
+                        //Workshop, gain card worth 4
+                        CardFunctions.gainCardWorkshop(this, retVal);
+                        break;
                 }
                 retVal.setPlayed(true);
             }
@@ -269,6 +273,11 @@ namespace Dominion
         public void setCurrencyForGainBonus(int bonus)
         {
             this.currencyForGainBonus = bonus;
+        }
+
+        public void setCurrencyForGain(int currency)
+        {
+            this.currencyForGain = currency;
         }
 
         public int getCurrencyForGainBonus()

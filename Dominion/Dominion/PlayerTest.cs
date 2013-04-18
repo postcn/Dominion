@@ -521,5 +521,16 @@ namespace Dominion
             Assert.AreEqual(CardMother.Duchy(), p.getDeck().getInDiscard()[0]);
             Assert.IsFalse(p.getPlayed().Contains(CardMother.Feast()));
         }
+
+        [Test()]
+        public void testPlayingWorkshop()
+        {
+            p.getHand().getHand().Add(CardMother.Workshop());
+            Assert.IsTrue(p.play(CardMother.Workshop()).wasPlayedProperly());
+            CardStack feast = new CardStack(1, CardMother.Feast());
+            Assert.IsTrue(p.getGain());
+            Assert.IsTrue(p.gainCard(feast).getGainedProperly());
+            Assert.AreEqual(CardMother.Feast(), p.getDeck().getInDiscard()[0]);
+        }
     }
 }

@@ -52,5 +52,12 @@ namespace Dominion
             p.setCurrencyForGainBonus(1);
             o.setTrashForGain(true);
         }
+        public static void gainCardWorkshop(Player p, StatusObject o)
+        {
+            p.setGain(true);
+            //you gain a card worth 4
+            p.setCurrencyForGain(4);
+            o.setTrashForGain(true);
+        }
     }
 }
