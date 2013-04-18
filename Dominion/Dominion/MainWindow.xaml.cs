@@ -31,10 +31,12 @@ namespace Dominion {
         Player player;
         List<CardStack> stacks;
         string currentCard, lastCard, handCard,phase,actiondone="";
-        List<Image> victoryImage, currencyImage, handImage, actionImage;
-        List<Button> currencyButton, victoryButton, handButton, actionButton;
+        List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage;
+        List<Button> currencyButton, victoryButton, handButton, actionButton,FieldButton;
         int totalplayers;
-
+        //******************
+        int actionsout = 0;
+        //*****************
         private void Confirm_Click(object sender, RoutedEventArgs e) {
             if (!actiondone.Contains("Trash")) {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
@@ -42,28 +44,50 @@ namespace Dominion {
                 Confirm.IsEnabled = false;
                 if (status.trashForGainCheck()) {
                     actiondone = "TrashGain";
-                    Cleanup.IsEnabled = false;
+                    End_Turn.IsEnabled = false;
                     End_Phase.IsEnabled = false;
+                } else if (status.wasTrashedCorrectly()) {
+                    GainCards();
+                   /* actiondone = "Gain";
+                    Gain_Label.Content = "Gain:            " + player.getCurrencyForGain();
+                    End_Turn.IsEnabled = false;
+                    End_Phase.IsEnabled = false;
+                    Buy.Content = "Gain";
+                    SetFieldCardsToNormal();
+                    SetHandButtonsToNo();*/
                 }
                 RefreshWindow();
             } else if(actiondone.Contains("Gain")) {
                 StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
                 if (status.wasTrashedCorrectly()) {
-                    CardDrawnLabel.Content = status.wasTrashedCorrectly();
+                    GainCards();
+                    /*CardDrawnLabel.Content = status.wasTrashedCorrectly();
                     actiondone = "Gain";
+                    Buy.Content = "Gain";
+                    Gain_Label.Content = "Gain:            "+player.getCurrencyForGain();
                     RefreshWindow();
+                    SetFieldCardsToNormal();
+                    SetHandButtonsToNo*/
                 }
             } 
         }
-
+        private void GainCards() {
+            actiondone = "Gain";
+            Buy.Content = "Gain";
+            Gain_Label.Content = "Gain:            " + player.getCurrencyForGain();
+            RefreshWindow();
+            SetFieldCardsToNormal();
+            SetHandButtonsToNo();
+        }
         private void RefreshWindow() {
-            DescriptionLabel.Content = actiondone;
+           // DescriptionLabel.Content = actiondone;
             currentCard = "";
             Boolean actioncard = false;
             Hand myHand = player.getHand();
             int length = myHand.getHand().Count();
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
+            Confirm.IsEnabled = false;
             for (int i = 0; i < length; i++) {
                 if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
                     actioncard = true;
@@ -71,7 +95,8 @@ namespace Dominion {
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
             }
-            if ((!actioncard||player.getActionsLeft()==0)&&actiondone.Equals("")) {
+            if ((!actioncard||player.getActionsLeft()==0)&&actiondone.Equals("")&&!phase.Equals("Buy Phase")) {
+                player.getCurrency();
                 phase = "Buy Phase";
                 End_Phase.IsEnabled = false;
             }
@@ -79,19 +104,42 @@ namespace Dominion {
             Buys_Label.Content = player.getBuysLeft();
             Phase_Label.Content = phase;
             if (phase.Equals("Action Phase")) {
+                SetHandButtonsToNormal();
+                SetFieldardsToNo();
                 Currency_Label.Content = player.getCurrency();
             } else {
-                player.getCurrency();
+                SetHandButtonsToNo();
+                SetFieldCardsToNormal();
                 Currency_Label.Content = player.getCurrencyValue();
             }
         }
-       /* private void resetstuff() {
-            stackpan.Width = 400;
-            for (int i = 0; i < 50; i++) {
-                SetPicture("blank.jpg",handImage[i]);
+        private void SetFieldCardsToNormal() {
+            for (int i = 0; i < FieldImage.Count(); i++) {
+                FieldImage[i].Cursor = Cursors.Hand;
             }
-        }*/
-        private void Cleanup_Click(object sender, RoutedEventArgs e) {
+        }
+        private void SetFieldardsToNo() {
+            for (int i = 0; i < FieldImage.Count(); i++) {
+                FieldImage[i].Cursor = Cursors.No;
+            }
+        }
+        private void SetHandButtonsToNormal() {
+            for (int i = 0; i < handButton.Count(); i++) {
+                handButton[i].Cursor = Cursors.Hand;
+            }
+        }
+        private void SetHandButtonsToNo() {
+            for (int i = 0; i < handButton.Count(); i++) {
+                handButton[i].Cursor = Cursors.No;
+            }
+        }
+        /* private void resetstuff() {
+             stackpan.Width = 400;
+             for (int i = 0; i < 50; i++) {
+                 SetPicture("blank.jpg",handImage[i]);
+             }
+         }*/
+        private void End_Turn_Click(object sender, RoutedEventArgs e) {
             this.Hide();
             player = myGame.nextTurnPlayer();
             PrepScreen prep = new PrepScreen(player.getName(), this);
@@ -201,14 +249,28 @@ namespace Dominion {
                 if (!work) {
                     Description.Content = "buy failed " + player.getCurrencyValue();
                 } else {
-                    Description.Content = "Buy Sucessful";
+                    Description.Content = "Buy Sucessful";                    
                     string name = currentCard + ".jpg";
                     SetPicture(name, Hand_Card);
                     if (cardstack.cardsRemaining() == 0) {
                         for (int i = 0; i < 10; i++) {
-                            if (StripImageSource(actionImage[i].Source.ToString()).Equals(lastCard)) {
+                            if (StripImageSource(FieldImage[i].Source.ToString()).Equals(lastCard)) {
+                                //*****************************
+                                if (i == 3) {
+                                    //sends the wrong sender and e
+                                    MessageBox.Show("Game Ended Because all the " + lastCard.Substring(0, lastCard.Count() - 1) + " cards were bought");
+                                    End_Game_Click(sender,e);
+                                }
+                                if (i > 6||i<3) {
+                                    actionsout++;
+                                    if (actionsout > 2) {
+                                        MessageBox.Show("Game Ended Because 3 actions cards were bought out. The last being the " + lastCard.Substring(0, lastCard.Count() - 1) + " card");
+                                        End_Game_Click(sender, e);
+                                    }
+                                }
+                                //******************************
                                 SetPicture("blank.jpg", actionImage[i]);
-                                actionButton[i].IsEnabled = false;
+                                FieldButton[i].IsEnabled = false;
                             }
                         }
                     }
@@ -225,8 +287,10 @@ namespace Dominion {
                 StatusObject status=player.gainCard(cardstack);
                 if (status.getGainedProperly()) {
                     ResetUnknownHilightedCards();
-                    Cleanup.IsEnabled = true;
+                    End_Turn.IsEnabled = true;
+                    Buy.Content = "Buy";
                     actiondone = "";
+                    Gain_Label.Content = "";
                 } else {
                     return;
                 }
@@ -282,8 +346,17 @@ namespace Dominion {
                     card = lastCard.Substring(0, lastCard.Count() - 1);
                 }
                 card = card + ".jpg";
-                int i;
-                for (i = 0; i < currencyImage.Count(); i++) {
+                for (int i = 0; i < FieldImage.Count(); i++) {
+                    if (StripImageSource(FieldImage[i].Source.ToString()).Equals(lastCard)) {
+                        SetPicture(card, FieldImage[i]);
+                    }
+                }
+                for (int i = 0; i < handImage.Count(); i++) {
+                    if (StripImageSource(handImage[i].Source.ToString()).Equals(lastCard)) {
+                        SetPicture(card, handImage[i]);
+                    }
+                }
+                /*for (i = 0; i < currencyImage.Count(); i++) {
                     if (StripImageSource(currencyImage[i].Source.ToString()).Equals(lastCard)) {
                         SetPicture(card, currencyImage[i]);
                     }
@@ -297,12 +370,7 @@ namespace Dominion {
                     if (StripImageSource(actionImage[i].Source.ToString()).Equals(lastCard)) {
                         SetPicture(card, actionImage[i]);
                     }
-                }
-                for (i = 0; i < handImage.Count(); i++) {
-                    if (StripImageSource(handImage[i].Source.ToString()).Equals(lastCard)) {
-                        SetPicture(card, handImage[i]);
-                    }
-                }
+                }*/
             }
         }
         /*********************************************************
@@ -349,6 +417,46 @@ namespace Dominion {
             actionImage = new List<Image>();
             handImage = new List<Image>();
             handButton = new List<Button>();
+            FieldImage = new List<Image>();
+            FieldButton = new List<Button>();
+            FieldImage.Add(VictoryImage1);
+            FieldImage.Add(VictoryImage2);
+            FieldImage.Add(VictoryImage3);
+            FieldImage.Add(VictoryImage4);
+            FieldImage.Add(CurrencyImage1);
+            FieldImage.Add(CurrencyImage2);
+            FieldImage.Add(CurrencyImage3);
+            FieldImage.Add(ActionImage1);
+            FieldImage.Add(ActionImage2);
+            FieldImage.Add(ActionImage3);
+            FieldImage.Add(ActionImage4);
+            FieldImage.Add(ActionImage5);
+            FieldImage.Add(ActionImage6);
+            FieldImage.Add(ActionImage7);
+            FieldImage.Add(ActionImage8);
+            FieldImage.Add(ActionImage9);
+            FieldImage.Add(ActionImage10);
+            FieldButton.Add(VictoryButton1);
+            FieldButton.Add(VictoryButton2);
+            FieldButton.Add(VictoryButton3);
+            FieldButton.Add(VictoryButton4);
+            FieldButton.Add(CurrencyButton1);
+            FieldButton.Add(CurrencyButton2);
+            FieldButton.Add(CurrencyButton3);
+            FieldButton.Add(ActionButton1);
+            FieldButton.Add(ActionButton2);
+            FieldButton.Add(ActionButton3);
+            FieldButton.Add(ActionButton4);
+            FieldButton.Add(ActionButton5);
+            FieldButton.Add(ActionButton6);
+            FieldButton.Add(ActionButton7);
+            FieldButton.Add(ActionButton8);
+            FieldButton.Add(ActionButton9);
+            FieldButton.Add(ActionButton10);
+
+
+
+
             victoryImage.Add(VictoryImage1);
             victoryImage.Add(VictoryImage2);
             victoryImage.Add(VictoryImage3);
@@ -486,17 +594,27 @@ namespace Dominion {
         }
         //fix this
         private void End_Game_Click(object sender, RoutedEventArgs e) {
+            myGame.getPlayers()[0].setVictoryPts();
             int highscore = myGame.getPlayers()[0].getVictoryPts();
             int highplayer = 0;
             //check ties aka redue this
             for (int i = 1; i < totalplayers; i++) {
-                myGame.nextTurn();
-                if (player.getVictoryPts() > highscore) {
+                int score;
+                myGame.getPlayers()[i].setVictoryPts();
+                score=myGame.getPlayers()[i].getVictoryPts();
+                if (score> highscore) {
+                    myGame.getPlayers()[i].setVictoryPts();
                     highscore = myGame.getPlayers()[i].getVictoryPts();
                     highplayer = myGame.getPlayers()[i].getID();
                 }
             }
             MessageBox.Show(myGame.getPlayers()[highplayer].getName()+" wins with "+highscore+" victory points");
+            for (int i = 0; i < totalplayers; i++) {
+                    myGame.getPlayers()[i].setVictoryPts();
+                    int score = myGame.getPlayers()[i].getVictoryPts();
+                    int thisplayer = myGame.getPlayers()[i].getID();
+                    MessageBox.Show(myGame.getPlayers()[thisplayer].getName() + " has " + score + " victory points");
+            }
             this.Close();
         }
         //shuffle cards well (like from start)
