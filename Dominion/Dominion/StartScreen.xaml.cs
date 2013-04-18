@@ -34,6 +34,17 @@ namespace Dominion {
             if (!ready) {
                 string input = PlayNumText.Text;
                 numValue = 0;
+                //for testing purposes
+                if (input.Equals("Number of Players")) {
+                    Game mygame = new Game(1);
+                    mygame.getPlayers()[0].setName("Admin");
+                    main = new MainWindow(mygame);
+                    main.Show();
+                   // PrepScreen Prep = new PrepScreen("Admin", main);
+                    //Prep.Show();
+                    Close();
+                    return;
+                }
                 bool result = Int32.TryParse(input, out numValue);
                 if (true == result) {
                     if (numValue > maxplayers || numValue < 2) {
