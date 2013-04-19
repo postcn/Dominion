@@ -24,8 +24,6 @@ namespace Dominion {
             myGame = game;
             Initialize();
         }
-       // public MainWindow() {
-        //}
         int turn=0;
         Game myGame;
         /*************************
@@ -33,9 +31,9 @@ namespace Dominion {
         *************************/
         Player player;
         List<CardStack> stacks;
-        string currentCard, lastCard,phase,actiondone="";
-        List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage;
-        List<Button> currencyButton, victoryButton, handButton, actionButton,FieldButton;
+       public string currentCard, lastCard,phase,actiondone="";
+       public List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage;
+       public List<Button> currencyButton, victoryButton, handButton, actionButton,FieldButton;
         int totalplayers;
         //******************
         int actionsout = 0;
@@ -45,6 +43,7 @@ namespace Dominion {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
+                RefreshWindow();
                 if (status.trashForGainCheck()) {
                     actiondone = "TrashGain";
                     Play.Content = "Confirm";
@@ -132,12 +131,12 @@ namespace Dominion {
         }
         private void SetHandButtonsToNormal() {
             for (int i = 0; i < handButton.Count(); i++) {
-                handButton[i].Cursor = Cursors.Hand;
+                handImage[i].Cursor = Cursors.Hand;
             }
         }
         private void SetHandButtonsToNo() {
             for (int i = 0; i < handButton.Count(); i++) {
-                handButton[i].Cursor = Cursors.No;
+                handImage[i].Cursor = Cursors.No;
             }
         }
         /* private void resetstuff() {
