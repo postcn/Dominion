@@ -49,15 +49,16 @@ namespace Dominion
         {
             p.setGain(true);
             //You gain a card worth 5 which is 1 more than cost of feast.
-            p.setCurrencyForGainBonus(1);
-            o.setTrashForGain(true);
+            p.setCurrencyForGain(5);
+            p.getPlayed().Remove(CardMother.Feast());
+            o.setTrashedCorrectly(true);
         }
         public static void gainCardWorkshop(Player p, StatusObject o)
         {
             p.setGain(true);
             //you gain a card worth 4
             p.setCurrencyForGain(4);
-            o.setTrashForGain(true);
+            o.setTrashedCorrectly(true);
         }
     }
 }

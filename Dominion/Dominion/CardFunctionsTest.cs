@@ -95,8 +95,8 @@ namespace Dominion
             StatusObject o = new StatusObject(false);
             CardFunctions.gainCardFeast(p, o);
             Assert.IsTrue(p.getGain());
-            Assert.IsTrue(o.trashForGainCheck());
-            Assert.AreEqual(1, p.getCurrencyForGainBonus());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+            Assert.AreEqual(5, p.getCurrencyForGain());
         }
         [Test()]
         public void testGainCardWorkshop()
@@ -104,8 +104,8 @@ namespace Dominion
             StatusObject o = new StatusObject(false);
             CardFunctions.gainCardWorkshop(p, o);
             Assert.IsTrue(p.getGain());
-            Assert.IsTrue(o.trashForGainCheck());
-            Assert.AreEqual(1, p.getCurrencyForGainBonus());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+            Assert.AreEqual(4, p.getCurrencyForGain());
         }
     }
 }

@@ -313,13 +313,6 @@ namespace Dominion
                     this.currencyForGainBonus = 0;
                     o.setTrashedCorrectly(true);
                 }
-                else if (c.Equals(CardMother.Feast()))
-                {
-                    this.played.Remove(c);//Take feast out of played so its trashed
-                    this.currencyForGain = c.getCost() + this.currencyForGainBonus;
-                    this.currencyForGainBonus = 0;
-                    o.setTrashedCorrectly(true);
-                }
             }
             return o;
         }

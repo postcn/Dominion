@@ -516,7 +516,6 @@ namespace Dominion
             p.getHand().getHand().Add(CardMother.Feast());
             Assert.IsTrue(p.play(CardMother.Feast()).wasPlayedProperly());
             CardStack duchy = new CardStack(1, CardMother.Duchy());
-            Assert.IsTrue(p.trashForGain(CardMother.Feast()).wasTrashedCorrectly());
             Assert.IsTrue(p.gainCard(duchy).getGainedProperly());
             Assert.AreEqual(CardMother.Duchy(), p.getDeck().getInDiscard()[0]);
             Assert.IsFalse(p.getPlayed().Contains(CardMother.Feast()));
