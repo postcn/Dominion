@@ -24,6 +24,8 @@ namespace Dominion {
             myGame = game;
             Initialize();
         }
+       // public MainWindow() {
+        //}
         int turn=0;
         Game myGame;
         /*************************
@@ -49,6 +51,7 @@ namespace Dominion {
                     Play.ToolTip = "Trashes The Selected Card";
                     End_Turn.IsEnabled = false;
                     End_Phase.IsEnabled = false;
+                    RefreshWindow();
                 } else if (status.wasTrashedCorrectly()) {
                     GainCards();
                    /* actiondone = "Gain";
@@ -59,7 +62,6 @@ namespace Dominion {
                     SetFieldCardsToNormal();
                     SetHandButtonsToNo();*/
                 }
-                RefreshWindow();
             } else if(actiondone.Contains("Gain")) {
                 StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
                 if (status.wasTrashedCorrectly()) {
@@ -266,7 +268,7 @@ namespace Dominion {
                                     MessageBox.Show("Game Ended Because all the " + lastCard.Substring(0, lastCard.Count() - 1) + " cards were bought");
                                     End_Game_Click(sender,e);
                                 }
-                                if (i > 6||i<3) {
+                                if (i > 6||i<2||i==3) {
                                     actionsout++;
                                     if (actionsout > 2) {
                                         MessageBox.Show("Game Ended Because 3 actions cards were bought out. The last being the " + lastCard.Substring(0, lastCard.Count() - 1) + " card");
