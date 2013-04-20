@@ -9,3 +9,7 @@
 [0413/231140:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12002
 [0413/231144:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12167
 [0413/231333:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12167
+[0419/230055:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12167
+[0419/230057:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12167
+[0419/230140:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12167
+[0419/230142:ERROR:proxy_resolver_winhttp.cc(79)] WinHttpGetProxyForUrl failed: 12167

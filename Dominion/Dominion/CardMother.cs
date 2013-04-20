@@ -99,5 +99,10 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 0, 10, "Workshop", "Gain a card costing up to 4 coins", 3);
         }
+
+        public static Card ThroneRoom()
+        {
+            return new Card(2, 0, 0, 1, 0, 0, 11, "Throne Room", "Choose and Action card in your hand. Play it twice", 4);
+        }
     }
 }

@@ -103,7 +103,11 @@ namespace Dominion
         public void testDiscardRandom()
         {
             Random rg = new Random();
-            int num = rg.Next(d.cardsLeft());
+            int num = 0;
+            while (num == 0)
+            {
+                num = rg.Next(d.cardsLeft());
+            }
             for (int i = 0; i < num; i++)
             {
                 Card c = d.draw();

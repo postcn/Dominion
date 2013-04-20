@@ -12,6 +12,7 @@ namespace Dominion
         private int id;
         Deck myDeck;
         Hand myHand;
+        List<int> timesPlayed;
         List<Card> played;
         int buysLeft;
         int currencyAvailable;
@@ -19,14 +20,23 @@ namespace Dominion
         String name;
         Game game;
         Boolean gain;
+        int gainsLeft;
         int currencyForGain;
         int currencyForGainBonus;
+
+        Boolean playMultipleTimes;
+        int timesToPlayLeft;
+        int timesToPlayNextCard;
 
         public Player(int id)
         {
             this.gain = false;
             this.currencyForGain = 0;
             this.currencyForGainBonus = 0;
+            this.gainsLeft = 0;
+            this.playMultipleTimes = false;
+            this.timesToPlayLeft = 1;
+            this.timesToPlayNextCard = 1;
             this.id = id;
             myDeck = new Deck();
             myHand = new Hand();
@@ -34,6 +44,7 @@ namespace Dominion
             {
                 myHand.draw(myDeck);
             }
+            timesPlayed = new List<int>();
             played = new List<Card>();
             victoryPts = 3;
             this.buysLeft = 1;
@@ -55,6 +66,11 @@ namespace Dominion
         public List<Card> getPlayed()
         {
             return this.played;
+        }
+
+        public List<int> getTimesPlayed()
+        {
+            return this.timesPlayed;
         }
 
         public void setDeck(Deck deck)
@@ -110,9 +126,9 @@ namespace Dominion
         public int getCurrency()
         {
             int inPlayed = 0;
-            foreach (Card c in this.played)
+            for (int i=0; i<this.played.Count; i++)
             {
-                inPlayed += c.getCash();
+                inPlayed += this.played[i].getCash() * this.timesPlayed[i];
             }
             inPlayed += this.myHand.getCurrency();
             this.currencyAvailable = inPlayed;
@@ -145,57 +161,78 @@ namespace Dominion
             {
                 this.actionsLeft--;
                 this.played.Add(this.myHand.remove(aCard));
-                switch (aCard.getFunctionNumber())
+                this.timesToPlayLeft = this.timesToPlayNextCard;
+                this.timesPlayed.Add(this.timesToPlayLeft);
+                this.timesToPlayNextCard = 1; // we just set it to use up those plays.
+                if (timesToPlayLeft > 1)
                 {
-                    case 0:
-                        //No Action
-                        break;
-                    case 1:
-                        //Draw only
-                        CardFunctions.draw(this, aCard.getAdditionalDraws());
-                        break;
-                    case 2:
-                        //Draw and Add Actions.
-                        CardFunctions.draw(this, aCard.getAdditionalDraws());
-                        CardFunctions.actionAdd(this, aCard.getActions());
-                        break;
-                    case 3:
-                        //Draw and Add and Buy
-                        CardFunctions.draw(this, aCard.getAdditionalDraws());
-                        CardFunctions.actionAdd(this, aCard.getActions());
-                        CardFunctions.buyAdd(this, aCard.getBuy());
-                        break;
-                    case 4:
-                        //Add buy
-                        CardFunctions.buyAdd(this, aCard.getBuy());
-                        break;
-                    case 5:
-                        //Add actions and draw
-                        CardFunctions.draw(this, aCard.getAdditionalDraws());
-                        CardFunctions.actionAdd(this, aCard.getActions());
-                        break;
-                    case 6:
-                        //Add actions and buy
-                        CardFunctions.actionAdd(this, aCard.getActions());
-                        CardFunctions.buyAdd(this, aCard.getBuy());
-                        break;
-                    case 7:
-                        //add cards and gain curses.
-                        CardFunctions.draw(this, aCard.getAdditionalDraws());
-                        CardFunctions.gainCurses(this);
-                        break;
-                    case 8:
-                        //Remodel a card, trash and gain
-                        CardFunctions.gainCardRemodel(this, retVal);
-                        break;
-                    case 9:
-                        //Feast, trash and gain
-                        CardFunctions.gainCardFeast(this, retVal);
-                        break;
-                    case 10:
-                        //Workshop, gain card worth 4
-                        CardFunctions.gainCardWorkshop(this, retVal);
-                        break;
+                    this.playMultipleTimes = false;
+                }
+                while (this.timesToPlayLeft > 0)
+                {
+                    this.timesToPlayLeft--;
+                    switch (aCard.getFunctionNumber())
+                    {
+                        case 0:
+                            //No Action
+                            break;
+                        case 1:
+                            //Draw only
+                            CardFunctions.draw(this, aCard.getAdditionalDraws());
+                            break;
+                        case 2:
+                            //Draw and Add Actions.
+                            CardFunctions.draw(this, aCard.getAdditionalDraws());
+                            CardFunctions.actionAdd(this, aCard.getActions());
+                            break;
+                        case 3:
+                            //Draw and Add and Buy
+                            CardFunctions.draw(this, aCard.getAdditionalDraws());
+                            CardFunctions.actionAdd(this, aCard.getActions());
+                            CardFunctions.buyAdd(this, aCard.getBuy());
+                            break;
+                        case 4:
+                            //Add buy
+                            CardFunctions.buyAdd(this, aCard.getBuy());
+                            break;
+                        case 5:
+                            //Add actions and draw
+                            CardFunctions.draw(this, aCard.getAdditionalDraws());
+                            CardFunctions.actionAdd(this, aCard.getActions());
+                            break;
+                        case 6:
+                            //Add actions and buy
+                            CardFunctions.actionAdd(this, aCard.getActions());
+                            CardFunctions.buyAdd(this, aCard.getBuy());
+                            break;
+                        case 7:
+                            //add cards and gain curses.
+                            CardFunctions.draw(this, aCard.getAdditionalDraws());
+                            CardFunctions.gainCurses(this);
+                            break;
+                        case 8:
+                            //Remodel a card, trash and gain
+                            CardFunctions.gainCardRemodel(this, retVal);
+                            break;
+                        case 9:
+                            //Feast, trash and gain
+                            CardFunctions.gainCardFeast(this, retVal);
+                            break;
+                        case 10:
+                            //Workshop, gain card worth 4
+                            CardFunctions.gainCardWorkshop(this, retVal);
+                            break;
+                        case 11:
+                            //Throne Room. Double the number of next plays.
+                            CardFunctions.doubleNextPlay(this,this.timesToPlayLeft+1);
+                            this.timesToPlayLeft = 0;
+                            CardFunctions.actionAdd(this, aCard.getActions());
+                            break;
+                    }
+                }
+                if (this.timesToPlayNextCard == 0)
+                {
+                    this.timesToPlayNextCard = 1;
                 }
                 retVal.setPlayed(true);
             }
@@ -237,6 +274,11 @@ namespace Dominion
             this.buysLeft = 1;
             this.actionsLeft = 1;
             this.played = new List<Card>();
+            this.timesPlayed = new List<int>();
+            this.gain = false;
+            this.gainsLeft = 0;
+            this.playMultipleTimes = false;
+            this.timesToPlayLeft = 1;
         }
 
         public void setName(String name)
@@ -300,6 +342,16 @@ namespace Dominion
             this.gain = val;
         }
 
+        public int getGainsLeft()
+        {
+            return this.gainsLeft;
+        }
+
+        public void setGainsLeft(int val)
+        {
+            this.gainsLeft = val;
+        }
+
         public StatusObject trashForGain(Card c)
         {
             StatusObject o = new StatusObject(false);
@@ -328,14 +380,43 @@ namespace Dominion
             {
                 return o;
             }
+            if (this.gainsLeft <= 0)
+            {
+                return o;
+            }
             if (this.currencyForGain >= cs.getCard().getCost())
             {
                 this.getDeck().discard(cs.buyOne());
-                this.currencyForGain = 0;
-                this.gain = false;
+                this.gainsLeft--;
+                if (this.gainsLeft == 0)
+                {
+                    this.currencyForGain = 0;
+                    this.gain = false;
+                }
                 o.setGainedProperly(true);
             }
             return o;
         }
+
+        public Boolean getPlayMultipleTimes()
+        {
+            return this.playMultipleTimes;
+        }
+
+        public void setPlayMultipleTimes(Boolean val)
+        {
+            this.playMultipleTimes = val;
+        }
+
+        public int getPlaysOfNextCardLeft()
+        {
+            return this.timesToPlayNextCard;
+        }
+
+        public void setTimesToPlayNextCard(int val)
+        {
+            this.timesToPlayNextCard = val;
+        }
+
     }
 }
