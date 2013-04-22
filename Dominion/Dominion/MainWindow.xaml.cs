@@ -177,23 +177,23 @@ namespace Dominion {
             //reset only hilighted one? as determined by the for loop?
         }
         private void SetFieldCardsToNormal() {
-            for (int i = 0; i < FieldImage.Count(); i++) {
-                FieldImage[i].Cursor = Cursors.Hand;
+            for (int i = 0; i < FieldButton.Count(); i++) {
+                FieldButton[i].Cursor = Cursors.Hand;
             }
         }
         private void SetFieldardsToNo() {
-            for (int i = 0; i < FieldImage.Count(); i++) {
-                FieldImage[i].Cursor = Cursors.No;
+            for (int i = 0; i < FieldButton.Count(); i++) {
+                FieldButton[i].Cursor = Cursors.No;
             }
         }
         private void SetHandButtonsToNormal() {
             for (int i = 0; i < handButton.Count(); i++) {
-                handImage[i].Cursor = Cursors.Hand;
+                handButton[i].Cursor = Cursors.Hand;
             }
         }
         private void SetHandButtonsToNo() {
             for (int i = 0; i < handButton.Count(); i++) {
-                handImage[i].Cursor = Cursors.No;
+                handButton[i].Cursor = Cursors.No;
             }
         }
         /* private void resetstuff() {
