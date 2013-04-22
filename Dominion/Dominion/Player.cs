@@ -28,6 +28,8 @@ namespace Dominion
         int timesToPlayLeft;
         int timesToPlayNextCard;
 
+        Card lastPlayedCard;
+
         public Player(int id)
         {
             this.gain = false;
@@ -52,6 +54,7 @@ namespace Dominion
             this.actionsLeft = 1;
             this.name = null;
             this.game = null;
+            this.lastPlayedCard = null;
         }
         public Hand getHand()
         {
@@ -164,6 +167,7 @@ namespace Dominion
                 this.timesToPlayLeft = this.timesToPlayNextCard;
                 this.timesPlayed.Add(this.timesToPlayLeft);
                 this.timesToPlayNextCard = 1; // we just set it to use up those plays.
+                this.lastPlayedCard = aCard;
                 if (timesToPlayLeft > 1)
                 {
                     this.playMultipleTimes = false;
@@ -362,7 +366,10 @@ namespace Dominion
                 {
                     this.myHand.remove(c);//don't put it anywhere so trashed
                     this.currencyForGain = c.getCost() + this.currencyForGainBonus;
-                    this.currencyForGainBonus = 0;
+                    if (this.gainsLeft <= 0)
+                    {
+                        this.currencyForGainBonus = 0;
+                    }
                     o.setTrashedCorrectly(true);
                 }
             }
@@ -374,14 +381,17 @@ namespace Dominion
             StatusObject o = new StatusObject(false);
             if (cs.isEmpty())
             {
+                o.setMessage("Card Stack was Empty");
                 return o;
             }
             if (!this.gain)
             {
+                o.setMessage("Not gain in player");
                 return o;
             }
             if (this.gainsLeft <= 0)
             {
+                o.setMessage("No gains left in player");
                 return o;
             }
             if (this.currencyForGain >= cs.getCard().getCost())
@@ -393,7 +403,24 @@ namespace Dominion
                     this.currencyForGain = 0;
                     this.gain = false;
                 }
+                else
+                {
+                    if (this.lastPlayedCard.Equals(CardMother.Remodel()))
+                    {
+                        o.setMessage("Was a remodel. Setting it to trash the next card.");
+                        o.setTrashForGain(true);
+                    }
+                    else
+                    {
+                        o.setMessage("Still have gains left, setting to gain again.");
+                        o.setTrashedCorrectly(true);
+                    }
+                }
                 o.setGainedProperly(true);
+            }
+            else
+            {
+                o.setMessage("Not enough currency for gain. " + this.currencyForGain);
             }
             return o;
         }
@@ -418,5 +445,9 @@ namespace Dominion
             this.timesToPlayNextCard = val;
         }
 
+        public Card getLastPlayedCard()
+        {
+            return this.lastPlayedCard;
+        }
     }
 }

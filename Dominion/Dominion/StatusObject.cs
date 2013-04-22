@@ -12,6 +12,7 @@ namespace Dominion
         Boolean trashForGain;
         Boolean gainedCorrectly;
         Boolean trashedCorrectly;
+        String message;
 
         public StatusObject(Boolean played)
         {
@@ -19,6 +20,7 @@ namespace Dominion
             this.trashForGain = false;
             this.gainedCorrectly = false;
             this.trashedCorrectly = false;
+            this.message = "No Message";
         }
 
         public void setPlayed(Boolean val)
@@ -59,6 +61,16 @@ namespace Dominion
         public Boolean wasTrashedCorrectly()
         {
             return this.trashedCorrectly;
+        }
+
+        public void setMessage(String message)
+        {
+            this.message = message;
+        }
+
+        public String getMessage()
+        {
+            return this.message;
         }
     }
 }

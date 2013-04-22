@@ -49,5 +49,12 @@ namespace Dominion
             o.setTrashedCorrectly(true);
             Assert.IsTrue(o.wasTrashedCorrectly());
         }
+
+        [Test()]
+        public void testMessage()
+        {
+            o.setMessage("Jeff likes candy.");
+            Assert.AreEqual("Jeff likes candy.", o.getMessage());
+        }
     }
 }
