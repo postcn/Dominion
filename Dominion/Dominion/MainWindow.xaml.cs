@@ -43,37 +43,29 @@ namespace Dominion {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
-                RefreshWindow();
+              //  RefreshWindow();
                 if (status.trashForGainCheck()) {
-                    actiondone = "TrashGain";
-                    Play.Content = "Confirm";
-                    Play.ToolTip = "Trashes The Selected Card";
-                    End_Turn.IsEnabled = false;
-                    End_Phase.IsEnabled = false;
-                    RefreshWindow();
+                    TrashAndGain();
+                    return;
                 } else if (status.wasTrashedCorrectly()) {
                     GainCards();
-                   /* actiondone = "Gain";
-                    Gain_Label.Content = "Gain:            " + player.getCurrencyForGain();
-                    End_Turn.IsEnabled = false;
-                    End_Phase.IsEnabled = false;
-                    Buy.Content = "Gain";
-                    SetFieldCardsToNormal();
-                    SetHandButtonsToNo();*/
+                    return;
                 }
+                RefreshWindow();
             } else if(actiondone.Contains("Gain")) {
                 StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
                 if (status.wasTrashedCorrectly()) {
                     GainCards();
-                    /*CardDrawnLabel.Content = status.wasTrashedCorrectly();
-                    actiondone = "Gain";
-                    Buy.Content = "Gain";
-                    Gain_Label.Content = "Gain:            "+player.getCurrencyForGain();
-                    RefreshWindow();
-                    SetFieldCardsToNormal();
-                    SetHandButtonsToNo*/
                 }
             } 
+        }
+        private void TrashAndGain() {
+            actiondone = "TrashGain";
+            Play.Content = "Confirm";
+            Play.ToolTip = "Trashes The Selected Card";
+            End_Turn.IsEnabled = false;
+            End_Phase.IsEnabled = false;
+            RefreshWindow();
         }
         private void GainCards() {
             Play.Content = "Play";
@@ -118,6 +110,71 @@ namespace Dominion {
                 SetFieldCardsToNormal();
                 Currency_Label.Content = player.getCurrencyValue();
             }
+        }
+        private void Buy_Click(object sender, RoutedEventArgs e) {
+            if (actiondone.Equals("")) {
+                Boolean work = false;
+                int length = stacks.Count();
+                CardStack cardstack = CardStackFromHilighted(currentCard);
+                work = player.buy(cardstack);
+                if (!work) {
+                    Description.Content = "buy failed " + player.getCurrencyValue();
+                } else {
+                    Description.Content = "Buy Sucessful";
+                    string name = currentCard + ".jpg";
+                    SetPicture(name, Hand_Card);
+                    if (cardstack.cardsRemaining() == 0) {
+                        for (int i = 0; i < 10; i++) {
+                            if (StripImageSource(FieldImage[i].Source.ToString()).Equals(lastCard)) {
+                                //*****************************
+                                if (i == 3) {
+                                    //sends the wrong sender and e
+                                    MessageBox.Show("Game Ended Because all the " + lastCard.Substring(0, lastCard.Count() - 1) + " cards were bought");
+                                    End_Game_Click(sender, e);
+                                }
+                                if (i > 6 || i < 2 || i == 3) {
+                                    actionsout++;
+                                    if (actionsout > 2) {
+                                        MessageBox.Show("Game Ended Because 3 actions cards were bought out. The last being the " + lastCard.Substring(0, lastCard.Count() - 1) + " card");
+                                        End_Game_Click(sender, e);
+                                    }
+                                }
+                                //******************************
+                                SetPicture("blank.jpg", actionImage[i]);
+                                FieldButton[i].IsEnabled = false;
+                            }
+                        }
+                    }
+                    ResetUnknownHilightedCards();
+                }
+            } else if (actiondone.Equals("Gain")) {
+                int length = stacks.Count();
+                CardStack cardstack = CardStackFromHilighted(currentCard);
+                if (cardstack.cardsRemaining() == 0) {
+                    Description.Content = "none left for gain puposes";
+                    RefreshWindow();
+                    return;
+                }
+                StatusObject status = player.gainCard(cardstack);
+                if (status.getGainedProperly()) {
+                    ResetUnknownHilightedCards();
+                    End_Turn.IsEnabled = true;
+                    Buy.Content = "Buy";
+                    actiondone = "";
+                    Gain_Label.Content = "";
+                    if (status.trashForGainCheck()) {
+                        TrashAndGain();
+                        return;
+                    }else if((status.wasTrashedCorrectly())){
+                        GainCards();
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            }
+            RefreshWindow();
+            //reset only hilighted one? as determined by the for loop?
         }
         private void SetFieldCardsToNormal() {
             for (int i = 0; i < FieldImage.Count(); i++) {
@@ -245,64 +302,6 @@ namespace Dominion {
         private string StripImageSource(string str) {
             int length = str.Count();
             return str.Substring(42, length - 46);
-        }
-        private void Buy_Click(object sender, RoutedEventArgs e) {
-            if (actiondone.Equals("")) {
-                Boolean work = false;
-                int length = stacks.Count();
-                CardStack cardstack = CardStackFromHilighted(currentCard);
-                work = player.buy(cardstack);
-                if (!work) {
-                    Description.Content = "buy failed " + player.getCurrencyValue();
-                } else {
-                    Description.Content = "Buy Sucessful";                    
-                    string name = currentCard + ".jpg";
-                    SetPicture(name, Hand_Card);
-                    if (cardstack.cardsRemaining() == 0) {
-                        for (int i = 0; i < 10; i++) {
-                            if (StripImageSource(FieldImage[i].Source.ToString()).Equals(lastCard)) {
-                                //*****************************
-                                if (i == 3) {
-                                    //sends the wrong sender and e
-                                    MessageBox.Show("Game Ended Because all the " + lastCard.Substring(0, lastCard.Count() - 1) + " cards were bought");
-                                    End_Game_Click(sender,e);
-                                }
-                                if (i > 6||i<2||i==3) {
-                                    actionsout++;
-                                    if (actionsout > 2) {
-                                        MessageBox.Show("Game Ended Because 3 actions cards were bought out. The last being the " + lastCard.Substring(0, lastCard.Count() - 1) + " card");
-                                        End_Game_Click(sender, e);
-                                    }
-                                }
-                                //******************************
-                                SetPicture("blank.jpg", actionImage[i]);
-                                FieldButton[i].IsEnabled = false;
-                            }
-                        }
-                    }
-                    ResetUnknownHilightedCards();
-                }
-            } else if(actiondone.Equals("Gain")) {
-                int length = stacks.Count();
-                CardStack cardstack = CardStackFromHilighted(currentCard);
-                if (cardstack.cardsRemaining() == 0) {
-                    Description.Content = "none left for gain puposes";
-                    RefreshWindow();
-                    return;
-                }
-                StatusObject status=player.gainCard(cardstack);
-                if (status.getGainedProperly()) {
-                    ResetUnknownHilightedCards();
-                    End_Turn.IsEnabled = true;
-                    Buy.Content = "Buy";
-                    actiondone = "";
-                    Gain_Label.Content = "";
-                } else {
-                    return;
-                }
-            }
-            RefreshWindow();
-            //reset only hilighted one? as determined by the for loop?
         }
 
 

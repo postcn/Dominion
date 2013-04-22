@@ -76,7 +76,8 @@ namespace Dominion
             this.buyables.Add(new CardStack(10, CardMother.Feast()));
             this.buyables.Add(new CardStack(10, CardMother.Remodel()));
             this.buyables.Add(new CardStack(10, CardMother.Workshop()));
-            this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
+            this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
+           // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
             //TODO: get cards out of possible list.
         }
 
