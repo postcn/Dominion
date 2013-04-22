@@ -104,5 +104,10 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 1, 0, 0, 11, "Throne Room", "Choose and Action card in your hand. Play it twice", 4);
         }
+
+        public static Card Cellar()
+        {
+            return new Card(2, 0, 0, 1, 0, 0, 12, "Cellar", "+1 Action Discard any number of cards. +1 Card per card discarded", 2);
+        }
     }
 }

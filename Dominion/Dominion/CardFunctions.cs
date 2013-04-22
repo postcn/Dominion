@@ -69,5 +69,10 @@ namespace Dominion
             p.setPlayMultipleTimes(true);
             p.setTimesToPlayNextCard(plays * 2);
         }
+
+        public static void setupDiscardCardsToDrawSameNumber(Player p, StatusObject o)
+        {
+            o.setDiscardCardsToDrawSameNumber(true);
+        }
     }
 }

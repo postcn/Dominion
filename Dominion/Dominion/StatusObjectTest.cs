@@ -56,5 +56,21 @@ namespace Dominion
             o.setMessage("Jeff likes candy.");
             Assert.AreEqual("Jeff likes candy.", o.getMessage());
         }
+
+        [Test()]
+        public void testDiscardCardsToDrawSameNumber()
+        {
+            Assert.IsFalse(o.needToDiscardCardsFromHandToDrawSameNumber());
+            o.setDiscardCardsToDrawSameNumber(true);
+            Assert.IsTrue(o.needToDiscardCardsFromHandToDrawSameNumber());
+        }
+
+        [Test()]
+        public void testDiscardedAndDrawnSuccessfully()
+        {
+            Assert.IsFalse(o.wasDiscardedAndDrawnSuccessfully());
+            o.setDiscardedAndDrawn(true);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+        }
     }
 }

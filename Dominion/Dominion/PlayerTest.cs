@@ -735,5 +735,75 @@ namespace Dominion
             Assert.IsTrue(o.getGainedProperly());
             Assert.IsFalse(o.wasTrashedCorrectly());
         }
+
+        [Test()]
+        public void testDiscardCardAndDrawSameAmountZeroCards()
+        {
+            List<Card> cards = new List<Card>();
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+        }
+
+        [Test()]
+        public void testDiscardAndDrawSameAmountSuccess()
+        {
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 5; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);//drew the rest of the deck and this should be an estate
+        }
+
+        [Test()]
+        public void testDiscardAndDrawSameAmountFailCardNotInHand()
+        {
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Feast());
+
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsFalse(o.wasDiscardedAndDrawnSuccessfully());
+        }
+
+        [Test()]
+        public void testDiscardAndDrawFailTooManyOfOneCard()
+        {
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 5; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);//drew the rest of the deck and this should be an estate
+            o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsFalse(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);//the hand should not change.
+            Assert.AreEqual(5, p.getHand().size());
+        }
+
+        [Test()]
+        public void testPlayCellar()
+        {
+            p.getHand().getHand().Add(CardMother.Cellar());
+            StatusObject o = p.play(CardMother.Cellar());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToDiscardCardsFromHandToDrawSameNumber());
+
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 3; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+
+            o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);
+        }
     }
 }

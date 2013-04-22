@@ -12,6 +12,8 @@ namespace Dominion
         Boolean trashForGain;
         Boolean gainedCorrectly;
         Boolean trashedCorrectly;
+        Boolean discardMultipleToDrawSame;
+        Boolean discardedAndDrawn;
         String message;
 
         public StatusObject(Boolean played)
@@ -21,6 +23,8 @@ namespace Dominion
             this.gainedCorrectly = false;
             this.trashedCorrectly = false;
             this.message = "No Message";
+            this.discardMultipleToDrawSame = false;
+            this.discardedAndDrawn = false;
         }
 
         public void setPlayed(Boolean val)
@@ -71,6 +75,26 @@ namespace Dominion
         public String getMessage()
         {
             return this.message;
+        }
+
+        public void setDiscardCardsToDrawSameNumber(Boolean val)
+        {
+            this.discardMultipleToDrawSame = val;
+        }
+
+        public Boolean needToDiscardCardsFromHandToDrawSameNumber()
+        {
+            return this.discardMultipleToDrawSame;
+        }
+
+        public void setDiscardedAndDrawn(Boolean val)
+        {
+            this.discardedAndDrawn = val;
+        }
+
+        public Boolean wasDiscardedAndDrawnSuccessfully()
+        {
+            return this.discardedAndDrawn;
         }
     }
 }

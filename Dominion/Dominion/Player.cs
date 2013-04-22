@@ -232,11 +232,12 @@ namespace Dominion
                             this.timesToPlayLeft = 0;
                             CardFunctions.actionAdd(this, aCard.getActions());
                             break;
+                        case 12:
+                            //Cellar
+                            CardFunctions.actionAdd(this, aCard.getActions());
+                            CardFunctions.setupDiscardCardsToDrawSameNumber(this, retVal);
+                            break;
                     }
-                }
-                if (this.timesToPlayNextCard == 0)
-                {
-                    this.timesToPlayNextCard = 1;
                 }
                 retVal.setPlayed(true);
             }
@@ -448,6 +449,49 @@ namespace Dominion
         public Card getLastPlayedCard()
         {
             return this.lastPlayedCard;
+        }
+
+        public StatusObject discardCardsAndDrawSameAmount(List<Card> cards)
+        {
+            StatusObject retVal = new StatusObject(false);
+            //check if there are actually no cards in the list. Skip the rest of the code  if there aren't any.
+
+            if (cards.Count == 0)
+            {
+                retVal.setDiscardedAndDrawn(true);
+                return retVal;
+            }
+
+            List<Card> handCopy = new List<Card>();
+            //make a copy of the hand so that we can check if all the cards in the list are in the hand
+            foreach (Card c in this.getHand().getHand())
+            {
+                handCopy.Add(c);
+            }
+
+            foreach (Card c in cards)
+            {
+                if (!handCopy.Remove(c))
+                {
+                    retVal.setMessage("Missing one or more " + c.getName() + " from hand.");
+                    return retVal;
+                }
+            }
+
+            //if it gets to here all the cards are in the hand. Proceed to remove them and draw the same number.
+            //now we can modify the player's actual hand
+            Hand h = this.getHand();
+            Deck d = this.getDeck();
+            foreach (Card c in cards)
+            {
+                h.discard(c, d);
+            }
+
+            //now we discarded all of the cards, draw the number that we need
+            CardFunctions.draw(this, cards.Count);
+            retVal.setDiscardedAndDrawn(true);
+
+            return retVal;
         }
     }
 }
