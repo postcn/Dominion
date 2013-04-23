@@ -109,5 +109,10 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 1, 0, 0, 12, "Cellar", "+1 Action Discard any number of cards. +1 Card per card discarded", 2);
         }
+
+        public static Card Moneylender()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 13, "Moneylender", "Trash a copper from your hand. If you do +3 Currency", 4);
+        }
     }
 }

@@ -72,5 +72,13 @@ namespace Dominion
             o.setDiscardedAndDrawn(true);
             Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
         }
+
+        [Test()]
+        public void testTrashCoppersForCurrency()
+        {
+            Assert.IsFalse(o.needToTrashCoppersForCurrency());
+            o.setTrashACopperForCurrency(true);
+            Assert.IsTrue(o.needToTrashCoppersForCurrency());
+        }
     }
 }

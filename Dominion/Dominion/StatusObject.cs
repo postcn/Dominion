@@ -14,6 +14,7 @@ namespace Dominion
         Boolean trashedCorrectly;
         Boolean discardMultipleToDrawSame;
         Boolean discardedAndDrawn;
+        Boolean trashACopperForCurrency;
         String message;
 
         public StatusObject(Boolean played)
@@ -22,9 +23,10 @@ namespace Dominion
             this.trashForGain = false;
             this.gainedCorrectly = false;
             this.trashedCorrectly = false;
-            this.message = "No Message";
+            this.message = "";
             this.discardMultipleToDrawSame = false;
             this.discardedAndDrawn = false;
+            this.trashACopperForCurrency = false;
         }
 
         public void setPlayed(Boolean val)
@@ -95,6 +97,16 @@ namespace Dominion
         public Boolean wasDiscardedAndDrawnSuccessfully()
         {
             return this.discardedAndDrawn;
+        }
+
+        public void setTrashACopperForCurrency(Boolean val)
+        {
+            this.trashACopperForCurrency = val;
+        }
+
+        public Boolean needToTrashCoppersForCurrency()
+        {
+            return this.trashACopperForCurrency;
         }
     }
 }

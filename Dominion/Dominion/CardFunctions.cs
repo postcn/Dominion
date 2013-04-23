@@ -74,5 +74,10 @@ namespace Dominion
         {
             o.setDiscardCardsToDrawSameNumber(true);
         }
+
+        public static void addNeededTrashes(Player p, StatusObject o)
+        {
+
+        }
     }
 }
