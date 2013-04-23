@@ -80,5 +80,13 @@ namespace Dominion
             o.setTrashACopperForCurrency(true);
             Assert.IsTrue(o.needToTrashCoppersForCurrency());
         }
+
+        [Test()]
+        public void testCopperWasTrashedForBonus()
+        {
+            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+            o.setCopperTrashedForCurrency(true);
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+        }
     }
 }

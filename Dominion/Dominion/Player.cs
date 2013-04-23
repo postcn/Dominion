@@ -23,12 +23,16 @@ namespace Dominion
         int gainsLeft;
         int currencyForGain;
         int currencyForGainBonus;
+        int bonusCurrencyForBuy;
 
         Boolean playMultipleTimes;
         int timesToPlayLeft;
         int timesToPlayNextCard;
 
         Card lastPlayedCard;
+
+        int trashesNeeded;
+        int trashCurrencyBonus;
 
         public Player(int id)
         {
@@ -55,6 +59,9 @@ namespace Dominion
             this.name = null;
             this.game = null;
             this.lastPlayedCard = null;
+            this.trashesNeeded = 0;
+            this.trashCurrencyBonus = 0;
+            this.bonusCurrencyForBuy = 0;
         }
         public Hand getHand()
         {
@@ -134,6 +141,7 @@ namespace Dominion
                 inPlayed += this.played[i].getCash() * this.timesPlayed[i];
             }
             inPlayed += this.myHand.getCurrency();
+            inPlayed += this.bonusCurrencyForBuy;
             this.currencyAvailable = inPlayed;
             return inPlayed;
         }
@@ -145,6 +153,7 @@ namespace Dominion
 
         public Boolean buy(CardStack aStack)
         {
+            this.bonusCurrencyForBuy = 0;//reset it at the buy. This allows the bonus to be kept through multiple getCurrency calls
             int cost = aStack.getCard().getCost();
             int currency = this.currencyAvailable;
             if (!(aStack.isEmpty()) && (cost <= currency) && (this.buysLeft > 0))
@@ -236,6 +245,10 @@ namespace Dominion
                             //Cellar
                             CardFunctions.actionAdd(this, aCard.getActions());
                             CardFunctions.setupDiscardCardsToDrawSameNumber(this, retVal);
+                            break;
+                        case 13:
+                            //MoneyLender
+                            CardFunctions.addNeededTrashes(this, retVal);
                             break;
                     }
                 }
@@ -491,6 +504,66 @@ namespace Dominion
             CardFunctions.draw(this, cards.Count);
             retVal.setDiscardedAndDrawn(true);
 
+            return retVal;
+        }
+
+        //Should only be used when dealing with the moneylender
+        public int getTrashesNeeded()
+        {
+            return this.trashesNeeded;
+        }
+
+        public void setTrashesNeeded(int val)
+        {
+            this.trashesNeeded = val;
+        }
+
+        public void setTrashCurrencyBonus(int val)
+        {
+            this.trashCurrencyBonus = val;
+        }
+
+        public int getTrashCurrencyBonus()
+        {
+            return this.trashCurrencyBonus;
+        }
+
+        //Passing in null counts as it being false, don't want to trash because they have the option
+        public StatusObject trashACopperForCurrencyBonus(Card aCard)
+        {
+            StatusObject retVal = new StatusObject(false);
+            if (this.trashesNeeded <= 0)
+            {
+                this.trashesNeeded = 0;
+                retVal.setCopperTrashedForCurrency(true);
+                return retVal;
+            }
+            if (aCard == null)
+            {
+                retVal.setCopperTrashedForCurrency(true);
+                return retVal;
+            }
+            if (!aCard.Equals(CardMother.Copper()))
+            {
+                return retVal;
+            }
+
+            if (!this.getHand().contains(aCard))
+            {
+                return retVal;
+            }
+
+            this.getHand().remove(aCard);
+            this.bonusCurrencyForBuy += this.trashCurrencyBonus;
+            this.trashesNeeded--;
+            if (trashesNeeded == 0)
+            {
+                retVal.setCopperTrashedForCurrency(true);
+            }
+            else
+            {
+                retVal.setTrashACopperForCurrency(true);
+            }
             return retVal;
         }
     }

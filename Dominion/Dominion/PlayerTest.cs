@@ -805,5 +805,74 @@ namespace Dominion
             Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
             Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);
         }
+
+        [Test()]
+        public void testGetAndSetTrashesLeft()
+        {
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            p.setTrashesNeeded(1);
+            Assert.AreEqual(1, p.getTrashesNeeded());
+            p.setTrashesNeeded(p.getTrashesNeeded() + 1);
+            Assert.AreEqual(2, p.getTrashesNeeded());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusFailNotACopper()
+        {
+            p.setTrashesNeeded(1);
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Feast());
+            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusSucceedNoTrashesNeeded()
+        {
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(5, p.getHand().size());
+            Assert.AreEqual(5, p.getCurrency());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusFailNoCopperInHand()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                p.getHand().discard(CardMother.Copper(), p.getDeck());
+            }
+            p.getHand().getHand().Add(CardMother.Silver());
+            p.getHand().getHand().Add(CardMother.Feast());
+            p.setTrashesNeeded(1);
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusSucceed()
+        {
+            p.setTrashesNeeded(1);
+            p.setTrashCurrencyBonus(3);
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(3, p.getTrashCurrencyBonus());
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(4, p.getHand().size());
+            Assert.IsTrue(p.getDeck().getInDiscard().Count == 0);
+        }
+
+        [Test()]
+        public void testPlayMoneyLender()
+        {
+            p.getHand().getHand().Add(CardMother.Moneylender());
+            StatusObject o = p.play(CardMother.Moneylender());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCoppersForCurrency());
+            o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            Assert.AreEqual(3, p.getTrashCurrencyBonus());
+        }
     }
 }

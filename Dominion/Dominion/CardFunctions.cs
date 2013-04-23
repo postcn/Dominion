@@ -77,7 +77,9 @@ namespace Dominion
 
         public static void addNeededTrashes(Player p, StatusObject o)
         {
-
+            p.setTrashesNeeded(p.getTrashesNeeded() + 1);
+            p.setTrashCurrencyBonus(3);
+            o.setTrashACopperForCurrency(true);
         }
     }
 }
