@@ -34,6 +34,7 @@ namespace Dominion
         int trashesNeeded;
         int trashCurrencyBonus;
 
+
         public Player(int id)
         {
             this.gain = false;
@@ -249,6 +250,10 @@ namespace Dominion
                         case 13:
                             //MoneyLender
                             CardFunctions.addNeededTrashes(this, retVal);
+                            break;
+                        case 14:
+                            //Chapel
+                            CardFunctions.discardUptoFourCards(this, retVal);
                             break;
                     }
                 }
@@ -503,6 +508,49 @@ namespace Dominion
             //now we discarded all of the cards, draw the number that we need
             CardFunctions.draw(this, cards.Count);
             retVal.setDiscardedAndDrawn(true);
+
+            return retVal;
+        }
+        public StatusObject discardCards(List<Card> cards)
+        {
+            StatusObject retVal = new StatusObject(false);
+            //If none then didnt want to discard any
+            if (cards.Count == 0)
+            {
+                retVal.setDiscardedSuccessfully(true);
+                return retVal;
+            }
+
+            if (cards.Count > 4)
+            {
+                retVal.setMessage("More than 4 cards selected!");
+                return retVal;
+            }
+
+            List<Card> handCopy = new List<Card>();
+
+            foreach (Card c in this.getHand().getHand())
+            {
+                handCopy.Add(c);
+            }
+            //Check that cards are in the hand
+            foreach (Card c in cards)
+            {
+                if (!handCopy.Remove(c))
+                {
+                    retVal.setMessage("Missing one or more " + c.getName() + " from hand.");
+                    return retVal;
+                }
+            }
+            //Discard cards
+            Hand h = this.getHand();
+            Deck d = this.getDeck();
+            foreach (Card c in cards)
+            {
+                h.discard(c, d);
+            }
+
+            retVal.setDiscardedSuccessfully(true);
 
             return retVal;
         }

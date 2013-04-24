@@ -115,5 +115,12 @@ namespace Dominion
             Assert.IsTrue(p.getPlayMultipleTimes());
             Assert.AreEqual(2,p.getPlaysOfNextCardLeft());
         }
+        [Test()]
+        public void testGainCardChapel()
+        {
+            StatusObject o = new StatusObject(false);
+            CardFunctions.discardUptoFourCards(p, o);
+            Assert.IsTrue(o.needToDiscard());
+        }
     }
 }

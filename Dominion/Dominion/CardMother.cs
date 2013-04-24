@@ -114,5 +114,9 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 0, 13, "Moneylender", "Trash a copper from your hand. If you do +3 Currency", 4);
         }
+        public static Card Chapel()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 14, "Chapel", "Trash up to 4 cards from your hand", 2);
+        }
     }
 }

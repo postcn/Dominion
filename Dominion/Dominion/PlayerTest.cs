@@ -875,5 +875,15 @@ namespace Dominion
             Assert.AreEqual(3, p.getTrashCurrencyBonus());
             Assert.AreEqual(4, p.getHand().getHand().Count);
         }
+        [Test()]
+        public void testPlayChapel()
+        {
+            p.getHand().getHand().Add(CardMother.Chapel());
+            StatusObject o = p.play(CardMother.Chapel());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToDiscard());
+            o = p.discardCards(new List<Card>());
+            Assert.IsTrue(o.wasDiscardedSuccessfully());
+        }
     }
 }
