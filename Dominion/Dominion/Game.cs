@@ -63,21 +63,23 @@ namespace Dominion
             this.buyables.Add(new CardStack(numInStack, CardMother.Estate()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Duchy()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
+
             //TODO find actual number
             this.buyables.Add(new CardStack(120, CardMother.Curse()));
 
 
             this.buyables.Add(new CardStack(10, CardMother.Smithy()));
-            this.buyables.Add(new CardStack(10, CardMother.Laboratory()));
+           // this.buyables.Add(new CardStack(10, CardMother.Laboratory()));
             this.buyables.Add(new CardStack(10, CardMother.Market()));
             this.buyables.Add(new CardStack(10, CardMother.Festival()));
             this.buyables.Add(new CardStack(10, CardMother.Village()));
+            this.buyables.Add(new CardStack(10, CardMother.Cellar()));
             this.buyables.Add(new CardStack(10, CardMother.Witch()));
             this.buyables.Add(new CardStack(10, CardMother.Feast()));
             this.buyables.Add(new CardStack(10, CardMother.Remodel()));
-            this.buyables.Add(new CardStack(10, CardMother.Workshop()));
+            //this.buyables.Add(new CardStack(10, CardMother.Workshop()));
             this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
-           // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
+            this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
             //TODO: get cards out of possible list.
         }
 

@@ -3,6 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="StartScreen" Height="458.851" Width="579.448" ResizeMode="CanMinimize" Left="0" Top="0" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,0" Background="#FF343131">
+        <Menu IsMainMenu="True" Foreground="White">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header="Language" Foreground="White">
+                <MenuItem x:Name="English" Header="English" Foreground="Black" IsChecked="True" Click="ChangeLanguage"/>
+                <MenuItem x:Name="Something_Lame" Header="Something Lame" Foreground="Black" Click="ChangeLanguage"/>
+            </MenuItem>
+        </Menu>
         <Button x:Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Left" Height="40" Margin="360,86,0,0" VerticalAlignment="Top" Width="80" Click="ConfirmNames" TabIndex="2" ToolTip="Click To Start Game"/>
         <TextBox x:Name="PlayNumText" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap" Text="Number of Players" VerticalAlignment="Top" Width="129" Margin="140,86,0,0" ToolTip="Enter The Number Of Players That Will Be Playing" TabIndex="1" GotFocus="ChangeNumber"/>
         <TextBox x:Name="NameBox1" HorizontalAlignment="Left" Height="33" Margin="93,173,0,0" TextWrapping="Wrap" Text="Player 1" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="3" GotFocus="NameBoxFocus" Visibility="Hidden"/>

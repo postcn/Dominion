@@ -22,8 +22,11 @@ namespace Dominion {
             InitializeComponent();
             PlayNumText.Focus();
             HilightBox(PlayNumText);
+            languages = new List<MenuItem>();
+            languages.Add(English);
+            languages.Add(Something_Lame);
         }
-
+        List<MenuItem> languages;
         List<TextBox> nameBox;
         int maxplayers = 4;
         Boolean ready = false;
@@ -113,5 +116,16 @@ namespace Dominion {
             obj.SelectionStart = 0;
             obj.SelectionLength = obj.Text.Length;
         }
+        private void ChangeLanguage(object sender, RoutedEventArgs e) {
+            UncheckLanguages();
+            MenuItem obj = (MenuItem)sender;
+            obj.IsChecked = true;
+        }
+        private void UncheckLanguages() {
+            for (int i = 0; i < languages.Count; i++) {
+                languages[i].IsChecked = false;
+            }
+        }
     }
+     
 }

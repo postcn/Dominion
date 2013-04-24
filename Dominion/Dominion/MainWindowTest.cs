@@ -22,32 +22,25 @@ namespace Dominion{
         /// </summary>
         [Test()]
         public void testInintializes() {
-            //MainWindow main=null;
-           // PrepScreen prep = new PrepScreen("", main);
-           // Image hi;
-           // SetPicture("blank.jpg", hi);
-
-//            MainWindow main = new MainWindow();
             MainWindow main = new MainWindow(new Game(1));
-            Assert.AreEqual(main.currentCard, "");
-            Assert.AreEqual(main.phase,"Buy Phase");
-            Assert.AreEqual(main.victoryImage.Count(),4);
-            Assert.AreEqual(main.currencyImage.Count(), 3);
-            Assert.AreEqual(main.actionImage.Count(), 10);
-            Assert.AreEqual(main.handImage.Count(), 50);
-            Assert.AreEqual(main.FieldImage.Count(), 17);
-            Assert.AreEqual(main.victoryButton.Count(), 4);
-            Assert.AreEqual(main.currencyButton.Count(), 3);
-            Assert.AreEqual(main.actionButton.Count(), 10);
-            Assert.AreEqual(main.handButton.Count(), 50);
-            Assert.AreEqual(main.FieldButton.Count(), 17);
+            Assert.AreEqual("",main.currentCard, "");
+            Assert.AreEqual("Buy Phase",main.phase,"Buy Phase");
+            Assert.AreEqual(4,main.victoryImage.Count());
+            Assert.AreEqual(3,main.currencyImage.Count());
+            Assert.AreEqual(10,main.actionImage.Count());
+            Assert.AreEqual(50,main.handImage.Count());
+            Assert.AreEqual(17,main.FieldImage.Count());
+            Assert.AreEqual(4,main.victoryButton.Count());
+            Assert.AreEqual(3,main.currencyButton.Count());
+            Assert.AreEqual(10,main.actionButton.Count());
+            Assert.AreEqual(50,main.handButton.Count());
+            Assert.AreEqual(17,main.FieldButton.Count());
             for (int i=0;i<50;i++){
-                Assert.AreEqual(main.handImage[i].Cursor,Cursors.No);
+                Assert.AreEqual(Cursors.No,main.handButton[i].Cursor);
             }
             for (int i = 0; i < 17; i++) {
-                Assert.AreEqual(main.FieldImage[i].Cursor, Cursors.Hand);
+                Assert.AreEqual(Cursors.Hand,main.FieldButton[i].Cursor);
             }
-          //  Assert.AreEqual(main.stacks.Count, 17);
         }
     } 
 }

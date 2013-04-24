@@ -33,7 +33,6 @@
         <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="10,331,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
         <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="45" Margin="8,60,0,0" VerticalAlignment="Top" Width="285" Foreground="White"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="8,110,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
-        <Button x:Name="Reset" Content="Reset" HorizontalAlignment="Left" Height="29" Margin="364,848,0,0" VerticalAlignment="Top" Width="113" Click="Reset_Click" Cursor=""/>
         <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click" ToolTip="Ends Your Turn"/>
         <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Height="29" Margin="673,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Play_Click" ToolTip="Plays The Selected Card"/>
         <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="304,92,567,681" IsEnabled="False" >
