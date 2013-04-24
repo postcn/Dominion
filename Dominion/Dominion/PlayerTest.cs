@@ -204,6 +204,7 @@ namespace Dominion
         public void testGetCurrency()
         {
             p.getPlayed().Add(new Card(2, 1, 0, 0, 0, 0, 0, "One Bonus Currency", "One Bonus Currency", 0));
+            p.getTimesPlayed().Add(1);
             Assert.AreEqual(6, p.getCurrency());//the starter hand will always be five copper until shuffled.
         }
 
@@ -472,6 +473,15 @@ namespace Dominion
         }
 
         [Test()]
+        public void testGainFailNoGainsLeft()
+        {
+            Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
+            p.setGain(true);
+            CardStack copper = new CardStack(1, CardMother.Copper());
+            Assert.IsFalse(p.gainCard(copper).getGainedProperly());
+        }
+
+        [Test()]
         public void testGainPass()
         {
             Assert.IsFalse(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
@@ -480,6 +490,7 @@ namespace Dominion
             Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
             Assert.AreEqual(2, p.getCurrencyForGain());
             Assert.IsTrue(p.getGain());
+            p.setGainsLeft(1);
             CardStack estate = new CardStack(1, CardMother.Estate());
             Assert.IsTrue(p.gainCard(estate).getGainedProperly());
             Assert.AreEqual(CardMother.Estate(),p.getDeck().getInDiscard()[0]);
@@ -492,10 +503,13 @@ namespace Dominion
         {
             p.getHand().getHand().Add(CardMother.Remodel());
             Assert.IsTrue(p.play(CardMother.Remodel()).wasPlayedProperly());
+            Assert.AreEqual(1, p.getGainsLeft());
             CardStack estate = new CardStack(1, CardMother.Estate());
             Assert.IsTrue(p.trashForGain(CardMother.Copper()).wasTrashedCorrectly());
             Assert.IsTrue(p.gainCard(estate).getGainedProperly());
             Assert.AreEqual(CardMother.Estate(),p.getDeck().getInDiscard()[0]);
+            Assert.AreEqual(0, p.getGainsLeft());
+            Assert.IsFalse(p.getGain());
         }
 
         [Test()]
@@ -530,6 +544,336 @@ namespace Dominion
             Assert.IsTrue(p.getGain());
             Assert.IsTrue(p.gainCard(feast).getGainedProperly());
             Assert.AreEqual(CardMother.Feast(), p.getDeck().getInDiscard()[0]);
+        }
+
+        [Test()]
+        public void testSetAndGetPlayMultipleTimes()
+        {
+            Assert.IsFalse(p.getPlayMultipleTimes());
+            p.setPlayMultipleTimes(true);
+            Assert.IsTrue(p.getPlayMultipleTimes());
+        }
+
+        [Test()]
+        public void testSetAndGetPlaysOfThisCardLeft()
+        {
+            //should start off with one play.
+            Assert.AreEqual(1, p.getPlaysOfNextCardLeft());
+            p.setTimesToPlayNextCard(2);
+            Assert.AreEqual(2, p.getPlaysOfNextCardLeft());
+        }
+
+        [Test()]
+        public void testThroneRoomByItself()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            Assert.IsTrue(p.play(CardMother.ThroneRoom()).wasPlayedProperly());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(2, p.getPlaysOfNextCardLeft());
+        }
+
+        [Test()]
+        public void testThroneRoomAndVillage()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Village());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.Village());
+            Assert.AreEqual(4, p.getActionsLeft());
+            Assert.AreEqual(7, p.getHand().size());
+        }
+
+        [Test()]
+        public void testThroneRoomAndSmithy()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Smithy());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.Smithy());
+            Assert.AreEqual(0, p.getActionsLeft());
+            Assert.AreEqual(10, p.getHand().size());//draw whole deck
+        }
+
+        [Test()]
+        public void testFourThroneRoomAndWoodcutter()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Woodcutter());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.Woodcutter());
+            Assert.AreEqual(0, p.getActionsLeft());
+            Assert.AreEqual(17, p.getBuysLeft());
+            Assert.AreEqual(37, p.getCurrency());
+        }
+
+        [Test()]
+        public void testPlayMultipleThroneRoomInRow()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(2, p.getPlaysOfNextCardLeft());
+            p.play(CardMother.ThroneRoom());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(4, p.getPlaysOfNextCardLeft());
+            p.play(CardMother.ThroneRoom());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(8, p.getPlaysOfNextCardLeft());
+            p.play(CardMother.ThroneRoom());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(16, p.getPlaysOfNextCardLeft());
+        }
+
+        [Test()]
+        public void testThroneRoomAndRemodel()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Remodel());
+            Assert.IsTrue(p.play(CardMother.ThroneRoom()).wasPlayedProperly());
+            Assert.AreEqual(1, p.getActionsLeft());
+            Assert.AreEqual(2, p.getPlaysOfNextCardLeft());
+
+            StatusObject o = p.play(CardMother.Remodel());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.trashForGainCheck());
+            Assert.AreEqual(2,p.getGainsLeft());
+
+            CardStack estate = new CardStack(2, CardMother.Estate());
+
+            o = p.trashForGain(CardMother.Copper());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+            o = p.gainCard(estate);
+            Assert.AreEqual(1, p.getGainsLeft());
+            Assert.IsTrue(o.trashForGainCheck());//still have gains left
+            //so signal to trashForGain from remodel
+
+            o = p.trashForGain(CardMother.Copper());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+            o = p.gainCard(estate);
+            //Console.Write(o.getMessage());
+            Assert.IsTrue(o.getGainedProperly());
+            Assert.IsFalse(o.wasTrashedCorrectly());
+            Assert.IsFalse(o.trashForGainCheck());
+        }
+
+        [Test()]
+        public void testLastPlayedCard()
+        {
+            p.getHand().getHand().Add(CardMother.Village());
+            p.getHand().getHand().Add(CardMother.Smithy());
+            p.getHand().getHand().Add(CardMother.Remodel());
+
+            Assert.IsNull(p.getLastPlayedCard());
+
+            p.play(CardMother.Village());
+            Assert.AreEqual(CardMother.Village(), p.getLastPlayedCard());
+
+            p.play(CardMother.Smithy());
+            Assert.AreEqual(CardMother.Smithy(), p.getLastPlayedCard());
+
+            p.play(CardMother.Remodel());
+            Assert.AreEqual(CardMother.Remodel(), p.getLastPlayedCard());
+        }
+
+        [Test()]
+        public void testThroneRoomAndFeast()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Feast());
+
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.Feast());
+
+            Assert.AreEqual(2, p.getGainsLeft());
+
+            CardStack lab = new CardStack(2, CardMother.Laboratory());
+
+            StatusObject o = p.gainCard(lab);
+            Assert.IsTrue(o.getGainedProperly());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+
+            o = p.gainCard(lab);
+            Assert.IsTrue(o.getGainedProperly());
+            Assert.IsFalse(o.wasTrashedCorrectly());
+        }
+
+        [Test()]
+        public void testThroneRoomAndWorkshop()
+        {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Workshop());
+
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.Workshop());
+
+            Assert.AreEqual(2, p.getGainsLeft());
+
+            CardStack silver = new CardStack(2, CardMother.Silver());
+
+            StatusObject o = p.gainCard(silver);
+
+            Assert.IsTrue(o.getGainedProperly());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+
+            CardStack gold = new CardStack(1, CardMother.Gold());
+
+            o = p.gainCard(gold);
+            Assert.IsFalse(o.getGainedProperly());
+
+            o = p.gainCard(silver);
+            Assert.IsTrue(o.getGainedProperly());
+            Assert.IsFalse(o.wasTrashedCorrectly());
+        }
+
+        [Test()]
+        public void testDiscardCardAndDrawSameAmountZeroCards()
+        {
+            List<Card> cards = new List<Card>();
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+        }
+
+        [Test()]
+        public void testDiscardAndDrawSameAmountSuccess()
+        {
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 5; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);//drew the rest of the deck and this should be an estate
+        }
+
+        [Test()]
+        public void testDiscardAndDrawSameAmountFailCardNotInHand()
+        {
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Feast());
+
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsFalse(o.wasDiscardedAndDrawnSuccessfully());
+        }
+
+        [Test()]
+        public void testDiscardAndDrawFailTooManyOfOneCard()
+        {
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 5; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+
+            StatusObject o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);//drew the rest of the deck and this should be an estate
+            o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsFalse(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);//the hand should not change.
+            Assert.AreEqual(5, p.getHand().size());
+        }
+
+        [Test()]
+        public void testPlayCellar()
+        {
+            p.getHand().getHand().Add(CardMother.Cellar());
+            StatusObject o = p.play(CardMother.Cellar());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToDiscardCardsFromHandToDrawSameNumber());
+
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 3; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+
+            o = p.discardCardsAndDrawSameAmount(cards);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+            Assert.AreEqual(CardMother.Estate(), p.getHand().getHand()[4]);
+        }
+
+        [Test()]
+        public void testGetAndSetTrashesLeft()
+        {
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            p.setTrashesNeeded(1);
+            Assert.AreEqual(1, p.getTrashesNeeded());
+            p.setTrashesNeeded(p.getTrashesNeeded() + 1);
+            Assert.AreEqual(2, p.getTrashesNeeded());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusFailNotACopper()
+        {
+            p.setTrashesNeeded(1);
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Feast());
+            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusSucceedNoTrashesNeeded()
+        {
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(5, p.getHand().size());
+            Assert.AreEqual(5, p.getCurrency());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusFailNoCopperInHand()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                p.getHand().discard(CardMother.Copper(), p.getDeck());
+            }
+            p.getHand().getHand().Add(CardMother.Silver());
+            p.getHand().getHand().Add(CardMother.Feast());
+            p.setTrashesNeeded(1);
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+        }
+
+        [Test()]
+        public void testTrashACopperForCurrencyBonusSucceed()
+        {
+            p.setTrashesNeeded(1);
+            p.setTrashCurrencyBonus(3);
+            StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(3, p.getTrashCurrencyBonus());
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(4, p.getHand().size());
+            Assert.IsTrue(p.getDeck().getInDiscard().Count == 0);
+        }
+
+        [Test()]
+        public void testPlayMoneyLender()
+        {
+            p.getHand().getHand().Add(CardMother.Moneylender());
+            StatusObject o = p.play(CardMother.Moneylender());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCoppersForCurrency());
+            o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(7, p.getCurrency());
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            Assert.AreEqual(3, p.getTrashCurrencyBonus());
+            Assert.AreEqual(4, p.getHand().getHand().Count);
         }
     }
 }

@@ -49,5 +49,44 @@ namespace Dominion
             o.setTrashedCorrectly(true);
             Assert.IsTrue(o.wasTrashedCorrectly());
         }
+
+        [Test()]
+        public void testMessage()
+        {
+            o.setMessage("Jeff likes candy.");
+            Assert.AreEqual("Jeff likes candy.", o.getMessage());
+        }
+
+        [Test()]
+        public void testDiscardCardsToDrawSameNumber()
+        {
+            Assert.IsFalse(o.needToDiscardCardsFromHandToDrawSameNumber());
+            o.setDiscardCardsToDrawSameNumber(true);
+            Assert.IsTrue(o.needToDiscardCardsFromHandToDrawSameNumber());
+        }
+
+        [Test()]
+        public void testDiscardedAndDrawnSuccessfully()
+        {
+            Assert.IsFalse(o.wasDiscardedAndDrawnSuccessfully());
+            o.setDiscardedAndDrawn(true);
+            Assert.IsTrue(o.wasDiscardedAndDrawnSuccessfully());
+        }
+
+        [Test()]
+        public void testTrashCoppersForCurrency()
+        {
+            Assert.IsFalse(o.needToTrashCoppersForCurrency());
+            o.setTrashACopperForCurrency(true);
+            Assert.IsTrue(o.needToTrashCoppersForCurrency());
+        }
+
+        [Test()]
+        public void testCopperWasTrashedForBonus()
+        {
+            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+            o.setCopperTrashedForCurrency(true);
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+        }
     }
 }

@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindowTest.cs" />
     <Compile Include="StatusObject.cs" />
     <Compile Include="StatusObjectTest.cs" />
     <Page Include="StartScreen.xaml">
@@ -236,6 +238,36 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Workshop1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Throne Room.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Throne Room1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cellar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cellar1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chancellor.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chancellor1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chapel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chapel1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Moneylender.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Moneylender1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -107,5 +107,13 @@ namespace Dominion
             Assert.IsTrue(o.wasTrashedCorrectly());
             Assert.AreEqual(4, p.getCurrencyForGain());
         }
+
+        [Test()]
+        public void testDoubleNextPlay()
+        {
+            CardFunctions.doubleNextPlay(p,1);
+            Assert.IsTrue(p.getPlayMultipleTimes());
+            Assert.AreEqual(2,p.getPlaysOfNextCardLeft());
+        }
     }
 }

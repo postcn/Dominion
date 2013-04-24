@@ -12,6 +12,11 @@ namespace Dominion
         Boolean trashForGain;
         Boolean gainedCorrectly;
         Boolean trashedCorrectly;
+        Boolean discardMultipleToDrawSame;
+        Boolean discardedAndDrawn;
+        Boolean trashACopperForCurrency;
+        Boolean copperTrashedSuccessfullyForBonusCurrency;
+        String message;
 
         public StatusObject(Boolean played)
         {
@@ -19,6 +24,11 @@ namespace Dominion
             this.trashForGain = false;
             this.gainedCorrectly = false;
             this.trashedCorrectly = false;
+            this.message = "";
+            this.discardMultipleToDrawSame = false;
+            this.discardedAndDrawn = false;
+            this.trashACopperForCurrency = false;
+            this.copperTrashedSuccessfullyForBonusCurrency = false;
         }
 
         public void setPlayed(Boolean val)
@@ -59,6 +69,56 @@ namespace Dominion
         public Boolean wasTrashedCorrectly()
         {
             return this.trashedCorrectly;
+        }
+
+        public void setMessage(String message)
+        {
+            this.message = message;
+        }
+
+        public String getMessage()
+        {
+            return this.message;
+        }
+
+        public void setDiscardCardsToDrawSameNumber(Boolean val)
+        {
+            this.discardMultipleToDrawSame = val;
+        }
+
+        public Boolean needToDiscardCardsFromHandToDrawSameNumber()
+        {
+            return this.discardMultipleToDrawSame;
+        }
+
+        public void setDiscardedAndDrawn(Boolean val)
+        {
+            this.discardedAndDrawn = val;
+        }
+
+        public Boolean wasDiscardedAndDrawnSuccessfully()
+        {
+            return this.discardedAndDrawn;
+        }
+
+        public void setTrashACopperForCurrency(Boolean val)
+        {
+            this.trashACopperForCurrency = val;
+        }
+
+        public Boolean needToTrashCoppersForCurrency()
+        {
+            return this.trashACopperForCurrency;
+        }
+
+        public void setCopperTrashedForCurrency(Boolean val)
+        {
+            this.copperTrashedSuccessfullyForBonusCurrency = val;
+        }
+
+        public Boolean wasCopperTrashedSuccessfullyForBonus()
+        {
+            return this.copperTrashedSuccessfullyForBonusCurrency;
         }
     }
 }
