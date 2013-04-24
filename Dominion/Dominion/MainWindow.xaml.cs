@@ -56,26 +56,16 @@ namespace Dominion {
                     RefreshWindow();
                 }
             } else if (actiondone.Equals("Trash Copper")){
-                StatusObject status=null;
-                for (int i = 0; i < player.getHand().getHand().Count; i++) {
-                    if (StripImageSource(handImage[i].Source.ToString(), false).Equals("Copper")) {
-                        //1.) test throne room and without yes copper in hand no on throne room 
-                        HilightedImages.Add(handImage[i]);
-                        status = player.trashACopperForCurrencyBonus(GetCardListFromHilighted()[0]);
-                        break;
-                    }
-                }
-                if (status != null && status.wasCopperTrashedSuccessfullyForBonus()) {
-                    Description.Content = player.getCurrency();
+                StatusObject status = player.trashACopperForCurrencyBonus(CardMother.Copper());
+              //  if (status.wasCopperTrashedSuccessfullyForBonus()) {
                     if (status.needToTrashCoppersForCurrency()) {
                         TrashCopper();
+                        RefreshHand();
+                        return;
                     }
                     NotTrashCopper();
                     RefreshWindow();
-                } else {
-                    //1.)
-                    Description.Content = "Moneylender failed";
-                }
+                //}
             }else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
@@ -245,6 +235,7 @@ namespace Dominion {
                 }
             }else if(actiondone.Equals("Trash Copper")){
                 StatusObject status = player.trashACopperForCurrencyBonus(null);
+                //.1) throne room play twice if choose no first time?
                 if (status.needToTrashCoppersForCurrency()) {
                     TrashCopper();
                 } else {
