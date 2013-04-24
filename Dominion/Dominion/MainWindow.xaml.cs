@@ -28,6 +28,7 @@ namespace Dominion {
         Game myGame;
         /*************************
         1.)add tooltips and tab indecies and maybe tool tips which phase we are in
+         * refershhand instead of window
         *************************/
         Player player;
         List<CardStack> stacks;
@@ -51,9 +52,31 @@ namespace Dominion {
                 if (status.wasDiscardedAndDrawnSuccessfully()) {
                     actiondone = "";
                     Play.Content = "Play";
+                    Play.ToolTip = "Plays The Selected Card";
                     RefreshWindow();
                 }
-            } else {
+            } else if (actiondone.Equals("Trash Copper")){
+                StatusObject status=null;
+                for (int i = 0; i < player.getHand().getHand().Count; i++) {
+                    if (StripImageSource(handImage[i].Source.ToString(), false).Equals("Copper")) {
+                        //1.) test throne room and without yes copper in hand no on throne room 
+                        HilightedImages.Add(handImage[i]);
+                        status = player.trashACopperForCurrencyBonus(GetCardListFromHilighted()[0]);
+                        break;
+                    }
+                }
+                if (status != null && status.wasCopperTrashedSuccessfullyForBonus()) {
+                    Description.Content = player.getCurrency();
+                    if (status.needToTrashCoppersForCurrency()) {
+                        TrashCopper();
+                    }
+                    NotTrashCopper();
+                    RefreshWindow();
+                } else {
+                    //1.)
+                    Description.Content = "Moneylender failed";
+                }
+            }else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
@@ -66,13 +89,40 @@ namespace Dominion {
                 } else if (status.needToDiscardCardsFromHandToDrawSameNumber()) {
                     actiondone = "Discard Many";
                     Play.Content = "Discard";
+                    Play.ToolTip = "Discard Selected Cards";
+                } else if (status.needToTrashCoppersForCurrency()) {
+                    TrashCopper();
+                    RefreshHand();
+                    return;
                 }
                 RefreshWindow();
+                //1.)
+            //    Play.Content = "Play";
+             //   Play.ToolTip = "Plays The Selected Card";
             }
+        }
+        private void TrashCopper() {
+            actiondone = "Trash Copper";
+            Play.Content = "Yes";
+            Buy.Content = "No";
+            Play.IsEnabled = true;
+            Buy.IsEnabled = true;
+            End_Phase.IsEnabled = false;
+            Play.ToolTip = "Click To Discard A Copper";
+            Buy.ToolTip = "Click To Not Discard A Copper";
+            SetHandButtonsToNo();
+        }
+        private void NotTrashCopper() {
+            actiondone = "";
+            Play.Content = "Play";
+            Buy.Content = "Buy";
+            Play.ToolTip = "Plays The Selected Card";
+            //1.)
+            Buy.ToolTip = "";
         }
         private void TrashAndGain() {
             actiondone = "TrashGain";
-            Play.Content = "Confirm";
+            Play.Content = "Trash";
             Play.ToolTip = "Trashes The Selected Card";
             End_Turn.IsEnabled = false;
             End_Phase.IsEnabled = false;
@@ -90,15 +140,13 @@ namespace Dominion {
             SetFieldCardsToNormal();
             SetHandButtonsToNo();
         }
-        private void RefreshWindow() {
-            ResetHilightedCards();
-            currentCard = "";
+        //1.) change refreshwindows to refreshhand if can
+        private Boolean RefreshHand() {
             Boolean actioncard = false;
             Hand myHand = player.getHand();
             int length = myHand.getHand().Count();
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
-            Play.IsEnabled = false;
             for (int i = 0; i < length; i++) {
                 if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
                     actioncard = true;
@@ -106,6 +154,26 @@ namespace Dominion {
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
             }
+            HilightedImages = new List<Image>();
+            return actioncard;
+        }
+        private void RefreshWindow() {
+            ResetHilightedCards();
+            currentCard = "";
+           /* Boolean actioncard = false;
+            Hand myHand = player.getHand();
+            int length = myHand.getHand().Count();
+            int panelsize = 400 + (length - 5) * 80;
+            stackpan.Width = panelsize;*/
+            Play.IsEnabled = false;
+            Boolean actioncard = RefreshHand();
+            /*for (int i = 0; i < length; i++) {
+                if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
+                    actioncard = true;
+                }
+                string name = myHand.getHand()[i].toString() + ".jpg";
+                SetPicture(name, handImage[i]);
+            }*/
             if ((!actioncard||player.getActionsLeft()==0)&&actiondone.Equals("")&&!phase.Equals("Buy Phase")) {
                 player.getCurrency();
                 phase = "Buy Phase";
@@ -175,7 +243,14 @@ namespace Dominion {
                 } else {
                     return;
                 }
-            } 
+            }else if(actiondone.Equals("Trash Copper")){
+                StatusObject status = player.trashACopperForCurrencyBonus(null);
+                if (status.needToTrashCoppersForCurrency()) {
+                    TrashCopper();
+                } else {
+                    NotTrashCopper();
+                }
+            }
             RefreshWindow();
         }
         private Boolean buyout(Boolean isBuy) {
@@ -280,6 +355,7 @@ namespace Dominion {
                     if (buttons[i] == obj) {
                         currentCard = StripImageSource(images[i].Source.ToString(),false);
                         HilightCard1(images[i], handcard);
+                        break;
                     }
                 }
             }

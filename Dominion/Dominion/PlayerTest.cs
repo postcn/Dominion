@@ -873,6 +873,7 @@ namespace Dominion
             Assert.AreEqual(7, p.getCurrency());
             Assert.AreEqual(0, p.getTrashesNeeded());
             Assert.AreEqual(3, p.getTrashCurrencyBonus());
+            Assert.AreEqual(3, p.getHand().getHand().Count);
         }
     }
 }
