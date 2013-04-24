@@ -20,94 +20,62 @@ namespace Dominion {
     public partial class StartScreen : Window {
         public StartScreen() {
             InitializeComponent();
-            PlayNumText.Focus();
-            HilightBox(PlayNumText);
             languages = new List<MenuItem>();
             languages.Add(English);
             languages.Add(Something_Lame);
+            nameBox = new List<TextBox>();
+            nameBox.Add(NameBox1);
+            nameBox.Add(NameBox2);
+            nameBox.Add(NameBox3);
+            nameBox.Add(NameBox4);
         }
         List<MenuItem> languages;
         List<TextBox> nameBox;
-        int maxplayers = 4;
-        Boolean ready = false;
         MainWindow main;
         int numValue;
-
-        private void ConfirmNames(object sender, RoutedEventArgs e) {
-            if (!ready) {
-                string input = PlayNumText.Text;
-                numValue = 0;
-                //for testing purposes
-                if (input.Equals("Number of Players")) {
-                    Game mygame = new Game(1);
-                    mygame.getPlayers()[0].setName("Admin");
-                    main = new MainWindow(mygame);
-                    main.Show();
-                   // PrepScreen Prep = new PrepScreen("Admin", main);
-                    //Prep.Show();
-                    Close();
-                    return;
-                }
-                bool result = Int32.TryParse(input, out numValue);
-                if (true == result) {
-                    if (numValue > maxplayers || numValue < 2) {
-                        MessageBox.Show("There Must Be 2-" + maxplayers + " Players", "Input Error");
-                        numValue = 0;
-                        PlayNumText.Focus();
-                        HilightBox(PlayNumText);
-                    } else {
-                        nameBox = new List<TextBox>();
-                        nameBox.Add(NameBox1);
-                        nameBox.Add(NameBox2);
-                        if (numValue > 2) {
-                            nameBox.Add(NameBox3);
-                        }
-                        if (numValue == 4) {
-                            nameBox.Add(NameBox4);
-                        }
-                        for (int i = 0; i < numValue; i++) {
-                            enableBox(nameBox[i]);
-                        }
-                        ConfirmButton.Content = "Start Game";
-                        NameBox1.Focus();
-                        HilightBox(NameBox1);
-                        PlayNumText.IsTabStop = false;
-                        ready = true;
-
-                    }
-                } else {
-                    MessageBox.Show("'" + input + "' " + "is not a valid number of players", "Input Error");
-                    PlayNumText.Focus();
-                    HilightBox(PlayNumText);
-                }
-            } else {
-                Game mygame = new Game(numValue);
-                List<Player> players = mygame.getPlayers();
-                for (int i = 0; i < numValue; i++) {
-                    players[i].setName(nameBox[i].Text);
-                }
-                main = new MainWindow(mygame);
-                PrepScreen Prep = new PrepScreen(players[0].getName(),main);
-                Prep.Show();
-                Close();
-            }
-        }
-        /*
-         * maybe on lose focus change number of text boxes like territory wars would
-         */
-        private void ChangeNumber(object sender, RoutedEventArgs e) {
+        private void ConfirmNames(object sender, RoutedEventArgs e){
+            Game mygame = new Game(numValue);
+            List<Player> players = mygame.getPlayers();
             for (int i = 0; i < numValue; i++) {
+                players[i].setName(nameBox[i].Text);
+            }
+            main = new MainWindow(mygame);
+            PrepScreen Prep = new PrepScreen(players[0].getName(), main);
+            Prep.Show();
+            Close();
+        }
+        private void RadioCheck(Object sender, RoutedEventArgs e) {
+            UnEnableText();
+            RadioButton obj = (RadioButton)sender;
+            String num = obj.Content.ToString().Substring(0, 1);
+            Int32.TryParse(num, out numValue);
+            //1.)
+            if (numValue == 1) {
+                Game mygame = new Game(1);
+                mygame.getPlayers()[0].setName("Admin");
+                main = new MainWindow(mygame);
+                main.Show();
+                Close();
+                return;
+            }
+            //
+            EnableText(numValue);
+        }
+        private void EnableText(int num) {
+            for (int i = 0; i < num;i++ ) {
+                nameBox[i].Focusable = true;
+                nameBox[i].Visibility = Visibility.Visible;
+                nameBox[i].IsEnabled = true;
+            }
+            NameBox1.Focus();
+            HilightBox(NameBox1);
+        }
+        private void UnEnableText() {
+            for (int i = 2; i < nameBox.Count; i++) {
+                nameBox[i].Focusable = false;
                 nameBox[i].Visibility = Visibility.Hidden;
                 nameBox[i].IsEnabled = false;
             }
-            ConfirmButton.Content = "Confirm";
-            ready = false;
-            PlayNumText.IsTabStop = true;
-        }
-        private void enableBox(TextBox Box) {
-            Box.Focusable = true;
-            Box.Visibility = Visibility.Visible;
-            Box.IsEnabled = true;
         }
         private void NameBoxFocus(object sender, RoutedEventArgs e) {
             HilightBox((TextBox) sender);
