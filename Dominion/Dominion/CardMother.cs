@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominion
-{
+namespace Dominion {
     /*
          * For funcNum the following are defined
          * 1: drawing only. Such as the smithy card.
@@ -13,114 +12,91 @@ namespace Dominion
          * 3: is drawing and action and buys, such as the market card
          */
     //Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum,string cardName,string desc,int cost)
-    class CardMother
-    {
-        public static Card Festival()
-        {
+    class CardMother {
+        public static Card Festival() {
             return new Card(2, 2, 1, 2, 0, 0, 6, "Festival", "+2 Actions\n+1\nBuy\n+2 Currency", 5);
         }
 
-        public static Card Village()
-        {
+        public static Card Village() {
             return new Card(2, 0, 0, 2, 0, 1, 5, "Village", "+1 Card\n+2 Actions", 3);
         }
 
-        public static Card Woodcutter()
-        {
+        public static Card Woodcutter() {
             return new Card(2, 2, 1, 0, 0, 0, 4, "Woodcutter", "+1 Buy\n+2 Currencys", 3);
         }
 
-        public static Card Smithy()
-        {
+        public static Card Smithy() {
             return new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
         }
 
-        public static Card Estate()
-        {
+        public static Card Estate() {
             return new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2);
         }
 
-        public static Card Duchy()
-        {
+        public static Card Duchy() {
             return new Card(0, 0, 0, 0, 3, 0, 0, "Duchy", "3 Victory Points", 5);
         }
 
-        public static Card Province()
-        {
+        public static Card Province() {
             return new Card(0, 0, 0, 0, 6, 0, 0, "Province", "6 Victory Points", 8);
         }
 
-        public static Card Copper()
-        {
+        public static Card Copper() {
             return new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency Value", 0);
         }
 
-        public static Card Silver()
-        {
+        public static Card Silver() {
             return new Card(1, 2, 0, 0, 0, 0, 0, "Silver", "2 Currency Value", 3);
         }
 
-        public static Card Gold()
-        {
+        public static Card Gold() {
             return new Card(1, 3, 0, 0, 0, 0, 0, "Gold", "3 Currency Value", 6);
         }
 
-        public static Card Laboratory()
-        {
+        public static Card Laboratory() {
             return new Card(2, 0, 0, 1, 0, 2, 2, "Laboratory", "+2 Cards\n+1 Action", 5);
         }
 
-        public static Card Market()
-        {
+        public static Card Market() {
             return new Card(2, 1, 1, 1, 0, 1, 3, "Market", "+1 Card\n+1 Action\n+1 Buy\n+1 Currency", 5);
         }
 
-        public static Card Curse()
-        {
+        public static Card Curse() {
             return new Card(0, 0, 0, 0, -1, 0, 0, "Curse", "-1 Victory Point", 0);
         }
 
-        public static Card Witch()
-        {
+        public static Card Witch() {
             return new Card(2, 0, 0, 0, 0, 2, 7, "Witch", "+2 Cards.\nEach other player gains a Curse card.", 5);
         }
 
-        public static Card Remodel()
-        {
+        public static Card Remodel() {
             return new Card(2, 0, 0, 0, 0, 0, 8, "Remodel", "Trash a card from your hand.\nGain a a card costing up to 2 Currency\nmore than the trashed card", 4);
         }
 
-        public static Card Feast()
-        {
+        public static Card Feast() {
             return new Card(2, 0, 0, 0, 0, 0, 9, "Feast", "Trash this card and gain a card costing up to 5 Currency", 4);
         }
 
-        public static Card Workshop()
-        {
+        public static Card Workshop() {
             return new Card(2, 0, 0, 0, 0, 0, 10, "Workshop", "Gain a card costing up to 4 Currency", 3);
         }
 
-        public static Card ThroneRoom()
-        {
+        public static Card ThroneRoom() {
             return new Card(2, 0, 0, 1, 0, 0, 11, "Throne Room", "Choose and Action card in your hand. \nPlay it twice", 4);
         }
 
-        public static Card Cellar()
-        {
+        public static Card Cellar() {
             return new Card(2, 0, 0, 1, 0, 0, 12, "Cellar", "+1 Action\nDiscard any number of cards.\n+1 Card per card discarded", 2);
         }
 
-        public static Card Moneylender()
-        {
+        public static Card Moneylender() {
             return new Card(2, 0, 0, 0, 0, 0, 13, "Moneylender", "Trash a copper from your hand.\nIf you do +3 Currency", 4);
         }
-        public static Card Chapel()
-        {
+        public static Card Chapel() {
             return new Card(2, 0, 0, 0, 0, 0, 14, "Chapel", "Trash up to 4 cards from your hand", 2);
         }
-        public static Card Chancellor()
-        {
-            return new Card(2, 2, 0, 0, 0, 0, 15, "Chancellor", "+4 currency, may put your deck in discard", 3);
+        public static Card Chancellor() {
+            return new Card(2, 2, 0, 0, 0, 0, 15, "Chancellor", "+ 4 currency\nYou may immediatly put your\ndeck into your discard pile ", 3);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Dominion {
         List<TextBox> nameBox;
         MainWindow main;
         int numValue;
-        private void ConfirmNames(object sender, RoutedEventArgs e){
+        private void ConfirmNames(object sender, RoutedEventArgs e) {
             Game mygame = new Game(numValue);
             List<Player> players = mygame.getPlayers();
             for (int i = 0; i < numValue; i++) {
@@ -62,7 +62,7 @@ namespace Dominion {
             EnableText(numValue);
         }
         private void EnableText(int num) {
-            for (int i = 0; i < num;i++ ) {
+            for (int i = 0; i < num; i++) {
                 nameBox[i].Focusable = true;
                 nameBox[i].Visibility = Visibility.Visible;
                 nameBox[i].IsEnabled = true;
@@ -78,7 +78,7 @@ namespace Dominion {
             }
         }
         private void NameBoxFocus(object sender, RoutedEventArgs e) {
-            HilightBox((TextBox) sender);
+            HilightBox((TextBox)sender);
         }
         private void HilightBox(TextBox obj) {
             obj.SelectionStart = 0;
@@ -95,5 +95,5 @@ namespace Dominion {
             }
         }
     }
-     
+
 }

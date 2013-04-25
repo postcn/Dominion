@@ -24,7 +24,7 @@ namespace Dominion {
             myGame = game;
             Initialize();
         }
-        int turn=0;
+        int turn = 0;
         Game myGame;
         /*************************
         1.)add tooltips and tab indecies and maybe tool tips which phase we are in
@@ -34,9 +34,9 @@ namespace Dominion {
         *************************/
         Player player;
         List<CardStack> stacks;
-       public string currentCard, phase,actiondone="";
-       public List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage,HilightedImages;
-       public List<Button> currencyButton, victoryButton, handButton, actionButton,FieldButton;
+        public string currentCard, phase, actiondone = "";
+        public List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage, HilightedImages;
+        public List<Button> currencyButton, victoryButton, handButton, actionButton, FieldButton;
         int totalplayers;
         //1.)******************
         int actionsout = 0;
@@ -53,16 +53,16 @@ namespace Dominion {
                 if (status.wasDiscardedAndDrawnSuccessfully()) {
                     ResetSpecialAction();
                 }
-            } else if (actiondone.Equals("Trash Copper")){
+            } else if (actiondone.Equals("Trash Copper")) {
                 StatusObject status = player.trashACopperForCurrencyBonus(CardMother.Copper());
-                    if (status.needToTrashCoppersForCurrency()) {
-                        TrashCopper();
-                        RefreshHand();
-                        return;
-                    }
-                    ResetSpecialAction();
-                    RefreshWindow(); 
-            }else if(actiondone.Equals("Trash Many")){
+                if (status.needToTrashCoppersForCurrency()) {
+                    TrashCopper();
+                    RefreshHand();
+                    return;
+                }
+                ResetSpecialAction();
+                RefreshWindow();
+            } else if (actiondone.Equals("Trash Many")) {
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.trashCards(cards);
                 if (status.wasTrashedCorrectly()) {
@@ -72,7 +72,7 @@ namespace Dominion {
                     Trash();
                     return;
                 }
-            }else {
+            } else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
@@ -95,8 +95,8 @@ namespace Dominion {
                 }
                 RefreshWindow();
                 //1.)
-            //    Play.Content = "Play";
-             //   Play.ToolTip = "Plays The Selected Card";
+                //    Play.Content = "Play";
+                //   Play.ToolTip = "Plays The Selected Card";
             }
         }
         private void ResetSpecialAction() {
@@ -167,11 +167,11 @@ namespace Dominion {
         private void RefreshWindow() {
             ResetHilightedCards();
             currentCard = "";
-           /* Boolean actioncard = false;
-            Hand myHand = player.getHand();
-            int length = myHand.getHand().Count();
-            int panelsize = 400 + (length - 5) * 80;
-            stackpan.Width = panelsize;*/
+            /* Boolean actioncard = false;
+             Hand myHand = player.getHand();
+             int length = myHand.getHand().Count();
+             int panelsize = 400 + (length - 5) * 80;
+             stackpan.Width = panelsize;*/
             Play.IsEnabled = false;
             Boolean actioncard = RefreshHand();
             /*for (int i = 0; i < length; i++) {
@@ -181,7 +181,7 @@ namespace Dominion {
                 string name = myHand.getHand()[i].toString() + ".jpg";
                 SetPicture(name, handImage[i]);
             }*/
-            if ((!actioncard||player.getActionsLeft()==0)&&actiondone.Equals("")&&!phase.Equals("Buy Phase")) {
+            if ((!actioncard || player.getActionsLeft() == 0) && actiondone.Equals("") && !phase.Equals("Buy Phase")) {
                 player.getCurrency();
                 phase = "Buy Phase";
                 End_Phase.IsEnabled = false;
@@ -220,7 +220,7 @@ namespace Dominion {
                 }
             } else if (actiondone.Equals("Gain")) {
                 int length = stacks.Count();
-                CardStack cardstack = CardStackFromHilighted(StripImageSource(HilightedImages[0].Source.ToString(),true));
+                CardStack cardstack = CardStackFromHilighted(StripImageSource(HilightedImages[0].Source.ToString(), true));
                 //1.) this should be checked by caleb
                 if (cardstack.cardsRemaining() == 0) {
                     Description.Content = "None Left For Gain Why did it get here";
@@ -243,14 +243,14 @@ namespace Dominion {
                     if (status.trashForGainCheck()) {
                         TrashAndGain();
                         return;
-                    }else if((status.wasTrashedCorrectly())){
+                    } else if ((status.wasTrashedCorrectly())) {
                         GainCards();
                         return;
                     }
                 } else {
                     return;
                 }
-            }else if(actiondone.Equals("Trash Copper")){
+            } else if (actiondone.Equals("Trash Copper")) {
                 StatusObject status = player.trashACopperForCurrencyBonus(null);
                 //.1) throne room play twice if choose no first time?
                 if (status.needToTrashCoppersForCurrency()) {
@@ -331,10 +331,11 @@ namespace Dominion {
             RefreshWindow();
             ResetHilightedCards();
             turn++;
-            Turn_Label.Content = Math.Floor(turn*1.0 / totalplayers)+1;
+            Turn_Label.Content = Math.Floor(turn * 1.0 / totalplayers) + 1;
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //1.)set tool tips based on phase
+            //1.)breaks calebs code
             if (actiondone.Equals("Trash Many")) {
                 player.trashCards(null);
                 ResetSpecialAction();
@@ -365,7 +366,7 @@ namespace Dominion {
             if (obj.Cursor == Cursors.Hand) {
                 for (int i = 0; i < buttons.Count(); i++) {
                     if (buttons[i] == obj) {
-                        currentCard = StripImageSource(images[i].Source.ToString(),false);
+                        currentCard = StripImageSource(images[i].Source.ToString(), false);
                         HilightCard(images[i], handcard);
                         break;
                     }
@@ -373,15 +374,15 @@ namespace Dominion {
             }
         }
         private void HilightImage(Image image) {
-            String card = StripImageSource(image.Source.ToString(),false);
+            String card = StripImageSource(image.Source.ToString(), false);
             if (!card.Contains("1")) {
-                SetPicture(card+".jpg", Selected_Card);
+                SetPicture(card + ".jpg", Selected_Card);
                 card = card + "1.jpg";
                 SetPicture(card, image);
             }
         }
         private void UnHilightImage(Image image) {
-            String card = StripImageSource(image.Source.ToString(),true) + ".jpg";
+            String card = StripImageSource(image.Source.ToString(), true) + ".jpg";
             SetPicture(card, image);
             DescriptionLabel.Content = "";
             DescriptionLabel1.Content = "";
@@ -389,11 +390,11 @@ namespace Dominion {
         private List<Card> GetCardListFromHilighted() {
             List<Card> cards = new List<Card>();
             for (int i = 0; i < HilightedImages.Count; i++) {
-                cards.Add(CardFromString(StripImageSource(HilightedImages[i].Source.ToString(),true)));
+                cards.Add(CardFromString(StripImageSource(HilightedImages[i].Source.ToString(), true)));
             }
             return cards;
         }
-        private void HilightCard(Image image,Boolean ishandCard){
+        private void HilightCard(Image image, Boolean ishandCard) {
             //1.)buy/play work in this case?
             if (HilightedImages.Contains(image)) {
                 Buy.IsEnabled = false;
@@ -413,12 +414,12 @@ namespace Dominion {
             HilightedImages.Add(image);
 
             for (int i = 0; i < HilightedImages.Count; i++) {
-                HilightImage(HilightedImages[i]);   
+                HilightImage(HilightedImages[i]);
             }
-            if (handButton[0].Cursor==Cursors.Hand) {
+            if (handButton[0].Cursor == Cursors.Hand) {
                 Play.IsEnabled = true;
                 Buy.IsEnabled = false;
-            }else{
+            } else {
                 Buy.IsEnabled = true;
                 Play.IsEnabled = false;
             }
@@ -434,7 +435,7 @@ namespace Dominion {
          */
         private Card CardFromString(String str) {
             int length = stacks.Count();
-            Card card=null;
+            Card card = null;
             for (int i = 0; i < length; i++) {
                 if (stacks[i].getCard().toString().Equals(str)) {
                     card = stacks[i].getCard();
@@ -443,7 +444,7 @@ namespace Dominion {
             return card;
         }
 
-        private CardStack CardStackFromHilighted(String str){
+        private CardStack CardStackFromHilighted(String str) {
             int length = stacks.Count();
             for (int i = 0; i < length; i++) {
                 if (stacks[i].getCard().toString().Equals(str)) {
@@ -453,7 +454,7 @@ namespace Dominion {
             return null;
         }
 
-        private string StripImageSource(string str,Boolean isHilighted) {
+        private string StripImageSource(string str, Boolean isHilighted) {
             int remove = 46;
             if (isHilighted) {
                 remove = 47;
@@ -471,7 +472,7 @@ namespace Dominion {
         private void ResetHilightedCards() {
             Buy.IsEnabled = false;
             Play.IsEnabled = false;
-            for (int i = 0; i < HilightedImages.Count; i++) {                
+            for (int i = 0; i < HilightedImages.Count; i++) {
                 UnHilightImage(HilightedImages[i]);
             }
             HilightedImages = new List<Image>();
@@ -486,7 +487,7 @@ namespace Dominion {
             phase = "Action Phase";
             totalplayers = myGame.getPlayers().Count();
             InitializeButtonImages();
-            Player_Label.Content = player.getName()+"'s";
+            Player_Label.Content = player.getName() + "'s";
             int size = stacks.Count();
             int i, victorys = 0, currencies = 0, actions = 0;
             for (i = 0; i < size; i++) {
@@ -698,11 +699,11 @@ namespace Dominion {
             for (int i = 1; i < totalplayers; i++) {
                 int score;
                 myGame.getPlayers()[i].setVictoryPts();
-                score=myGame.getPlayers()[i].getVictoryPts();
-                if (score> highscore) {
+                score = myGame.getPlayers()[i].getVictoryPts();
+                if (score > highscore) {
                     myGame.getPlayers()[i].setVictoryPts();
                     highscore = myGame.getPlayers()[i].getVictoryPts();
-                    highplayer= new List<int>();
+                    highplayer = new List<int>();
                     highplayer.Add(myGame.getPlayers()[i].getID());
                 } else if (score == highscore) {
                     highplayer.Add(myGame.getPlayers()[i].getID());
