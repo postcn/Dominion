@@ -28,11 +28,11 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="MainGrid" Margin="0,0,0,0" Background="#FF343131">
-        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,381,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
+        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,423,0,0" VerticalAlignment="Top" Width="230" Foreground="White"/>
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
-        <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" Height="45" Margin="10,331,0,0" VerticalAlignment="Top" Width="288" Foreground="White"/>
-        <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="45" Margin="8,60,0,0" VerticalAlignment="Top" Width="285" Foreground="White"/>
-        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="8,110,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
+        <Label x:Name="DescriptionLabel" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="88" Margin="10,330,0,0" VerticalAlignment="Top" Width="192" Foreground="White"/>
+        <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="44" Margin="729,82,0,0" VerticalAlignment="Top" Width="181" Foreground="White"/>
+        <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="729,132,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
         <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click" ToolTip="Ends Your Turn"/>
         <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Height="29" Margin="673,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Play_Click" ToolTip="Plays The Selected Card"/>
         <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="304,92,567,681" IsEnabled="False" >
@@ -240,7 +240,7 @@
         <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,509,248,264" IsEnabled="False" >
             <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
         </Button>
-        <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="266" Margin="754,110,0,0" VerticalAlignment="Top" Width="175" Source="Blank.jpg"/>
+        <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="274" Margin="10,51,0,0" VerticalAlignment="Top" Width="192" Source="Blank.jpg"/>
         <Button x:Name="End_Phase" Content="End Phase" HorizontalAlignment="Left" Height="29" Margin="584,848,0,0" VerticalAlignment="Top" Width="71" Click="EndPhase_Click" ToolTip="Ends The Action Phase; Putting You In The Buy Phase"/>
         <Label x:Name="Phase_Label" Content="" HorizontalContentAlignment="Center" Height="54" Margin="304,51,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
         <Label x:Name="Player_Label" Content="&#xD;&#xA;" HorizontalContentAlignment="Center" Height="49" Margin="304,0,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
@@ -253,5 +253,6 @@
             <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="79,52,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
             <Label x:Name="Gain_Label" Content="" HorizontalAlignment="Left" Height="26" Margin="12,-15,0,0" VerticalAlignment="Top" Width="96" Background="#00000000" Foreground="White"/>
         </Grid>
+        <Label x:Name="DescriptionLabel1" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,16,0,0" VerticalAlignment="Top" Width="192" Foreground="White"/>
     </Grid>
 </Window>
