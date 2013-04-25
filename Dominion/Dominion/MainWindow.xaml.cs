@@ -29,6 +29,8 @@ namespace Dominion {
         /*************************
         1.)add tooltips and tab indecies and maybe tool tips which phase we are in
          * refershhand instead of window
+         * set selected card to right dimentions. 
+         * redue cards to eliminate white rightin at bottom of card
         *************************/
         Player player;
         List<CardStack> stacks;
@@ -364,7 +366,7 @@ namespace Dominion {
                 for (int i = 0; i < buttons.Count(); i++) {
                     if (buttons[i] == obj) {
                         currentCard = StripImageSource(images[i].Source.ToString(),false);
-                        HilightCard1(images[i], handcard);
+                        HilightCard(images[i], handcard);
                         break;
                     }
                 }
@@ -381,6 +383,8 @@ namespace Dominion {
         private void UnHilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(),true) + ".jpg";
             SetPicture(card, image);
+            DescriptionLabel.Content = "";
+            DescriptionLabel1.Content = "";
         }
         private List<Card> GetCardListFromHilighted() {
             List<Card> cards = new List<Card>();
@@ -389,7 +393,7 @@ namespace Dominion {
             }
             return cards;
         }
-        private void HilightCard1(Image image,Boolean ishandCard){
+        private void HilightCard(Image image,Boolean ishandCard){
             //1.)buy/play work in this case?
             if (HilightedImages.Contains(image)) {
                 Buy.IsEnabled = false;
@@ -418,14 +422,12 @@ namespace Dominion {
                 Buy.IsEnabled = true;
                 Play.IsEnabled = false;
             }
+            //1.) fit all on screen
+            List<Card> cards = GetCardListFromHilighted();
+            Card card = cards[cards.Count - 1];
+            DescriptionLabel.Content = card.getDescription();
+            DescriptionLabel1.Content = card.getName();
         }
-        /*private void HandImage1_Click(object sender, RoutedEventArgs e){
-                currentCard = stripImageSource(HandImage1.Source.ToString());
-                handCard = stripImageSource(HandImage1.Source.ToString());
-                hilightCard(HandImage1, true);
-                Buy.IsEnabled = false;
-            }*/
-
         /*
          * currently gets send one string going to need to make funciton to get list of strings that are hilighted for thef card
          * returns all cardstacks that are currently selected
