@@ -81,9 +81,11 @@ namespace Dominion
             p.setTrashCurrencyBonus(3);
             o.setTrashACopperForCurrency(true);
         }
-        public static void discardUptoFourCards(Player p, StatusObject o)
+
+        public static void trashUptoFourCards(Player p, StatusObject o)
         {
-            o.setDiscardCards(true);
+            o.setTrashCards(true);
+            p.setPossibleTrashes(p.getPossibleTrashes() + 4);
         }
     }
 }

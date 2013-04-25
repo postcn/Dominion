@@ -119,8 +119,8 @@ namespace Dominion
         public void testGainCardChapel()
         {
             StatusObject o = new StatusObject(false);
-            CardFunctions.discardUptoFourCards(p, o);
-            Assert.IsTrue(o.needToDiscard());
+            CardFunctions.trashUptoFourCards(p, o);
+            Assert.IsTrue(o.needToTrashCards());
         }
     }
 }
