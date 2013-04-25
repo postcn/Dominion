@@ -875,15 +875,84 @@ namespace Dominion
             Assert.AreEqual(3, p.getTrashCurrencyBonus());
             Assert.AreEqual(4, p.getHand().getHand().Count);
         }
+
         [Test()]
         public void testPlayChapel()
         {
             p.getHand().getHand().Add(CardMother.Chapel());
             StatusObject o = p.play(CardMother.Chapel());
             Assert.IsTrue(o.wasPlayedProperly());
-            Assert.IsTrue(o.needToDiscard());
-            o = p.discardCards(new List<Card>());
-            Assert.IsTrue(o.wasDiscardedSuccessfully());
+            Assert.IsTrue(o.needToTrashCards());
+            Assert.AreEqual(4, p.getPossibleTrashes());
+            o = p.trashCards(new List<Card>());
+            Assert.IsTrue(o.wasTrashedCorrectly());
+        }
+
+        [Test()]
+        public void testPlayChapelFailTooManyCards()
+        {
+            p.getHand().getHand().Add(CardMother.Chapel());
+            StatusObject o = p.play(CardMother.Chapel());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCards());
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 5; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+            o = p.trashCards(cards);
+            Assert.IsFalse(o.wasTrashedCorrectly());
+        }
+
+        [Test()]
+        public void testPlayChapelFailCardNotInHand()
+        {
+            p.getHand().getHand().Add(CardMother.Chapel());
+            StatusObject o = p.play(CardMother.Chapel());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCards());
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Estate());
+            o = p.trashCards(cards);
+            Assert.IsFalse(o.wasTrashedCorrectly());
+        }
+
+        [Test()]
+        public void testPlayChapelSuccessful()
+        {
+            p.getHand().getHand().Add(CardMother.Chapel());
+            StatusObject o = p.play(CardMother.Chapel());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCards());
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 4; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+            o = p.trashCards(cards);
+            Assert.IsTrue(o.wasTrashedCorrectly());
+            Assert.AreEqual(1, p.getHand().size());
+        }
+
+        [Test()]
+        public void testPlayThroneRoomAndChapel()
+        {
+            p.getHand().getHand().Add(CardMother.Chapel());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            StatusObject o = p.play(CardMother.Chapel());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCards());
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < 5; i++)
+            {
+                cards.Add(CardMother.Copper());
+            }
+            o = p.trashCards(cards);
+            Assert.IsTrue(o.wasTrashedCorrectly());
+            Assert.AreEqual(0, p.getHand().size());
+            Assert.AreEqual(0, p.getPossibleTrashes());
         }
     }
 }

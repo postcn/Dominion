@@ -33,6 +33,7 @@ namespace Dominion
 
         int trashesNeeded;
         int trashCurrencyBonus;
+        int possibleTrashes;
 
 
         public Player(int id)
@@ -63,6 +64,7 @@ namespace Dominion
             this.trashesNeeded = 0;
             this.trashCurrencyBonus = 0;
             this.bonusCurrencyForBuy = 0;
+            this.possibleTrashes = 0;
         }
         public Hand getHand()
         {
@@ -253,7 +255,7 @@ namespace Dominion
                             break;
                         case 14:
                             //Chapel
-                            CardFunctions.discardUptoFourCards(this, retVal);
+                            CardFunctions.trashUptoFourCards(this, retVal);
                             break;
                     }
                 }
@@ -511,17 +513,18 @@ namespace Dominion
 
             return retVal;
         }
-        public StatusObject discardCards(List<Card> cards)
+
+        public StatusObject trashCards(List<Card> cards)
         {
             StatusObject retVal = new StatusObject(false);
             //If none then didnt want to discard any
             if (cards.Count == 0)
             {
-                retVal.setDiscardedSuccessfully(true);
+                retVal.setTrashedCorrectly(true);
                 return retVal;
             }
 
-            if (cards.Count > 4)
+            if (cards.Count > this.possibleTrashes)
             {
                 retVal.setMessage("More than 4 cards selected!");
                 return retVal;
@@ -542,15 +545,16 @@ namespace Dominion
                     return retVal;
                 }
             }
-            //Discard cards
+            //Trash cards
             Hand h = this.getHand();
             Deck d = this.getDeck();
             foreach (Card c in cards)
             {
-                h.discard(c, d);
+                h.remove(c);//trash not discard for the chapel
             }
 
-            retVal.setDiscardedSuccessfully(true);
+            this.possibleTrashes = 0;
+            retVal.setTrashedCorrectly(true);
 
             return retVal;
         }
@@ -613,6 +617,16 @@ namespace Dominion
                 retVal.setTrashACopperForCurrency(true);
             }
             return retVal;
+        }
+
+        public void setPossibleTrashes(int val)
+        {
+            this.possibleTrashes = val;
+        }
+
+        public int getPossibleTrashes()
+        {
+            return this.possibleTrashes;
         }
     }
 }

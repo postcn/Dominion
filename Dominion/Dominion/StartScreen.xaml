@@ -9,16 +9,21 @@
                     <GradientStop Color="Transparent" Offset="1"/>
                 </LinearGradientBrush>
             </Menu.Background>
-            <MenuItem Header="Language" Foreground="White">
+            <MenuItem Header="Language" Foreground="White" IsTabStop="False">
                 <MenuItem x:Name="English" Header="English" Foreground="Black" IsChecked="True" Click="ChangeLanguage"/>
                 <MenuItem x:Name="Something_Lame" Header="Something Lame" Foreground="Black" Click="ChangeLanguage"/>
             </MenuItem>
         </Menu>
-        <Button x:Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Left" Height="40" Margin="360,86,0,0" VerticalAlignment="Top" Width="80" Click="ConfirmNames" TabIndex="2" ToolTip="Click To Start Game"/>
-        <TextBox x:Name="PlayNumText" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap" Text="Number of Players" VerticalAlignment="Top" Width="129" Margin="140,86,0,0" ToolTip="Enter The Number Of Players That Will Be Playing" TabIndex="1" GotFocus="ChangeNumber"/>
-        <TextBox x:Name="NameBox1" HorizontalAlignment="Left" Height="33" Margin="93,173,0,0" TextWrapping="Wrap" Text="Player 1" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="3" GotFocus="NameBoxFocus" Visibility="Hidden"/>
-        <TextBox x:Name="NameBox2" HorizontalAlignment="Left" Height="33" Margin="93,227,0,0" TextWrapping="Wrap" Text="Player 2" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="4" GotFocus="NameBoxFocus" Visibility="Hidden"/>
-        <TextBox x:Name="NameBox3" HorizontalAlignment="Left" Height="33" Margin="93,286,0,0" TextWrapping="Wrap" Text="Player 3" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="5" GotFocus="NameBoxFocus" Visibility="Hidden"/>
-        <TextBox x:Name="NameBox4" HorizontalAlignment="Left" Height="33" Margin="93,340,0,0" TextWrapping="Wrap" Text="Player 4" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="6" GotFocus="NameBoxFocus" Visibility="Hidden"/>
+        <Button x:Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Left" Height="40" Margin="360,86,0,0" VerticalAlignment="Top" Width="80" Click="ConfirmNames" TabIndex="5" ToolTip="Click To Start Game"/>
+        <TextBox x:Name="NameBox1" HorizontalAlignment="Left" Height="33" Margin="93,173,0,0" TextWrapping="Wrap" Text="Player 1" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsHitTestVisible="True" TabIndex="1" GotFocus="NameBoxFocus"/>
+        <TextBox x:Name="NameBox2" HorizontalAlignment="Left" Height="33" Margin="93,227,0,0" TextWrapping="Wrap" Text="Player 2" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsHitTestVisible="True" TabIndex="2" GotFocus="NameBoxFocus"/>
+        <TextBox x:Name="NameBox3" HorizontalAlignment="Left" Height="33" Margin="93,286,0,0" TextWrapping="Wrap" Text="Player 3" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="3" GotFocus="NameBoxFocus" Visibility="Hidden"/>
+        <TextBox x:Name="NameBox4" HorizontalAlignment="Left" Height="33" Margin="93,340,0,0" TextWrapping="Wrap" Text="Player 4" VerticalAlignment="Top" Width="176" Focusable="False" AllowDrop="False" IsEnabled="False" IsHitTestVisible="True" TabIndex="4" GotFocus="NameBoxFocus" Visibility="Hidden"/>
+        <StackPanel Margin="119,75,368,283">
+            <RadioButton x:Name="PlayerRadio1" Content="2 Players" VerticalAlignment="Top" Foreground="White" Margin="0,0,0,0" Click="RadioCheck" IsTabStop="False" IsChecked="True"/>
+            <RadioButton x:Name="PlayerRadio2" Content="3 Players" VerticalAlignment="Top" Foreground="White" Margin="0,5,0,0" Click="RadioCheck" IsTabStop="False"/>
+            <RadioButton x:Name="PlayerRadio3" Content="4 Players" VerticalAlignment="Top" Foreground="White" Margin="0,5,0,0" Click="RadioCheck" IsTabStop="False"/>
+        </StackPanel>
+         <RadioButton x:Name="PlayerRadio4" Content="1 Player" VerticalAlignment="Top" Foreground="White" Margin="119,55,368,0" Click="RadioCheck" IsTabStop="False"/>
     </Grid>
 </Window>

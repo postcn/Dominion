@@ -41,7 +41,6 @@ namespace Dominion {
         //*****************
         private void Play_Click(object sender, RoutedEventArgs e) {
             if (actiondone.Contains("Gain")) {
-                //1.)maybe change to hilighted image
                 StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
                 if (status.wasTrashedCorrectly()) {
                     GainCards();
@@ -50,22 +49,27 @@ namespace Dominion {
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.discardCardsAndDrawSameAmount(cards);
                 if (status.wasDiscardedAndDrawnSuccessfully()) {
-                    actiondone = "";
-                    Play.Content = "Play";
-                    Play.ToolTip = "Plays The Selected Card";
-                    RefreshWindow();
+                    ResetSpecialAction();
                 }
             } else if (actiondone.Equals("Trash Copper")){
                 StatusObject status = player.trashACopperForCurrencyBonus(CardMother.Copper());
-              //  if (status.wasCopperTrashedSuccessfullyForBonus()) {
                     if (status.needToTrashCoppersForCurrency()) {
                         TrashCopper();
                         RefreshHand();
                         return;
                     }
-                    NotTrashCopper();
-                    RefreshWindow();
-                //}
+                    ResetSpecialAction();
+                    RefreshWindow(); 
+            }else if(actiondone.Equals("Trash Many")){
+                List<Card> cards = GetCardListFromHilighted();
+                StatusObject status = player.trashCards(cards);
+                if (status.wasTrashedCorrectly()) {
+                    ResetSpecialAction();
+                }
+                if (status.needToTrashCards()) {
+                    Trash();
+                    return;
+                }
             }else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 DescriptionLabel.Content = status.wasPlayedProperly();
@@ -84,12 +88,31 @@ namespace Dominion {
                     TrashCopper();
                     RefreshHand();
                     return;
+                } else if (status.needToTrashCards()) {
+                    Trash();
                 }
                 RefreshWindow();
                 //1.)
             //    Play.Content = "Play";
              //   Play.ToolTip = "Plays The Selected Card";
             }
+        }
+        private void ResetSpecialAction() {
+            actiondone = "";
+            Play.Content = "Play";
+            Buy.Content = "Buy";
+            Play.ToolTip = "Plays The Selected Card";
+            //1.)
+            Buy.ToolTip = "";
+            End_Turn.IsEnabled = true;
+            RefreshWindow();
+        }
+        private void Trash() {
+            actiondone = "Trash Many";
+            Play.Content = "Trash";
+            Play.ToolTip = "Trashes The Selected Cards";
+            End_Turn.IsEnabled = false;
+            RefreshWindow();
         }
         private void TrashCopper() {
             actiondone = "Trash Copper";
@@ -101,14 +124,6 @@ namespace Dominion {
             Play.ToolTip = "Click To Discard A Copper";
             Buy.ToolTip = "Click To Not Discard A Copper";
             SetHandButtonsToNo();
-        }
-        private void NotTrashCopper() {
-            actiondone = "";
-            Play.Content = "Play";
-            Buy.Content = "Buy";
-            Play.ToolTip = "Plays The Selected Card";
-            //1.)
-            Buy.ToolTip = "";
         }
         private void TrashAndGain() {
             actiondone = "TrashGain";
@@ -239,7 +254,7 @@ namespace Dominion {
                 if (status.needToTrashCoppersForCurrency()) {
                     TrashCopper();
                 } else {
-                    NotTrashCopper();
+                    ResetSpecialAction();
                 }
             }
             RefreshWindow();
@@ -318,6 +333,10 @@ namespace Dominion {
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //1.)set tool tips based on phase
+            if (actiondone.Equals("Trash Many")) {
+                player.trashCards(null);
+                ResetSpecialAction();
+            }
             Buy.IsEnabled = false;
             phase = "Buy Phase";
             Phase_Label.Content = phase;
