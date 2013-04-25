@@ -12,9 +12,11 @@ namespace Dominion
         Boolean trashForGain;
         Boolean gainedCorrectly;
         Boolean trashedCorrectly;
+        Boolean deckDiscardCorrectly;
         Boolean discardMultipleToDrawSame;
         Boolean discardedAndDrawn;
         Boolean trashCards;
+        Boolean discardDeck;
         Boolean trashACopperForCurrency;
         Boolean copperTrashedSuccessfullyForBonusCurrency;
         String message;
@@ -129,6 +131,22 @@ namespace Dominion
         public Boolean needToTrashCards()
         {
             return this.trashCards;
+        }
+        public void setDiscardDeck(Boolean val)
+        {
+            this.discardDeck = val;
+        }
+        public Boolean needToDisardDeck()
+        {
+            return this.discardDeck;
+        }
+        public void setDeckDiscardedCorrectly(Boolean val)
+        {
+            this.deckDiscardCorrectly = val;
+        }
+        public Boolean wasDeckDiscardedCorrectly()
+        {
+            return this.deckDiscardCorrectly;
         }
         //public void setDiscardedSuccessfully(Boolean val)
         //{

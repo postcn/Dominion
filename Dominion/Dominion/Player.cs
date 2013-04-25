@@ -257,6 +257,10 @@ namespace Dominion
                             //Chapel
                             CardFunctions.trashUptoFourCards(this, retVal);
                             break;
+                        case 15:
+                            //Chancellor
+                            CardFunctions.discardDeckChancellor(this, retVal);
+                            break;
                     }
                 }
                 retVal.setPlayed(true);
@@ -556,6 +560,27 @@ namespace Dominion
             this.possibleTrashes = 0;
             retVal.setTrashedCorrectly(true);
 
+            return retVal;
+        }
+
+        public StatusObject discardDeck(Boolean discard)
+        {
+            StatusObject retVal = new StatusObject(false);
+
+            if (discard == false)
+            {
+                retVal.setDeckDiscardedCorrectly(true);
+                return retVal;
+            }
+            int size = this.getDeck().getInDeck().Count;
+            Deck d = this.getDeck();
+            //put deck into discard
+            for (int i = 0; i < size; i++)
+            {
+                d.getInDiscard().Add(d.getInDeck().ElementAt(0));
+                d.getInDeck().RemoveAt(0);
+            }
+            retVal.setDeckDiscardedCorrectly(true);
             return retVal;
         }
 

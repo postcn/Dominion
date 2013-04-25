@@ -87,5 +87,10 @@ namespace Dominion
             o.setTrashCards(true);
             p.setPossibleTrashes(p.getPossibleTrashes() + 4);
         }
+
+        public static void discardDeckChancellor(Player p, StatusObject o)
+        {
+            o.setDiscardDeck(true);
+        }
     }
 }

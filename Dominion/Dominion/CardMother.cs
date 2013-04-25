@@ -118,5 +118,9 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 0, 14, "Chapel", "Trash up to 4 cards from your hand", 2);
         }
+        public static Card Chancellor()
+        {
+            return new Card(2, 2, 0, 0, 0, 0, 15, "Chancellor", "+4 currency, may put your deck in discard", 3);
+        }
     }
 }

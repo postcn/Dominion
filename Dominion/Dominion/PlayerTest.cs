@@ -954,5 +954,16 @@ namespace Dominion
             Assert.AreEqual(0, p.getHand().size());
             Assert.AreEqual(0, p.getPossibleTrashes());
         }
+        [Test()]
+        public void testPlayChancellor()
+        {
+            p.getHand().getHand().Add(CardMother.Chancellor());
+            StatusObject o = p.play(CardMother.Chancellor());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToDisardDeck());
+            o = p.discardDeck(true);
+            Assert.IsTrue(o.wasDeckDiscardedCorrectly());
+            Assert.AreEqual(0, p.getDeck().getInDeck().Count);
+        }
     }
 }

@@ -122,5 +122,12 @@ namespace Dominion
             CardFunctions.trashUptoFourCards(p, o);
             Assert.IsTrue(o.needToTrashCards());
         }
+        [Test()]
+        public void testGainCardChancellor()
+        {
+            StatusObject o = new StatusObject(false);
+            CardFunctions.discardDeckChancellor(p, o);
+            Assert.IsTrue(o.needToDisardDeck());
+        }
     }
 }
