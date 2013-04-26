@@ -28,6 +28,7 @@ namespace Dominion {
             nameBox.Add(NameBox2);
             nameBox.Add(NameBox3);
             nameBox.Add(NameBox4);
+            HilightBox(NameBox1);
         }
         List<MenuItem> languages;
         List<TextBox> nameBox;
