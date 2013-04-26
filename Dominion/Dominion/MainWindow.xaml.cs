@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Diagnostics;
 
 namespace Dominion {
     /// <summary>
@@ -26,6 +26,8 @@ namespace Dominion {
         }
         int turn = 0;
         Game myGame;
+        Button _button=null;
+        Stopwatch stopWatch = new Stopwatch();
         /*************************
         1.)add tooltips and tab indecies and maybe tool tips which phase we are in
          * refershhand instead of window
@@ -167,20 +169,8 @@ namespace Dominion {
         private void RefreshWindow() {
             ResetHilightedCards();
             currentCard = "";
-            /* Boolean actioncard = false;
-             Hand myHand = player.getHand();
-             int length = myHand.getHand().Count();
-             int panelsize = 400 + (length - 5) * 80;
-             stackpan.Width = panelsize;*/
             Play.IsEnabled = false;
             Boolean actioncard = RefreshHand();
-            /*for (int i = 0; i < length; i++) {
-                if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
-                    actioncard = true;
-                }
-                string name = myHand.getHand()[i].toString() + ".jpg";
-                SetPicture(name, handImage[i]);
-            }*/
             if ((!actioncard || player.getActionsLeft() == 0) && actiondone.Equals("") && !phase.Equals("Buy Phase")) {
                 player.getCurrency();
                 phase = "Buy Phase";
@@ -364,14 +354,37 @@ namespace Dominion {
         private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {
             Button obj = (Button)sender;
             if (obj.Cursor == Cursors.Hand) {
-                for (int i = 0; i < buttons.Count(); i++) {
-                    if (buttons[i] == obj) {
-                        currentCard = StripImageSource(images[i].Source.ToString(), false);
-                        HilightCard(images[i], handcard);
-                        break;
+                if (_button == obj) {
+                    stopWatch.Stop();
+                    if (stopWatch.Elapsed.Milliseconds < 300 && stopWatch.Elapsed.Ticks < 10000000) {
+                        _button = null;
+                        if (handcard) {
+                            Play_Click(null, null);
+                        } else {
+                            Buy_Click(null, null);
+                        }
+                    } else {
+                        _button = obj;
+                        Image image = GetImageFromButton(obj, buttons, images);
+                        HilightCard(image, handcard);
                     }
+                } else {
+                    stopWatch.Reset();
+                    stopWatch.Start();
+                    _button = obj;
+                    Image image = GetImageFromButton(obj, buttons, images);
+                    HilightCard(image, handcard);
                 }
             }
+        }
+        private Image GetImageFromButton(object obj,List<Button> buttons,List<Image> images) {
+            for (int i = 0; i < buttons.Count(); i++) {
+                if (buttons[i] == obj) {
+                    currentCard = StripImageSource(images[i].Source.ToString(), false);
+                    return images[i];
+                }
+            }
+            return null;
         }
         private void HilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), false);
@@ -475,6 +488,7 @@ namespace Dominion {
             for (int i = 0; i < HilightedImages.Count; i++) {
                 UnHilightImage(HilightedImages[i]);
             }
+            SetPicture("blank.jpg", Selected_Card);
             HilightedImages = new List<Image>();
         }
         /*********************************************************

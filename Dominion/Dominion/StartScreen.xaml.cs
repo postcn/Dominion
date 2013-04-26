@@ -32,7 +32,7 @@ namespace Dominion {
         List<MenuItem> languages;
         List<TextBox> nameBox;
         MainWindow main;
-        int numValue;
+        int numValue=2;
         private void ConfirmNames(object sender, RoutedEventArgs e) {
             Game mygame = new Game(numValue);
             List<Player> players = mygame.getPlayers();
