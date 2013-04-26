@@ -26,7 +26,7 @@ namespace Dominion {
         }
         int turn = 0;
         Game myGame;
-        Button _button=null;
+        Button _button = null;
         Stopwatch stopWatch = new Stopwatch();
         /*************************
         1.)add tooltips and tab indecies and maybe tool tips which phase we are in
@@ -58,7 +58,10 @@ namespace Dominion {
             } else if (actiondone.Equals("Trash Copper")) {
                 StatusObject status = player.trashACopperForCurrencyBonus(CardMother.Copper());
                 if (status.needToTrashCoppersForCurrency()) {
-                    TrashCopper();
+                    YesNo();
+                    actiondone = "Trash Copper";
+                    Play.ToolTip = "Click To Discard A Copper";
+                    Buy.ToolTip = "Click To Not Discard A Copper";
                     RefreshHand();
                     return;
                 }
@@ -72,6 +75,19 @@ namespace Dominion {
                 }
                 if (status.needToTrashCards()) {
                     Trash();
+                    return;
+                }
+            } else if (actiondone.Equals("Discard Deck")) {
+                StatusObject status = player.discardDeck(true);
+                if (status.wasDeckDiscardedCorrectly()) {
+                    ResetSpecialAction();
+                }
+                if (status.needToDisardDeck()) {
+                    YesNo();
+                    actiondone = "Discard Deck";
+                    Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
+                    Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
+                    RefreshHand();
                     return;
                 }
             } else {
@@ -89,11 +105,21 @@ namespace Dominion {
                     Play.Content = "Discard";
                     Play.ToolTip = "Discard Selected Cards";
                 } else if (status.needToTrashCoppersForCurrency()) {
-                    TrashCopper();
+                    YesNo();
+                    actiondone = "Trash Copper";
+                    Play.ToolTip = "Click To Discard A Copper";
+                    Buy.ToolTip = "Click To Not Discard A Copper";
                     RefreshHand();
                     return;
                 } else if (status.needToTrashCards()) {
                     Trash();
+                } else if (status.needToDisardDeck()) {
+                    YesNo();
+                    actiondone = "Discard Deck";
+                    Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
+                    Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
+                    RefreshHand();
+                    return;
                 }
                 RefreshWindow();
                 //1.)
@@ -118,15 +144,13 @@ namespace Dominion {
             End_Turn.IsEnabled = false;
             RefreshWindow();
         }
-        private void TrashCopper() {
-            actiondone = "Trash Copper";
+        private void YesNo() {
             Play.Content = "Yes";
             Buy.Content = "No";
             Play.IsEnabled = true;
             Buy.IsEnabled = true;
             End_Phase.IsEnabled = false;
-            Play.ToolTip = "Click To Discard A Copper";
-            Buy.ToolTip = "Click To Not Discard A Copper";
+            End_Turn.IsEnabled = false;
             SetHandButtonsToNo();
         }
         private void TrashAndGain() {
@@ -244,9 +268,25 @@ namespace Dominion {
                 StatusObject status = player.trashACopperForCurrencyBonus(null);
                 //.1) throne room play twice if choose no first time?
                 if (status.needToTrashCoppersForCurrency()) {
-                    TrashCopper();
+                    YesNo();
+                    actiondone = "Trash Copper";
+                    Play.ToolTip = "Click To Discard A Copper";
+                    Buy.ToolTip = "Click To Not Discard A Copper";
                 } else {
                     ResetSpecialAction();
+                }
+            } else if (actiondone.Equals("Discard Deck")) {
+                StatusObject status = player.discardDeck(false);
+                if (status.wasDeckDiscardedCorrectly()) {
+                    ResetSpecialAction();
+                }
+                if (status.needToDisardDeck()) {
+                    YesNo();
+                    actiondone = "Discard Deck";
+                    Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
+                    Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
+                    RefreshHand();
+                    return;
                 }
             }
             RefreshWindow();
@@ -325,9 +365,8 @@ namespace Dominion {
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //1.)set tool tips based on phase
-            //1.)breaks calebs code
             if (actiondone.Equals("Trash Many")) {
-                player.trashCards(null);
+                player.trashCards(new List<Card>());
                 ResetSpecialAction();
             }
             Buy.IsEnabled = false;
@@ -354,6 +393,7 @@ namespace Dominion {
         private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {
             Button obj = (Button)sender;
             if (obj.Cursor == Cursors.Hand) {
+                //1.) double click doesn't work after you select the same card the first time
                 if (_button == obj) {
                     stopWatch.Stop();
                     if (stopWatch.Elapsed.Milliseconds < 300 && stopWatch.Elapsed.Ticks < 10000000) {
@@ -364,7 +404,7 @@ namespace Dominion {
                             Buy_Click(null, null);
                         }
                     } else {
-                        _button = obj;
+                        _button = null;
                         Image image = GetImageFromButton(obj, buttons, images);
                         HilightCard(image, handcard);
                     }
@@ -377,7 +417,7 @@ namespace Dominion {
                 }
             }
         }
-        private Image GetImageFromButton(object obj,List<Button> buttons,List<Image> images) {
+        private Image GetImageFromButton(object obj, List<Button> buttons, List<Image> images) {
             for (int i = 0; i < buttons.Count(); i++) {
                 if (buttons[i] == obj) {
                     currentCard = StripImageSource(images[i].Source.ToString(), false);
