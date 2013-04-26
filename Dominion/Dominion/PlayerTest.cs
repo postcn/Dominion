@@ -964,6 +964,21 @@ namespace Dominion
             o = p.discardDeck(true);
             Assert.IsTrue(o.wasDeckDiscardedCorrectly());
             Assert.AreEqual(0, p.getDeck().getInDeck().Count);
+            Assert.AreEqual(7, p.getCurrency());
+        }
+        [Test()]
+        public void testPlayThroneRoomAndChancellor()
+        {
+            p.getHand().getHand().Add(CardMother.Chancellor());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.play(CardMother.ThroneRoom());
+            StatusObject o = p.play(CardMother.Chancellor());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToDisardDeck());
+            o = p.discardDeck(true);
+            Assert.IsTrue(o.wasDeckDiscardedCorrectly());
+            Assert.AreEqual(0, p.getDeck().getInDeck().Count);
+            Assert.AreEqual(9, p.getCurrency());
         }
     }
 }
