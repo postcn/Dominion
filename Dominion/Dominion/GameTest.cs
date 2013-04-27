@@ -217,5 +217,91 @@ namespace Dominion
                 Assert.AreEqual(i, players[i].getID());
             }
         }
+
+        [Test()]
+        public void testGameNotOver()
+        {
+            Assert.IsFalse(gameFourPlayer.isGameOver());
+        }
+
+        [Test()]
+        public void testGameOverAllProvincesBought()
+        {
+            Assert.AreEqual(CardMother.Province(), gameFourPlayer.getBuyables()[5].getCard());
+            CardStack province = gameFourPlayer.getBuyables()[5];
+            int toBuy = province.cardsRemaining();
+            for (int i = 0; i < toBuy; i++)
+            {
+                province.buyOne();
+            }
+            Assert.IsTrue(gameFourPlayer.isGameOver());
+            Console.Write(gameFourPlayer.getGameOverStatus());
+        }
+
+        [Test()]
+        public void testGameOverFailTwoCardStacksEmpty()
+        {
+            CardStack action1 = gameFourPlayer.getBuyables()[7];
+            CardStack action2 = gameFourPlayer.getBuyables()[8];
+            int toBuy = action1.cardsRemaining();
+            for (int i=0; i< toBuy; i++)
+            {
+                action1.buyOne();
+                action2.buyOne();
+            }
+            Assert.IsFalse(gameFourPlayer.isGameOver());
+        }
+
+        [Test()]
+        public void testGameOverTrueThreeEmptyStacks()
+        {
+            CardStack action1 = gameFourPlayer.getBuyables()[7];
+            CardStack action2 = gameFourPlayer.getBuyables()[8];
+            CardStack action3 = gameFourPlayer.getBuyables()[9];
+            int toBuy = action1.cardsRemaining();
+            for (int i=0; i< toBuy; i++)
+            {
+                action1.buyOne();
+                action2.buyOne();
+                action3.buyOne();
+            }
+            Assert.IsTrue(gameFourPlayer.isGameOver());
+            Console.WriteLine(gameFourPlayer.getGameOverStatus());
+        }
+
+        [Test()]
+        public void checkForGameOverTie()
+        {
+            Assert.AreEqual(CardMother.Province(), gameFourPlayer.getBuyables()[5].getCard());
+            CardStack province = gameFourPlayer.getBuyables()[5];
+            int toBuy = province.cardsRemaining();
+            for (int i = 0; i < toBuy; i++)
+            {
+                province.buyOne();
+            }
+            //cleared out the provinces. Now the game is over.
+            gameFourPlayer.getPlayers()[0].getHand().getHand().Add(CardMother.Curse());
+            //make the first player lose.
+            Assert.IsTrue(gameFourPlayer.isGameOver());
+            Assert.AreEqual(3, gameFourPlayer.getWinningPlayerList().Count);
+        }
+
+        [Test()]
+        public void checkForGameOverClearWinner()
+        {
+            Assert.AreEqual(CardMother.Province(), gameFourPlayer.getBuyables()[5].getCard());
+            CardStack province = gameFourPlayer.getBuyables()[5];
+            int toBuy = province.cardsRemaining();
+            for (int i = 0; i < toBuy; i++)
+            {
+                province.buyOne();
+            }
+            //cleared out the provinces. Now the game is over.
+            gameFourPlayer.getPlayers()[0].getHand().getHand().Add(CardMother.Witch());
+            //made the first player win
+            gameFourPlayer.getPlayers()[0].play(CardMother.Witch());
+            Assert.IsTrue(gameFourPlayer.isGameOver());
+            Assert.AreEqual(1, gameFourPlayer.getWinningPlayerList().Count);
+        }
     }
 }

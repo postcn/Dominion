@@ -12,6 +12,8 @@ namespace Dominion
         int currentPlayer;
         int numPlayers;
         List<CardStack> buyables;
+        List<Player> winningPlayers;
+        String gameOverStatus = "";
 
         public Game(int numPlayers)
         {
@@ -20,6 +22,7 @@ namespace Dominion
             {
                 players.Add(new Player(i));
             }
+            winningPlayers = new List<Player>();
             this.currentPlayer = 0;
             this.numPlayers = numPlayers;
             this.setupBuyables();
@@ -68,10 +71,10 @@ namespace Dominion
             this.buyables.Add(new CardStack(120, CardMother.Curse()));
 
 
-           // this.buyables.Add(new CardStack(10, CardMother.Smithy()));
+            // this.buyables.Add(new CardStack(10, CardMother.Smithy()));
             this.buyables.Add(new CardStack(10, CardMother.Laboratory()));
             this.buyables.Add(new CardStack(10, CardMother.Market()));
-           // this.buyables.Add(new CardStack(10, CardMother.Festival()));
+            // this.buyables.Add(new CardStack(10, CardMother.Festival()));
             this.buyables.Add(new CardStack(10, CardMother.Village()));
             this.buyables.Add(new CardStack(10, CardMother.Cellar()));
             this.buyables.Add(new CardStack(10, CardMother.Witch()));
@@ -81,12 +84,12 @@ namespace Dominion
             //this.buyables.Add(new CardStack(10, CardMother.Workshop()));
             this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
             this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
-           // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
+            // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
             this.buyables.Add(new CardStack(10, CardMother.Chapel()));
             //TODO: get cards out of possible list.
         }
 
-        public List<CardStack> getBuyables() 
+        public List<CardStack> getBuyables()
         {
             return this.buyables;
         }
@@ -97,7 +100,7 @@ namespace Dominion
             {
                 return 8;
             }
-            else 
+            else
             {
                 return 12;
             }
@@ -114,6 +117,79 @@ namespace Dominion
             {
                 p.setGame(this);
             }
+        }
+
+        public Boolean isGameOver()
+        {
+            bool over = false;
+            if (this.buyables[5].isEmpty()) //Provinces are gone.
+            {
+                over = true;
+            }
+            int pilesGone = 0;
+            foreach (CardStack stack in this.buyables)
+            {
+                if (stack.isEmpty())
+                {
+                    pilesGone++;
+                }
+            }
+            if (pilesGone > 2)
+            {
+                over = true;
+            }
+            foreach (Player p in this.players)
+            {
+                p.setVictoryPts();
+                if (this.winningPlayers.Count == 0)
+                {
+                    this.winningPlayers.Add(p);
+                    continue;
+                }
+                else
+                {
+                    if (p.getVictoryPts() > this.winningPlayers[0].getVictoryPts())
+                    {
+                        this.winningPlayers = new List<Player>();
+                        this.winningPlayers.Add(p);
+                    }
+                    else if (p.getVictoryPts() == this.winningPlayers[0].getVictoryPts())
+                    {
+                        this.winningPlayers.Add(p);
+                    }
+                }
+            }
+
+            String status = "";
+            if (this.winningPlayers.Count == 1)
+            {
+                status += "Congratulations, " + winningPlayers[0].getName() + " on winning!";
+            }
+            else
+            {
+                status += "It was a tie!";
+            }
+
+            status += "\n";
+
+            foreach (Player p in this.players)
+            {
+                status += p.getName() + " had " + p.getVictoryPts() + " victory points.\n";
+            }
+
+            this.gameOverStatus = status;
+
+            return over;
+        }
+
+        public String getGameOverStatus()
+        {
+            return this.gameOverStatus;
+        }
+
+        public List<Player> getWinningPlayerList()
+        {
+            return this.winningPlayers;
         }
     }
 }
