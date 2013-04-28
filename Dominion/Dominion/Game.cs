@@ -14,6 +14,7 @@ namespace Dominion
         List<CardStack> buyables;
         List<Player> winningPlayers;
         String gameOverStatus = "";
+        String gameStatus = "";
 
         public Game(int numPlayers)
         {
@@ -31,6 +32,7 @@ namespace Dominion
 
         public int nextTurn()
         {
+            this.addToGameMessage(this.getCurrentPlayer().getName() + " Ended their turn.\n========\n");
             this.currentPlayer++;
             this.currentPlayer = currentPlayer % numPlayers;
             return this.currentPlayer;
@@ -190,6 +192,17 @@ namespace Dominion
         public List<Player> getWinningPlayerList()
         {
             return this.winningPlayers;
+        }
+
+        public void addToGameMessage(String message)
+        {
+            this.gameStatus += message;
+            this.gameStatus += "\n";
+        }
+
+        public String getGameStatus()
+        {
+            return this.gameStatus;
         }
     }
 }

@@ -157,5 +157,14 @@ namespace Dominion
             d.discard(CardMother.Copper());
             Assert.IsFalse(d.isEmpty());
         }
+
+        [Test()]
+        public void testAddCardToFrontOfDeck()
+        {
+            Assert.AreEqual(10, d.cardsLeft());
+            d.addCardToFront(CardMother.Curse());
+            Assert.AreEqual(11, d.cardsLeft());
+            Assert.AreEqual(CardMother.Curse(), d.draw());
+        }
     }
 }

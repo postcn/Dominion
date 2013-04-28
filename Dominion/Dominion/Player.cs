@@ -35,6 +35,7 @@ namespace Dominion
         int trashCurrencyBonus;
         int possibleTrashes;
 
+        List<Player> otherPlayers;
 
         public Player(int id)
         {
@@ -65,7 +66,9 @@ namespace Dominion
             this.trashCurrencyBonus = 0;
             this.bonusCurrencyForBuy = 0;
             this.possibleTrashes = 0;
+            this.otherPlayers = new List<Player>();
         }
+
         public Hand getHand()
         {
             return this.myHand;
@@ -180,6 +183,10 @@ namespace Dominion
                 this.timesPlayed.Add(this.timesToPlayLeft);
                 this.timesToPlayNextCard = 1; // we just set it to use up those plays.
                 this.lastPlayedCard = aCard;
+                if (this.game != null)
+                {
+                    this.game.addToGameMessage(this.name + " played a " + aCard.getName());
+                }
                 if (timesToPlayLeft > 1)
                 {
                     this.playMultipleTimes = false;
@@ -260,6 +267,13 @@ namespace Dominion
                         case 15:
                             //Chancellor
                             CardFunctions.discardDeckChancellor(this, retVal);
+                            break;
+                        case 16:
+                            //Militia
+                            break;//not yet implemented TODO:
+                        case 17:
+                            //Bureaucrat
+                            CardFunctions.bureaucratAction(this);
                             break;
                     }
                 }
@@ -652,6 +666,26 @@ namespace Dominion
         public int getPossibleTrashes()
         {
             return this.possibleTrashes;
+        }
+
+        public void setOtherPlayerList()
+        {
+            if (this.game != null)
+            {
+                this.otherPlayers = new List<Player>();
+                foreach (Player p in this.game.getPlayers())
+                {
+                    if (!p.Equals(this))
+                    {
+                        this.otherPlayers.Add(p);
+                    }
+                }
+            }
+        }
+
+        public List<Player> getOtherPlayers()
+        {
+            return this.otherPlayers;
         }
     }
 }

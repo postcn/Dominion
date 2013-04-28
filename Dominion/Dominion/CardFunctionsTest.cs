@@ -98,6 +98,7 @@ namespace Dominion
             Assert.IsTrue(o.wasTrashedCorrectly());
             Assert.AreEqual(5, p.getCurrencyForGain());
         }
+
         [Test()]
         public void testGainCardWorkshop()
         {
@@ -115,6 +116,7 @@ namespace Dominion
             Assert.IsTrue(p.getPlayMultipleTimes());
             Assert.AreEqual(2,p.getPlaysOfNextCardLeft());
         }
+
         [Test()]
         public void testGainCardChapel()
         {
@@ -122,12 +124,33 @@ namespace Dominion
             CardFunctions.trashUptoFourCards(p, o);
             Assert.IsTrue(o.needToTrashCards());
         }
+
         [Test()]
         public void testGainCardChancellor()
         {
             StatusObject o = new StatusObject(false);
             CardFunctions.discardDeckChancellor(p, o);
             Assert.IsTrue(o.needToDisardDeck());
+        }
+
+        [Test()]
+        public void testBureaucratAction()
+        {
+            Game g = new Game(2);
+            g.getPlayers()[1].getHand().getHand().Add(CardMother.Estate());
+            CardFunctions.bureaucratAction(g.getPlayers()[0]);
+            Assert.AreEqual(CardMother.Estate(), g.getPlayers()[1].getDeck().draw());
+            Assert.AreEqual(CardMother.Silver(), g.getPlayers()[0].getDeck().draw());
+        }
+
+        [Test()]
+        public void testBureaucratActionNoVictoryInOtherPlayer()
+        {
+            Game g = new Game(2);
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Feast());
+            CardFunctions.bureaucratAction(g.getPlayers()[0]);
+            Assert.AreEqual(CardMother.Feast(), g.getPlayers()[1].getDeck().draw());
+            Assert.AreEqual(CardMother.Silver(), g.getPlayers()[0].getDeck().draw());
         }
     }
 }

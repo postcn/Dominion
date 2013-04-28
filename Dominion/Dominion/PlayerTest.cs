@@ -13,6 +13,7 @@ namespace Dominion
         Player p;
         Player p1;
         Player p2;
+        Game game;
 
         [SetUp()]
         public void setUp()
@@ -20,6 +21,7 @@ namespace Dominion
             this.p = new Player(0);
             p1 = new Player(1);
             p2 = new Player(2);
+            this.game = new Game(4);
         }
 
         /// <summary>
@@ -954,6 +956,7 @@ namespace Dominion
             Assert.AreEqual(0, p.getHand().size());
             Assert.AreEqual(0, p.getPossibleTrashes());
         }
+
         [Test()]
         public void testPlayChancellor()
         {
@@ -966,6 +969,7 @@ namespace Dominion
             Assert.AreEqual(0, p.getDeck().getInDeck().Count);
             Assert.AreEqual(7, p.getCurrency());
         }
+
         [Test()]
         public void testPlayThroneRoomAndChancellor()
         {
@@ -979,6 +983,41 @@ namespace Dominion
             Assert.IsTrue(o.wasDeckDiscardedCorrectly());
             Assert.AreEqual(0, p.getDeck().getInDeck().Count);
             Assert.AreEqual(9, p.getCurrency());
+        }
+
+        [Test()]
+        public void testSetOtherPlayersNoGameSet()
+        {
+            p.setOtherPlayerList();
+            List<Player> list = p.getOtherPlayers();
+            Assert.AreEqual(0, list.Count);
+        }
+
+        [Test()]
+        public void testSetOtherPlayersInAGame()
+        {
+            foreach (Player p in this.game.getPlayers())
+            {
+                p.setOtherPlayerList();
+                Assert.AreEqual(3, p.getOtherPlayers().Count);
+                Assert.IsFalse(p.getOtherPlayers().Contains(p));
+            }
+        }
+
+        [Test()]
+        public void testPlayBureaucrat()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            p.getHand().getHand().Add(CardMother.Bureaucrat());
+            g.getPlayers()[1].getHand().getHand().Add(CardMother.Duchy());
+            p.play(CardMother.Bureaucrat());
+            Assert.AreEqual(CardMother.Silver(), p.getDeck().getInDeck()[0]);
+            p = g.nextTurnPlayer();
+            Assert.AreEqual(CardMother.Duchy(), p.getDeck().getInDeck()[0]);
+            p = g.nextTurnPlayer();
+            Assert.AreEqual(CardMother.Copper(), p.getDeck().getInDeck()[0]);
+            Console.Write(g.getGameStatus());
         }
     }
 }

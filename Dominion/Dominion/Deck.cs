@@ -50,6 +50,7 @@ namespace Dominion
         {
             return this.inDeck.Count;
         }
+
         public int size() {
             return this.inDeck.Count+this.inDiscard.Count;
         }
@@ -132,6 +133,19 @@ namespace Dominion
         public Boolean isEmpty()
         {
             return (this.inDeck.Count == 0 && this.inDiscard.Count == 0);
+        }
+
+        public void addCardToFront(Card toFront)
+        {
+            List<Card> cardCopy = new List<Card>();
+            foreach (Card c in this.inDeck)
+            {
+                cardCopy.Add(c);
+            }
+
+            this.inDeck = new List<Card>();
+            this.inDeck.Add(toFront);
+            this.inDeck.AddRange(cardCopy);
         }
     }
 }

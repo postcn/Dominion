@@ -82,5 +82,17 @@ namespace Dominion
                 return null;
             }
         }
+
+        public Card getFirstVictoryCard()
+        {
+            foreach (Card c in this.yourHand)
+            {
+                if (c.getType() == 0)
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -123,5 +123,38 @@ namespace Dominion
             test.draw(d);
             Assert.AreEqual(1, test.size());
         }
+
+        [Test()]
+        public void testGetFirstVictoryCardNoVictory()
+        {
+            Hand test = new Hand();
+            Deck d = new Deck();
+            test.draw(d);
+            test.draw(d);
+            Assert.IsNull(test.getFirstVictoryCard());
+        }
+
+        [Test()]
+        public void testGetFirstVictoryCardOneVictory()
+        {
+            Hand test = new Hand();
+            Deck d = new Deck();
+            test.draw(d);
+            test.draw(d);
+            test.getHand().Add(CardMother.Estate());
+            Assert.AreEqual(CardMother.Estate(), test.getFirstVictoryCard());
+        }
+
+        [Test()]
+        public void testGetFirstVictoryCard()
+        {
+            Hand test = new Hand();
+            Deck d = new Deck();
+            test.draw(d);
+            test.draw(d);
+            test.getHand().Add(CardMother.Duchy());
+            test.getHand().Add(CardMother.Estate());
+            Assert.AreEqual(CardMother.Duchy(), test.getFirstVictoryCard());
+        }
     }
 }

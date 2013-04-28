@@ -92,5 +92,24 @@ namespace Dominion
         {
             o.setDiscardDeck(true);
         }
+
+        public static void bureaucratAction(Player p)
+        {
+            p.getDeck().addCardToFront(p.getGame().getBuyables()[1].buyOne());
+            p.setOtherPlayerList();
+            foreach (Player other in p.getOtherPlayers())
+            {
+                Card c = other.getHand().getFirstVictoryCard();
+                if (c == null)
+                {
+                    p.getGame().addToGameMessage(other.getName() + " revealed a hand with no victory cards.");
+                }
+                else
+                {
+                    other.getDeck().addCardToFront(other.getHand().remove(c));
+                    p.getGame().addToGameMessage(other.getName() + " put a " + c.getName() + " back on the top of their deck.");
+                }
+            }
+        }
     }
 }
