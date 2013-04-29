@@ -1042,5 +1042,16 @@ namespace Dominion
             p.setVictoryPts();
             Assert.AreEqual(9, p.getVictoryPts());
         }
+        [Test()]
+        public void testPlayMine()
+        {
+            p.getHand().getHand().Add(CardMother.Mine());
+            StatusObject o = p.play(CardMother.Mine());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToMine());
+            o = p.mineATreasureCard(CardMother.Copper());
+            Assert.IsTrue(o.wasMinedCorrectly());
+            Assert.AreEqual(6, p.getCurrency());
+        }
     }
 }

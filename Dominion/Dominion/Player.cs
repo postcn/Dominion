@@ -295,6 +295,10 @@ namespace Dominion
                             //Bureaucrat
                             CardFunctions.bureaucratAction(this);
                             break;
+                        case 18:
+                            //Mine
+                            CardFunctions.mineATreasure(this, retVal);
+                            break;
                     }
                 }
                 retVal.setPlayed(true);
@@ -706,6 +710,33 @@ namespace Dominion
         public List<Player> getOtherPlayers()
         {
             return this.otherPlayers;
+        }
+
+        public StatusObject mineATreasureCard(Card c)
+        {
+            StatusObject retVal = new StatusObject(false);
+            if (!c.Equals(CardMother.Copper()) && !c.Equals(CardMother.Silver()))
+            {
+                return retVal;
+            }
+
+            if(c.Equals(CardMother.Copper()))
+            {
+                this.getHand().getHand().Remove(c);
+                this.getHand().getHand().Add(CardMother.Silver());
+                retVal.setMinedCorrectly(true);
+                return retVal;
+            }
+
+            if (c.Equals(CardMother.Silver()))
+            {
+                this.getHand().getHand().Remove(c);
+                this.getHand().getHand().Add(CardMother.Gold());
+                retVal.setMinedCorrectly(true);
+                return retVal;
+            }
+
+            return retVal;
         }
     }
 }

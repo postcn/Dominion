@@ -111,5 +111,9 @@ namespace Dominion
                 }
             }
         }
+        public static void mineATreasure(Player P, StatusObject o)
+        {
+            o.setMineTreasure(true);
+        }
     }
 }

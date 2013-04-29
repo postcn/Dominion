@@ -13,12 +13,14 @@ namespace Dominion
         Boolean gainedCorrectly;
         Boolean trashedCorrectly;
         Boolean deckDiscardCorrectly;
+        Boolean minedCorrectly;
         Boolean discardMultipleToDrawSame;
         Boolean discardedAndDrawn;
         Boolean trashCards;
         Boolean discardDeck;
         Boolean trashACopperForCurrency;
         Boolean copperTrashedSuccessfullyForBonusCurrency;
+        Boolean mineTreasure;
         String message;
 
         public StatusObject(Boolean played)
@@ -33,6 +35,8 @@ namespace Dominion
             this.trashACopperForCurrency = false;
             this.copperTrashedSuccessfullyForBonusCurrency = false;
             this.trashCards = false;
+            this.mineTreasure = false;
+            this.minedCorrectly = false;
         }
 
         public void setPlayed(Boolean val)
@@ -148,13 +152,21 @@ namespace Dominion
         {
             return this.deckDiscardCorrectly;
         }
-        //public void setDiscardedSuccessfully(Boolean val)
-        //{
-        //    this.discardedSuccesfully = val;
-        //}
-        //public Boolean wasDiscardedSuccessfully()
-        //{
-        //    return this.discardedSuccesfully;
-        //}
+        public void setMinedCorrectly(Boolean val)
+        {
+           this.minedCorrectly = val;
+        }
+        public Boolean wasMinedCorrectly()
+        {
+            return this.minedCorrectly;
+        }
+        public void setMineTreasure(Boolean val)
+        {
+            this.mineTreasure = val;
+        }
+        public Boolean needToMine()
+        {
+            return this.mineTreasure;
+        }
     }
 }

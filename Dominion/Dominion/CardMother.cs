@@ -139,6 +139,10 @@ namespace Dominion
         {
             return new Card(0, 0, 0, 0, 0, 0, 0, "Gardens", "Worth 1 Victory Point for every 10 cards in your deck (rounded down).", 4);
         }
+        public static Card Mine()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 18, "Mine", "Trash a Treasure card from your hand. Gain a Treasure card costing up to 3 Coins more; put it into your hand.", 5);
+        }
 
         public static List<Card> allBuyableCards()
         {

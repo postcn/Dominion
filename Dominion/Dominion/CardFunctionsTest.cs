@@ -152,5 +152,12 @@ namespace Dominion
             Assert.AreEqual(CardMother.Feast(), g.getPlayers()[1].getDeck().draw());
             Assert.AreEqual(CardMother.Silver(), g.getPlayers()[0].getDeck().draw());
         }
+        [Test()]
+        public void testGainCardMine()
+        {
+            StatusObject o = new StatusObject(false);
+            CardFunctions.mineATreasure(p, o);
+            Assert.IsTrue(o.needToMine());
+        }
     }
 }
