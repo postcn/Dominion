@@ -21,6 +21,8 @@ namespace Dominion
         Boolean trashACopperForCurrency;
         Boolean copperTrashedSuccessfullyForBonusCurrency;
         Boolean mineTreasure;
+        Boolean militiaPlayed;
+        Boolean continueWithDelayed;
         String message;
 
         public StatusObject(Boolean played)
@@ -128,45 +130,75 @@ namespace Dominion
         {
             return this.copperTrashedSuccessfullyForBonusCurrency;
         }
+
         public void setTrashCards(Boolean val)
         {
             this.trashCards = val;
         }
+
         public Boolean needToTrashCards()
         {
             return this.trashCards;
         }
+
         public void setDiscardDeck(Boolean val)
         {
             this.discardDeck = val;
         }
+
         public Boolean needToDisardDeck()
         {
             return this.discardDeck;
         }
+
         public void setDeckDiscardedCorrectly(Boolean val)
         {
             this.deckDiscardCorrectly = val;
         }
+
         public Boolean wasDeckDiscardedCorrectly()
         {
             return this.deckDiscardCorrectly;
         }
+
         public void setMinedCorrectly(Boolean val)
         {
            this.minedCorrectly = val;
         }
+
         public Boolean wasMinedCorrectly()
         {
             return this.minedCorrectly;
         }
+
         public void setMineTreasure(Boolean val)
         {
             this.mineTreasure = val;
         }
+
         public Boolean needToMine()
         {
             return this.mineTreasure;
+        }
+
+        public void setMilitiaPlayed(Boolean val)
+        {
+            this.militiaPlayed = val;
+        }
+
+        public Boolean wasMilitiaPlayed()
+        {
+            return this.militiaPlayed;
+        }
+
+        public void setContinueWithDelayedFunctions(Boolean val)
+        {
+            this.continueWithDelayed = val;
+        }
+
+        public Boolean needToContinueWithDelayedFunctions()
+        {
+            return this.continueWithDelayed;
         }
     }
 }

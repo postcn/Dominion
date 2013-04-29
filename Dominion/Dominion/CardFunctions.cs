@@ -111,9 +111,19 @@ namespace Dominion
                 }
             }
         }
+
         public static void mineATreasure(Player P, StatusObject o)
         {
             o.setMineTreasure(true);
+        }
+
+        public static void militiaAction(Player p)
+        {
+            p.setOtherPlayerList();
+            foreach (Player other in p.getOtherPlayers())
+            {
+                other.addDelayedFunction(new DelayedFunction(other, 1));
+            }
         }
     }
 }

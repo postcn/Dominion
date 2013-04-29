@@ -88,5 +88,21 @@ namespace Dominion
             o.setCopperTrashedForCurrency(true);
             Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
         }
+
+        [Test()]
+        public void testMilitiaPlayed()
+        {
+            Assert.IsFalse(o.wasMilitiaPlayed());
+            o.setMilitiaPlayed(true);
+            Assert.IsTrue(o.wasMilitiaPlayed());
+        }
+
+        [Test()]
+        public void testDelayedContinue()
+        {
+            Assert.IsFalse(o.needToContinueWithDelayedFunctions());
+            o.setContinueWithDelayedFunctions(true);
+            Assert.IsTrue(o.needToContinueWithDelayedFunctions());
+        }
     }
 }

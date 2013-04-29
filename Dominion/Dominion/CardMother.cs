@@ -164,6 +164,7 @@ namespace Dominion
             ret.Add(CardMother.Witch());
             ret.Add(CardMother.Woodcutter());
             ret.Add(CardMother.Workshop());
+            ret.Add(CardMother.Mine());
             return ret;
         }
     }

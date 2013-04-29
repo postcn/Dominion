@@ -1042,6 +1042,7 @@ namespace Dominion
             p.setVictoryPts();
             Assert.AreEqual(9, p.getVictoryPts());
         }
+
         [Test()]
         public void testPlayMine()
         {
@@ -1052,6 +1053,96 @@ namespace Dominion
             o = p.mineATreasureCard(CardMother.Copper());
             Assert.IsTrue(o.wasMinedCorrectly());
             Assert.AreEqual(6, p.getCurrency());
+        }
+
+        [Test()]
+        public void testMilitiaEffectLessThanThreeInHand()
+        {
+            StatusObject o = new StatusObject(false);
+            o.setMilitiaPlayed(true);
+            p.getHand().remove(CardMother.Copper());
+            p.getHand().remove(CardMother.Copper());
+            p.militiaDiscardEffect(new List<Card>(), o);
+            Assert.IsFalse(o.wasMilitiaPlayed());
+            Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testMilitiaEffectCardNotInHand()
+        {
+            StatusObject o = new StatusObject(false);
+            o.setMilitiaPlayed(true);
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Feast());
+            p.militiaDiscardEffect(cards, o);
+            Assert.IsTrue(o.wasMilitiaPlayed());
+            Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testMilitiaEffectCardNotEnoughCards()
+        {
+            StatusObject o = new StatusObject(false);
+            o.setMilitiaPlayed(true);
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            p.militiaDiscardEffect(cards, o);
+            Assert.IsTrue(o.wasMilitiaPlayed());
+            Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testMilitiaEffectSuccess()
+        {
+            StatusObject o = new StatusObject(false);
+            o.setMilitiaPlayed(true);
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Copper());
+            p.militiaDiscardEffect(cards, o);
+            Assert.IsFalse(o.wasMilitiaPlayed());
+            Assert.AreEqual(2, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testMilitiaEffectTooManyCards()
+        {
+            StatusObject o = new StatusObject(false);
+            o.setMilitiaPlayed(true);
+            List<Card> cards = new List<Card>();
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Copper());
+            p.militiaDiscardEffect(cards, o);
+            Assert.IsTrue(o.wasMilitiaPlayed());
+            Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testPlayMilitiaSetup()
+        {
+            Game g = new Game(2);
+            Player p = g.getCurrentPlayer();
+            p.getHand().getHand().Add(CardMother.Militia());
+            StatusObject o = p.play(CardMother.Militia());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.AreEqual(7, p.getCurrency());
+            p = g.nextTurnPlayer();
+            Assert.AreEqual(1, p.functionsToCall.Count);
+            o = p.callDelayedFunctions();
+            Assert.IsTrue(o.wasMilitiaPlayed());
+            Assert.IsTrue(o.needToContinueWithDelayedFunctions());
+            List<Card> cards = new List<Card>();
+            p.militiaDiscardEffect(cards, o);
+            Assert.IsTrue(o.wasMilitiaPlayed());
+            cards.Add(CardMother.Copper());
+            cards.Add(CardMother.Copper());
+            p.militiaDiscardEffect(cards, o);
+            Assert.IsFalse(o.wasMilitiaPlayed());
+            Assert.IsTrue(o.needToContinueWithDelayedFunctions());
+            o = p.callDelayedFunctions();
+            Assert.IsFalse(o.needToContinueWithDelayedFunctions());
         }
     }
 }

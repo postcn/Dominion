@@ -37,6 +37,8 @@ namespace Dominion
 
         List<Player> otherPlayers;
 
+        public Queue<DelayedFunction> functionsToCall;
+
         public Player(int id)
         {
             this.gain = false;
@@ -67,6 +69,7 @@ namespace Dominion
             this.bonusCurrencyForBuy = 0;
             this.possibleTrashes = 0;
             this.otherPlayers = new List<Player>();
+            this.functionsToCall = new Queue<DelayedFunction>();
         }
 
         public Hand getHand()
@@ -187,6 +190,10 @@ namespace Dominion
                 this.myDeck.discard(aStack.buyOne());
                 this.buysLeft--;
                 this.currencyAvailable -= aStack.getCard().getCost();
+                if (this.game != null)
+                {
+                    this.game.addToGameMessage(this.name + " bought a " + aStack.getCard().getName());
+                }
                 return true;
             }
             return false;
@@ -290,7 +297,8 @@ namespace Dominion
                             break;
                         case 16:
                             //Militia
-                            break;//not yet implemented TODO:
+                            CardFunctions.militiaAction(this);
+                            break;
                         case 17:
                             //Bureaucrat
                             CardFunctions.bureaucratAction(this);
@@ -737,6 +745,70 @@ namespace Dominion
             }
 
             return retVal;
+        }
+
+        /// <summary>
+        /// The trashing effect for the militia card. Needs the lastObject so we know whether to continue with more functions or not afterwards
+        /// in the delayed function calls.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <param name="lastObject"></param>
+        /// <returns></returns>
+        public StatusObject militiaDiscardEffect(List<Card> cards, StatusObject lastObject)
+        {
+            if (this.myHand.size() <= 3)
+            {
+                lastObject.setMilitiaPlayed(false);
+                return lastObject;
+            }
+            List<Card> handCopy = new List<Card>();
+            foreach (Card c in this.myHand.getHand())
+            {
+                handCopy.Add(c);
+            }
+
+            foreach (Card c in cards)
+            {
+                if (!handCopy.Remove(c))
+                {
+                    lastObject.setMessage("Card " + c.getName() + " was not located in the player's hand.");
+                    return lastObject;
+                }
+            }
+
+            if (handCopy.Count != 3)
+            {
+                lastObject.setMessage("Incorrect number of cards discarded for the Militia effect");
+                return lastObject;
+            }
+
+            //All the cards were in the hand and there were the correct number
+            foreach (Card c in cards)
+            {
+                this.myHand.discard(c, this.myDeck);
+            }
+            lastObject.setMilitiaPlayed(false);//no longer need the militia action.
+            return lastObject;
+        }
+
+        public StatusObject callDelayedFunctions()
+        {
+            StatusObject stat = new StatusObject(false);
+            while (this.functionsToCall.Count > 0)
+            {
+                DelayedFunction func = this.functionsToCall.Dequeue();
+                stat = func.performAction();
+                if (stat.wasMilitiaPlayed())
+                {
+                    break;
+                }
+            }
+            return stat;
+        }
+
+        public void addDelayedFunction(DelayedFunction func)
+        {
+            this.functionsToCall.Enqueue(func);
         }
     }
 }
