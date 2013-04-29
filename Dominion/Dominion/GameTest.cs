@@ -303,5 +303,23 @@ namespace Dominion
             Assert.IsTrue(gameFourPlayer.isGameOver());
             Assert.AreEqual(1, gameFourPlayer.getWinningPlayerList().Count);
         }
+
+        [Test()]
+        public void testRandomizeBuyables()
+        {
+            List<CardStack> buyableCopy = new List<CardStack>();
+            for (int i = 0; i < gameFourPlayer.getBuyables().Count; i++)
+            {
+                buyableCopy.Add(gameFourPlayer.getBuyables()[i]);
+            }
+            gameFourPlayer.randomizeBuyables();
+            Assert.AreNotEqual(buyableCopy, gameFourPlayer.getBuyables());
+            List<CardStack> stacks = new List<CardStack>();
+            foreach (CardStack s in gameFourPlayer.getBuyables())
+            {
+                Assert.IsFalse(stacks.Contains(s));
+                stacks.Add(s);
+            }
+        }
     }
 }

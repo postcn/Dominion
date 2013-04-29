@@ -109,15 +109,26 @@ namespace Dominion
             return this.buysLeft;
         }
 
+        private int calculateCardCount()
+        {
+            return this.myDeck.size() + this.myHand.size();
+        }
+
         public void setVictoryPts()
         {
             int tempPts = 0;
+            int cardCount = this.calculateCardCount();
+            int gardens = 0;
             List<Card> tempDeck = myDeck.getInDeck();
             for (int i = 0; i < tempDeck.Count; i++)
             {
                 if (tempDeck[i].getType() == 0)
                 {
                     tempPts = tempPts + tempDeck[i].getVictoryPoints();
+                    if (tempDeck[i].Equals(CardMother.Gardens()))
+                    {
+                        gardens++;
+                    }
                 }
             }
             List<Card> tempDiscard = myDeck.getInDiscard();
@@ -126,6 +137,10 @@ namespace Dominion
                 if (tempDiscard[i].getType() == 0)
                 {
                     tempPts = tempPts + tempDiscard[i].getVictoryPoints();
+                    if (tempDiscard[i].Equals(CardMother.Gardens()))
+                    {
+                        gardens++;
+                    }
                 }
             }
             List<Card> tempHand = myHand.getHand();
@@ -134,8 +149,13 @@ namespace Dominion
                 if (tempHand[i].getType() == 0)
                 {
                     tempPts = tempPts + tempHand[i].getVictoryPoints();
+                    if (tempHand[i].Equals(CardMother.Gardens()))
+                    {
+                        gardens++;
+                    }
                 }
             }
+            tempPts += gardens * (cardCount / 10);
             victoryPts = tempPts;
         }
 

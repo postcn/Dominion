@@ -134,5 +134,33 @@ namespace Dominion
         {
             return new Card(2, 0, 0, 0, 0, 0, 17, "Bureaucrat", "Gain a Silver card;\nput it on top of your deck.\nEach other player reveals a Victory card\nfrom his hand and puts it on his deck\n(or reveals a hand with no Victory cards).", 4);
         }
+
+        public static Card Gardens()
+        {
+            return new Card(0, 0, 0, 0, 0, 0, 0, "Gardens", "Worth 1 Victory Point for every 10 cards in your deck (rounded down).", 4);
+        }
+
+        public static List<Card> allBuyableCards()
+        {
+            List<Card> ret = new List<Card>();
+            ret.Add(CardMother.Bureaucrat());
+            ret.Add(CardMother.Cellar());
+            ret.Add(CardMother.Chancellor());
+            ret.Add(CardMother.Chapel());
+            ret.Add(CardMother.Feast());
+            ret.Add(CardMother.Festival());
+            ret.Add(CardMother.Gardens());
+            ret.Add(CardMother.Laboratory());
+            ret.Add(CardMother.Market());
+            ret.Add(CardMother.Moneylender());
+            ret.Add(CardMother.Remodel());
+            ret.Add(CardMother.Smithy());
+            ret.Add(CardMother.ThroneRoom());
+            ret.Add(CardMother.Village());
+            ret.Add(CardMother.Witch());
+            ret.Add(CardMother.Woodcutter());
+            ret.Add(CardMother.Workshop());
+            return ret;
+        }
     }
 }

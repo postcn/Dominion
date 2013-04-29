@@ -204,5 +204,23 @@ namespace Dominion
         {
             return this.gameStatus;
         }
+
+        public void randomizeBuyables()
+        {
+            List<Int32> used = new List<Int32>();
+            int size = CardMother.allBuyableCards().Count;
+            Random rng = new Random();
+            int val;
+            for (int i = 0; i < 10; i++)
+            {
+                val = rng.Next()%size;
+                while (used.Contains(val))
+                {
+                    val = rng.Next()%size;
+                }
+                used.Add(val);
+                this.buyables[i + 7] = new CardStack(10, CardMother.allBuyableCards()[val]);
+            }
+        }
     }
 }

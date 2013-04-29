@@ -1019,5 +1019,28 @@ namespace Dominion
             Assert.AreEqual(CardMother.Copper(), p.getDeck().getInDeck()[0]);
             Console.Write(g.getGameStatus());
         }
+
+        [Test()]
+        public void testGardens()
+        {
+            p.getHand().getHand().Add(CardMother.Gardens());
+            p.getDeck().getInDeck().Add(CardMother.Gardens());
+            p.getDeck().getInDiscard().Add(CardMother.Gardens());
+            //three of them so should add three victory points for every ten cards rounded down.
+            p.setVictoryPts();
+            Assert.AreEqual(6, p.getVictoryPts());
+            for (int i = 0; i < 10; i++)
+            {
+                p.getDeck().getInDeck().Add(CardMother.Copper());
+            }
+            p.setVictoryPts();
+            Assert.AreEqual(9, p.getVictoryPts());
+            for (int i = 0; i < 5; i++)
+            {
+                p.getDeck().getInDeck().Add(CardMother.Copper());
+            }
+            p.setVictoryPts();
+            Assert.AreEqual(9, p.getVictoryPts());
+        }
     }
 }
