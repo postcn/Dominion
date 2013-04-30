@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Dominion
 {
     /*
-         * For funcNum the following are defined
+         * For funcNum the following are definedf
          * 1: drawing only. Such as the smithy card.
          * 2: is drawing and action, such as the laboratory card
          * 3: is drawing and action and buys, such as the market card
@@ -141,7 +141,7 @@ namespace Dominion
         }
         public static Card Mine()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 18, "Mine", "Trash a Treasure card from your hand. Gain a Treasure card costing up to 3 Coins more; put it into your hand.", 5);
+            return new Card(2, 0, 0, 0, 0, 0, 18, "Mine", "Trash a Treasure card from your hand\nGain a Treasure card costing up to\n 3 Currency more; put it into your hand.", 5);
         }
 
         public static List<Card> allBuyableCards()

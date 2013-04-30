@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominion
-{
-    public class Game
-    {
+namespace Dominion {
+    public class Game {
         List<Player> players;
         int currentPlayer;
         int numPlayers;
@@ -16,11 +14,9 @@ namespace Dominion
         String gameOverStatus = "";
         String gameStatus = "";
 
-        public Game(int numPlayers)
-        {
+        public Game(int numPlayers) {
             players = new List<Player>();
-            for (int i = 0; i < numPlayers; i++)
-            {
+            for (int i = 0; i < numPlayers; i++) {
                 players.Add(new Player(i));
             }
             winningPlayers = new List<Player>();
@@ -30,32 +26,32 @@ namespace Dominion
             this.initializePlayersToGame();
         }
 
-        public int nextTurn()
-        {
+        public int nextTurn() {
             this.addToGameMessage(this.getCurrentPlayer().getName() + " Ended their turn.\n========\n");
             this.currentPlayer++;
             this.currentPlayer = currentPlayer % numPlayers;
             return this.currentPlayer;
         }
 
-        public Player nextTurnPlayer()
-        {
+        public Player nextTurnPlayer() {
             this.nextTurn();
             return this.getCurrentPlayer();
         }
 
-        public Player getCurrentPlayer()
-        {
+        public String nextPlayerName() {
+            int playerInt = (this.currentPlayer + 1) % this.numPlayers;
+            return this.players[playerInt].getName();
+        }
+
+        public Player getCurrentPlayer() {
             return this.players[this.currentPlayer];
         }
 
-        public int getCurrentPlayerNumber()
-        {
+        public int getCurrentPlayerNumber() {
             return this.currentPlayer;
         }
 
-        private void setupBuyables()
-        {
+        private void setupBuyables() {
             //Instantiate must have cards;
 
             //Instantiate Currency
@@ -75,14 +71,18 @@ namespace Dominion
 
             // this.buyables.Add(new CardStack(10, CardMother.Smithy()));
             this.buyables.Add(new CardStack(10, CardMother.Laboratory()));
-            this.buyables.Add(new CardStack(10, CardMother.Market()));
+            //this.buyables.Add(new CardStack(10, CardMother.Market()));
             // this.buyables.Add(new CardStack(10, CardMother.Festival()));
             this.buyables.Add(new CardStack(10, CardMother.Village()));
-            this.buyables.Add(new CardStack(10, CardMother.Cellar()));
-            this.buyables.Add(new CardStack(10, CardMother.Witch()));
+            // this.buyables.Add(new CardStack(10, CardMother.Cellar()));
+            this.buyables.Add(new CardStack(10, CardMother.Bureaucrat()));
+            this.buyables.Add(new CardStack(10, CardMother.Gardens()));
+            //this.buyables.Add(new CardStack(10, CardMother.Witch()));
+            this.buyables.Add(new CardStack(10, CardMother.Mine()));
             //this.buyables.Add(new CardStack(10, CardMother.Feast()));
             this.buyables.Add(new CardStack(10, CardMother.Remodel()));
-            this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
+            //this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
+            this.buyables.Add(new CardStack(10, CardMother.Militia()));
             //this.buyables.Add(new CardStack(10, CardMother.Workshop()));
             this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
             this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
@@ -91,91 +91,68 @@ namespace Dominion
             //TODO: get cards out of possible list.
         }
 
-        public List<CardStack> getBuyables()
-        {
+        public List<CardStack> getBuyables() {
             return this.buyables;
         }
 
-        public int calculateSupplyForVictory()
-        {
-            if (this.numPlayers < 3)
-            {
+        public int calculateSupplyForVictory() {
+            if (this.numPlayers < 3) {
                 return 8;
-            }
-            else
-            {
+            } else {
                 return 12;
             }
         }
 
-        public List<Player> getPlayers()
-        {
+        public List<Player> getPlayers() {
             return this.players;
         }
 
-        public void initializePlayersToGame()
-        {
-            foreach (Player p in this.players)
-            {
+        public void initializePlayersToGame() {
+            foreach (Player p in this.players) {
                 p.setGame(this);
             }
         }
 
-        public Boolean isGameOver()
-        {
+        public Boolean isGameOver() {
             bool over = false;
             if (this.buyables[5].isEmpty()) //Provinces are gone.
             {
                 over = true;
             }
             int pilesGone = 0;
-            foreach (CardStack stack in this.buyables)
-            {
-                if (stack.isEmpty())
-                {
+            foreach (CardStack stack in this.buyables) {
+                if (stack.isEmpty()) {
                     pilesGone++;
                 }
             }
-            if (pilesGone > 2)
-            {
+            if (pilesGone > 2) {
                 over = true;
             }
-            foreach (Player p in this.players)
-            {
+            foreach (Player p in this.players) {
                 p.setVictoryPts();
-                if (this.winningPlayers.Count == 0)
-                {
+                if (this.winningPlayers.Count == 0) {
                     this.winningPlayers.Add(p);
                     continue;
-                }
-                else
-                {
-                    if (p.getVictoryPts() > this.winningPlayers[0].getVictoryPts())
-                    {
+                } else {
+                    if (p.getVictoryPts() > this.winningPlayers[0].getVictoryPts()) {
                         this.winningPlayers = new List<Player>();
                         this.winningPlayers.Add(p);
-                    }
-                    else if (p.getVictoryPts() == this.winningPlayers[0].getVictoryPts())
-                    {
+                    } else if (p.getVictoryPts() == this.winningPlayers[0].getVictoryPts()) {
                         this.winningPlayers.Add(p);
                     }
                 }
             }
 
             String status = "";
-            if (this.winningPlayers.Count == 1)
-            {
+            if (this.winningPlayers.Count == 1) {
                 status += "Congratulations, " + winningPlayers[0].getName() + " on winning!";
-            }
-            else
-            {
+            } else {
                 status += "It was a tie!";
             }
 
             status += "\n";
 
-            foreach (Player p in this.players)
-            {
+            foreach (Player p in this.players) {
                 status += p.getName() + " had " + p.getVictoryPts() + " victory points.\n";
             }
 
@@ -184,39 +161,32 @@ namespace Dominion
             return over;
         }
 
-        public String getGameOverStatus()
-        {
+        public String getGameOverStatus() {
             return this.gameOverStatus;
         }
 
-        public List<Player> getWinningPlayerList()
-        {
+        public List<Player> getWinningPlayerList() {
             return this.winningPlayers;
         }
 
-        public void addToGameMessage(String message)
-        {
+        public void addToGameMessage(String message) {
             this.gameStatus += message;
             this.gameStatus += "\n";
         }
 
-        public String getGameStatus()
-        {
+        public String getGameStatus() {
             return this.gameStatus;
         }
 
-        public void randomizeBuyables()
-        {
+        public void randomizeBuyables() {
             List<Int32> used = new List<Int32>();
             int size = CardMother.allBuyableCards().Count;
             Random rng = new Random();
             int val;
-            for (int i = 0; i < 10; i++)
-            {
-                val = rng.Next()%size;
-                while (used.Contains(val))
-                {
-                    val = rng.Next()%size;
+            for (int i = 0; i < 10; i++) {
+                val = rng.Next() % size;
+                while (used.Contains(val)) {
+                    val = rng.Next() % size;
                 }
                 used.Add(val);
                 this.buyables[i + 7] = new CardStack(10, CardMother.allBuyableCards()[val]);

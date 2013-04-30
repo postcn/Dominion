@@ -302,6 +302,7 @@ namespace Dominion
             gameFourPlayer.getPlayers()[0].play(CardMother.Witch());
             Assert.IsTrue(gameFourPlayer.isGameOver());
             Assert.AreEqual(1, gameFourPlayer.getWinningPlayerList().Count);
+            Console.WriteLine(gameFourPlayer.getGameOverStatus());
         }
 
         [Test()]
