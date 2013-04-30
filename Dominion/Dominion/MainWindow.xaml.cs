@@ -498,8 +498,8 @@ namespace Dominion {
         private void HilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), false);
             if (!card.Contains("1")) {
-                // SetPicture(card + "i.jpg", Selected_Card);
-                SetPicture(card + ".jpg", Selected_Card);
+                SetPicture(card + "i.jpg", Selected_Card);
+                //SetPicture(card + ".jpg", Selected_Card);
                 card = card + "1.jpg";
                 SetPicture(card, image);
             }

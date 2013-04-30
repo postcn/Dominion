@@ -294,6 +294,66 @@
   <ItemGroup>
     <Resource Include="Gardens1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cellari.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chancellori.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Chapeli.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Copperi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cursei.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Duchyi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Estatei.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Feasti.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Festivali.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gardensi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Moneylenderi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Militiai.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Marketi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Laboratoryi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Goldi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Throne Roomi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Remodeli.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Silveri.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Smithyi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Provincei.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
