@@ -30,7 +30,6 @@
     <Grid x:Name="MainGrid" Margin="0,0,0,0" Background="#FF343131">
         <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,423,0,0" VerticalAlignment="Top" Width="230" Foreground="White"/>
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
-        <Label x:Name="SelectCardDescription" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="88" Margin="10,147,0,0" VerticalAlignment="Top" Width="192" Foreground="White"/>
         <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="44" Margin="729,82,0,0" VerticalAlignment="Top" Width="181" Foreground="White"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="729,132,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
         <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click" ToolTip="Ends Your Turn"/>
@@ -253,6 +252,8 @@
             <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="79,52,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
             <Label x:Name="Gain_Label" Content="" HorizontalAlignment="Left" Height="26" Margin="12,-15,0,0" VerticalAlignment="Top" Width="96" Background="#00000000" Foreground="White"/>
         </Grid>
-        <Label x:Name="SelectCardName" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,51,0,0" VerticalAlignment="Top" Width="192" Foreground="White"/>
+        <Label x:Name="SelectCardDescription" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="88" Margin="10,195,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
+        <Label x:Name="SelectCardName" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,63,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
+        <Label x:Name="SelectCardType" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,285,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
     </Grid>
 </Window>

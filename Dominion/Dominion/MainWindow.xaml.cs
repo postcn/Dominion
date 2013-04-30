@@ -498,8 +498,11 @@ namespace Dominion {
         private void HilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), false);
             if (!card.Contains("1")) {
-                SetPicture(card + "i.jpg", Selected_Card);
-                //SetPicture(card + ".jpg", Selected_Card);
+                //if (myGame.Language.Equals("English")) {
+                 //   SetPicture(card + ".jpg", Selected_Card);
+                //} else {
+                    SetPicture(card + "i.jpg", Selected_Card);
+                //}
                 card = card + "1.jpg";
                 SetPicture(card, image);
             }
@@ -634,6 +637,18 @@ namespace Dominion {
                 string name = stacks[i + currencyButton.Count + victoryButton.Count].getCard().getName() + ".jpg";
                 SetPicture(name, actionImage[i]);
             }
+            /*if(myGame.Language.Equals("English"){
+            var margin = SelectCardName.Margin;
+            margin.Top = 10;
+            SelectCardName.Margin = margin;
+            margin = SelectCardDescription.Margin;
+            margin.Top = 325;
+            SelectCardDescription.Margin = margin;
+            SelectCardName.Foreground = Brushes.White;
+            SelectCardType.Foreground = Brushes.Transparent;
+            SelectCardDescription.Foreground = Brushes.White;
+ 
+            }*/
             player.getCurrency();
             RefreshWindow();
         }
