@@ -57,7 +57,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DelayedFunction.cs" />
+    <Compile Include="Internationalizer.cs" />
+    <Compile Include="InternationalizerTest.cs" />
+    <Compile Include="Locale.cs" />
+    <Compile Include="LocaleTest.cs" />
     <Compile Include="MainWindowTest.cs" />
+    <Compile Include="Resource_en_US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource_en_US.resx</DependentUpon>
+    </Compile>
     <Compile Include="StatusObject.cs" />
     <Compile Include="StatusObjectTest.cs" />
     <Page Include="StartScreen.xaml">
@@ -119,6 +128,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource_en_US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource_en_US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
