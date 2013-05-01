@@ -10,8 +10,8 @@
                 </LinearGradientBrush>
             </Menu.Background>
             <MenuItem Header="Language" Foreground="White" IsTabStop="False">
-                <MenuItem x:Name="English" Header="English" Foreground="Black" IsChecked="True" Click="ChangeLanguage"/>
-                <MenuItem x:Name="Something_Lame" Header="Something Lame" Foreground="Black" Click="ChangeLanguage"/>
+                <MenuItem x:Name="en_US" Header="English" Foreground="Black" IsChecked="True" Click="ChangeLanguage"/>
+                <MenuItem x:Name="de_DE" Header="German" Foreground="Black" Click="ChangeLanguage"/>
             </MenuItem>
         </Menu>
         <Button x:Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Left" Height="40" Margin="360,86,0,0" VerticalAlignment="Top" Width="80" Click="ConfirmNames" TabIndex="5" ToolTip="Click To Start Game"/>

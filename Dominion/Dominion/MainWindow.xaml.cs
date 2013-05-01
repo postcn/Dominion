@@ -19,9 +19,10 @@ namespace Dominion {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        public MainWindow(Game game) {
+        public MainWindow(Game game,String lang) {
             InitializeComponent();
             myGame = game;
+            this.language = lang;
             Initialize();
         }
         int turn = 0;
@@ -36,6 +37,7 @@ namespace Dominion {
         *************************/
         Player player;
         List<CardStack> stacks;
+        string language;
         public string currentCard, phase, actiondone = "";
         public List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage, HilightedImages;
         public List<Button> currencyButton, victoryButton, handButton, actionButton, FieldButton;
@@ -498,11 +500,11 @@ namespace Dominion {
         private void HilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), false);
             if (!card.Contains("1")) {
-                //if (myGame.Language.Equals("English")) {
-                 //   SetPicture(card + ".jpg", Selected_Card);
-                //} else {
+                if (language.Equals("en_US")) {
+                    SetPicture(card + ".jpg", Selected_Card);
+                } else {
                     SetPicture(card + "i.jpg", Selected_Card);
-                //}
+                }
                 card = card + "1.jpg";
                 SetPicture(card, image);
             }
@@ -624,7 +626,6 @@ namespace Dominion {
             InitializeButtonImages();
             Player_Label.Content = player.getName() + "'s";
             int size = stacks.Count(), i;
-            //int i, victorys = 0, currencies = 0, actions = 0;
             for (i = 0; i < currencyButton.Count; i++) {
                 string name = stacks[i].getCard().getName() + ".jpg";
                 SetPicture(name, currencyImage[i]);
@@ -637,20 +638,23 @@ namespace Dominion {
                 string name = stacks[i + currencyButton.Count + victoryButton.Count].getCard().getName() + ".jpg";
                 SetPicture(name, actionImage[i]);
             }
-            /*if(myGame.Language.Equals("English"){
-            var margin = SelectCardName.Margin;
-            margin.Top = 10;
-            SelectCardName.Margin = margin;
-            margin = SelectCardDescription.Margin;
-            margin.Top = 325;
-            SelectCardDescription.Margin = margin;
-            SelectCardName.Foreground = Brushes.White;
-            SelectCardType.Foreground = Brushes.Transparent;
-            SelectCardDescription.Foreground = Brushes.White;
- 
-            }*/
+            if(language.Equals("en_US")){
+                var margin = SelectCardName.Margin;
+                margin.Top = 10;
+                SelectCardName.Margin = margin;
+                margin = SelectCardDescription.Margin;
+                margin.Top = 325;
+                SelectCardDescription.Margin = margin;
+                SelectCardName.Foreground = Brushes.White;
+                SelectCardType.Foreground = Brushes.Transparent;
+                SelectCardDescription.Foreground = Brushes.White;
+            } 
             player.getCurrency();
             RefreshWindow();
+
+            Locale loc = new Locale(language.Substring(0,2),language.Substring(3,2));
+            Internationalizer.setLocale(loc);
+            Description.Content = Internationalizer.getMessage("TestString");
         }
         private void InitializeButtonImages() {
             //MainGrid

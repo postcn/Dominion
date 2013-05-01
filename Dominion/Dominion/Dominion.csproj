@@ -62,6 +62,11 @@
     <Compile Include="Locale.cs" />
     <Compile Include="LocaleTest.cs" />
     <Compile Include="MainWindowTest.cs" />
+    <Compile Include="Resource_de_DE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource_de_DE.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resource_en_US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +133,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource_de_DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource_de_DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource_en_US.resx">
       <Generator>ResXFileCodeGenerator</Generator>

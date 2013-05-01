@@ -21,8 +21,8 @@ namespace Dominion {
         public StartScreen() {
             InitializeComponent();
             languages = new List<MenuItem>();
-            languages.Add(English);
-            languages.Add(Something_Lame);
+            languages.Add(en_US);
+            languages.Add(de_DE);
             nameBox = new List<TextBox>();
             nameBox.Add(NameBox1);
             nameBox.Add(NameBox2);
@@ -32,6 +32,7 @@ namespace Dominion {
         }
         List<MenuItem> languages;
         List<TextBox> nameBox;
+        String language = "en_US";
         MainWindow main;
         int numValue=2;
         private void ConfirmNames(object sender, RoutedEventArgs e) {
@@ -40,7 +41,7 @@ namespace Dominion {
             for (int i = 0; i < numValue; i++) {
                 players[i].setName(nameBox[i].Text);
             }
-            main = new MainWindow(mygame);
+            main = new MainWindow(mygame,language);
             PrepScreen Prep = new PrepScreen(players[0].getName(), main);
             Prep.Show();
             Close();
@@ -54,7 +55,7 @@ namespace Dominion {
             if (numValue == 1) {
                 Game mygame = new Game(1);
                 mygame.getPlayers()[0].setName("Admin");
-                main = new MainWindow(mygame);
+                main = new MainWindow(mygame, language);
                 main.Show();
                 Close();
                 return;
@@ -89,6 +90,7 @@ namespace Dominion {
             UncheckLanguages();
             MenuItem obj = (MenuItem)sender;
             obj.IsChecked = true;
+            language = obj.Name;
         }
         private void UncheckLanguages() {
             for (int i = 0; i < languages.Count; i++) {

@@ -22,7 +22,7 @@ namespace Dominion{
         /// </summary>
         [Test()]
         public void testInintializes() {
-            MainWindow main = new MainWindow(new Game(1));
+            MainWindow main = new MainWindow(new Game(1),"en_US");
             Assert.AreEqual("",main.currentCard, "");
             Assert.AreEqual("Buy Phase",main.phase,"Buy Phase");
             Assert.AreEqual(4,main.victoryImage.Count());
