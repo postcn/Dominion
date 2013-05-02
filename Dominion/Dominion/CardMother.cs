@@ -17,131 +17,131 @@ namespace Dominion
     {
         public static Card Festival()
         {
-            return new Card(2, 2, 1, 2, 0, 0, 6, "Festival", "+2 Actions\n+1\nBuy\n+2 Currency", 5);
+            return new Card(2, 2, 1, 2, 0, 0, 6, Internationalizer.getMessage("Festival"), Internationalizer.getMessage("FestivalDesc"), 5);
         }
 
         public static Card Village()
         {
-            return new Card(2, 0, 0, 2, 0, 1, 5, "Village", "+1 Card\n+2 Actions", 3);
+            return new Card(2, 0, 0, 2, 0, 1, 5, Internationalizer.getMessage("Village"), Internationalizer.getMessage("VillageDesc"), 3);
         }
 
         public static Card Woodcutter()
         {
-            return new Card(2, 2, 1, 0, 0, 0, 4, "Woodcutter", "+1 Buy\n+2 Currencys", 3);
+            return new Card(2, 2, 1, 0, 0, 0, 4, Internationalizer.getMessage("Woodcutter"), Internationalizer.getMessage("WoodcutterDesc"), 3);
         }
 
         public static Card Smithy()
         {
-            return new Card(2, 0, 0, 0, 0, 3, 1, "Smithy", "+3 Cards", 4);
+            return new Card(2, 0, 0, 0, 0, 3, 1, Internationalizer.getMessage("Smithy"), Internationalizer.getMessage("SmithyDesc"), 4);
         }
 
         public static Card Estate()
         {
-            return new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2);
+            return new Card(0, 0, 0, 0, 1, 0, 0, Internationalizer.getMessage("Estate"), Internationalizer.getMessage("EstateDesc"), 2);
         }
 
         public static Card Duchy()
         {
-            return new Card(0, 0, 0, 0, 3, 0, 0, "Duchy", "3 Victory Points", 5);
+            return new Card(0, 0, 0, 0, 3, 0, 0, Internationalizer.getMessage("Duchy"), Internationalizer.getMessage("DuchyDesc"), 5);
         }
 
         public static Card Province()
         {
-            return new Card(0, 0, 0, 0, 6, 0, 0, "Province", "6 Victory Points", 8);
+            return new Card(0, 0, 0, 0, 6, 0, 0, Internationalizer.getMessage("Province"), Internationalizer.getMessage("ProvinceDesc"), 8);
         }
 
         public static Card Copper()
         {
-            return new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency Value", 0);
+            return new Card(1, 1, 0, 0, 0, 0, 0, Internationalizer.getMessage("Copper"), Internationalizer.getMessage("CopperDesc"), 0);
         }
 
         public static Card Silver()
         {
-            return new Card(1, 2, 0, 0, 0, 0, 0, "Silver", "2 Currency Value", 3);
+            return new Card(1, 2, 0, 0, 0, 0, 0, Internationalizer.getMessage("Silver"), Internationalizer.getMessage("SilverDesc"), 3);
         }
 
         public static Card Gold()
         {
-            return new Card(1, 3, 0, 0, 0, 0, 0, "Gold", "3 Currency Value", 6);
+            return new Card(1, 3, 0, 0, 0, 0, 0, Internationalizer.getMessage("Gold"), Internationalizer.getMessage("GoldDesc"), 6);
         }
 
         public static Card Laboratory()
         {
-            return new Card(2, 0, 0, 1, 0, 2, 2, "Laboratory", "+2 Cards\n+1 Action", 5);
+            return new Card(2, 0, 0, 1, 0, 2, 2, Internationalizer.getMessage("Laboratory"), Internationalizer.getMessage("LaboratoryDesc"), 5);
         }
 
         public static Card Market()
         {
-            return new Card(2, 1, 1, 1, 0, 1, 3, "Market", "+1 Card\n+1 Action\n+1 Buy\n+1 Currency", 5);
+            return new Card(2, 1, 1, 1, 0, 1, 3, Internationalizer.getMessage("Market"), Internationalizer.getMessage("MarketDesc"), 5);
         }
 
         public static Card Curse()
         {
-            return new Card(0, 0, 0, 0, -1, 0, 0, "Curse", "-1 Victory Point", 0);
+            return new Card(0, 0, 0, 0, -1, 0, 0, Internationalizer.getMessage("Curse"), Internationalizer.getMessage("CurseDesc"), 0);
         }
 
         public static Card Witch()
         {
-            return new Card(2, 0, 0, 0, 0, 2, 7, "Witch", "+2 Cards.\nEach other player gains a Curse card.", 5);
+            return new Card(2, 0, 0, 0, 0, 2, 7, Internationalizer.getMessage("Witch"), Internationalizer.getMessage("WitchDesc"), 5);
         }
 
         public static Card Remodel()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 8, "Remodel", "Trash a card from your hand.\nGain a a card costing up to 2 Currency\nmore than the trashed card", 4);
+            return new Card(2, 0, 0, 0, 0, 0, 8, Internationalizer.getMessage("Remodel"), Internationalizer.getMessage("RemodelDesc"), 4);
         }
 
         public static Card Feast()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 9, "Feast", "Trash this card and gain a card costing up to 5 Currency", 4);
+            return new Card(2, 0, 0, 0, 0, 0, 9, Internationalizer.getMessage("Feast"), Internationalizer.getMessage("FeastDesc"), 4);
         }
 
         public static Card Workshop()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 10, "Workshop", "Gain a card costing up to 4 Currency", 3);
+            return new Card(2, 0, 0, 0, 0, 0, 10, Internationalizer.getMessage("Workshop"), Internationalizer.getMessage("WorkshopDesc"), 3);
         }
 
         public static Card ThroneRoom()
         {
-            return new Card(2, 0, 0, 1, 0, 0, 11, "Throne Room", "Choose and Action card in your hand. \nPlay it twice", 4);
+            return new Card(2, 0, 0, 1, 0, 0, 11, Internationalizer.getMessage("ThroneRoom"), Internationalizer.getMessage("ThroneRoomDesc"), 4);
         }
 
         public static Card Cellar()
         {
-            return new Card(2, 0, 0, 1, 0, 0, 12, "Cellar", "+1 Action\nDiscard any number of cards.\n+1 Card per card discarded", 2);
+            return new Card(2, 0, 0, 1, 0, 0, 12, Internationalizer.getMessage("Cellar"), Internationalizer.getMessage("CellarDesc"), 2);
         }
 
         public static Card Moneylender()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 13, "Moneylender", "Trash a copper from your hand.\nIf you do +3 Currency", 4);
+            return new Card(2, 0, 0, 0, 0, 0, 13, Internationalizer.getMessage("Moneylender"), Internationalizer.getMessage("MoneylenderDesc"), 4);
         }
 
         public static Card Chapel()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 14, "Chapel", "Trash up to 4 cards from your hand", 2);
+            return new Card(2, 0, 0, 0, 0, 0, 14, Internationalizer.getMessage("Chapel"), Internationalizer.getMessage("ChapelDesc"), 2);
         }
 
         public static Card Chancellor()
         {
-            return new Card(2, 2, 0, 0, 0, 0, 15, "Chancellor", "+ 2 currency\nYou may immediatly put your\ndeck into your discard pile ", 3);
+            return new Card(2, 2, 0, 0, 0, 0, 15, Internationalizer.getMessage("Chancellor"), Internationalizer.getMessage("ChancellorDesc"), 3);
         }
 
         public static Card Militia()
         {
-            return new Card(2, 2, 0, 0, 0, 0, 16, "Militia", "+2 Currency\nAll other players immediately discard down to three cards.", 4);
+            return new Card(2, 2, 0, 0, 0, 0, 16, Internationalizer.getMessage("Militia"), Internationalizer.getMessage("MilitiaDesc"), 4);
         }
 
         public static Card Bureaucrat()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 17, "Bureaucrat", "Gain a Silver card;\nput it on top of your deck.\nEach other player reveals a Victory card\nfrom his hand and puts it on his deck\n(or reveals a hand with no Victory cards).", 4);
+            return new Card(2, 0, 0, 0, 0, 0, 17, Internationalizer.getMessage("Bureaucrat"), Internationalizer.getMessage("BureaucratDesc"), 4);
         }
 
         public static Card Gardens()
         {
-            return new Card(0, 0, 0, 0, 0, 0, 0, "Gardens", "Worth 1 Victory Point for every 10 cards in your deck (rounded down).", 4);
+            return new Card(0, 0, 0, 0, 0, 0, 0, Internationalizer.getMessage("Gardens"), Internationalizer.getMessage("GardensDesc"), 4);
         }
         public static Card Mine()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 18, "Mine", "Trash a Treasure card from your hand\nGain a Treasure card costing up to\n 3 Currency more; put it into your hand.", 5);
+            return new Card(2, 0, 0, 0, 0, 0, 18, Internationalizer.getMessage("Mine"), Internationalizer.getMessage("MineDesc"), 5);
         }
 
         public static List<Card> allBuyableCards()

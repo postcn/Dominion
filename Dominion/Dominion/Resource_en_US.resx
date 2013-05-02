@@ -117,7 +117,163 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bureaucrat" xml:space="preserve">
+    <value>Bureaucrat</value>
+  </data>
+  <data name="BureaucratDesc" xml:space="preserve">
+    <value>Gain a Silver card;\nput it on top of your deck.\nEach other player reveals a Victory card\nfrom his hand and puts it on his deck\n(or reveals a hand with no Victory cards).</value>
+  </data>
+  <data name="Cellar" xml:space="preserve">
+    <value>Cellar</value>
+  </data>
+  <data name="CellarDesc" xml:space="preserve">
+    <value>+1 Action\nDiscard any number of cards.\n+1 Card per card discarded</value>
+  </data>
+  <data name="Chancellor" xml:space="preserve">
+    <value>Chancellor</value>
+  </data>
+  <data name="ChancellorDesc" xml:space="preserve">
+    <value>+ 2 currency\nYou may immediatly put your\ndeck into your discard pile</value>
+  </data>
+  <data name="Chapel" xml:space="preserve">
+    <value>Chapel</value>
+  </data>
+  <data name="ChapelDesc" xml:space="preserve">
+    <value>Trash up to 4 cards from your hand</value>
+  </data>
+  <data name="Copper" xml:space="preserve">
+    <value>Copper</value>
+  </data>
+  <data name="CopperDesc" xml:space="preserve">
+    <value>1 Currency Value</value>
+  </data>
+  <data name="Curse" xml:space="preserve">
+    <value>Curse</value>
+  </data>
+  <data name="CurseDesc" xml:space="preserve">
+    <value>-1 Victory Point</value>
+  </data>
+  <data name="Duchy" xml:space="preserve">
+    <value>Duchy</value>
+  </data>
+  <data name="DuchyDesc" xml:space="preserve">
+    <value>3 Victory Points</value>
+  </data>
+  <data name="Estate" xml:space="preserve">
+    <value>Estate</value>
+  </data>
+  <data name="EstateDesc" xml:space="preserve">
+    <value>1 Victory Point</value>
+  </data>
+  <data name="Feast" xml:space="preserve">
+    <value>Feast</value>
+  </data>
+  <data name="FeastDesc" xml:space="preserve">
+    <value>Trash this card and gain a card costing up to 5 Currency</value>
+  </data>
+  <data name="Festival" xml:space="preserve">
+    <value>Festival</value>
+  </data>
+  <data name="FestivalDesc" xml:space="preserve">
+    <value>+2 Actions\n+1\nBuy\n+2 Currency</value>
+  </data>
+  <data name="Gardens" xml:space="preserve">
+    <value>Gardens</value>
+  </data>
+  <data name="GardensDesc" xml:space="preserve">
+    <value>Worth 1 Victory Point for every 10 cards in your deck (rounded down).</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="GoldDesc" xml:space="preserve">
+    <value>3 Currency Value</value>
+  </data>
+  <data name="Laboratory" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="LaboratoryDesc" xml:space="preserve">
+    <value>+2 Cards\n+1 Action</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>Market</value>
+  </data>
+  <data name="MarketDesc" xml:space="preserve">
+    <value>+1 Card\n+1 Action\n+1 Buy\n+1 Currency</value>
+  </data>
+  <data name="Militia" xml:space="preserve">
+    <value>Militia</value>
+  </data>
+  <data name="MilitiaDesc" xml:space="preserve">
+    <value>+2 Currency\nAll other players immediately discard down to three cards.</value>
+  </data>
+  <data name="Mine" xml:space="preserve">
+    <value>Mine</value>
+  </data>
+  <data name="MineDesc" xml:space="preserve">
+    <value>Trash a Treasure card from your hand\nGain a Treasure card costing up to\n 3 Currency more; put it into your hand.</value>
+  </data>
+  <data name="Moneylender" xml:space="preserve">
+    <value>Moneylender</value>
+  </data>
+  <data name="MoneylenderDesc" xml:space="preserve">
+    <value>Trash a copper from your hand.\nIf you do +3 Currency</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="ProvinceDesc" xml:space="preserve">
+    <value>6 Victory Points</value>
+  </data>
+  <data name="Remodel" xml:space="preserve">
+    <value>Remodel</value>
+  </data>
+  <data name="RemodelDesc" xml:space="preserve">
+    <value>Trash a card from your hand.\nGain a a card costing up to 2 Currency\nmore than the trashed card</value>
+  </data>
+  <data name="Silver" xml:space="preserve">
+    <value>Silver</value>
+  </data>
+  <data name="SilverDesc" xml:space="preserve">
+    <value>2 Currency Value</value>
+  </data>
+  <data name="Smithy" xml:space="preserve">
+    <value>Smithy</value>
+  </data>
+  <data name="SmithyDesc" xml:space="preserve">
+    <value>+3 Cards</value>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>This is the test string!</value>
+  </data>
+  <data name="ThroneRoom" xml:space="preserve">
+    <value>Throne Room</value>
+  </data>
+  <data name="ThroneRoomDesc" xml:space="preserve">
+    <value>Choose and Action card in your hand. \nPlay it twice</value>
+  </data>
+  <data name="Village" xml:space="preserve">
+    <value>Village</value>
+  </data>
+  <data name="VillageDesc" xml:space="preserve">
+    <value>+1 Card\n+2 Actions</value>
+  </data>
+  <data name="Witch" xml:space="preserve">
+    <value>Witch</value>
+  </data>
+  <data name="WitchDesc" xml:space="preserve">
+    <value>+2 Cards.\nEach other player gains a Curse card.</value>
+  </data>
+  <data name="Woodcutter" xml:space="preserve">
+    <value>Woodcutter</value>
+  </data>
+  <data name="WoodcutterDesc" xml:space="preserve">
+    <value>+1 Buy\n+2 Currencys</value>
+  </data>
+  <data name="Workshop" xml:space="preserve">
+    <value>Workshop</value>
+  </data>
+  <data name="WorkshopDesc" xml:space="preserve">
+    <value>Gain a card costing up to 4 Currency</value>
   </data>
 </root>

@@ -117,7 +117,163 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bureaucrat" xml:space="preserve">
+    <value>Bürokrat</value>
+  </data>
+  <data name="BureaucratDesc" xml:space="preserve">
+    <value>Verschaffen Sie sich einen Silber-Karte;. \nput sie oben auf dein Deck \nJedes anderen Spieler deckt ein Victory-Karte \nvon seiner Hand und legt sie auf seinem Deck \n (oder zeigt eine Hand ohne Victory-Karten).</value>
+  </data>
+  <data name="Cellar" xml:space="preserve">
+    <value>Keller</value>
+  </data>
+  <data name="CellarDesc" xml:space="preserve">
+    <value>+1 Aktion \n Verwerfen beliebige Anzahl von Karten. \n +1 Karte pro Karte verworfen</value>
+  </data>
+  <data name="Chancellor" xml:space="preserve">
+    <value>Bundeskanzlerin</value>
+  </data>
+  <data name="ChancellorDesc" xml:space="preserve">
+    <value>+ 2 Währung \ nSie können sofort setzen Sie Ihre \n Deck in deinen Ablagestapel</value>
+  </data>
+  <data name="Chapel" xml:space="preserve">
+    <value>Kapelle</value>
+  </data>
+  <data name="ChapelDesc" xml:space="preserve">
+    <value>Trash bis zu 4 Karten von deiner Hand</value>
+  </data>
+  <data name="Copper" xml:space="preserve">
+    <value>Kupfer</value>
+  </data>
+  <data name="CopperDesc" xml:space="preserve">
+    <value>1 Währung wert</value>
+  </data>
+  <data name="Curse" xml:space="preserve">
+    <value>Fluch</value>
+  </data>
+  <data name="CurseDesc" xml:space="preserve">
+    <value>-1 Siegpunkt</value>
+  </data>
+  <data name="Duchy" xml:space="preserve">
+    <value>Herzogtum</value>
+  </data>
+  <data name="DuchyDesc" xml:space="preserve">
+    <value>3 Siegpunkte</value>
+  </data>
+  <data name="Estate" xml:space="preserve">
+    <value>Immobilien</value>
+  </data>
+  <data name="EstateDesc" xml:space="preserve">
+    <value>1 Siegpunkt</value>
+  </data>
+  <data name="Feast" xml:space="preserve">
+    <value>Fest</value>
+  </data>
+  <data name="FeastDesc" xml:space="preserve">
+    <value>Trash diese Karte und gewinnen Sie eine Karte kostet bis zu 5 Währung</value>
+  </data>
+  <data name="Festival" xml:space="preserve">
+    <value>Festival</value>
+  </data>
+  <data name="FestivalDesc" xml:space="preserve">
+    <value>+2 Aktionen \n +1 \n buy \n +2 Währung</value>
+  </data>
+  <data name="Gardens" xml:space="preserve">
+    <value>Gardens</value>
+  </data>
+  <data name="GardensDesc" xml:space="preserve">
+    <value>1 Siegpunkt für je 10 Karten in deinem Deck (abgerundet).</value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Gold</value>
+  </data>
+  <data name="GoldDesc" xml:space="preserve">
+    <value>3 Währung wert</value>
+  </data>
+  <data name="Laboratory" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="LaboratoryDesc" xml:space="preserve">
+    <value>+2 Cards \n +1 Aktion</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>Markt</value>
+  </data>
+  <data name="MarketDesc" xml:space="preserve">
+    <value>+1 Card \n +1 Aktion \n +1 Buy \n +1 Währung</value>
+  </data>
+  <data name="Militia" xml:space="preserve">
+    <value>Militia</value>
+  </data>
+  <data name="MilitiaDesc" xml:space="preserve">
+    <value>+2 Währung \nAlle anderen Spielern sofort verwerfen auf drei Karten.</value>
+  </data>
+  <data name="Mine" xml:space="preserve">
+    <value>Bergwerk</value>
+  </data>
+  <data name="MineDesc" xml:space="preserve">
+    <value>Trash einen Schatz Karte von deiner Hand \n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die Hand.</value>
+  </data>
+  <data name="Moneylender" xml:space="preserve">
+    <value>Geldverleiher</value>
+  </data>
+  <data name="MoneylenderDesc" xml:space="preserve">
+    <value>Trash ein Kupfer aus deiner Hand. \n Wenn Sie tun +3 Währung</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Provinz</value>
+  </data>
+  <data name="ProvinceDesc" xml:space="preserve">
+    <value>6 Siegpunkte</value>
+  </data>
+  <data name="Remodel" xml:space="preserve">
+    <value>renovieren</value>
+  </data>
+  <data name="RemodelDesc" xml:space="preserve">
+    <value>Trash eine Karte aus deiner Hand. \n Verstärkung aa-Karte kostet bis zu 2 Währung \n mehr als die Papierkorb-Karte</value>
+  </data>
+  <data name="Silver" xml:space="preserve">
+    <value>Silber</value>
+  </data>
+  <data name="SilverDesc" xml:space="preserve">
+    <value>2 Währung Wert</value>
+  </data>
+  <data name="Smithy" xml:space="preserve">
+    <value>Schmiede</value>
+  </data>
+  <data name="SmithyDesc" xml:space="preserve">
+    <value>+3 Karten</value>
+  </data>
   <data name="TestString" xml:space="preserve">
-    <value>;lkjsadf;lkjsadf;lkjsadf;l</value>
+    <value>German</value>
+  </data>
+  <data name="ThroneRoom" xml:space="preserve">
+    <value>Thronsaal</value>
+  </data>
+  <data name="ThroneRoomDesc" xml:space="preserve">
+    <value>Wählen und Aktion Karte in Ihrer Hand. \n Play it zweimal</value>
+  </data>
+  <data name="Village" xml:space="preserve">
+    <value>Dorf</value>
+  </data>
+  <data name="VillageDesc" xml:space="preserve">
+    <value>+1 Card \n +2 Aktionen</value>
+  </data>
+  <data name="Witch" xml:space="preserve">
+    <value>Hexe</value>
+  </data>
+  <data name="WitchDesc" xml:space="preserve">
+    <value>+2 Karten. \n Jeder Mitspieler bekommt einen Fluch Karte.</value>
+  </data>
+  <data name="Woodcutter" xml:space="preserve">
+    <value>Holzfäller</value>
+  </data>
+  <data name="WoodcutterDesc" xml:space="preserve">
+    <value>+1 Buy \ n +2 Währungen</value>
+  </data>
+  <data name="Workshop" xml:space="preserve">
+    <value>Werkstatt</value>
+  </data>
+  <data name="WorkshopDesc" xml:space="preserve">
+    <value>Nimm dir eine Karte mit Kosten bis zu 4 Währung</value>
   </data>
 </root>
