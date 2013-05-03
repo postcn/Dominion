@@ -84,10 +84,11 @@ namespace Dominion {
             //this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
             this.buyables.Add(new CardStack(10, CardMother.Militia()));
             //this.buyables.Add(new CardStack(10, CardMother.Workshop()));
-            this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
+            //this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
             this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
             // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
             this.buyables.Add(new CardStack(10, CardMother.Chapel()));
+            this.buyables.Add(new CardStack(10, CardMother.CouncilRoom()));
             //TODO: get cards out of possible list.
         }
 

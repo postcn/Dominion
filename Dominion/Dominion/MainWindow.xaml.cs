@@ -431,9 +431,9 @@ namespace Dominion {
                 End_Phase.IsEnabled = false;
                 End_Turn.IsEnabled = false;
                 SetFieldardsToNo();
-                SetHandButtonsToNormal();
-                RefreshHand();
+                SetHandButtonsToNormal();    
             }
+            RefreshWindow();
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //1.)set tool tips based on phase

@@ -376,6 +376,21 @@
   <ItemGroup>
     <Resource Include="Provincei.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Bureaucrati.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Council Room.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Council Room1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Council Roomi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Minei.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

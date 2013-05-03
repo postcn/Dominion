@@ -84,6 +84,18 @@ namespace Dominion
         }
 
         /// <summary>
+        /// tests buying a card and it being a victory point, with a game
+        /// </summary>
+        [Test()]
+        public void testbuyandvictorywithgame() {
+            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0));
+            Player p = game.getCurrentPlayer();
+            p.buy(s);
+            p.setVictoryPts();
+            Assert.AreEqual(5, p.getVictoryPts());
+        }
+
+        /// <summary>
         /// Tets buying failure because there isn't enough currency in the hand.
         /// </summary>
         [Test()]
@@ -827,6 +839,13 @@ namespace Dominion
         }
 
         [Test()]
+        public void testTrashACopperNull() {
+            p.setTrashesNeeded(1);
+            StatusObject o = p.trashACopperForCurrencyBonus(null);
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+        }
+
+        [Test()]
         public void testTrashACopperForCurrencyBonusSucceedNoTrashesNeeded()
         {
             Assert.AreEqual(0, p.getTrashesNeeded());
@@ -876,6 +895,24 @@ namespace Dominion
             Assert.AreEqual(0, p.getTrashesNeeded());
             Assert.AreEqual(3, p.getTrashCurrencyBonus());
             Assert.AreEqual(4, p.getHand().getHand().Count);
+        }
+
+        [Test()]
+        public void testPlayThroneRoomeMoneyLender() {
+            p.getHand().getHand().Add(CardMother.Moneylender());
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            StatusObject o = p.play(CardMother.ThroneRoom());
+            o = p.play(CardMother.Moneylender());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToTrashCoppersForCurrency());
+            o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.needToTrashCoppersForCurrency());
+            o = p.trashACopperForCurrencyBonus(CardMother.Copper());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(9, p.getCurrency());
+            Assert.AreEqual(0, p.getTrashesNeeded());
+            Assert.AreEqual(3, p.getTrashCurrencyBonus());
+            Assert.AreEqual(3, p.getHand().getHand().Count);
         }
 
         [Test()]
@@ -971,6 +1008,18 @@ namespace Dominion
         }
 
         [Test()]
+        public void testPlayChancellorFalse() {
+            p.getHand().getHand().Add(CardMother.Chancellor());
+            StatusObject o = p.play(CardMother.Chancellor());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToDisardDeck());
+            o = p.discardDeck(false);
+            Assert.IsTrue(o.wasDeckDiscardedCorrectly());
+            Assert.AreEqual(5, p.getDeck().getInDeck().Count);
+            Assert.AreEqual(7, p.getCurrency());
+        }
+
+        [Test()]
         public void testPlayThroneRoomAndChancellor()
         {
             p.getHand().getHand().Add(CardMother.Chancellor());
@@ -1053,6 +1102,52 @@ namespace Dominion
             o = p.mineATreasureCard(CardMother.Copper());
             Assert.IsTrue(o.wasMinedCorrectly());
             Assert.AreEqual(6, p.getCurrency());
+        }
+
+        [Test()]
+        public void testPlayMineNull() {
+            p.getHand().getHand().Add(CardMother.Mine());
+            StatusObject o = p.play(CardMother.Mine());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToMine());
+            o = p.mineATreasureCard(null);
+            Assert.IsFalse(o.wasMinedCorrectly());
+            Assert.AreEqual(5, p.getCurrency());
+        }
+
+        [Test()]
+        public void testPlayMineNotCopperOrSilver() {
+            p.getHand().getHand().Add(CardMother.Mine());
+            StatusObject o = p.play(CardMother.Mine());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToMine());
+            o = p.mineATreasureCard(CardMother.Feast());
+            Assert.IsFalse(o.wasMinedCorrectly());
+            Assert.AreEqual(5, p.getCurrency());
+        }
+
+        [Test()]
+        public void testPlayMineSilver() {
+            p.getHand().getHand().Add(CardMother.Mine());
+            p.getHand().getHand().Add(CardMother.Silver());
+            StatusObject o = p.play(CardMother.Mine());
+            Assert.IsTrue(o.wasPlayedProperly());
+            Assert.IsTrue(o.needToMine());
+            o = p.mineATreasureCard(CardMother.Silver());
+            Assert.IsTrue(o.wasMinedCorrectly());
+            Assert.AreEqual(8, p.getCurrency());
+        }
+
+        [Test()]
+        public void testPlayThroneRoomMine() {
+            p.getHand().getHand().Add(CardMother.ThroneRoom());
+            p.getHand().getHand().Add(CardMother.Mine());
+            p.play(CardMother.ThroneRoom());
+            p.play(CardMother.Mine());
+            StatusObject o = p.mineATreasureCard(CardMother.Copper());
+            Assert.IsTrue(o.needToMine());
+            p.mineATreasureCard(CardMother.Silver());
+            Assert.AreEqual(7, p.getCurrency());
         }
 
         [Test()]

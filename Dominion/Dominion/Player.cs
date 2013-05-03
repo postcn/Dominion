@@ -729,28 +729,30 @@ namespace Dominion
         public StatusObject mineATreasureCard(Card c)
         {
             StatusObject retVal = new StatusObject(false);
-            if (!c.Equals(CardMother.Copper()) && !c.Equals(CardMother.Silver()))
+            if (c == null) {
+                return retVal;
+            }
+            if (c.Equals(CardMother.Copper()) || c.Equals(CardMother.Silver()))
             {
+                if (c.Equals(CardMother.Copper())) {
+                    this.getHand().getHand().Remove(c);
+                    this.getHand().getHand().Add(CardMother.Silver());
+                    retVal.setMinedCorrectly(true);
+                    return retVal;
+                }
+
+                else {
+                    this.getHand().getHand().Remove(c);
+                    this.getHand().getHand().Add(CardMother.Gold());
+                    retVal.setMinedCorrectly(true);
+                    return retVal;
+                }
+            }
+            else {
                 return retVal;
             }
 
-            if(c.Equals(CardMother.Copper()))
-            {
-                this.getHand().getHand().Remove(c);
-                this.getHand().getHand().Add(CardMother.Silver());
-                retVal.setMinedCorrectly(true);
-                return retVal;
-            }
-
-            if (c.Equals(CardMother.Silver()))
-            {
-                this.getHand().getHand().Remove(c);
-                this.getHand().getHand().Add(CardMother.Gold());
-                retVal.setMinedCorrectly(true);
-                return retVal;
-            }
-
-            return retVal;
+            
         }
 
         /// <summary>
