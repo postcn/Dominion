@@ -125,5 +125,14 @@ namespace Dominion
                 other.addDelayedFunction(new DelayedFunction(other, 1));
             }
         }
+
+        public static void councilRoomAction(Player p)
+        {
+            p.setOtherPlayerList();
+            foreach (Player other in p.getOtherPlayers())
+            {
+                other.addDelayedFunction(new DelayedFunction(other, 0));
+            }
+        }
     }
 }

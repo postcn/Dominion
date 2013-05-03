@@ -1144,5 +1144,19 @@ namespace Dominion
             o = p.callDelayedFunctions();
             Assert.IsFalse(o.needToContinueWithDelayedFunctions());
         }
+
+        [Test()]
+        public void testPlayCouncilRoom()
+        {
+            Game g = new Game(2);
+            Player p = g.getCurrentPlayer();
+            p.getHand().getHand().Add(CardMother.CouncilRoom());
+            p.play(CardMother.CouncilRoom());
+            Assert.AreEqual(9, p.getHand().size());
+            Assert.AreEqual(2, p.getBuysLeft());
+            p = g.nextTurnPlayer();
+            p.callDelayedFunctions();
+            Assert.AreEqual(6, p.getHand().size());
+        }
     }
 }

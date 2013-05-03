@@ -151,6 +151,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ratssaal.
+        /// </summary>
+        internal static string CouncilRoom {
+            get {
+                return ResourceManager.GetString("CouncilRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +4 Karten, +1 Buy zieht jeder andere Spieler eine Karte..
+        /// </summary>
+        internal static string CouncilRoomDesc {
+            get {
+                return ResourceManager.GetString("CouncilRoomDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fluch.
         /// </summary>
         internal static string Curse {

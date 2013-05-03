@@ -147,6 +147,12 @@
   <data name="CopperDesc" xml:space="preserve">
     <value>1 Währung wert</value>
   </data>
+  <data name="CouncilRoom" xml:space="preserve">
+    <value>Ratssaal</value>
+  </data>
+  <data name="CouncilRoomDesc" xml:space="preserve">
+    <value>+4 Karten, +1 Buy zieht jeder andere Spieler eine Karte.</value>
+  </data>
   <data name="Curse" xml:space="preserve">
     <value>Fluch</value>
   </data>

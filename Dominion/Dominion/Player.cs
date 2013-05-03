@@ -307,6 +307,12 @@ namespace Dominion
                             //Mine
                             CardFunctions.mineATreasure(this, retVal);
                             break;
+                        case 19:
+                            //Council Room;
+                            CardFunctions.councilRoomAction(this);
+                            CardFunctions.draw(this, aCard.getAdditionalDraws());
+                            CardFunctions.buyAdd(this, aCard.getBuy());
+                            break;
                     }
                 }
                 retVal.setPlayed(true);
