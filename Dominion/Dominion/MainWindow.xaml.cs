@@ -134,7 +134,22 @@ namespace Dominion {
                     }
                 }
                 
-            }else {
+            }else if(actiondone.Equals("Spy Many")){
+                List<Card> spyCards = new List<Card>();
+                for (int i = 0; i < myGame.getPlayers().Count; i++) {
+                   if(StripImageSource(handImage[i].Source.ToString(),false).Contains("1")){
+                    spyCards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(),true)));
+                   }else{
+                    spyCards.Add(null);
+                   }
+                }
+                StatusObject status = player.keepOrDiscardSpiedCards(spyCards);
+                if (status.playerSpiedSuccessfully()) {
+                    ResetSpecialAction();
+                    RefreshWindow();
+                }
+
+            } else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 SelectCardDescription.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
@@ -168,6 +183,26 @@ namespace Dominion {
                     actiondone = "Mine";
                     Play.ToolTip = "Click To 'Upgrade' Currency";
                     RefreshHand();
+                } else if (status.canSpyOnDeck()) {
+                    List<Card> SpiedCards = player.spyOnDecks();
+                    actiondone = "Spy Many";
+                    Play.Content = "Discard";
+                    Play.ToolTip = "Discard Selected Cards";
+                    //Buy.IsEnabled = false;
+                    int i;
+                    ResetHilightedCards();
+                    for(i=0;i<myGame.getPlayers().Count;i++){
+                        SetPicture(SpiedCards[i].getName()+".jpg", handImage[i]);
+                    }
+                    for (int j = i; j < handImage.Count; j++) {
+                        SetPicture("blank.jpg", handImage[j]);
+
+                    }
+                    int panelsize = 400 + (myGame.getPlayers().Count - 5) * 80;
+                    stackpan.Width = panelsize;
+                    End_Phase.IsEnabled = false;
+                    End_Turn.IsEnabled = false;
+                    return;
                 }
                 RefreshWindow();
                 //1.)
@@ -420,10 +455,11 @@ namespace Dominion {
             End_Phase.IsEnabled = true;
             player.getCurrency();
             
-            RefreshWindow();
+          //  RefreshWindow();
             ResetHilightedCards();
             turn++;
             Turn_Label.Content = Math.Floor(turn * 1.0 / totalplayers) + 1;
+            RefreshWindow();
             StatusObject status = player.callDelayedFunctions();
             if (status.wasMilitiaPlayed()) {
                 actiondone = "Militia Many";
@@ -433,7 +469,7 @@ namespace Dominion {
                 SetFieldardsToNo();
                 SetHandButtonsToNormal();    
             }
-            RefreshWindow();
+            
         }
         private void EndPhase_Click(object sender, RoutedEventArgs e) {
             //1.)set tool tips based on phase

@@ -76,7 +76,8 @@ namespace Dominion {
             this.buyables.Add(new CardStack(10, CardMother.Village()));
             // this.buyables.Add(new CardStack(10, CardMother.Cellar()));
             this.buyables.Add(new CardStack(10, CardMother.Bureaucrat()));
-            this.buyables.Add(new CardStack(10, CardMother.Gardens()));
+            //this.buyables.Add(new CardStack(10, CardMother.Gardens()));
+            this.buyables.Add(new CardStack(10, CardMother.Spy()));
             //this.buyables.Add(new CardStack(10, CardMother.Witch()));
             this.buyables.Add(new CardStack(10, CardMother.Mine()));
             //this.buyables.Add(new CardStack(10, CardMother.Feast()));
