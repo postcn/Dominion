@@ -457,6 +457,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spitzel.
+        /// </summary>
+        internal static string Spy {
+            get {
+                return ResourceManager.GetString("Spy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +1 Karte\n+1 Aktion\nReveal die oberste Karte jedes Spielers Deck, und entscheiden, ob es bleibt oder wird verworfen..
+        /// </summary>
+        internal static string SpyDesc {
+            get {
+                return ResourceManager.GetString("SpyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to German.
         /// </summary>
         internal static string TestString {

@@ -313,6 +313,12 @@ namespace Dominion
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             CardFunctions.buyAdd(this, aCard.getBuy());
                             break;
+                        case 20:
+                            //Spy;
+                            CardFunctions.spyFunction(this, retVal);
+                            CardFunctions.draw(this,1);
+                            CardFunctions.actionAdd(this,1);
+                            break;
                     }
                 }
                 retVal.setPlayed(true);
@@ -817,6 +823,56 @@ namespace Dominion
         public void addDelayedFunction(DelayedFunction func)
         {
             this.functionsToCall.Enqueue(func);
+        }
+
+        public List<Card> spyOnDecks()
+        {
+            List<Card> spied = new List<Card>();
+            spied.Add(this.myDeck.peekAtTopCard());
+            foreach (Player p in this.otherPlayers)
+            {
+                spied.Add(p.getDeck().peekAtTopCard());
+            }
+            return spied;
+        }
+
+        public StatusObject keepOrDiscardSpiedCards(List<Card> discard)
+        {
+            StatusObject o = new StatusObject(false);
+            for (int i = 0; i < discard.Count; i++)
+            {
+                Player p;
+                if (i == 0)
+                {
+                    p = this;
+                }
+                else
+                {
+                    p = this.otherPlayers[i - 1];
+                }
+                if (discard[i] != null && !p.getDeck().peekAtTopCard().Equals(discard[i]))
+                {
+                    return o;
+                }
+            }
+            for (int i = 0; i < discard.Count; i++)
+            {
+                Player p;
+                if (i == 0)
+                {
+                    p = this;
+                }
+                else
+                {
+                    p = this.otherPlayers[i - 1];
+                }
+                if (discard[i] != null && p.getDeck().peekAtTopCard().Equals(discard[i]))
+                {
+                    p.getDeck().discard(p.getDeck().draw());
+                }
+            }
+            o.setSpiedSuccessfully(true);
+            return o;
         }
     }
 }

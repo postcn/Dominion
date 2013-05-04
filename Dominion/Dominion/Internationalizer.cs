@@ -20,7 +20,7 @@ namespace Dominion
 
         static public String getMessage(String key)
         {
-            return Internationalizer.manager.GetString(key);
+            return Internationalizer.manager.GetString(key).Replace("\\n","\n");
         }
     }
 }

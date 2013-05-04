@@ -1253,5 +1253,73 @@ namespace Dominion
             p.callDelayedFunctions();
             Assert.AreEqual(6, p.getHand().size());
         }
+
+        [Test()]
+        public void testPlaySpy()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[0].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[0].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Duchy());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.ThroneRoom());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Militia());
+            p.getHand().getHand().Add(CardMother.Spy());
+            StatusObject o = p.play(CardMother.Spy());
+            Assert.IsTrue(o.canSpyOnDeck());
+            List<Card> cards = p.spyOnDecks();
+            o = p.keepOrDiscardSpiedCards(cards);
+            Assert.IsTrue(o.playerSpiedSuccessfully());
+            Assert.AreEqual(CardMother.Feast(), g.getPlayers()[0].getDeck().getInDiscard()[0]);
+            Assert.AreEqual(CardMother.Duchy(), g.getPlayers()[1].getDeck().getInDiscard()[0]);
+            Assert.AreEqual(CardMother.ThroneRoom(), g.getPlayers()[2].getDeck().getInDiscard()[0]);
+            Assert.AreEqual(CardMother.Militia(), g.getPlayers()[3].getDeck().getInDiscard()[0]);
+        }
+
+        [Test()]
+        public void testPlaySpyWithNull()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[0].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[0].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Duchy());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.ThroneRoom());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Militia());
+            p.getHand().getHand().Add(CardMother.Spy());
+            StatusObject o = p.play(CardMother.Spy());
+            Assert.IsTrue(o.canSpyOnDeck());
+            List<Card> cards = p.spyOnDecks();
+            cards[1] = null;
+            o = p.keepOrDiscardSpiedCards(cards);
+            Assert.IsTrue(o.playerSpiedSuccessfully());
+            Assert.AreEqual(CardMother.Feast(), g.getPlayers()[0].getDeck().getInDiscard()[0]);
+            Assert.AreEqual(CardMother.Duchy(), g.getPlayers()[1].getDeck().peekAtTopCard());
+            Assert.AreEqual(CardMother.ThroneRoom(), g.getPlayers()[2].getDeck().getInDiscard()[0]);
+            Assert.AreEqual(CardMother.Militia(), g.getPlayers()[3].getDeck().getInDiscard()[0]);
+        }
+
+        [Test()]
+        public void testPlaySpyFailureBadCard()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[0].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[0].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Duchy());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.ThroneRoom());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Militia());
+            p.getHand().getHand().Add(CardMother.Spy());
+            StatusObject o = p.play(CardMother.Spy());
+            Assert.IsTrue(o.canSpyOnDeck());
+            List<Card> cards = p.spyOnDecks();
+            cards[3] = CardMother.Moneylender();
+            o = p.keepOrDiscardSpiedCards(cards);
+            Assert.IsFalse(o.playerSpiedSuccessfully());
+            Assert.AreEqual(CardMother.Feast(), g.getPlayers()[0].getDeck().peekAtTopCard());
+            Assert.AreEqual(CardMother.Duchy(), g.getPlayers()[1].getDeck().peekAtTopCard());
+            Assert.AreEqual(CardMother.ThroneRoom(), g.getPlayers()[2].getDeck().peekAtTopCard());
+            Assert.AreEqual(CardMother.Militia(), g.getPlayers()[3].getDeck().peekAtTopCard());
+        }
     }
 }

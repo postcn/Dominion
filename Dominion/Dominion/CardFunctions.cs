@@ -134,5 +134,11 @@ namespace Dominion
                 other.addDelayedFunction(new DelayedFunction(other, 0));
             }
         }
+
+        public static void spyFunction(Player p, StatusObject o)
+        {
+            o.setCanSpy(true);
+            p.setOtherPlayerList();
+        }
     }
 }

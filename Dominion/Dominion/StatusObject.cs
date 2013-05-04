@@ -23,6 +23,8 @@ namespace Dominion
         Boolean mineTreasure;
         Boolean militiaPlayed;
         Boolean continueWithDelayed;
+        Boolean canSpy;
+        Boolean spiedSuccessfully;
         String message;
 
         public StatusObject(Boolean played)
@@ -199,6 +201,26 @@ namespace Dominion
         public Boolean needToContinueWithDelayedFunctions()
         {
             return this.continueWithDelayed;
+        }
+
+        public void setCanSpy(Boolean val)
+        {
+            this.canSpy = val;
+        }
+
+        public Boolean canSpyOnDeck()
+        {
+            return this.canSpy;
+        }
+
+        public void setSpiedSuccessfully(Boolean val)
+        {
+            this.spiedSuccessfully = val;
+        }
+
+        public Boolean playerSpiedSuccessfully()
+        {
+            return this.spiedSuccessfully;
         }
     }
 }

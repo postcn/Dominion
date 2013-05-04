@@ -249,6 +249,12 @@
   <data name="SmithyDesc" xml:space="preserve">
     <value>+3 Karten</value>
   </data>
+  <data name="Spy" xml:space="preserve">
+    <value>Spitzel</value>
+  </data>
+  <data name="SpyDesc" xml:space="preserve">
+    <value>+1 Karte\n+1 Aktion\nReveal die oberste Karte jedes Spielers Deck, und entscheiden, ob es bleibt oder wird verworfen.</value>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>German</value>
   </data>

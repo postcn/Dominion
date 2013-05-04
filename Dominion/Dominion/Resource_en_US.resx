@@ -249,6 +249,12 @@
   <data name="SmithyDesc" xml:space="preserve">
     <value>+3 Cards</value>
   </data>
+  <data name="Spy" xml:space="preserve">
+    <value>Spy</value>
+  </data>
+  <data name="SpyDesc" xml:space="preserve">
+    <value>+1 Card\n+1 Action\nReveal the top card of each player's deck, and choose whether it stays or is discarded.</value>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>This is the test string!</value>
   </data>

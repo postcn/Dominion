@@ -457,6 +457,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spy.
+        /// </summary>
+        internal static string Spy {
+            get {
+                return ResourceManager.GetString("Spy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +1 Card\n+1 Action\nReveal the top card of each player&apos;s deck, and choose whether it stays or is discarded..
+        /// </summary>
+        internal static string SpyDesc {
+            get {
+                return ResourceManager.GetString("SpyDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the test string!.
         /// </summary>
         internal static string TestString {

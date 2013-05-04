@@ -166,5 +166,16 @@ namespace Dominion
             Assert.AreEqual(11, d.cardsLeft());
             Assert.AreEqual(CardMother.Curse(), d.draw());
         }
+
+        [Test()]
+        public void testPeek()
+        {
+            Card c = d.peekAtTopCard();
+            Assert.AreEqual(CardMother.Copper(), c);
+            d.addCardToFront(CardMother.Duchy());
+            c = d.peekAtTopCard();
+            Assert.AreEqual(CardMother.Duchy(), c);
+            Assert.AreEqual(11, d.size());
+        }
     }
 }

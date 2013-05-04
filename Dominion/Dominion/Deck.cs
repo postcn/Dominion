@@ -61,17 +61,9 @@ namespace Dominion
         /// <returns>A card taken from the top of the deck. Null if there are no cards in either the discard pile or in the deck.</returns>
         public Card draw()
         {
-            if (inDeck.Count <= 0)
-            {
-                this.reshuffle();
-            }
-            if (inDeck.Count > 0)
-            {
-                Card drawn = inDeck[0];
-                inDeck.Remove(drawn);
-                return drawn;
-            }
-            return null;
+            Card c = this.peekAtTopCard();
+            this.inDeck.Remove(c);
+            return c;
         }
 
         /// <summary>
@@ -146,6 +138,20 @@ namespace Dominion
             this.inDeck = new List<Card>();
             this.inDeck.Add(toFront);
             this.inDeck.AddRange(cardCopy);
+        }
+
+        public Card peekAtTopCard()
+        {
+            if (inDeck.Count <= 0)
+            {
+                this.reshuffle();
+            }
+            if (inDeck.Count > 0)
+            {
+                Card drawn = inDeck[0];
+                return drawn;
+            }
+            return null;
         }
     }
 }
