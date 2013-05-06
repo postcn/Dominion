@@ -913,6 +913,7 @@ namespace Dominion
                 else if (cards[i] == null)
                 {
                     ret.setSelectTrashFromThief(true);
+                    this.thiefTrashed = new List<Card>();
                     return ret;
                 }
                 else
@@ -924,6 +925,7 @@ namespace Dominion
                     else
                     {
                         ret.setSelectTrashFromThief(true);
+                        this.thiefTrashed = new List<Card>();
                         return ret;
                     }
                 }

@@ -1321,5 +1321,36 @@ namespace Dominion
             Assert.AreEqual(CardMother.ThroneRoom(), g.getPlayers()[2].getDeck().peekAtTopCard());
             Assert.AreEqual(CardMother.Militia(), g.getPlayers()[3].getDeck().peekAtTopCard());
         }
+
+        [Test()]
+        public void testPlayThiefSuccess()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Gold());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Silver());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            p.getHand().getHand().Add(CardMother.Thief());
+            StatusObject o = p.play(CardMother.Thief());
+            Assert.IsTrue(o.selectTrashFromThief());
+            List<List<Card>> cards = p.getThiefList();
+            Assert.AreEqual(2, cards[0].Count);
+            Assert.AreEqual(1, cards[1].Count);
+            Assert.AreEqual(0, cards[2].Count);
+            List<Card> steal = new List<Card>();
+            steal.Add(CardMother.Gold());
+            steal.Add(CardMother.Copper());
+            steal.Add(null);
+            o = p.validateThiefStolenCards(steal);
+            Assert.IsTrue(o.needToKeepThief());
+            Assert.AreEqual(CardMother.Silver(), g.getPlayers()[1].getDeck().getInDiscard()[0]);
+            List<Card> keep = p.getPossibleCardsToKeepFromThief();
+            keep.Remove(CardMother.Copper());
+            o = p.keepCardsFromThief(keep);
+            Assert.AreEqual(1, p.getDeck().getInDiscard().Count);
+            Assert.AreEqual(CardMother.Gold(), p.getDeck().getInDiscard()[0]);
+        }
     }
 }
