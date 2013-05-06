@@ -140,5 +140,29 @@ namespace Dominion
             o.setCanSpy(true);
             p.setOtherPlayerList();
         }
+
+        public static void thiefAction(Player p, StatusObject o)
+        {
+            p.clearThiefList();
+            p.setOtherPlayerList();
+            o.setSelectTrashFromThief(true);
+            foreach (Player other in p.getOtherPlayers())
+            {
+                List<Card> cards = new List<Card>();
+                for (int i = 0; i < 2; i++)
+                {
+                    Card c = other.getDeck().draw();
+                    if (c.getType() == 1)
+                    {
+                        cards.Add(c);
+                    }
+                    else
+                    {
+                        other.getDeck().discard(c);
+                    }
+                }
+                p.getThiefList().Add(cards);
+            }
+        }
     }
 }

@@ -484,6 +484,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thief.
+        /// </summary>
+        internal static string Thief {
+            get {
+                return ResourceManager.GetString("Thief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Each other player reveals the top 2 cards of his deck.\nIf they revealed any Treasure cards, they trash one of them that you choose.\nYou may gain any or all of these trashed cards.\nThey discard the other revealed cards..
+        /// </summary>
+        internal static string ThiefDesc {
+            get {
+                return ResourceManager.GetString("ThiefDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Throne Room.
         /// </summary>
         internal static string ThroneRoom {

@@ -258,6 +258,12 @@
   <data name="TestString" xml:space="preserve">
     <value>German</value>
   </data>
+  <data name="Thief" xml:space="preserve">
+    <value>Dieb</value>
+  </data>
+  <data name="ThiefDesc" xml:space="preserve">
+    <value>Jeder andere Spieler deckt die obersten 2 Karten von seinem Deck\n Wenn sie irgendwelche Schatz Karten aufgedeckt, trash sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten.</value>
+  </data>
   <data name="ThroneRoom" xml:space="preserve">
     <value>Thronsaal</value>
   </data>

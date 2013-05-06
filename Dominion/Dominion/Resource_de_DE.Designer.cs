@@ -484,6 +484,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dieb.
+        /// </summary>
+        internal static string Thief {
+            get {
+                return ResourceManager.GetString("Thief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jeder andere Spieler deckt die obersten 2 Karten von seinem Deck\n Wenn sie irgendwelche Schatz Karten aufgedeckt, trash sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten..
+        /// </summary>
+        internal static string ThiefDesc {
+            get {
+                return ResourceManager.GetString("ThiefDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thronsaal.
         /// </summary>
         internal static string ThroneRoom {

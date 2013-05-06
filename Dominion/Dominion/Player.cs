@@ -39,6 +39,9 @@ namespace Dominion
 
         public Queue<DelayedFunction> functionsToCall;
 
+        List<List<Card>> thiefList;
+        List<Card> thiefTrashed;
+
         public Player(int id)
         {
             this.gain = false;
@@ -70,6 +73,7 @@ namespace Dominion
             this.possibleTrashes = 0;
             this.otherPlayers = new List<Player>();
             this.functionsToCall = new Queue<DelayedFunction>();
+            this.thiefList = new List<List<Card>>();
         }
 
         public Hand getHand()
@@ -318,6 +322,10 @@ namespace Dominion
                             CardFunctions.spyFunction(this, retVal);
                             CardFunctions.draw(this,1);
                             CardFunctions.actionAdd(this,1);
+                            break;
+                        case 21:
+                            //Thief
+                            CardFunctions.thiefAction(this, retVal);
                             break;
                     }
                 }
@@ -873,6 +881,105 @@ namespace Dominion
             }
             o.setSpiedSuccessfully(true);
             return o;
+        }
+
+        public void clearThiefList()
+        {
+            this.thiefList = new List<List<Card>>();
+        }
+
+        public List<List<Card>> getThiefList()
+        {
+            return this.thiefList;
+        }
+
+        /// <summary>
+        /// Cards are indexed by position, must be one from every player that had a card in their list.
+        /// If their list was empty, pass a null in that spot.
+        /// </summary>
+        /// <param name="cards"></param>
+        /// <returns></returns>
+        public StatusObject validateThiefStolenCards(List<Card> cards)
+        {
+            StatusObject ret = new StatusObject(false);
+            this.thiefTrashed = new List<Card>();
+            for (int i = 0; i < cards.Count; i++)
+            {
+                List<Card> stolen = this.thiefList[i];
+                if (cards[i] == null && stolen.Count == 0)
+                {
+                    continue;
+                }
+                else if (cards[i] == null)
+                {
+                    ret.setSelectTrashFromThief(true);
+                    return ret;
+                }
+                else
+                {
+                    if (stolen.Contains(cards[i]))
+                    {
+                        this.thiefTrashed.Add(cards[i]);
+                    }
+                    else
+                    {
+                        ret.setSelectTrashFromThief(true);
+                        return ret;
+                    }
+                }
+            }
+
+            //if it gets here they have selected one card from each list, or there were no money cards in part of the list and null was passed in
+            int pos = 0;
+            foreach (Card c in this.thiefTrashed)
+            {
+                List<Card> stolen = this.thiefList[pos];
+                while (!stolen.Contains(c))
+                {
+                    pos++;
+                    stolen = this.thiefList[pos];
+                }
+                stolen.Remove(c);
+                foreach (Card cc in this.thiefList[pos])
+                {
+                    this.otherPlayers[pos].getDeck().discard(cc);
+                }
+            }
+            ret.setKeepTrashedFromThief(true);
+            return ret;
+        }
+
+        public List<Card> getPossibleCardsToKeepFromThief()
+        {
+            return this.thiefTrashed;
+        }
+
+        public StatusObject keepCardsFromThief(List<Card> cards)
+        {
+            StatusObject ret = new StatusObject(false);
+            List<Card> thiefCopy = new List<Card>();
+            foreach (Card c in this.thiefTrashed)
+            {
+                thiefCopy.Add(c);
+            }
+
+            foreach (Card c in cards)
+            {
+                if (!thiefCopy.Remove(c))
+                {
+                    ret.setKeepTrashedFromThief(true);
+                    return ret;
+                }
+            }
+
+            //gets here all were in the theifTrashedList
+            foreach (Card c in cards)
+            {
+                this.getDeck().discard(c);
+            }
+
+            this.thiefTrashed = new List<Card>();
+            return ret;
         }
     }
 }

@@ -25,6 +25,8 @@ namespace Dominion
         Boolean continueWithDelayed;
         Boolean canSpy;
         Boolean spiedSuccessfully;
+        Boolean trashThiefedCards;
+        Boolean keepTrashedThiefedCards;
         String message;
 
         public StatusObject(Boolean played)
@@ -221,6 +223,26 @@ namespace Dominion
         public Boolean playerSpiedSuccessfully()
         {
             return this.spiedSuccessfully;
+        }
+
+        public void setSelectTrashFromThief(Boolean val)
+        {
+            this.trashThiefedCards = val;
+        }
+
+        public void setKeepTrashedFromThief(Boolean val)
+        {
+            this.keepTrashedThiefedCards = val;
+        }
+
+        public Boolean needToKeepThief()
+        {
+            return this.keepTrashedThiefedCards;
+        }
+
+        public Boolean selectTrashFromThief()
+        {
+            return this.trashThiefedCards;
         }
     }
 }

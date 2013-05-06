@@ -258,6 +258,12 @@
   <data name="TestString" xml:space="preserve">
     <value>This is the test string!</value>
   </data>
+  <data name="Thief" xml:space="preserve">
+    <value>Thief</value>
+  </data>
+  <data name="ThiefDesc" xml:space="preserve">
+    <value>Each other player reveals the top 2 cards of his deck.\nIf they revealed any Treasure cards, they trash one of them that you choose.\nYou may gain any or all of these trashed cards.\nThey discard the other revealed cards.</value>
+  </data>
   <data name="ThroneRoom" xml:space="preserve">
     <value>Throne Room</value>
   </data>

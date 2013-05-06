@@ -154,6 +154,11 @@ namespace Dominion
             return new Card(2, 0, 0, 1, 0, 1, 20, Internationalizer.getMessage("Spy"), Internationalizer.getMessage("SpyDesc"), 4);
         }
 
+        public static Card Thief()
+        {
+            return new Card(2, 0, 0, 0, 0, 0, 21, Internationalizer.getMessage("Thief"), Internationalizer.getMessage("ThiefDesc"), 4);
+        }
+
         public static List<Card> allBuyableCards()
         {
             List<Card> ret = new List<Card>();
@@ -177,6 +182,7 @@ namespace Dominion
             ret.Add(CardMother.Mine());
             ret.Add(CardMother.CouncilRoom());
             ret.Add(CardMother.Spy());
+            ret.Add(CardMother.Thief());
             return ret;
         }
     }
