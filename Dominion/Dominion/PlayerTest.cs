@@ -1346,11 +1346,128 @@ namespace Dominion
             o = p.validateThiefStolenCards(steal);
             Assert.IsTrue(o.needToKeepThief());
             Assert.AreEqual(CardMother.Silver(), g.getPlayers()[1].getDeck().getInDiscard()[0]);
-            List<Card> keep = p.getPossibleCardsToKeepFromThief();
-            keep.Remove(CardMother.Copper());
+            List<Card> keep = new List<Card>();
+            keep.Add(CardMother.Gold());
             o = p.keepCardsFromThief(keep);
             Assert.AreEqual(1, p.getDeck().getInDiscard().Count);
             Assert.AreEqual(CardMother.Gold(), p.getDeck().getInDiscard()[0]);
+        }
+
+        [Test()]
+        public void testPlayThiefNullWhenHasStolenCards()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Gold());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Silver());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            p.getHand().getHand().Add(CardMother.Thief());
+            StatusObject o = p.play(CardMother.Thief());
+            Assert.IsTrue(o.selectTrashFromThief());
+            List<List<Card>> cards = p.getThiefList();
+            Assert.AreEqual(2, cards[0].Count);
+            Assert.AreEqual(1, cards[1].Count);
+            Assert.AreEqual(0, cards[2].Count);
+            List<Card> steal = new List<Card>();
+            steal.Add(CardMother.Gold());
+            steal.Add(null);
+            steal.Add(null);
+            o = p.validateThiefStolenCards(steal);
+            Assert.IsTrue(o.selectTrashFromThief());
+            Assert.AreEqual(0, p.getPossibleCardsToKeepFromThief().Count);
+        }
+
+        [Test()]
+        public void testPlayThiefValidateCardNotStolen()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Gold());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Silver());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            p.getHand().getHand().Add(CardMother.Thief());
+            StatusObject o = p.play(CardMother.Thief());
+            Assert.IsTrue(o.selectTrashFromThief());
+            List<List<Card>> cards = p.getThiefList();
+            Assert.AreEqual(2, cards[0].Count);
+            Assert.AreEqual(1, cards[1].Count);
+            Assert.AreEqual(0, cards[2].Count);
+            List<Card> steal = new List<Card>();
+            steal.Add(CardMother.Gold());
+            steal.Add(CardMother.Silver());
+            steal.Add(null);
+            o = p.validateThiefStolenCards(steal);
+            Assert.IsTrue(o.selectTrashFromThief());
+            Assert.AreEqual(0, p.getPossibleCardsToKeepFromThief().Count);
+        }
+
+        [Test()]
+        public void testPlayThiefAndTryToKeepCardNotInTrashed()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Gold());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Silver());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            p.getHand().getHand().Add(CardMother.Thief());
+            StatusObject o = p.play(CardMother.Thief());
+            Assert.IsTrue(o.selectTrashFromThief());
+            List<List<Card>> cards = p.getThiefList();
+            Assert.AreEqual(2, cards[0].Count);
+            Assert.AreEqual(1, cards[1].Count);
+            Assert.AreEqual(0, cards[2].Count);
+            List<Card> steal = new List<Card>();
+            steal.Add(CardMother.Gold());
+            steal.Add(CardMother.Copper());
+            steal.Add(null);
+            o = p.validateThiefStolenCards(steal);
+            Assert.IsTrue(o.needToKeepThief());
+            Assert.AreEqual(CardMother.Silver(), g.getPlayers()[1].getDeck().getInDiscard()[0]);
+            List<Card> keep = new List<Card>();
+            keep.Add(CardMother.Gold());
+            keep.Add(CardMother.Gold());
+            Assert.AreEqual(2, p.getPossibleCardsToKeepFromThief().Count);
+            o = p.keepCardsFromThief(keep);
+            Assert.IsTrue(o.needToKeepThief());
+            Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
+        }
+
+        [Test()]
+        public void testPlayThiefAndTryToKeepNull()
+        {
+            Game g = new Game(4);
+            Player p = g.getCurrentPlayer();
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Gold());
+            g.getPlayers()[1].getDeck().addCardToFront(CardMother.Silver());
+            g.getPlayers()[2].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            g.getPlayers()[3].getDeck().addCardToFront(CardMother.Feast());
+            p.getHand().getHand().Add(CardMother.Thief());
+            StatusObject o = p.play(CardMother.Thief());
+            Assert.IsTrue(o.selectTrashFromThief());
+            List<List<Card>> cards = p.getThiefList();
+            Assert.AreEqual(2, cards[0].Count);
+            Assert.AreEqual(1, cards[1].Count);
+            Assert.AreEqual(0, cards[2].Count);
+            List<Card> steal = new List<Card>();
+            steal.Add(CardMother.Gold());
+            steal.Add(CardMother.Copper());
+            steal.Add(null);
+            o = p.validateThiefStolenCards(steal);
+            Assert.IsTrue(o.needToKeepThief());
+            Assert.AreEqual(CardMother.Silver(), g.getPlayers()[1].getDeck().getInDiscard()[0]);
+            List<Card> keep = new List<Card>();
+            keep.Add(CardMother.Gold());
+            keep.Add(null);
+            o = p.keepCardsFromThief(keep);
+            Assert.IsTrue(o.needToKeepThief());
+            Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
         }
     }
 }
