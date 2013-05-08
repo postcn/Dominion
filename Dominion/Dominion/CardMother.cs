@@ -82,7 +82,7 @@ namespace Dominion
 
         public static Card Witch()
         {
-            return new Card(2, 0, 0, 0, 0, 2, 7, Internationalizer.getMessage("Witch"), Internationalizer.getMessage("WitchDesc"), 5);
+            return new Card(3, 0, 0, 0, 0, 2, 7, Internationalizer.getMessage("Witch"), Internationalizer.getMessage("WitchDesc"), 5);
         }
 
         public static Card Remodel()
@@ -127,12 +127,12 @@ namespace Dominion
 
         public static Card Militia()
         {
-            return new Card(2, 2, 0, 0, 0, 0, 16, Internationalizer.getMessage("Militia"), Internationalizer.getMessage("MilitiaDesc"), 4);
+            return new Card(3, 2, 0, 0, 0, 0, 16, Internationalizer.getMessage("Militia"), Internationalizer.getMessage("MilitiaDesc"), 4);
         }
 
         public static Card Bureaucrat()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 17, Internationalizer.getMessage("Bureaucrat"), Internationalizer.getMessage("BureaucratDesc"), 4);
+            return new Card(3, 0, 0, 0, 0, 0, 17, Internationalizer.getMessage("Bureaucrat"), Internationalizer.getMessage("BureaucratDesc"), 4);
         }
 
         public static Card Gardens()
@@ -151,12 +151,17 @@ namespace Dominion
 
         public static Card Spy()
         {
-            return new Card(2, 0, 0, 1, 0, 1, 20, Internationalizer.getMessage("Spy"), Internationalizer.getMessage("SpyDesc"), 4);
+            return new Card(3, 0, 0, 1, 0, 1, 20, Internationalizer.getMessage("Spy"), Internationalizer.getMessage("SpyDesc"), 4);
         }
 
         public static Card Thief()
         {
-            return new Card(2, 0, 0, 0, 0, 0, 21, Internationalizer.getMessage("Thief"), Internationalizer.getMessage("ThiefDesc"), 4);
+            return new Card(3, 0, 0, 0, 0, 0, 21, Internationalizer.getMessage("Thief"), Internationalizer.getMessage("ThiefDesc"), 4);
+        }
+
+        public static Card Moat()
+        {
+            return new Card(4, 0, 0, 0, 0, 2, 1, Internationalizer.getMessage("Moat"), Internationalizer.getMessage("MoatDesc"), 2);
         }
 
         public static List<Card> allBuyableCards()

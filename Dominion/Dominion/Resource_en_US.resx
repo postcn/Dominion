@@ -219,6 +219,12 @@
   <data name="MineDesc" xml:space="preserve">
     <value>Trash a Treasure card from your hand\nGain a Treasure card costing up to\n 3 Currency more; put it into your hand.</value>
   </data>
+  <data name="Moat" xml:space="preserve">
+    <value>Moat</value>
+  </data>
+  <data name="MoatDesc" xml:space="preserve">
+    <value>+2 Cards\nWhen another player plays an Attack card, you may reveal this from your hand. If you do, you are unaffected by that Attack.</value>
+  </data>
   <data name="Moneylender" xml:space="preserve">
     <value>Moneylender</value>
   </data>
@@ -269,6 +275,21 @@
   </data>
   <data name="ThroneRoomDesc" xml:space="preserve">
     <value>Choose and Action card in your hand. \nPlay it twice</value>
+  </data>
+  <data name="TypeString0" xml:space="preserve">
+    <value>Victory</value>
+  </data>
+  <data name="TypeString1" xml:space="preserve">
+    <value>Treasure</value>
+  </data>
+  <data name="TypeString2" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="TypeString3" xml:space="preserve">
+    <value>Action - Attack</value>
+  </data>
+  <data name="TypeString4" xml:space="preserve">
+    <value>Action - Reaction</value>
   </data>
   <data name="Village" xml:space="preserve">
     <value>Village</value>

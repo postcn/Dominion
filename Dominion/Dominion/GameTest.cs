@@ -322,5 +322,13 @@ namespace Dominion
                 stacks.Add(s);
             }
         }
+
+        [Test()]
+        public void testNextPlayerName()
+        {
+            String name = "Fred";
+            gameTwoPlayer.getPlayers()[1].setName(name);
+            Assert.AreEqual(name, gameTwoPlayer.nextPlayerName());
+        }
     }
 }

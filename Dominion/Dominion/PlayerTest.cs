@@ -1469,5 +1469,93 @@ namespace Dominion
             Assert.IsTrue(o.needToKeepThief());
             Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
         }
+
+        [Test()]
+        public void testPlayMoat()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            p.getHand().getHand().Add(CardMother.Moat());
+            p.play(CardMother.Moat());
+            Assert.AreEqual(7, p.getHand().size());
+        }
+
+        [Test()]
+        public void testPlayMoatAndWitch()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            Player p2 = g.getPlayers()[1];
+            Player p3 = g.getPlayers()[2];
+            p2.getHand().getHand().Add(CardMother.Moat());
+            p.getHand().getHand().Add(CardMother.Witch());
+            p.play(CardMother.Witch());
+            p2.setVictoryPts();
+            p3.setVictoryPts();
+            Assert.AreEqual(2, p3.getVictoryPts());
+            Assert.AreEqual(3, p2.getVictoryPts());
+        }
+
+        [Test()]
+        public void testPlayMoatAndBureaucrat()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            Player p2 = g.getPlayers()[1];
+            Player p3 = g.getPlayers()[2];
+            p2.getHand().getHand().Add(CardMother.Moat());
+            p.getHand().getHand().Add(CardMother.Bureaucrat());
+            p2.getHand().getHand().Add(CardMother.Estate());
+            p3.getHand().getHand().Add(CardMother.Estate());
+            p.play(CardMother.Bureaucrat());
+            Assert.AreEqual(CardMother.Copper(), p2.getDeck().peekAtTopCard());
+            Assert.AreEqual(CardMother.Estate(), p3.getDeck().peekAtTopCard());
+        }
+
+        [Test()]
+        public void testPlayMoatAndMilitia()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            Player p2 = g.getPlayers()[1];
+            Player p3 = g.getPlayers()[2];
+            p2.getHand().getHand().Add(CardMother.Moat());
+            p.getHand().getHand().Add(CardMother.Militia());
+            p.play(CardMother.Militia());
+            Assert.AreEqual(0, p2.functionsToCall.Count);
+            Assert.AreEqual(1, p3.functionsToCall.Count);
+        }
+
+        [Test()]
+        public void testPlayMoatAndThief()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            Player p2 = g.getPlayers()[1];
+            Player p3 = g.getPlayers()[2];
+            p2.getHand().getHand().Add(CardMother.Moat());
+            p.getHand().getHand().Add(CardMother.Thief());
+            p.play(CardMother.Thief());
+            List<List<Card>> thiefed = p.getThiefList();
+            Assert.AreEqual(0, thiefed[0].Count);
+            Assert.AreEqual(2, thiefed[1].Count);
+        }
+
+        [Test()]
+        public void testPlayMoatAndSpy()
+        {
+            Game g = new Game(3);
+            Player p = g.getCurrentPlayer();
+            Player p2 = g.getPlayers()[1];
+            Player p3 = g.getPlayers()[2];
+            p2.getHand().getHand().Add(CardMother.Moat());
+            p.getHand().getHand().Add(CardMother.Spy());
+            p.play(CardMother.Spy());
+            List<Card> cards = p.spyOnDecks();
+            p.keepOrDiscardSpiedCards(cards);
+            Assert.AreEqual(0, p2.getDeck().getInDiscard().Count);
+            Assert.AreEqual(1, p3.getDeck().getInDiscard().Count);
+            Assert.AreEqual(1, p.getDeck().getInDiscard().Count);
+        }
     }
 }

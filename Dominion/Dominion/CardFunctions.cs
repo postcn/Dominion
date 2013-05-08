@@ -29,11 +29,16 @@ namespace Dominion
         public static void gainCurses(Player p)
         {
             Game g = p.getGame();
-            foreach (Player play in g.getPlayers())
+            p.setOtherPlayerList();
+            foreach (Player play in p.getOtherPlayers())
             {
-                if (!p.Equals(play))
+                if (!play.getHand().hasDefenseCard())
                 {
                     play.getDeck().discard(g.getBuyables()[6].buyOne());//will always be the curse for the game setup.
+                }
+                else
+                {
+                    p.getGame().addToGameMessage(play.getName() + "defended against the attack!");
                 }
             }
         }
@@ -99,15 +104,22 @@ namespace Dominion
             p.setOtherPlayerList();
             foreach (Player other in p.getOtherPlayers())
             {
-                Card c = other.getHand().getFirstVictoryCard();
-                if (c == null)
+                if (!other.getHand().hasDefenseCard())
                 {
-                    p.getGame().addToGameMessage(other.getName() + " revealed a hand with no victory cards.");
+                    Card c = other.getHand().getFirstVictoryCard();
+                    if (c == null)
+                    {
+                        p.getGame().addToGameMessage(other.getName() + " revealed a hand with no victory cards.");
+                    }
+                    else
+                    {
+                        other.getDeck().addCardToFront(other.getHand().remove(c));
+                        p.getGame().addToGameMessage(other.getName() + " put a " + c.getName() + " back on the top of their deck.");
+                    }
                 }
                 else
                 {
-                    other.getDeck().addCardToFront(other.getHand().remove(c));
-                    p.getGame().addToGameMessage(other.getName() + " put a " + c.getName() + " back on the top of their deck.");
+                    p.getGame().addToGameMessage(other.getName() + "defended against the attack!");
                 }
             }
         }
@@ -122,7 +134,14 @@ namespace Dominion
             p.setOtherPlayerList();
             foreach (Player other in p.getOtherPlayers())
             {
-                other.addDelayedFunction(new DelayedFunction(other, 1));
+                if (!other.getHand().hasDefenseCard())
+                {
+                    other.addDelayedFunction(new DelayedFunction(other, 1));
+                }
+                else
+                {
+                    p.getGame().addToGameMessage(other.getName() + "defended against the attack!");
+                }
             }
         }
 
@@ -149,17 +168,25 @@ namespace Dominion
             foreach (Player other in p.getOtherPlayers())
             {
                 List<Card> cards = new List<Card>();
-                for (int i = 0; i < 2; i++)
+                if (!other.getHand().hasDefenseCard())
                 {
-                    Card c = other.getDeck().draw();
-                    if (c.getType() == 1)
+                    for (int i = 0; i < 2; i++)
                     {
-                        cards.Add(c);
+                        Card c = other.getDeck().draw();
+                        if (c.getType() == 1)
+                        {
+                            cards.Add(c);
+                        }
+                        else
+                        {
+                            other.getDeck().discard(c);
+                        }
+                        p.getGame().addToGameMessage(other.getName() + " revealed a " + c.getName() + " from the top of their deck.");
                     }
-                    else
-                    {
-                        other.getDeck().discard(c);
-                    }
+                }
+                else
+                {
+                    p.getGame().addToGameMessage(other.getName() + "defended against the attack!");
                 }
                 p.getThiefList().Add(cards);
             }

@@ -195,5 +195,20 @@ namespace Dominion
             oneoff = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 0);
             Assert.False(test.Equals(oneoff));
         }
+
+        [Test()]
+        public void testInternationalizedType()
+        {
+            Assert.AreEqual("Victory", CardMother.Estate().InternationlizedTypeString());
+            Assert.AreEqual("Action", CardMother.Feast().InternationlizedTypeString());
+            Assert.AreEqual("Action - Attack", CardMother.Militia().InternationlizedTypeString());
+            Assert.AreEqual("Action - Reaction", CardMother.Moat().InternationlizedTypeString());
+            Internationalizer.setLocale(new Locale("de", "DE"));
+            Assert.AreEqual("Sieg", CardMother.Estate().InternationlizedTypeString());
+            Assert.AreEqual("Aktion", CardMother.Feast().InternationlizedTypeString());
+            Assert.AreEqual("Aktion - Angriff", CardMother.Militia().InternationlizedTypeString());
+            Assert.AreEqual("Aktion - Reaktion", CardMother.Moat().InternationlizedTypeString());
+            Internationalizer.setLocale(new Locale("en", "US"));
+        }
     }
 }

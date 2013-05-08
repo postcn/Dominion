@@ -9,7 +9,7 @@ namespace Dominion
     public class Card
     {
         /*
-         * For type, 0 is a victory, 1 is a currency, and 2 is an action
+         * For type, 0 is a victory, 1 is a currency, and 2 is an action, 3 is an action-attack, and 4 is an action-reaction
          */
         //Instance Variables
         int type;
@@ -115,6 +115,16 @@ namespace Dominion
                 (this.type == otherCard.getType()) && (this.funcNum == otherCard.getFunctionNumber()) && (this.cost == otherCard.getCost()) &&
                 (this.cash == otherCard.getCash()) && (this.buy == otherCard.getBuy()) && (this.vict == otherCard.getVictoryPoints()) &&
                 (this.draw == otherCard.getAdditionalDraws()));
+        }
+
+        public bool getPlayable()
+        {
+            return this.type == 2 || this.type == 3 || this.type == 4;
+        }
+
+        public String InternationlizedTypeString()
+        {
+            return Internationalizer.getMessage("TypeString" + this.type);
         }
     }
 }

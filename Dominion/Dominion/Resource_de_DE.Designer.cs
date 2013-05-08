@@ -367,6 +367,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Graben.
+        /// </summary>
+        internal static string Moat {
+            get {
+                return ResourceManager.GetString("Moat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +2 Karten\nWenn ein anderer Spieler einen Angriff Karte spielt, können Sie diese aus der Hand zu offenbaren. Wenn Sie das tun, sind Sie unabhängig von diesem Angriff..
+        /// </summary>
+        internal static string MoatDesc {
+            get {
+                return ResourceManager.GetString("MoatDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geldverleiher.
         /// </summary>
         internal static string Moneylender {
@@ -516,6 +534,51 @@ namespace Dominion {
         internal static string ThroneRoomDesc {
             get {
                 return ResourceManager.GetString("ThroneRoomDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sieg.
+        /// </summary>
+        internal static string TypeString0 {
+            get {
+                return ResourceManager.GetString("TypeString0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schatz.
+        /// </summary>
+        internal static string TypeString1 {
+            get {
+                return ResourceManager.GetString("TypeString1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktion.
+        /// </summary>
+        internal static string TypeString2 {
+            get {
+                return ResourceManager.GetString("TypeString2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktion - Angriff.
+        /// </summary>
+        internal static string TypeString3 {
+            get {
+                return ResourceManager.GetString("TypeString3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktion - Reaktion.
+        /// </summary>
+        internal static string TypeString4 {
+            get {
+                return ResourceManager.GetString("TypeString4", resourceCulture);
             }
         }
         

@@ -219,6 +219,12 @@
   <data name="MineDesc" xml:space="preserve">
     <value>Trash einen Schatz Karte von deiner Hand \n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die Hand.</value>
   </data>
+  <data name="Moat" xml:space="preserve">
+    <value>Graben</value>
+  </data>
+  <data name="MoatDesc" xml:space="preserve">
+    <value>+2 Karten\nWenn ein anderer Spieler einen Angriff Karte spielt, können Sie diese aus der Hand zu offenbaren. Wenn Sie das tun, sind Sie unabhängig von diesem Angriff.</value>
+  </data>
   <data name="Moneylender" xml:space="preserve">
     <value>Geldverleiher</value>
   </data>
@@ -269,6 +275,21 @@
   </data>
   <data name="ThroneRoomDesc" xml:space="preserve">
     <value>Wählen und Aktion Karte in Ihrer Hand. \n Play it zweimal</value>
+  </data>
+  <data name="TypeString0" xml:space="preserve">
+    <value>Sieg</value>
+  </data>
+  <data name="TypeString1" xml:space="preserve">
+    <value>Schatz</value>
+  </data>
+  <data name="TypeString2" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="TypeString3" xml:space="preserve">
+    <value>Aktion - Angriff</value>
+  </data>
+  <data name="TypeString4" xml:space="preserve">
+    <value>Aktion - Reaktion</value>
   </data>
   <data name="Village" xml:space="preserve">
     <value>Dorf</value>

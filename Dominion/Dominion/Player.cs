@@ -206,7 +206,7 @@ namespace Dominion
         public StatusObject play(Card aCard)
         {
             StatusObject retVal = new StatusObject(false);
-            if (this.myHand.contains(aCard) && aCard.getType() == 2 && this.actionsLeft > 0)
+            if (this.myHand.contains(aCard) && aCard.getPlayable() && this.actionsLeft > 0)
             {
                 this.actionsLeft--;
                 this.played.Add(this.myHand.remove(aCard));
@@ -837,9 +837,18 @@ namespace Dominion
         {
             List<Card> spied = new List<Card>();
             spied.Add(this.myDeck.peekAtTopCard());
-            foreach (Player p in this.otherPlayers)
+            for (int i=0; i< this.otherPlayers.Count; i++)
             {
-                spied.Add(p.getDeck().peekAtTopCard());
+                Player p = this.otherPlayers[i];
+                if (!p.getHand().hasDefenseCard())
+                {
+                    spied.Add(p.getDeck().peekAtTopCard());
+                }
+                else
+                {
+                    p.getGame().addToGameMessage(p.getName() + "defended against the attack!");
+                    spied.Add(null);
+                }
             }
             return spied;
         }

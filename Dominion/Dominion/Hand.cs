@@ -94,5 +94,17 @@ namespace Dominion
             }
             return null;
         }
+
+        public Boolean hasDefenseCard()
+        {
+            foreach (Card c in this.yourHand)
+            {
+                if (c.getType() == 4)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
