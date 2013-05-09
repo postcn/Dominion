@@ -196,7 +196,7 @@ namespace Dominion
                 this.currencyAvailable -= aStack.getCard().getCost();
                 if (this.game != null)
                 {
-                    this.game.addToGameMessage(this.name + " bought a " + aStack.getCard().getName());
+                    this.game.addToGameMessage(this.name + Internationalizer.getMessage("Bought") + aStack.getCard().getName());
                 }
                 return true;
             }
@@ -216,7 +216,7 @@ namespace Dominion
                 this.lastPlayedCard = aCard;
                 if (this.game != null)
                 {
-                    this.game.addToGameMessage(this.name + " played a " + aCard.getName());
+                    this.game.addToGameMessage(this.name + Internationalizer.getMessage("Played") + aCard.getName());
                 }
                 if (timesToPlayLeft > 1)
                 {
@@ -472,17 +472,17 @@ namespace Dominion
             StatusObject o = new StatusObject(false);
             if (cs.isEmpty())
             {
-                o.setMessage("Card Stack was Empty");
+                o.setMessage(Internationalizer.getMessage("StackEmpty"));
                 return o;
             }
             if (!this.gain)
             {
-                o.setMessage("Not gain in player");
+                o.setMessage(Internationalizer.getMessage("NotGain"));
                 return o;
             }
             if (this.gainsLeft <= 0)
             {
-                o.setMessage("No gains left in player");
+                o.setMessage(Internationalizer.getMessage("NoGainsLeft"));
                 return o;
             }
             if (this.currencyForGain >= cs.getCard().getCost())
@@ -498,12 +498,12 @@ namespace Dominion
                 {
                     if (this.lastPlayedCard.Equals(CardMother.Remodel()))
                     {
-                        o.setMessage("Was a remodel. Setting it to trash the next card.");
+                        o.setMessage(Internationalizer.getMessage("WasRemodel"));
                         o.setTrashForGain(true);
                     }
                     else
                     {
-                        o.setMessage("Still have gains left, setting to gain again.");
+                        o.setMessage(Internationalizer.getMessage("GainsLeft"));
                         o.setTrashedCorrectly(true);
                     }
                 }
@@ -511,7 +511,7 @@ namespace Dominion
             }
             else
             {
-                o.setMessage("Not enough currency for gain. " + this.currencyForGain);
+                o.setMessage(Internationalizer.getMessage("NotEnoughCur") + this.currencyForGain);
             }
             return o;
         }
@@ -563,7 +563,7 @@ namespace Dominion
             {
                 if (!handCopy.Remove(c))
                 {
-                    retVal.setMessage("Missing one or more " + c.getName() + " from hand.");
+                    retVal.setMessage(Internationalizer.getMessage("MissingCards1") + c.getName() + Internationalizer.getMessage("MissingCards2"));
                     return retVal;
                 }
             }
@@ -596,7 +596,7 @@ namespace Dominion
 
             if (cards.Count > this.possibleTrashes)
             {
-                retVal.setMessage("More than 4 cards selected!");
+                retVal.setMessage(Internationalizer.getMessage("MoreThanFour"));
                 return retVal;
             }
 
@@ -611,7 +611,7 @@ namespace Dominion
             {
                 if (!handCopy.Remove(c))
                 {
-                    retVal.setMessage("Missing one or more " + c.getName() + " from hand.");
+                    retVal.setMessage(Internationalizer.getMessage("MissingCards1") + c.getName() + Internationalizer.getMessage("MissingCards2"));
                     return retVal;
                 }
             }
@@ -793,14 +793,14 @@ namespace Dominion
             {
                 if (!handCopy.Remove(c))
                 {
-                    lastObject.setMessage("Card " + c.getName() + " was not located in the player's hand.");
+                    lastObject.setMessage(Internationalizer.getMessage("MissingCards1") + c.getName() + Internationalizer.getMessage("MissingCards2"));
                     return lastObject;
                 }
             }
 
             if (handCopy.Count != 3)
             {
-                lastObject.setMessage("Incorrect number of cards discarded for the Militia effect");
+                lastObject.setMessage(Internationalizer.getMessage("IncorrectForMilitia"));
                 return lastObject;
             }
 
@@ -846,7 +846,7 @@ namespace Dominion
                 }
                 else
                 {
-                    p.getGame().addToGameMessage(p.getName() + "defended against the attack!");
+                    p.getGame().addToGameMessage(p.getName() + Internationalizer.getMessage("Defended"));
                     spied.Add(null);
                 }
             }

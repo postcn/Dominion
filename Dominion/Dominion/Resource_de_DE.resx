@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bought" xml:space="preserve">
+    <value> kaufte ein </value>
+  </data>
   <data name="Bureaucrat" xml:space="preserve">
     <value>Bürokrat</value>
   </data>
   <data name="BureaucratDesc" xml:space="preserve">
     <value>Verschaffen Sie sich einen Silber-Karte;. \nput sie oben auf dein Deck \nJedes anderen Spieler deckt ein Victory-Karte \nvon seiner Hand und legt sie auf seinem Deck \n (oder zeigt eine Hand ohne Victory-Karten).</value>
+  </data>
+  <data name="BureaucratMsg1" xml:space="preserve">
+    <value>setzen ein</value>
+  </data>
+  <data name="BureaucratMsg2" xml:space="preserve">
+    <value>Zurück auf der Spitze ihrer Deck.</value>
   </data>
   <data name="Cellar" xml:space="preserve">
     <value>Keller</value>
@@ -159,6 +168,9 @@
   <data name="CurseDesc" xml:space="preserve">
     <value>-1 Siegpunkt</value>
   </data>
+  <data name="Defended" xml:space="preserve">
+    <value>verteidigt gegen den Angriff!</value>
+  </data>
   <data name="Duchy" xml:space="preserve">
     <value>Herzogtum</value>
   </data>
@@ -183,6 +195,9 @@
   <data name="FestivalDesc" xml:space="preserve">
     <value>+2 Aktionen \n +1 \n buy \n +2 Währung</value>
   </data>
+  <data name="GainsLeft" xml:space="preserve">
+    <value>Sie haben noch Gewinne übrig, Einstellung wieder zu gewinnen.</value>
+  </data>
   <data name="Gardens" xml:space="preserve">
     <value>Gardens</value>
   </data>
@@ -194,6 +209,15 @@
   </data>
   <data name="GoldDesc" xml:space="preserve">
     <value>3 Währung wert</value>
+  </data>
+  <data name="Grats1" xml:space="preserve">
+    <value>Herzlichen Glückwunsch, </value>
+  </data>
+  <data name="Grats2" xml:space="preserve">
+    <value> zu gewinnen!</value>
+  </data>
+  <data name="IncorrectForMilitia" xml:space="preserve">
+    <value>Falsche Anzahl von Karten für die Miliz abgeworfen</value>
   </data>
   <data name="Laboratory" xml:space="preserve">
     <value>Laboratory</value>
@@ -219,6 +243,12 @@
   <data name="MineDesc" xml:space="preserve">
     <value>Trash einen Schatz Karte von deiner Hand \n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die Hand.</value>
   </data>
+  <data name="MissingCards1" xml:space="preserve">
+    <value>Vermissen Sie einen oder mehrere </value>
+  </data>
+  <data name="MissingCards2" xml:space="preserve">
+    <value> von der Hand.</value>
+  </data>
   <data name="Moat" xml:space="preserve">
     <value>Graben</value>
   </data>
@@ -231,6 +261,24 @@
   <data name="MoneylenderDesc" xml:space="preserve">
     <value>Trash ein Kupfer aus deiner Hand. \n Wenn Sie tun +3 Währung</value>
   </data>
+  <data name="MoreThanFour" xml:space="preserve">
+    <value>Mehr als 4 Karten ausgewählt!</value>
+  </data>
+  <data name="NextTurn" xml:space="preserve">
+    <value> Beendet ihrerseits. \n ======== \n</value>
+  </data>
+  <data name="NoGainsLeft" xml:space="preserve">
+    <value>Keine Gewinne in Spieler übrig</value>
+  </data>
+  <data name="NotEnoughCur" xml:space="preserve">
+    <value>Nicht genug Währung für Gewinn. </value>
+  </data>
+  <data name="NotGain" xml:space="preserve">
+    <value>Nicht in Spieler zu gewinnen</value>
+  </data>
+  <data name="Played" xml:space="preserve">
+    <value> spielte eine </value>
+  </data>
   <data name="Province" xml:space="preserve">
     <value>Provinz</value>
   </data>
@@ -242,6 +290,9 @@
   </data>
   <data name="RemodelDesc" xml:space="preserve">
     <value>Trash eine Karte aus deiner Hand. \n Verstärkung aa-Karte kostet bis zu 2 Währung \n mehr als die Papierkorb-Karte</value>
+  </data>
+  <data name="RevealNoVict" xml:space="preserve">
+    <value>ergab eine Hand ohne Sieg Karten.</value>
   </data>
   <data name="Silver" xml:space="preserve">
     <value>Silber</value>
@@ -261,6 +312,9 @@
   <data name="SpyDesc" xml:space="preserve">
     <value>+1 Karte\n+1 Aktion\nReveal die oberste Karte jedes Spielers Deck, und entscheiden, ob es bleibt oder wird verworfen.</value>
   </data>
+  <data name="StackEmpty" xml:space="preserve">
+    <value>Kartenstapel leer war</value>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>German</value>
   </data>
@@ -270,11 +324,20 @@
   <data name="ThiefDesc" xml:space="preserve">
     <value>Jeder andere Spieler deckt die obersten 2 Karten von seinem Deck\n Wenn sie irgendwelche Schatz Karten aufgedeckt, trash sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten.</value>
   </data>
+  <data name="ThiefMsg1" xml:space="preserve">
+    <value>ergab eine</value>
+  </data>
+  <data name="ThiefMsg2" xml:space="preserve">
+    <value> von der Spitze ihrer Deck.</value>
+  </data>
   <data name="ThroneRoom" xml:space="preserve">
     <value>Thronsaal</value>
   </data>
   <data name="ThroneRoomDesc" xml:space="preserve">
     <value>Wählen und Aktion Karte in Ihrer Hand. \n Play it zweimal</value>
+  </data>
+  <data name="Tie" xml:space="preserve">
+    <value>Es war ein Unentschieden!</value>
   </data>
   <data name="TypeString0" xml:space="preserve">
     <value>Sieg</value>
@@ -291,11 +354,20 @@
   <data name="TypeString4" xml:space="preserve">
     <value>Aktion - Reaktion</value>
   </data>
+  <data name="VictPts1" xml:space="preserve">
+    <value> hatte </value>
+  </data>
+  <data name="VictPts2" xml:space="preserve">
+    <value> Siegpunkte. \n</value>
+  </data>
   <data name="Village" xml:space="preserve">
     <value>Dorf</value>
   </data>
   <data name="VillageDesc" xml:space="preserve">
     <value>+1 Card \n +2 Aktionen</value>
+  </data>
+  <data name="WasRemodel" xml:space="preserve">
+    <value>War ein renovieren. Wird er auf die nächste Karte Papierkorb.</value>
   </data>
   <data name="Witch" xml:space="preserve">
     <value>Hexe</value>

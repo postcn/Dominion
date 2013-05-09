@@ -38,7 +38,7 @@ namespace Dominion
                 }
                 else
                 {
-                    p.getGame().addToGameMessage(play.getName() + "defended against the attack!");
+                    p.getGame().addToGameMessage(play.getName() + Internationalizer.getMessage("Defended"));
                 }
             }
         }
@@ -109,17 +109,17 @@ namespace Dominion
                     Card c = other.getHand().getFirstVictoryCard();
                     if (c == null)
                     {
-                        p.getGame().addToGameMessage(other.getName() + " revealed a hand with no victory cards.");
+                        p.getGame().addToGameMessage(other.getName() + Internationalizer.getMessage("RevealNoVict"));
                     }
                     else
                     {
                         other.getDeck().addCardToFront(other.getHand().remove(c));
-                        p.getGame().addToGameMessage(other.getName() + " put a " + c.getName() + " back on the top of their deck.");
+                        p.getGame().addToGameMessage(other.getName() + Internationalizer.getMessage("BureaucratMsg1") + c.getName() + Internationalizer.getMessage("BureaucratMsg2"));
                     }
                 }
                 else
                 {
-                    p.getGame().addToGameMessage(other.getName() + "defended against the attack!");
+                    p.getGame().addToGameMessage(other.getName() + Internationalizer.getMessage("Defended"));
                 }
             }
         }
@@ -140,7 +140,7 @@ namespace Dominion
                 }
                 else
                 {
-                    p.getGame().addToGameMessage(other.getName() + "defended against the attack!");
+                    p.getGame().addToGameMessage(other.getName() + Internationalizer.getMessage("Defended"));
                 }
             }
         }
@@ -181,12 +181,12 @@ namespace Dominion
                         {
                             other.getDeck().discard(c);
                         }
-                        p.getGame().addToGameMessage(other.getName() + " revealed a " + c.getName() + " from the top of their deck.");
+                        p.getGame().addToGameMessage(other.getName() + Internationalizer.getMessage("ThiefMsg1") + c.getName() + Internationalizer.getMessage("ThiefMsg2"));
                     }
                 }
                 else
                 {
-                    p.getGame().addToGameMessage(other.getName() + "defended against the attack!");
+                    p.getGame().addToGameMessage(other.getName() + Internationalizer.getMessage("Defended"));
                 }
                 p.getThiefList().Add(cards);
             }

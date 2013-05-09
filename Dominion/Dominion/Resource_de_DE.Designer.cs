@@ -61,6 +61,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  kaufte ein .
+        /// </summary>
+        internal static string Bought {
+            get {
+                return ResourceManager.GetString("Bought", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bürokrat.
         /// </summary>
         internal static string Bureaucrat {
@@ -75,6 +84,24 @@ namespace Dominion {
         internal static string BureaucratDesc {
             get {
                 return ResourceManager.GetString("BureaucratDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to setzen ein.
+        /// </summary>
+        internal static string BureaucratMsg1 {
+            get {
+                return ResourceManager.GetString("BureaucratMsg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zurück auf der Spitze ihrer Deck..
+        /// </summary>
+        internal static string BureaucratMsg2 {
+            get {
+                return ResourceManager.GetString("BureaucratMsg2", resourceCulture);
             }
         }
         
@@ -187,6 +214,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to verteidigt gegen den Angriff!.
+        /// </summary>
+        internal static string Defended {
+            get {
+                return ResourceManager.GetString("Defended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Herzogtum.
         /// </summary>
         internal static string Duchy {
@@ -259,6 +295,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sie haben noch Gewinne übrig, Einstellung wieder zu gewinnen..
+        /// </summary>
+        internal static string GainsLeft {
+            get {
+                return ResourceManager.GetString("GainsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gardens.
         /// </summary>
         internal static string Gardens {
@@ -291,6 +336,33 @@ namespace Dominion {
         internal static string GoldDesc {
             get {
                 return ResourceManager.GetString("GoldDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herzlichen Glückwunsch, .
+        /// </summary>
+        internal static string Grats1 {
+            get {
+                return ResourceManager.GetString("Grats1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  zu gewinnen!.
+        /// </summary>
+        internal static string Grats2 {
+            get {
+                return ResourceManager.GetString("Grats2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsche Anzahl von Karten für die Miliz abgeworfen.
+        /// </summary>
+        internal static string IncorrectForMilitia {
+            get {
+                return ResourceManager.GetString("IncorrectForMilitia", resourceCulture);
             }
         }
         
@@ -367,6 +439,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vermissen Sie einen oder mehrere .
+        /// </summary>
+        internal static string MissingCards1 {
+            get {
+                return ResourceManager.GetString("MissingCards1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  von der Hand..
+        /// </summary>
+        internal static string MissingCards2 {
+            get {
+                return ResourceManager.GetString("MissingCards2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Graben.
         /// </summary>
         internal static string Moat {
@@ -403,6 +493,60 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mehr als 4 Karten ausgewählt!.
+        /// </summary>
+        internal static string MoreThanFour {
+            get {
+                return ResourceManager.GetString("MoreThanFour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Beendet ihrerseits. \n ======== \n.
+        /// </summary>
+        internal static string NextTurn {
+            get {
+                return ResourceManager.GetString("NextTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Gewinne in Spieler übrig.
+        /// </summary>
+        internal static string NoGainsLeft {
+            get {
+                return ResourceManager.GetString("NoGainsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht genug Währung für Gewinn. .
+        /// </summary>
+        internal static string NotEnoughCur {
+            get {
+                return ResourceManager.GetString("NotEnoughCur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht in Spieler zu gewinnen.
+        /// </summary>
+        internal static string NotGain {
+            get {
+                return ResourceManager.GetString("NotGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  spielte eine .
+        /// </summary>
+        internal static string Played {
+            get {
+                return ResourceManager.GetString("Played", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Provinz.
         /// </summary>
         internal static string Province {
@@ -435,6 +579,15 @@ namespace Dominion {
         internal static string RemodelDesc {
             get {
                 return ResourceManager.GetString("RemodelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ergab eine Hand ohne Sieg Karten..
+        /// </summary>
+        internal static string RevealNoVict {
+            get {
+                return ResourceManager.GetString("RevealNoVict", resourceCulture);
             }
         }
         
@@ -493,6 +646,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kartenstapel leer war.
+        /// </summary>
+        internal static string StackEmpty {
+            get {
+                return ResourceManager.GetString("StackEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to German.
         /// </summary>
         internal static string TestString {
@@ -520,6 +682,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ergab eine.
+        /// </summary>
+        internal static string ThiefMsg1 {
+            get {
+                return ResourceManager.GetString("ThiefMsg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  von der Spitze ihrer Deck..
+        /// </summary>
+        internal static string ThiefMsg2 {
+            get {
+                return ResourceManager.GetString("ThiefMsg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thronsaal.
         /// </summary>
         internal static string ThroneRoom {
@@ -534,6 +714,15 @@ namespace Dominion {
         internal static string ThroneRoomDesc {
             get {
                 return ResourceManager.GetString("ThroneRoomDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es war ein Unentschieden!.
+        /// </summary>
+        internal static string Tie {
+            get {
+                return ResourceManager.GetString("Tie", resourceCulture);
             }
         }
         
@@ -583,6 +772,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  hatte .
+        /// </summary>
+        internal static string VictPts1 {
+            get {
+                return ResourceManager.GetString("VictPts1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Siegpunkte. \n.
+        /// </summary>
+        internal static string VictPts2 {
+            get {
+                return ResourceManager.GetString("VictPts2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dorf.
         /// </summary>
         internal static string Village {
@@ -597,6 +804,15 @@ namespace Dominion {
         internal static string VillageDesc {
             get {
                 return ResourceManager.GetString("VillageDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to War ein renovieren. Wird er auf die nächste Karte Papierkorb..
+        /// </summary>
+        internal static string WasRemodel {
+            get {
+                return ResourceManager.GetString("WasRemodel", resourceCulture);
             }
         }
         

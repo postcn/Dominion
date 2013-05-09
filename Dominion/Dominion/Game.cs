@@ -27,7 +27,7 @@ namespace Dominion {
         }
 
         public int nextTurn() {
-            this.addToGameMessage(this.getCurrentPlayer().getName() + " Ended their turn.\n========\n");
+            this.addToGameMessage(this.getCurrentPlayer().getName() + Internationalizer.getMessage("NextTurn"));
             this.currentPlayer++;
             this.currentPlayer = currentPlayer % numPlayers;
             return this.currentPlayer;
@@ -147,15 +147,15 @@ namespace Dominion {
 
             String status = "";
             if (this.winningPlayers.Count == 1) {
-                status += "Congratulations, " + winningPlayers[0].getName() + " on winning!";
+                status += Internationalizer.getMessage("Grats1") + winningPlayers[0].getName() + Internationalizer.getMessage("Grats2");
             } else {
-                status += "It was a tie!";
+                status += Internationalizer.getMessage("Tie");
             }
 
             status += "\n";
 
             foreach (Player p in this.players) {
-                status += p.getName() + " had " + p.getVictoryPts() + " victory points.\n";
+                status += p.getName() + Internationalizer.getMessage("VictPts1") + p.getVictoryPts() + Internationalizer.getMessage("VictPts2");
             }
 
             this.gameOverStatus = status;

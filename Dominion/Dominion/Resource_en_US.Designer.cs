@@ -61,6 +61,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  bought a .
+        /// </summary>
+        internal static string Bought {
+            get {
+                return ResourceManager.GetString("Bought", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bureaucrat.
         /// </summary>
         internal static string Bureaucrat {
@@ -75,6 +84,24 @@ namespace Dominion {
         internal static string BureaucratDesc {
             get {
                 return ResourceManager.GetString("BureaucratDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  put a .
+        /// </summary>
+        internal static string BureaucratMsg1 {
+            get {
+                return ResourceManager.GetString("BureaucratMsg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  back on the top of their deck..
+        /// </summary>
+        internal static string BureaucratMsg2 {
+            get {
+                return ResourceManager.GetString("BureaucratMsg2", resourceCulture);
             }
         }
         
@@ -187,6 +214,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to defended against the attack!.
+        /// </summary>
+        internal static string Defended {
+            get {
+                return ResourceManager.GetString("Defended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duchy.
         /// </summary>
         internal static string Duchy {
@@ -259,6 +295,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Still have gains left, setting to gain again..
+        /// </summary>
+        internal static string GainsLeft {
+            get {
+                return ResourceManager.GetString("GainsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gardens.
         /// </summary>
         internal static string Gardens {
@@ -291,6 +336,33 @@ namespace Dominion {
         internal static string GoldDesc {
             get {
                 return ResourceManager.GetString("GoldDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congratulations, .
+        /// </summary>
+        internal static string Grats1 {
+            get {
+                return ResourceManager.GetString("Grats1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  on winning!.
+        /// </summary>
+        internal static string Grats2 {
+            get {
+                return ResourceManager.GetString("Grats2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect number of cards discarded for the Militia effect.
+        /// </summary>
+        internal static string IncorrectForMilitia {
+            get {
+                return ResourceManager.GetString("IncorrectForMilitia", resourceCulture);
             }
         }
         
@@ -367,6 +439,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing one or more .
+        /// </summary>
+        internal static string MissingCards1 {
+            get {
+                return ResourceManager.GetString("MissingCards1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  from hand..
+        /// </summary>
+        internal static string MissingCards2 {
+            get {
+                return ResourceManager.GetString("MissingCards2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Moat.
         /// </summary>
         internal static string Moat {
@@ -403,6 +493,60 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More than 4 cards selected!.
+        /// </summary>
+        internal static string MoreThanFour {
+            get {
+                return ResourceManager.GetString("MoreThanFour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Ended their turn.\n========\n.
+        /// </summary>
+        internal static string NextTurn {
+            get {
+                return ResourceManager.GetString("NextTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No gains left in player.
+        /// </summary>
+        internal static string NoGainsLeft {
+            get {
+                return ResourceManager.GetString("NoGainsLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not enough currency for gain. .
+        /// </summary>
+        internal static string NotEnoughCur {
+            get {
+                return ResourceManager.GetString("NotEnoughCur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not gain in player.
+        /// </summary>
+        internal static string NotGain {
+            get {
+                return ResourceManager.GetString("NotGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  played a .
+        /// </summary>
+        internal static string Played {
+            get {
+                return ResourceManager.GetString("Played", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Province.
         /// </summary>
         internal static string Province {
@@ -435,6 +579,15 @@ namespace Dominion {
         internal static string RemodelDesc {
             get {
                 return ResourceManager.GetString("RemodelDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  revealed a hand with no victory cards..
+        /// </summary>
+        internal static string RevealNoVict {
+            get {
+                return ResourceManager.GetString("RevealNoVict", resourceCulture);
             }
         }
         
@@ -493,6 +646,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Card Stack was Empty.
+        /// </summary>
+        internal static string StackEmpty {
+            get {
+                return ResourceManager.GetString("StackEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the test string!.
         /// </summary>
         internal static string TestString {
@@ -520,6 +682,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  revealed a .
+        /// </summary>
+        internal static string ThiefMsg1 {
+            get {
+                return ResourceManager.GetString("ThiefMsg1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  from the top of their deck..
+        /// </summary>
+        internal static string ThiefMsg2 {
+            get {
+                return ResourceManager.GetString("ThiefMsg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Throne Room.
         /// </summary>
         internal static string ThroneRoom {
@@ -534,6 +714,15 @@ namespace Dominion {
         internal static string ThroneRoomDesc {
             get {
                 return ResourceManager.GetString("ThroneRoomDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It was a tie!.
+        /// </summary>
+        internal static string Tie {
+            get {
+                return ResourceManager.GetString("Tie", resourceCulture);
             }
         }
         
@@ -583,6 +772,24 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  had .
+        /// </summary>
+        internal static string VictPts1 {
+            get {
+                return ResourceManager.GetString("VictPts1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  victory points.\n.
+        /// </summary>
+        internal static string VictPts2 {
+            get {
+                return ResourceManager.GetString("VictPts2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Village.
         /// </summary>
         internal static string Village {
@@ -597,6 +804,15 @@ namespace Dominion {
         internal static string VillageDesc {
             get {
                 return ResourceManager.GetString("VillageDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Was a remodel. Setting it to trash the next card..
+        /// </summary>
+        internal static string WasRemodel {
+            get {
+                return ResourceManager.GetString("WasRemodel", resourceCulture);
             }
         }
         
