@@ -307,7 +307,10 @@ namespace Dominion
                             break;
                         case 16:
                             //Militia
-                            CardFunctions.militiaAction(this);
+                            if (this.timesToPlayLeft == 0)
+                            {
+                                CardFunctions.militiaAction(this);
+                            }
                             break;
                         case 17:
                             //Bureaucrat
@@ -456,6 +459,12 @@ namespace Dominion
         public StatusObject trashForGain(Card c)
         {
             StatusObject o = new StatusObject(false);
+            if (this.myHand.getHand().Count == 0)
+            {
+                o.setTrashedCorrectly(true);
+                this.currencyForGainBonus = 0;
+                this.gainsLeft = 0;
+            }
             if (this.gain)
             {
                 //check if card is in hand or if its feast (which has already been played)
@@ -681,7 +690,7 @@ namespace Dominion
         public StatusObject trashACopperForCurrencyBonus(Card aCard)
         {
             StatusObject retVal = new StatusObject(false);
-            if (this.trashesNeeded <= 0)
+            if (this.trashesNeeded <= 0 || !this.myHand.contains(CardMother.Copper())
             {
                 this.trashesNeeded = 0;
                 retVal.setCopperTrashedForCurrency(true);
@@ -753,6 +762,12 @@ namespace Dominion
             {
                 return retVal;
             }
+            if (this.trashesNeeded <= 0 || (!this.myHand.contains(CardMother.Copper()) && !this.myHand.contains(CardMother.Silver())))
+            {
+                retVal.setMinedCorrectly(true);
+                this.trashesNeeded = 0;
+                return retVal;
+            }
             if (c.Equals(CardMother.Copper()) || c.Equals(CardMother.Silver()))
             {
                 if (c.Equals(CardMother.Copper()))
@@ -760,7 +775,7 @@ namespace Dominion
                     this.getHand().getHand().Remove(c);
                     this.getHand().getHand().Add(CardMother.Silver());
                     retVal.setMinedCorrectly(true);
-                    return retVal;
+                    this.trashesNeeded--;
                 }
 
                 else
@@ -768,8 +783,14 @@ namespace Dominion
                     this.getHand().getHand().Remove(c);
                     this.getHand().getHand().Add(CardMother.Gold());
                     retVal.setMinedCorrectly(true);
-                    return retVal;
+                    this.trashesNeeded--;
                 }
+                if (this.trashesNeeded > 0)
+                {
+                    retVal.setMinedCorrectly(false);
+                    retVal.setMineTreasure(true);
+                }
+                return retVal;
             }
             else
             {
@@ -786,8 +807,9 @@ namespace Dominion
         /// <param name="cards"></param>
         /// <param name="lastObject"></param>
         /// <returns></returns>
-        public StatusObject militiaDiscardEffect(List<Card> cards, StatusObject lastObject)
+        public StatusObject militiaDiscardEffect(List<Card> cards)
         {
+            StatusObject lastObject = new StatusObject(false);
             if (this.myHand.size() <= 3)
             {
                 lastObject.setMilitiaPlayed(false);

@@ -127,6 +127,7 @@ namespace Dominion
         public static void mineATreasure(Player P, StatusObject o)
         {
             o.setMineTreasure(true);
+            P.setTrashesNeeded(P.getTrashesNeeded() + 1);
         }
 
         public static void militiaAction(Player p)
