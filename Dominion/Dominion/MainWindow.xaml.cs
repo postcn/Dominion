@@ -59,10 +59,7 @@ namespace Dominion {
             } else if (actiondone.Equals("Trash Copper")) {
                 StatusObject status = player.trashACopperForCurrencyBonus(CardMother.Copper());
                 if (status.needToTrashCoppersForCurrency()) {
-                    YesNo();
-                    actiondone = "Trash Copper";
-                    Play.ToolTip = "Click To Discard A Copper";
-                    Buy.ToolTip = "Click To Not Discard A Copper";
+                    ReadyToTrashCopper();
                     RefreshHand();
                     return;
                 }
@@ -231,10 +228,7 @@ namespace Dominion {
                     Play.Content = "Discard";
                     Play.ToolTip = "Discard Selected Cards";
                 } else if (status.needToTrashCoppersForCurrency()) {
-                    YesNo();
-                    actiondone = "Trash Copper";
-                    Play.ToolTip = "Click To Discard A Copper";
-                    Buy.ToolTip = "Click To Not Discard A Copper";
+                    ReadyToTrashCopper();
                     RefreshHand();
                     return;
                 } else if (status.needToTrashCards()) {
@@ -335,6 +329,12 @@ namespace Dominion {
                 Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
                 RefreshHand();
             }     
+        }
+        private void ReadyToTrashCopper() {
+            YesNo();
+            actiondone = "Trash Copper";
+            Play.ToolTip = "Click To Discard A Copper";
+            Buy.ToolTip = "Click To Not Discard A Copper";
         }
         private void militia() {
             actiondone = "Militia Many";
@@ -470,10 +470,7 @@ namespace Dominion {
                 StatusObject status = player.trashACopperForCurrencyBonus(null);
                 //.1) throne room play twice if choose no first time?
                 if (status.needToTrashCoppersForCurrency()) {
-                    YesNo();
-                    actiondone = "Trash Copper";
-                    Play.ToolTip = "Click To Discard A Copper";
-                    Buy.ToolTip = "Click To Not Discard A Copper";
+                    ReadyToTrashCopper();
                 } else {
                     ResetSpecialAction();
                 }

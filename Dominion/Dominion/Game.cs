@@ -83,7 +83,7 @@ namespace Dominion {
             //this.buyables.Add(new CardStack(10, CardMother.Witch()));
             this.buyables.Add(new CardStack(10, CardMother.Mine()));
             //this.buyables.Add(new CardStack(10, CardMother.Feast()));
-          //  this.buyables.Add(new CardStack(10, CardMother.Remodel()));
+            //this.buyables.Add(new CardStack(10, CardMother.Remodel()));
             //this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
             this.buyables.Add(new CardStack(10, CardMother.Militia()));
             //this.buyables.Add(new CardStack(10, CardMother.Workshop()));
