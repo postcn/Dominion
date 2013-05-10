@@ -79,18 +79,7 @@ namespace Dominion {
                     return;
                 }
             } else if (actiondone.Equals("Discard Deck")) {
-                StatusObject status = player.discardDeck(true);
-                if (status.wasDeckDiscardedCorrectly()) {
-                    ResetSpecialAction();
-                }
-                if (status.needToDisardDeck()) {
-                    YesNo();
-                    actiondone = "Discard Deck";
-                    Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
-                    Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
-                    RefreshHand();
-                    return;
-                }
+                chancellor();
             }else if(actiondone.Equals("Mine")){
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.mineATreasureCard(cards[0]);
@@ -106,22 +95,19 @@ namespace Dominion {
                     return;
                 }
             } else if(actiondone.Equals("Militia Many")){
-                //1.)tell caleb to get rid of second argument
-                StatusObject status  = new StatusObject(false);
-                status.setContinueWithDelayedFunctions(true);
-                status.setMilitiaPlayed(true);      
                 List<Card> cards = GetCardListFromHilighted();
-                status = player.militiaDiscardEffect(cards,status);
+                StatusObject status = player.militiaDiscardEffect(cards);
                 if (!status.wasMilitiaPlayed()) {
                     if (status.needToContinueWithDelayedFunctions()) {
                         status = player.callDelayedFunctions();
                         if (status.wasMilitiaPlayed()) {
-                            Play.Content = "Discard";
-                            actiondone = "Militia Many";
-                            End_Phase.IsEnabled = false;
-                            End_Turn.IsEnabled = false;
-                            SetFieldardsToNo();
-                            SetHandButtonsToNormal();
+                            //Play.Content = "Discard";
+                            //actiondone = "Militia Many";
+                            //End_Phase.IsEnabled = false;
+                            //End_Turn.IsEnabled = false;
+                            //SetFieldardsToNo();
+                            //SetHandButtonsToNormal();
+                            militia();
                             RefreshHand();
                             return;
                         }
@@ -337,6 +323,27 @@ namespace Dominion {
             End_Turn.IsEnabled = true;
             RefreshWindow();
         }
+        private void chancellor() {
+            StatusObject status = player.discardDeck(true);
+            if (status.wasDeckDiscardedCorrectly()) {
+                ResetSpecialAction();
+            }
+            if (status.needToDisardDeck()) {
+                YesNo();
+                actiondone = "Discard Deck";
+                Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
+                Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
+                RefreshHand();
+            }     
+        }
+        private void militia() {
+            actiondone = "Militia Many";
+            Play.Content = "Discard";
+            End_Phase.IsEnabled = false;
+            End_Turn.IsEnabled = false;
+            SetFieldardsToNo();
+            SetHandButtonsToNormal();
+        }
         private void Trash() {
             actiondone = "Trash Many";
             Play.Content = "Trash";
@@ -471,18 +478,7 @@ namespace Dominion {
                     ResetSpecialAction();
                 }
             } else if (actiondone.Equals("Discard Deck")) {
-                StatusObject status = player.discardDeck(false);
-                if (status.wasDeckDiscardedCorrectly()) {
-                    ResetSpecialAction();
-                }
-                if (status.needToDisardDeck()) {
-                    YesNo();
-                    actiondone = "Discard Deck";
-                    Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
-                    Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
-                    RefreshHand();
-                    return;
-                }
+                chancellor();
             }
             RefreshWindow();
             if (myGame.isGameOver()) {
@@ -543,12 +539,14 @@ namespace Dominion {
             RefreshWindow();
             StatusObject status = player.callDelayedFunctions();
             if (status.wasMilitiaPlayed()) {
-                actiondone = "Militia Many";
-                Play.Content = "Discard";
-                End_Phase.IsEnabled = false;
-                End_Turn.IsEnabled = false;
-                SetFieldardsToNo();
-                SetHandButtonsToNormal();    
+                militia();
+                //actiondone = "Militia Many";
+                //Play.Content = "Discard";
+                //End_Phase.IsEnabled = false;
+                //End_Turn.IsEnabled = false;
+                //SetFieldardsToNo();
+                //SetHandButtonsToNormal();   
+                return;
             }
             
         }
@@ -782,6 +780,7 @@ namespace Dominion {
         }
         private void InitializeButtonImages() {
             //MainGrid
+          //  myGame.randomizeBuyables();
             HilightedImages = new List<Image>();
             victoryButton = new List<Button>();
             currencyButton = new List<Button>();

@@ -188,6 +188,7 @@ namespace Dominion
             ret.Add(CardMother.CouncilRoom());
             ret.Add(CardMother.Spy());
             ret.Add(CardMother.Thief());
+            ret.Add(CardMother.Moat());
             return ret;
         }
     }

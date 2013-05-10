@@ -690,7 +690,7 @@ namespace Dominion
         public StatusObject trashACopperForCurrencyBonus(Card aCard)
         {
             StatusObject retVal = new StatusObject(false);
-            if (this.trashesNeeded <= 0 || !this.myHand.contains(CardMother.Copper())
+            if (this.trashesNeeded <= 0 || !this.myHand.contains(CardMother.Copper()))
             {
                 this.trashesNeeded = 0;
                 retVal.setCopperTrashedForCurrency(true);
