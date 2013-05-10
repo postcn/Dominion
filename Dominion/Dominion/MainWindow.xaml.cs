@@ -41,6 +41,7 @@ namespace Dominion {
         public string currentCard, phase, actiondone = "";
         public List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage, HilightedImages;
         public List<Button> currencyButton, victoryButton, handButton, actionButton, FieldButton;
+        List<Card> specialusecards=new List<Card>();
         int totalplayers;
         public Locale loc;
         private void Play_Click(object sender, RoutedEventArgs e) {
@@ -134,20 +135,102 @@ namespace Dominion {
                 
             }else if(actiondone.Equals("Spy Many")){
                 List<Card> spyCards = new List<Card>();
-                for (int i = 0; i < myGame.getPlayers().Count; i++) {
+               /* for (int i = 0; i < myGame.getPlayers().Count; i++) {
                    if(StripImageSource(handImage[i].Source.ToString(),false).Contains("1")){
                     spyCards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(),true)));
                    }else{
                     spyCards.Add(null);
                    }
+                }*/
+                int count = 0;
+                for (int i = 0; i < specialusecards.Count; i++) {
+                    if (specialusecards[i] != null) {
+                        if(StripImageSource(handImage[count].Source.ToString(),false).Contains("1")){
+                            spyCards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(),true)));
+                        }
+                        count++;
+                    } else {
+                        spyCards.Add(null);
+                    }
                 }
                 StatusObject status = player.keepOrDiscardSpiedCards(spyCards);
                 if (status.playerSpiedSuccessfully()) {
+                    specialusecards=new List<Card>();
                     ResetSpecialAction();
                     RefreshWindow();
                 }
 
-            } else {
+            }else if(actiondone.Equals("Thief Many")){//sometimes cards disapear or are set to null
+                List<Card> thiefTrash = new List<Card>();
+                int count = 0;
+                for (int i = 0; i <myGame.getPlayers().Count - 1; i++) {
+                    if (specialusecards[2 * i] != null) {
+                        if (specialusecards[2 * i + 1] != null) {
+                            //player has 2 currency
+                            if (StripImageSource(handImage[count].Source.ToString(), false).Contains("1") && StripImageSource(handImage[count + 1].Source.ToString(), false).Contains("1")) {
+                                ResetHilightedCards();
+                                return;
+                            } else {
+                                if (StripImageSource(handImage[count].Source.ToString(), false).Contains("1")) {
+                                    thiefTrash.Add(CardFromString(StripImageSource(handImage[count].Source.ToString(), true)));
+                                } else if (StripImageSource(handImage[count + 1].Source.ToString(), false).Contains("1")) {
+                                    thiefTrash.Add(CardFromString(StripImageSource(handImage[count + 1].Source.ToString(), true)));
+                                } else {
+                                    ResetHilightedCards();
+                                    return;
+                                }
+                            }
+                            count += 2;
+                        } else {
+                            if (StripImageSource(handImage[count].Source.ToString(), false).Contains("1")) {
+                                thiefTrash.Add(CardFromString(StripImageSource(handImage[count].Source.ToString(), true)));
+                            }
+                            //player only had 1 currency
+                            count++;
+                        }
+                    } else {
+                        //player has no currency
+                        thiefTrash.Add(null);
+                    }
+                }
+                StatusObject status = player.validateThiefStolenCards(thiefTrash);
+                if (!status.selectTrashFromThief()) {
+                    specialusecards = new List<Card>();
+                    specialusecards=player.getPossibleCardsToKeepFromThief();
+                    actiondone = "Pick Trash Many";
+                    count = 0;
+                    for (int i = 0; i < specialusecards.Count; i++) {
+                        SetPicture(specialusecards[i].getName() + ".jpg", handImage[i]);
+                        count = i+1;
+                    }
+                    for (int j = count; j < handImage.Count; j++) {
+                        SetPicture("blank.jpg", handImage[j]);
+                        handButton[j].Cursor = Cursors.Arrow;
+                    }
+                    End_Phase.IsEnabled = false;
+                    End_Turn.IsEnabled = false;
+                    HilightedImages = new List<Image>();
+                    return;
+                }
+                return;
+            }else if(actiondone.Equals("Pick Trash Many")){
+                List<Card> thiefPick = new List<Card>();
+                for (int i = 0; i < specialusecards.Count; i++) {
+                    if (StripImageSource(handImage[i].Source.ToString(), false).Contains("1")) {
+                        specialusecards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(), true)));
+                    }
+                }
+                StatusObject status = player.keepCardsFromThief(thiefPick);
+                if (status.needToKeepThief()) {
+                    specialusecards = new List<Card>();
+                    return;
+                } else {
+                    ResetSpecialAction();
+                    RefreshWindow();
+                    End_Phase.IsEnabled = true;
+                }
+
+            }else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
                 SelectCardDescription.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
@@ -183,6 +266,7 @@ namespace Dominion {
                     RefreshHand();
                 } else if (status.canSpyOnDeck()) {
                     List<Card> SpiedCards = player.spyOnDecks();
+                    specialusecards = SpiedCards;
                     actiondone = "Spy Many";
                     Play.Content = "Discard";
                     Play.ToolTip = "Discard Selected Cards";
@@ -202,6 +286,39 @@ namespace Dominion {
                     }
                     int panelsize = 400 + (myGame.getPlayers().Count - 5) * 80;
                     stackpan.Width = panelsize;
+                    return;
+                }else if(status.selectTrashFromThief()){//1.)seperate thief cards from eachother by blanks
+                    List<List<Card>> ThiefList = player.getThiefList();
+                    int count = 0;
+                    for (int i = 0; i < myGame.getPlayers().Count-1; i++) {
+                        for (int j = 0; j < 2; j++) {
+                            if (ThiefList[i].Count == 0||(ThiefList[i].Count<2&&j==1)) {
+                                specialusecards.Add(null);
+                            } else {
+                                specialusecards.Add(ThiefList[i][j]);
+                                SetPicture(ThiefList[i][j].getName() + ".jpg", handImage[count]);
+                                count++;
+                            }
+                        }
+                        //1.)put blank set card cursor to arrow
+                        //count++;
+                    }
+                    if (count == 0) {
+                        specialusecards=new List<Card>();
+                        specialusecards.Add(null);
+                        player.validateThiefStolenCards(specialusecards);
+                        RefreshWindow();
+                        ResetSpecialAction();
+                        return;
+                    }
+                    actiondone = "Thief Many";
+                    HilightedImages=new List<Image>();
+                    for (int j = count; j < handImage.Count; j++) {
+                        SetPicture("blank.jpg", handImage[j]);
+                        handButton[j].Cursor = Cursors.Arrow;
+                    }
+                    End_Phase.IsEnabled = false;
+                    End_Turn.IsEnabled = false;
                     return;
                 }
                 RefreshWindow();
@@ -443,7 +560,11 @@ namespace Dominion {
             }else if(actiondone.Equals("Spy Many")){
                 ResetSpecialAction();
                 RefreshHand();
-            }
+            } else if (actiondone.Equals("Pick Thief Many")) {
+                ResetSpecialAction();
+                RefreshHand();
+                specialusecards = new List<Card>();
+           }
             Buy.IsEnabled = false;
             phase = "Buy Phase";
             Phase_Label.Content = phase;
