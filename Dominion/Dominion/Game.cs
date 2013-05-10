@@ -73,13 +73,14 @@ namespace Dominion {
             this.buyables.Add(new CardStack(10, CardMother.Laboratory()));
             //this.buyables.Add(new CardStack(10, CardMother.Market()));
             // this.buyables.Add(new CardStack(10, CardMother.Festival()));
-            this.buyables.Add(new CardStack(10, CardMother.Village()));
+            //this.buyables.Add(new CardStack(10, CardMother.Village()));
+            this.buyables.Add(new CardStack(1, CardMother.Moat()));
             // this.buyables.Add(new CardStack(10, CardMother.Cellar()));
             this.buyables.Add(new CardStack(10, CardMother.Bureaucrat()));
             //this.buyables.Add(new CardStack(10, CardMother.Gardens()));
             this.buyables.Add(new CardStack(10, CardMother.Spy()));
             //this.buyables.Add(new CardStack(10, CardMother.Witch()));
-            this.buyables.Add(new CardStack(10, CardMother.Mine()));
+            this.buyables.Add(new CardStack(1, CardMother.Mine()));
             //this.buyables.Add(new CardStack(10, CardMother.Feast()));
             this.buyables.Add(new CardStack(10, CardMother.Remodel()));
             //this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
@@ -88,7 +89,7 @@ namespace Dominion {
             //this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
             this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
             // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
-            this.buyables.Add(new CardStack(10, CardMother.Chapel()));
+            this.buyables.Add(new CardStack(1, CardMother.Chapel()));
             this.buyables.Add(new CardStack(10, CardMother.CouncilRoom()));
             //TODO: get cards out of possible list.
         }

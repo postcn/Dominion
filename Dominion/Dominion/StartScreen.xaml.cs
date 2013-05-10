@@ -91,6 +91,14 @@ namespace Dominion {
             MenuItem obj = (MenuItem)sender;
             obj.IsChecked = true;
             language = obj.Name;
+            Locale loc = new Locale(language.Substring(0, 2), language.Substring(3, 2));
+            Internationalizer.setLocale(loc);
+            PlayerRadio1.Content="2 "+Internationalizer.getMessage("Players");
+            PlayerRadio2.Content="3 "+Internationalizer.getMessage("Players");
+            PlayerRadio3.Content="4 "+ Internationalizer.getMessage("Players");
+            ConfirmButton.Content = Internationalizer.getMessage("Confirm"); ;
+            ConfirmButton.ToolTip = Internationalizer.getMessage("ClickToStart");
+            this.Title = Internationalizer.getMessage("Start");
         }
         private void UncheckLanguages() {
             for (int i = 0; i < languages.Count; i++) {

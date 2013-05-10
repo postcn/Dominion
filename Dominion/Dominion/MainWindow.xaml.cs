@@ -42,9 +42,7 @@ namespace Dominion {
         public List<Image> victoryImage, currencyImage, handImage, actionImage, FieldImage, HilightedImages;
         public List<Button> currencyButton, victoryButton, handButton, actionButton, FieldButton;
         int totalplayers;
-        //1.)******************
-        // int actionsout = 0;
-        //*****************
+        public Locale loc;
         private void Play_Click(object sender, RoutedEventArgs e) {
             if (actiondone.Contains("Gain")) {
                 StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
@@ -189,19 +187,21 @@ namespace Dominion {
                     Play.Content = "Discard";
                     Play.ToolTip = "Discard Selected Cards";
                     //Buy.IsEnabled = false;
-                    int i;
                     ResetHilightedCards();
-                    for(i=0;i<myGame.getPlayers().Count;i++){
-                        SetPicture(SpiedCards[i].getName()+".jpg", handImage[i]);
+                    int count = 0;
+                    for(int i=0;i<myGame.getPlayers().Count;i++){
+                        if (SpiedCards[i] != null) {
+                            SetPicture(SpiedCards[i].getName() + ".jpg", handImage[count]);
+                            count++;
+                        }
                     }
-                    for (int j = i; j < handImage.Count; j++) {
+                    for (int j = count; j < handImage.Count; j++) {
                         SetPicture("blank.jpg", handImage[j]);
+                        handButton[j].Cursor = Cursors.Arrow;
 
                     }
                     int panelsize = 400 + (myGame.getPlayers().Count - 5) * 80;
                     stackpan.Width = panelsize;
-                    End_Phase.IsEnabled = false;
-                    End_Turn.IsEnabled = false;
                     return;
                 }
                 RefreshWindow();
@@ -264,7 +264,7 @@ namespace Dominion {
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
             for (int i = 0; i < length; i++) {
-                if (CardFromString(myHand.getHand()[i].toString()).getType() == 2) {
+                if(CardFromString(myHand.getHand()[i].toString()).getPlayable()){
                     actioncard = true;
                 }
                 string name = myHand.getHand()[i].toString() + ".jpg";
@@ -276,6 +276,7 @@ namespace Dominion {
         private void RefreshWindow() {
             ResetHilightedCards();
             currentCard = "";
+            _button = null;
             Play.IsEnabled = false;
             Boolean actioncard = RefreshHand();
             if ((!actioncard || player.getActionsLeft() == 0) && actiondone.Equals("") && !phase.Equals("Buy Phase")) {
@@ -367,6 +368,10 @@ namespace Dominion {
                 }
             }
             RefreshWindow();
+            if (myGame.isGameOver()) {
+                MessageBox.Show(myGame.getGameOverStatus());
+                this.Close();
+            }
         }
         private void buyout() {
             for (int i = 0; i < FieldImage.Count; i++) {
@@ -378,39 +383,6 @@ namespace Dominion {
                 }
             }
         }
-        /* private Boolean buyout(Boolean isBuy) {
-             for (int i = 0; i < FieldImage.Count; i++) {
-                 if (StripImageSource(FieldImage[i].Source.ToString(), isBuy).Equals(currentCard)) {
-                     FieldButton[i].IsEnabled = false;
-                     FieldButton.Remove(FieldButton[i]);
-                     FieldImage.Remove(FieldImage[i]);
-                     //1.)*********
-                     if (i == 2) {
-                         MessageBox.Show("Game Ended Because all the Provinces were bought");
-                         End_Phase.IsEnabled = false;
-                         Buy.IsEnabled = false;
-                         End_Turn.IsEnabled = false;
-                         SetFieldardsToNo();
-                         SetHandButtonsToNo();
-                         return true;
-                     } else if (i < 2 || i > 6 || i == 3) {
-                         actionsout++;
-                         if (actionsout > 2) {
-                             MessageBox.Show("Game Ended Because piles were bought out.");
-                             End_Phase.IsEnabled = false;
-                             Buy.IsEnabled = false;
-                             End_Turn.IsEnabled = false;
-                             SetFieldardsToNo();
-                             SetHandButtonsToNo();
-                             return true;
-                         }
-                     }
-                     //**********
-                     return false;
-                 }
-             }
-             return false;
-         }*/
         private void SetFieldCardsToNormal() {
             for (int i = 0; i < FieldButton.Count(); i++) {
                 FieldButton[i].Cursor = Cursors.Hand;
@@ -436,16 +408,8 @@ namespace Dominion {
             this.Hide();
             PrepScreen prep = new PrepScreen(myGame.nextPlayerName(), this);
             prep.Show();
-            Boolean isDone = myGame.isGameOver();
-            //1.)******
-            if (isDone) {
-                MessageBox.Show(myGame.getGameOverStatus());
-                this.Close();
-              //  SetPicture("blank.jpg", FieldImage[0]);
-            }
-            //*****
-            player = myGame.nextTurnPlayer(); 
-            
+            player = myGame.nextTurnPlayer();
+
 
             //   SetPicture("blank.jpg", Selected_Card);
             actiondone = "";
@@ -476,6 +440,9 @@ namespace Dominion {
             if (actiondone.Equals("Trash Many")) {
                 player.trashCards(new List<Card>());
                 ResetSpecialAction();
+            }else if(actiondone.Equals("Spy Many")){
+                ResetSpecialAction();
+                RefreshHand();
             }
             Buy.IsEnabled = false;
             phase = "Buy Phase";
@@ -485,6 +452,7 @@ namespace Dominion {
             End_Phase.IsEnabled = false;
             SetHandButtonsToNo();
             SetFieldCardsToNormal();
+            
         }
         private void CurrencyImage_Click(object sender, RoutedEventArgs e) {
             Image_Click(sender, currencyButton, currencyImage, false);
@@ -498,7 +466,7 @@ namespace Dominion {
         private void ActionImage_Click(object sender, RoutedEventArgs e) {
             Image_Click(sender, actionButton, actionImage, false);
         }
-        private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {
+        private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {//somehow sometimes _button is getting set when a button in unhilighted at some point
             Button obj = (Button)sender;
             if (obj.Cursor == Cursors.Hand) {
                 if (_button == obj) {
@@ -688,9 +656,8 @@ namespace Dominion {
             player.getCurrency();
             RefreshWindow();
 
-            Locale loc = new Locale(language.Substring(0,2),language.Substring(3,2));
+            loc = new Locale(language.Substring(0,2),language.Substring(3,2));
             Internationalizer.setLocale(loc);
-            Description.Content = Internationalizer.getMessage("TestString");
         }
         private void InitializeButtonImages() {
             //MainGrid

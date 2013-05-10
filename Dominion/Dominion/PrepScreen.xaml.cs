@@ -20,14 +20,17 @@ namespace Dominion {
     public partial class PrepScreen : Window {
         public PrepScreen(String player, MainWindow main) {
             InitializeComponent();
-            this.ReadyButton.Content = player + " Is Ready";
+            local =main.loc;
+            Internationalizer.setLocale(local);
+            this.ReadyButton.Content = player + " "+ Internationalizer.getMessage("IsReady");
             this.ReadyButton.Focus();
             this.main = main;
-            this.ReadyLabel.Content = player + " Get Ready";
-            this.Title = " Prep Screen";
+            this.ReadyLabel.Content = player + " "+ Internationalizer.getMessage("GetReady");
+            this.Title = Internationalizer.getMessage("Prep");
+            
         }
         MainWindow main;
-
+        Locale local;
         private void Ready(object sender, RoutedEventArgs e) {
             main.Show();
             Close();
