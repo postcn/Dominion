@@ -125,51 +125,57 @@ namespace Dominion
         {
             int tempPts = 0;
             int cardCount = this.calculateCardCount();
-            int gardens = 0;
-            List<Card> tempDeck = myDeck.getInDeck();
-            for (int i = 0; i < tempDeck.Count; i++)
-            {
-                if (tempDeck[i].getType() == 0)
-                {
-                    tempPts = tempPts + tempDeck[i].getVictoryPoints();
-                    if (tempDeck[i].Equals(CardMother.Gardens()))
-                    {
-                        gardens++;
-                    }
-                }
-            }
-            List<Card> tempDiscard = myDeck.getInDiscard();
-            for (int i = 0; i < tempDiscard.Count; i++)
-            {
-                if (tempDiscard[i].getType() == 0)
-                {
-                    tempPts = tempPts + tempDiscard[i].getVictoryPoints();
-                    if (tempDiscard[i].Equals(CardMother.Gardens()))
-                    {
-                        gardens++;
-                    }
-                }
-            }
-            List<Card> tempHand = myHand.getHand();
-            for (int i = 0; i < tempHand.Count; i++)
-            {
-                if (tempHand[i].getType() == 0)
-                {
-                    tempPts = tempPts + tempHand[i].getVictoryPoints();
-                    if (tempHand[i].Equals(CardMother.Gardens()))
-                    {
-                        gardens++;
-                    }
-                }
-            }
-            tempPts += gardens * (cardCount / 10);
+            tempPts += countVictoryPoints(myDeck.getInDeck());
+            tempPts += countVictoryPoints(myDeck.getInDiscard());
+            tempPts += countVictoryPoints(myHand.getHand());
+            tempPts += countGardens() * (cardCount / 10);
             victoryPts = tempPts;
+        }
+
+        private int countVictoryPoints(List<Card> cards)
+        {
+            int vic = 0;
+            foreach (Card c in cards)
+            {
+                if (c.getType() == 0)
+                {
+                    vic += c.getVictoryPoints();
+                }
+            }
+            return vic;
+        }
+
+        private int countGardens()
+        {
+            int gardens = 0;
+            foreach (Card c in this.myHand.getHand())
+            {
+                if (c.Equals(CardMother.Gardens()))
+                {
+                    gardens++;
+                }
+            }
+            foreach (Card c in this.myDeck.getInDeck())
+            {
+                if (c.Equals(CardMother.Gardens()))
+                {
+                    gardens++;
+                }
+            }
+            foreach (Card c in this.myDeck.getInDiscard())
+            {
+                if (c.Equals(CardMother.Gardens()))
+                {
+                    gardens++;
+                }
+            }
+            return gardens;
         }
 
         public int getCurrency()
         {
             int inPlayed = 0;
-            for (int i=0; i<this.played.Count; i++)
+            for (int i = 0; i < this.played.Count; i++)
             {
                 inPlayed += this.played[i].getCash() * this.timesPlayed[i];
             }
@@ -278,7 +284,7 @@ namespace Dominion
                             break;
                         case 11:
                             //Throne Room. Double the number of next plays.
-                            CardFunctions.doubleNextPlay(this,this.timesToPlayLeft+1);
+                            CardFunctions.doubleNextPlay(this, this.timesToPlayLeft + 1);
                             this.timesToPlayLeft = 0;
                             CardFunctions.actionAdd(this, aCard.getActions());
                             break;
@@ -320,8 +326,8 @@ namespace Dominion
                         case 20:
                             //Spy;
                             CardFunctions.spyFunction(this, retVal);
-                            CardFunctions.draw(this,1);
-                            CardFunctions.actionAdd(this,1);
+                            CardFunctions.draw(this, 1);
+                            CardFunctions.actionAdd(this, 1);
                             break;
                         case 21:
                             //Thief
@@ -552,20 +558,10 @@ namespace Dominion
                 return retVal;
             }
 
-            List<Card> handCopy = new List<Card>();
-            //make a copy of the hand so that we can check if all the cards in the list are in the hand
-            foreach (Card c in this.getHand().getHand())
+            StatusObject returner = allCardsInHand(cards, retVal);
+            if (returner != null)
             {
-                handCopy.Add(c);
-            }
-
-            foreach (Card c in cards)
-            {
-                if (!handCopy.Remove(c))
-                {
-                    retVal.setMessage(Internationalizer.getMessage("MissingCards1") + c.getName() + Internationalizer.getMessage("MissingCards2"));
-                    return retVal;
-                }
+                return returner;
             }
 
             //if it gets to here all the cards are in the hand. Proceed to remove them and draw the same number.
@@ -584,6 +580,27 @@ namespace Dominion
             return retVal;
         }
 
+        private StatusObject allCardsInHand(List<Card> cards, StatusObject retVal)
+        {
+            List<Card> handCopy = new List<Card>();
+            //make a copy of the hand so that we can check if all the cards in the list are in the hand
+            foreach (Card c in this.getHand().getHand())
+            {
+                handCopy.Add(c);
+            }
+
+            foreach (Card c in cards)
+            {
+                if (!handCopy.Remove(c))
+                {
+                    retVal.setMessage(Internationalizer.getMessage("MissingCards1") + c.getName() + Internationalizer.getMessage("MissingCards2"));
+                    return retVal;
+                }
+            }
+
+            return null;
+        }
+
         public StatusObject trashCards(List<Card> cards)
         {
             StatusObject retVal = new StatusObject(false);
@@ -600,27 +617,16 @@ namespace Dominion
                 return retVal;
             }
 
-            List<Card> handCopy = new List<Card>();
+            StatusObject returner = allCardsInHand(cards, retVal);
+            if (returner != null)
+            {
+                return returner;
+            }
 
-            foreach (Card c in this.getHand().getHand())
-            {
-                handCopy.Add(c);
-            }
-            //Check that cards are in the hand
-            foreach (Card c in cards)
-            {
-                if (!handCopy.Remove(c))
-                {
-                    retVal.setMessage(Internationalizer.getMessage("MissingCards1") + c.getName() + Internationalizer.getMessage("MissingCards2"));
-                    return retVal;
-                }
-            }
             //Trash cards
-            Hand h = this.getHand();
-            Deck d = this.getDeck();
             foreach (Card c in cards)
             {
-                h.remove(c);//trash not discard for the chapel
+                this.getHand().remove(c);//trash not discard for the chapel
             }
 
             this.possibleTrashes = 0;
@@ -743,30 +749,34 @@ namespace Dominion
         public StatusObject mineATreasureCard(Card c)
         {
             StatusObject retVal = new StatusObject(false);
-            if (c == null) {
+            if (c == null)
+            {
                 return retVal;
             }
             if (c.Equals(CardMother.Copper()) || c.Equals(CardMother.Silver()))
             {
-                if (c.Equals(CardMother.Copper())) {
+                if (c.Equals(CardMother.Copper()))
+                {
                     this.getHand().getHand().Remove(c);
                     this.getHand().getHand().Add(CardMother.Silver());
                     retVal.setMinedCorrectly(true);
                     return retVal;
                 }
 
-                else {
+                else
+                {
                     this.getHand().getHand().Remove(c);
                     this.getHand().getHand().Add(CardMother.Gold());
                     retVal.setMinedCorrectly(true);
                     return retVal;
                 }
             }
-            else {
+            else
+            {
                 return retVal;
             }
 
-            
+
         }
 
         /// <summary>
@@ -837,7 +847,7 @@ namespace Dominion
         {
             List<Card> spied = new List<Card>();
             spied.Add(this.myDeck.peekAtTopCard());
-            for (int i=0; i< this.otherPlayers.Count; i++)
+            for (int i = 0; i < this.otherPlayers.Count; i++)
             {
                 Player p = this.otherPlayers[i];
                 if (!p.getHand().hasDefenseCard())
@@ -858,15 +868,7 @@ namespace Dominion
             StatusObject o = new StatusObject(false);
             for (int i = 0; i < discard.Count; i++)
             {
-                Player p;
-                if (i == 0)
-                {
-                    p = this;
-                }
-                else
-                {
-                    p = this.otherPlayers[i - 1];
-                }
+                Player p = PlayerGetPlayerInList(i);
                 if (discard[i] != null && !p.getDeck().peekAtTopCard().Equals(discard[i]))
                 {
                     return o;
@@ -874,15 +876,7 @@ namespace Dominion
             }
             for (int i = 0; i < discard.Count; i++)
             {
-                Player p;
-                if (i == 0)
-                {
-                    p = this;
-                }
-                else
-                {
-                    p = this.otherPlayers[i - 1];
-                }
+                Player p = PlayerGetPlayerInList(i);
                 if (discard[i] != null && p.getDeck().peekAtTopCard().Equals(discard[i]))
                 {
                     p.getDeck().discard(p.getDeck().draw());
@@ -890,6 +884,20 @@ namespace Dominion
             }
             o.setSpiedSuccessfully(true);
             return o;
+        }
+
+        private Player PlayerGetPlayerInList(int i)
+        {
+            Player p;
+            if (i == 0)
+            {
+                p = this;
+            }
+            else
+            {
+                p = this.otherPlayers[i - 1];
+            }
+            return p;
         }
 
         public void clearThiefList()

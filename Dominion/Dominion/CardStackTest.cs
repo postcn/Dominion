@@ -111,7 +111,7 @@ namespace Dominion
         public void drawMoreThanAll()
         {
             int rem = this.stackDefault.cardsRemaining();
-            Card test = new Card(0, 0, 0, 0, 0, 0, 0, null, null, 0);
+            Card test = new Card(0, 0, 0, 0, 0, 0, 0, "String one", "String two", 0);
             for (int i = 0; i <= rem; i++)
             {
                 test = this.stackDefault.buyOne();

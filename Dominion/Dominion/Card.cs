@@ -34,18 +34,32 @@ namespace Dominion
         string desc;
         int cost;
 
+        public long equalValidator;
+
         //Constructor
         public Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum,string cardName,string desc,int cost){
+            this.equalValidator = 0;
+
             this.type = type;
+            this.equalValidator += type;
             this.cash = cash;
+            this.equalValidator += cash * 100;
             this.buy = buy;
+            this.equalValidator += buy * 10000;
             this.actions = actions;
+            this.equalValidator += actions * 1000000;
             this.vict = vict;
+            this.equalValidator += vict * 100000000;
             this.draw = draw;
-            this.funcNum = funcNum;
-            this.cardName = cardName;
-            this.desc = desc;
+            this.equalValidator += draw * 10000000000;
             this.cost = cost;
+            this.equalValidator += cost * 1000000000000;
+            this.cardName = cardName;
+            this.equalValidator += cardName.GetHashCode();
+            this.desc = desc;
+            this.equalValidator += desc.GetHashCode();
+            this.funcNum = funcNum;
+            this.equalValidator += funcNum * 100000000000000;
         }
 
         public int getType()
@@ -111,10 +125,11 @@ namespace Dominion
                 return false;
             }
             Card otherCard = (Card)other;
-            return ((this.actions == otherCard.getActions()) && (this.desc == otherCard.getDescription()) && (this.cardName == otherCard.getName()) &&
-                (this.type == otherCard.getType()) && (this.funcNum == otherCard.getFunctionNumber()) && (this.cost == otherCard.getCost()) &&
-                (this.cash == otherCard.getCash()) && (this.buy == otherCard.getBuy()) && (this.vict == otherCard.getVictoryPoints()) &&
-                (this.draw == otherCard.getAdditionalDraws()));
+            /* return ((this.actions == otherCard.getActions()) && (this.desc == otherCard.getDescription()) && (this.cardName == otherCard.getName()) &&
+                 (this.type == otherCard.getType()) && (this.funcNum == otherCard.getFunctionNumber()) && (this.cost == otherCard.getCost()) &&
+                 (this.cash == otherCard.getCash()) && (this.buy == otherCard.getBuy()) && (this.vict == otherCard.getVictoryPoints()) &&
+                 (this.draw == otherCard.getAdditionalDraws()));*/
+            return this.equalValidator == otherCard.equalValidator;
         }
 
         public bool getPlayable()
