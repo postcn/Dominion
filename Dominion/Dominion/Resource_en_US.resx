@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
   <data name="Bought" xml:space="preserve">
     <value> bought a </value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="BureaucratMsg2" xml:space="preserve">
     <value> back on the top of their deck.</value>
+  </data>
+  <data name="Buy" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="Buys" xml:space="preserve">
+    <value>Buys</value>
   </data>
   <data name="Cellar" xml:space="preserve">
     <value>Cellar</value>
@@ -150,6 +159,12 @@
   <data name="ChapelDesc" xml:space="preserve">
     <value>Trash up to 4 cards from your hand</value>
   </data>
+  <data name="ClickToStart" xml:space="preserve">
+    <value>Click To Start Game</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="Copper" xml:space="preserve">
     <value>Copper</value>
   </data>
@@ -162,20 +177,50 @@
   <data name="CouncilRoomDesc" xml:space="preserve">
     <value>+4 Cards, +1 Buy, Each other player draws a card.</value>
   </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
   <data name="Curse" xml:space="preserve">
     <value>Curse</value>
   </data>
   <data name="CurseDesc" xml:space="preserve">
     <value>-1 Victory Point</value>
   </data>
+  <data name="DeckNotOnDiscard" xml:space="preserve">
+    <value>Click To Not Place Your Deck In The Discard Pile</value>
+  </data>
+  <data name="DeckOnDiscard" xml:space="preserve">
+    <value>Click To Place Your Deck In The Discard Pile</value>
+  </data>
   <data name="Defended" xml:space="preserve">
     <value>defended against the attack!</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="DiscardCards" xml:space="preserve">
+    <value>Discard Selected Cards</value>
+  </data>
+  <data name="DiscardCopper" xml:space="preserve">
+    <value>Click To Discard A Copper</value>
+  </data>
+  <data name="Displays" xml:space="preserve">
+    <value>Displays Your:\n Actions, Buys, Currency, Gain Amount, and The Current Turn</value>
   </data>
   <data name="Duchy" xml:space="preserve">
     <value>Duchy</value>
   </data>
   <data name="DuchyDesc" xml:space="preserve">
     <value>3 Victory Points</value>
+  </data>
+  <data name="EndActionPhase" xml:space="preserve">
+    <value>Ends The Action Phase; Putting You In The Buy Phase</value>
+  </data>
+  <data name="EndPhase" xml:space="preserve">
+    <value>End Phase</value>
+  </data>
+  <data name="EndTurn" xml:space="preserve">
+    <value>End Turn</value>
   </data>
   <data name="Estate" xml:space="preserve">
     <value>Estate</value>
@@ -195,6 +240,9 @@
   <data name="FestivalDesc" xml:space="preserve">
     <value>+2 Actions\n+1\nBuy\n+2 Currency</value>
   </data>
+  <data name="Gain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
   <data name="GainsLeft" xml:space="preserve">
     <value>Still have gains left, setting to gain again.</value>
   </data>
@@ -203,6 +251,12 @@
   </data>
   <data name="GardensDesc" xml:space="preserve">
     <value>Worth 1 Victory Point for every 10 cards in your deck (rounded down).</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="GetReady" xml:space="preserve">
+    <value>Get Ready</value>
   </data>
   <data name="Gold" xml:space="preserve">
     <value>Gold</value>
@@ -219,11 +273,20 @@
   <data name="IncorrectForMilitia" xml:space="preserve">
     <value>Incorrect number of cards discarded for the Militia effect</value>
   </data>
+  <data name="IsReady" xml:space="preserve">
+    <value>Is Ready</value>
+  </data>
   <data name="Laboratory" xml:space="preserve">
     <value>Laboratory</value>
   </data>
   <data name="LaboratoryDesc" xml:space="preserve">
     <value>+2 Cards\n+1 Action</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main Window</value>
   </data>
   <data name="Market" xml:space="preserve">
     <value>Market</value>
@@ -267,8 +330,14 @@
   <data name="NextTurn" xml:space="preserve">
     <value> Ended their turn.\n========\n</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoGainsLeft" xml:space="preserve">
     <value>No gains left in player</value>
+  </data>
+  <data name="NotDiscardCopper" xml:space="preserve">
+    <value>Click To Not Discard A Copper</value>
   </data>
   <data name="NotEnoughCur" xml:space="preserve">
     <value>Not enough currency for gain. </value>
@@ -276,8 +345,23 @@
   <data name="NotGain" xml:space="preserve">
     <value>Not gain in player</value>
   </data>
+  <data name="Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="PlayCards" xml:space="preserve">
+    <value>Plays The Selected Card</value>
+  </data>
   <data name="Played" xml:space="preserve">
     <value> played a </value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="Players" xml:space="preserve">
+    <value>Players</value>
+  </data>
+  <data name="Prep" xml:space="preserve">
+    <value>Prep Screen</value>
   </data>
   <data name="Province" xml:space="preserve">
     <value>Province</value>
@@ -315,6 +399,9 @@
   <data name="StackEmpty" xml:space="preserve">
     <value>Card Stack was Empty</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start Screen</value>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>This is the test string!</value>
   </data>
@@ -339,6 +426,15 @@
   <data name="Tie" xml:space="preserve">
     <value>It was a tie!</value>
   </data>
+  <data name="Trash" xml:space="preserve">
+    <value>Trash</value>
+  </data>
+  <data name="TrashCards" xml:space="preserve">
+    <value>Trashes The Selected Card</value>
+  </data>
+  <data name="Turn" xml:space="preserve">
+    <value>Turn</value>
+  </data>
   <data name="TypeString0" xml:space="preserve">
     <value>Victory</value>
   </data>
@@ -353,6 +449,9 @@
   </data>
   <data name="TypeString4" xml:space="preserve">
     <value>Action - Reaction</value>
+  </data>
+  <data name="UpgradeCur" xml:space="preserve">
+    <value>Click To 'Upgrade' Currency</value>
   </data>
   <data name="VictPts1" xml:space="preserve">
     <value> had </value>
@@ -386,5 +485,8 @@
   </data>
   <data name="WorkshopDesc" xml:space="preserve">
     <value>Gain a card costing up to 4 Currency</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

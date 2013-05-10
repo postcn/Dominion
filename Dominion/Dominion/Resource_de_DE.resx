@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>Aktionen</value>
+  </data>
   <data name="Bought" xml:space="preserve">
     <value> kaufte ein </value>
   </data>
@@ -131,6 +134,12 @@
   </data>
   <data name="BureaucratMsg2" xml:space="preserve">
     <value>Zurück auf der Spitze ihrer Deck.</value>
+  </data>
+  <data name="Buy" xml:space="preserve">
+    <value>kaufen</value>
+  </data>
+  <data name="Buys" xml:space="preserve">
+    <value>Kauft</value>
   </data>
   <data name="Cellar" xml:space="preserve">
     <value>Keller</value>
@@ -150,6 +159,12 @@
   <data name="ChapelDesc" xml:space="preserve">
     <value>Trash bis zu 4 Karten von deiner Hand</value>
   </data>
+  <data name="ClickToStart" xml:space="preserve">
+    <value>Klicken Sie zum Spielbeginn</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>bestätigen</value>
+  </data>
   <data name="Copper" xml:space="preserve">
     <value>Kupfer</value>
   </data>
@@ -162,20 +177,50 @@
   <data name="CouncilRoomDesc" xml:space="preserve">
     <value>+4 Karten, +1 Buy zieht jeder andere Spieler eine Karte.</value>
   </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Währung</value>
+  </data>
   <data name="Curse" xml:space="preserve">
     <value>Fluch</value>
   </data>
   <data name="CurseDesc" xml:space="preserve">
     <value>-1 Siegpunkt</value>
   </data>
+  <data name="DeckNotOnDiscard" xml:space="preserve">
+    <value>Klicken Sie auf Nicht Place Your Deck auf den Ablagestapel</value>
+  </data>
+  <data name="DeckOnDiscard" xml:space="preserve">
+    <value>Klicken Sie, um dein Deck auf den Ablagestapel Zeigen</value>
+  </data>
   <data name="Defended" xml:space="preserve">
     <value>verteidigt gegen den Angriff!</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Verwerfen</value>
+  </data>
+  <data name="DiscardCards" xml:space="preserve">
+    <value>Verwerfen Ausgewählte Karten</value>
+  </data>
+  <data name="DiscardCopper" xml:space="preserve">
+    <value>Klicke, um eine Kupfer Verwerfen</value>
+  </data>
+  <data name="Displays" xml:space="preserve">
+    <value>Zeigt Ihr: \n Aktionen, Buys, Währung, Gain-Betrag, und die aktuelle Schalten</value>
   </data>
   <data name="Duchy" xml:space="preserve">
     <value>Herzogtum</value>
   </data>
   <data name="DuchyDesc" xml:space="preserve">
     <value>3 Siegpunkte</value>
+  </data>
+  <data name="EndActionPhase" xml:space="preserve">
+    <value>Endet der Aktionsphase, indem Sie in der Buy-Phase</value>
+  </data>
+  <data name="EndPhase" xml:space="preserve">
+    <value>Endphase</value>
+  </data>
+  <data name="EndTurn" xml:space="preserve">
+    <value>Ende biegen</value>
   </data>
   <data name="Estate" xml:space="preserve">
     <value>Immobilien</value>
@@ -195,6 +240,9 @@
   <data name="FestivalDesc" xml:space="preserve">
     <value>+2 Aktionen \n +1 \n buy \n +2 Währung</value>
   </data>
+  <data name="Gain" xml:space="preserve">
+    <value>Gewinnen</value>
+  </data>
   <data name="GainsLeft" xml:space="preserve">
     <value>Sie haben noch Gewinne übrig, Einstellung wieder zu gewinnen.</value>
   </data>
@@ -203,6 +251,12 @@
   </data>
   <data name="GardensDesc" xml:space="preserve">
     <value>1 Siegpunkt für je 10 Karten in deinem Deck (abgerundet).</value>
+  </data>
+  <data name="German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="GetReady" xml:space="preserve">
+    <value>fertig machen</value>
   </data>
   <data name="Gold" xml:space="preserve">
     <value>Gold</value>
@@ -219,11 +273,20 @@
   <data name="IncorrectForMilitia" xml:space="preserve">
     <value>Falsche Anzahl von Karten für die Miliz abgeworfen</value>
   </data>
+  <data name="IsReady" xml:space="preserve">
+    <value>ist bereit</value>
+  </data>
   <data name="Laboratory" xml:space="preserve">
     <value>Laboratory</value>
   </data>
   <data name="LaboratoryDesc" xml:space="preserve">
     <value>+2 Cards \n +1 Aktion</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Hauptfenster</value>
   </data>
   <data name="Market" xml:space="preserve">
     <value>Markt</value>
@@ -267,8 +330,14 @@
   <data name="NextTurn" xml:space="preserve">
     <value> Beendet ihrerseits. \n ======== \n</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
   <data name="NoGainsLeft" xml:space="preserve">
     <value>Keine Gewinne in Spieler übrig</value>
+  </data>
+  <data name="NotDiscardCopper" xml:space="preserve">
+    <value>Klicken Sie auf Nicht Verwerfen einer Kupfer</value>
   </data>
   <data name="NotEnoughCur" xml:space="preserve">
     <value>Nicht genug Währung für Gewinn. </value>
@@ -276,8 +345,23 @@
   <data name="NotGain" xml:space="preserve">
     <value>Nicht in Spieler zu gewinnen</value>
   </data>
+  <data name="Play" xml:space="preserve">
+    <value>spielen</value>
+  </data>
+  <data name="PlayCards" xml:space="preserve">
+    <value>Spielt die ausgewählte Karte</value>
+  </data>
   <data name="Played" xml:space="preserve">
     <value> spielte eine </value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Spieler</value>
+  </data>
+  <data name="Players" xml:space="preserve">
+    <value>Spieler</value>
+  </data>
+  <data name="Prep" xml:space="preserve">
+    <value>Prep Bildschirm</value>
   </data>
   <data name="Province" xml:space="preserve">
     <value>Provinz</value>
@@ -315,6 +399,9 @@
   <data name="StackEmpty" xml:space="preserve">
     <value>Kartenstapel leer war</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Startbildschirm</value>
+  </data>
   <data name="TestString" xml:space="preserve">
     <value>German</value>
   </data>
@@ -339,6 +426,15 @@
   <data name="Tie" xml:space="preserve">
     <value>Es war ein Unentschieden!</value>
   </data>
+  <data name="Trash" xml:space="preserve">
+    <value>Papierkorb</value>
+  </data>
+  <data name="TrashCards" xml:space="preserve">
+    <value>Papierkorb der ausgewählten Karte</value>
+  </data>
+  <data name="Turn" xml:space="preserve">
+    <value>Drehen</value>
+  </data>
   <data name="TypeString0" xml:space="preserve">
     <value>Sieg</value>
   </data>
@@ -353,6 +449,9 @@
   </data>
   <data name="TypeString4" xml:space="preserve">
     <value>Aktion - Reaktion</value>
+  </data>
+  <data name="UpgradeCur" xml:space="preserve">
+    <value>Klicken Sie auf "Upgrade" Währung</value>
   </data>
   <data name="VictPts1" xml:space="preserve">
     <value> hatte </value>
@@ -386,5 +485,8 @@
   </data>
   <data name="WorkshopDesc" xml:space="preserve">
     <value>Nimm dir eine Karte mit Kosten bis zu 4 Währung</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>
