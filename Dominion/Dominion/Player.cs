@@ -810,6 +810,8 @@ namespace Dominion
         public StatusObject militiaDiscardEffect(List<Card> cards)
         {
             StatusObject lastObject = new StatusObject(false);
+            lastObject.setMilitiaPlayed(true);
+            lastObject.setContinueWithDelayedFunctions(true);
             if (this.myHand.size() <= 3)
             {
                 lastObject.setMilitiaPlayed(false);

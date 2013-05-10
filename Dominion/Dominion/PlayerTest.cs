@@ -878,7 +878,8 @@ namespace Dominion
             p.getHand().getHand().Add(CardMother.Feast());
             p.setTrashesNeeded(1);
             StatusObject o = p.trashACopperForCurrencyBonus(CardMother.Copper());
-            Assert.IsFalse(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.IsTrue(o.wasCopperTrashedSuccessfullyForBonus());
+            Assert.AreEqual(2, p.getCurrency());
         }
 
         [Test()]
@@ -1183,7 +1184,7 @@ namespace Dominion
             o.setMilitiaPlayed(true);
             p.getHand().remove(CardMother.Copper());
             p.getHand().remove(CardMother.Copper());
-            p.militiaDiscardEffect(new List<Card>());
+            o = p.militiaDiscardEffect(new List<Card>());
             Assert.IsFalse(o.wasMilitiaPlayed());
             Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
         }
@@ -1221,7 +1222,7 @@ namespace Dominion
             List<Card> cards = new List<Card>();
             cards.Add(CardMother.Copper());
             cards.Add(CardMother.Copper());
-            p.militiaDiscardEffect(cards);
+            o = p.militiaDiscardEffect(cards);
             Assert.IsFalse(o.wasMilitiaPlayed());
             Assert.AreEqual(2, p.getDeck().getInDiscard().Count);
         }
@@ -1235,7 +1236,7 @@ namespace Dominion
             cards.Add(CardMother.Copper());
             cards.Add(CardMother.Copper());
             cards.Add(CardMother.Copper());
-            p.militiaDiscardEffect(cards);
+            o = p.militiaDiscardEffect(cards);
             Assert.IsTrue(o.wasMilitiaPlayed());
             Assert.AreEqual(0, p.getDeck().getInDiscard().Count);
         }
@@ -1255,11 +1256,11 @@ namespace Dominion
             Assert.IsTrue(o.wasMilitiaPlayed());
             Assert.IsTrue(o.needToContinueWithDelayedFunctions());
             List<Card> cards = new List<Card>();
-            p.militiaDiscardEffect(cards);
+            o = p.militiaDiscardEffect(cards);
             Assert.IsTrue(o.wasMilitiaPlayed());
             cards.Add(CardMother.Copper());
             cards.Add(CardMother.Copper());
-            p.militiaDiscardEffect(cards);
+            o = p.militiaDiscardEffect(cards);
             Assert.IsFalse(o.wasMilitiaPlayed());
             Assert.IsTrue(o.needToContinueWithDelayedFunctions());
             o = p.callDelayedFunctions();
