@@ -9,6 +9,7 @@ namespace Dominion
     /// <summary>
     /// Class which is designed for piles of cards to buy.
     /// </summary>
+    [Serializable]
     public class CardStack
     {
        Card card;

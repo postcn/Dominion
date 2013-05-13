@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominion
 {
+    [Serializable]
     public class Hand
     {
         List<Card> yourHand;

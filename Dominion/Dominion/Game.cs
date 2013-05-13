@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Dominion {
+    [Serializable]
     public class Game {
         List<Player> players;
         int currentPlayer;
@@ -194,6 +198,49 @@ namespace Dominion {
                 }
                 used.Add(val);
                 this.buyables[i + 7] = new CardStack(10, CardMother.allBuyableCards()[val]);
+            }
+        }
+
+        public static FileStream openFile()
+        {
+            string path;
+            OpenFileDialog file = new OpenFileDialog();
+            file.CheckFileExists = false;
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+            }
+            else
+            {
+                return null;
+            }
+            FileStream stream = new FileStream(path, FileMode.OpenOrCreate,
+                FileAccess.ReadWrite);
+            return stream;
+        }
+
+        public void Save()
+        {
+            FileStream stream = Game.openFile();
+            if (stream != null)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, this);
+            }
+        }
+
+        public static Game Load()
+        {
+            FileStream stream = Game.openFile();
+            if (stream != null)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                Game g = (Game)formatter.Deserialize(stream);
+                return g;
+            }
+            else
+            {
+                return null;
             }
         }
     }

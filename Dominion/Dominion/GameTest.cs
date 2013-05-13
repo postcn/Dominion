@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using NUnit.Framework;
 
 namespace Dominion
@@ -329,6 +330,28 @@ namespace Dominion
             String name = "Fred";
             gameTwoPlayer.getPlayers()[1].setName(name);
             Assert.AreEqual(name, gameTwoPlayer.nextPlayerName());
+        }
+
+        [Ignore()]
+        [Test()]
+        public void testGetFileInteractive()
+        {
+            FileStream stream = Game.openFile();
+            Assert.IsNotNull(stream);
+        }
+
+        [Ignore()]
+        [Test()]
+        public void testSave()
+        {
+            gameFourPlayer.Save();
+        }
+
+        [Test()]
+        public void testLoad()
+        {
+            gameThreePlayer = Game.Load();
+            Assert.AreEqual(4, gameThreePlayer.getPlayers().Count);
         }
     }
 }
