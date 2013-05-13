@@ -222,16 +222,36 @@ namespace Dominion {
         public void Save()
         {
             FileStream stream = Game.openFile();
+            this.SaveFile(stream);
+        }
+
+        /// <summary>
+        /// DONT USE PUBLIC FOR TESTING ONLY
+        /// </summary>
+        /// <param name="stream"></param>
+        public void SaveFile(FileStream stream)
+        {
             if (stream != null)
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, this);
             }
+            stream.Close();
         }
 
         public static Game Load()
         {
             FileStream stream = Game.openFile();
+            return LoadFile(stream);
+        }
+
+        /// <summary>
+        /// DONE USE PUBLIC FOR TESTING ONLY!
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public static Game LoadFile(FileStream stream)
+        {
             if (stream != null)
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -242,6 +262,7 @@ namespace Dominion {
             {
                 return null;
             }
+            stream.Close();
         }
     }
 }

@@ -347,11 +347,39 @@ namespace Dominion
             gameFourPlayer.Save();
         }
 
+        [Ignore()]
         [Test()]
         public void testLoad()
         {
             gameThreePlayer = Game.Load();
             Assert.AreEqual(4, gameThreePlayer.getPlayers().Count);
+        }
+
+        [Test()]
+        public void testLoadAndSave()
+        {
+            Game g = new Game(2);
+            Player p = g.getPlayers()[0];
+            p.getHand().getHand().Add(CardMother.Feast());
+            p.getDeck().getInDiscard().Add(CardMother.Estate());
+            p = g.nextTurnPlayer();
+            p.getHand().getHand().Add(CardMother.Village());
+
+            //Setup Done
+            string direc = Directory.GetCurrentDirectory();
+            direc += "\\testSave.dom";
+            FileStream stream = new FileStream(direc, FileMode.OpenOrCreate,FileAccess.ReadWrite);
+            g.SaveFile(stream);
+
+            stream = new FileStream(direc, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            Game g2 = Game.LoadFile(stream);
+            Assert.AreEqual(1, g2.getCurrentPlayerNumber());
+            Assert.IsTrue(g2.getCurrentPlayer().getHand().contains(CardMother.Village()));
+            Assert.IsFalse(g2.isGameOver());
+            Assert.AreEqual(4, g2.getPlayers()[0].getVictoryPts());
+            Assert.AreEqual(3, g2.getPlayers()[1].getVictoryPts());
+            Assert.AreEqual(12, g2.getPlayers()[0].getDeck().size() + g2.getPlayers()[0].getHand().size());
+            Assert.AreEqual(11, g2.getPlayers()[1].getDeck().size() + g2.getPlayers()[1].getHand().size());
         }
     }
 }
