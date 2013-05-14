@@ -28,216 +28,226 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="MainGrid" Margin="0,0,0,0" Background="#FF343131">
+        <Menu IsMainMenu="True" Foreground="White" Margin="0,10,0,-10">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header="File" Foreground="White" IsTabStop="False">
+                <MenuItem x:Name="Save" Header="Save" Foreground="Black" Click="Save_Game"/>
+            </MenuItem>
+        </Menu>
         <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,423,0,0" VerticalAlignment="Top" Width="230" Foreground="White"/>
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
         <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="44" Margin="729,82,0,0" VerticalAlignment="Top" Width="181" Foreground="White"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="729,132,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
         <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click" ToolTip="Ends Your Turn"/>
         <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Height="29" Margin="673,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Play_Click" ToolTip="Plays The Selected Card"/>
-        <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="304,92,567,681">
-            <Image x:Name= "VictoryImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="308,105,565,678">
+            <Image x:Name= "VictoryImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton2" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="405,92,466,681">
-            <Image x:Name= "VictoryImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="VictoryButton2" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="393,105,480,678">
+            <Image x:Name= "VictoryImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton3" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="504,92,367,681">
-            <Image x:Name= "VictoryImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="VictoryButton3" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="478,105,395,678">
+            <Image x:Name= "VictoryImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton4" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="601,92,270,681">
-            <Image x:Name= "VictoryImage4" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="VictoryButton4" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="563,105,310,678">
+            <Image x:Name= "VictoryImage4" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton1" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="304,236,567,537">
-            <Image x:Name= "CurrencyImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="CurrencyButton1" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="308,233,565,550">
+            <Image x:Name= "CurrencyImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton2" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="405,236,466,537">
-            <Image x:Name= "CurrencyImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="CurrencyButton2" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="393,233,480,550">
+            <Image x:Name= "CurrencyImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton3" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="504,236,367,537">
-            <Image x:Name= "CurrencyImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="CurrencyButton3" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="478,233,395,550">
+            <Image x:Name= "CurrencyImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
         <ScrollViewer Margin="0,614,10,103" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <StackPanel x:Name="stackpan" Height="182" Width="400" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="HandButton1" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+                    <Image x:Name= "HandImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton2" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+                    <Image x:Name= "HandImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton3" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+                    <Image x:Name= "HandImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton4" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage4" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage4" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton5" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage5" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage5" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton6" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage6" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage6" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton7" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage7" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage7" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton8" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage8" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage8" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton9" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage9" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage9" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton10" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage10" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage10" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton11" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage11" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage11" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton12" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage12" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage12" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton13" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage13" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage13" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton14" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage14" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage14" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton15" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage15" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage15" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton16" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage16" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage16" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton17" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage17" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage17" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton18" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage18" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage18" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton19" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage19" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage19" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton20" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage20" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage20" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton21" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage21" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage21" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton22" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage22" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage22" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton23" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage23" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage23" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton24" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage24" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage24" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton25" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage25" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage25" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton26" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage26" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage26" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton27" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage27" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage27" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton28" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage28" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage28" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton29" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage29" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage29" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton30" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage30" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage30" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton31" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage31" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage31" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton32" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage32" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage32" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton33" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage33" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage33" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton34" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage34" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage34" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton35" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage35" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage35" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton36" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage36" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage36" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton37" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage37" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage37" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton38" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage38" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage38" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton39" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage39" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage39" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton40" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage40" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage40" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton41" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage41" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage41" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton42" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage42" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage42" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton43" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage43" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage43" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton44" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage44" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage44" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton45" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage45" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage45" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton46" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27" >
-                    <Image x:Name= "HandImage46" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage46" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton47" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage47" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage47" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton48" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27" >
-                    <Image x:Name= "HandImage48" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage48" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton49" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage49" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage49" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
                 <Button x:Name="HandButton50" Style="{DynamicResource NoChromeButton}" Click="HandImage_Click" Margin="0,30,0,27">
-                    <Image x:Name= "HandImage50" Source="Blank.jpg" Stretch="Uniform" Height="130" Width="78"/>
+                    <Image x:Name= "HandImage50" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
                 </Button>
             </StackPanel>
         </ScrollViewer>
-        <Button x:Name="ActionButton1" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="240,378,631,395">
-            <Image x:Name= "ActionImage1" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton1" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="249,368,624,415">
+            <Image x:Name= "ActionImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton2" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="338,378,533,395">
-            <Image x:Name= "ActionImage2" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton2" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="336,368,537,415">
+            <Image x:Name= "ActionImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton3" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="429,378,442,395">
-            <Image x:Name= "ActionImage3" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton3" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="422,368,451,415">
+            <Image x:Name= "ActionImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton4" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="526,378,345,395">
-            <Image x:Name= "ActionImage4" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton4" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="508,368,365,415">
+            <Image x:Name= "ActionImage4" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton5" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,378,248,395">
-            <Image x:Name= "ActionImage5" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton5" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,368,279,415">
+            <Image x:Name= "ActionImage5" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton6" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="241,509,630,264">
-            <Image x:Name= "ActionImage6" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton6" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="249,496,624,287">
+            <Image x:Name= "ActionImage6" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton7" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="338,509,533,264">
-            <Image x:Name= "ActionImage7" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton7" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="336,496,537,287">
+            <Image x:Name= "ActionImage7" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton8" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="429,509,442,264">
-            <Image x:Name= "ActionImage8" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton8" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="422,496,451,287">
+            <Image x:Name= "ActionImage8" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton9" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="526,509,345,264">
-            <Image x:Name= "ActionImage9" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton9" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="508,496,365,287">
+            <Image x:Name= "ActionImage9" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="623,509,248,264">
-            <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="137" Width="78"/>
+        <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,497,279,287">
+            <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
         <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="274" Margin="10,51,0,0" VerticalAlignment="Top" Width="192" Source="Blank.jpg"/>
         <Button x:Name="End_Phase" Content="End Phase" HorizontalAlignment="Left" Height="29" Margin="584,848,0,0" VerticalAlignment="Top" Width="71" Click="EndPhase_Click" ToolTip="Ends The Action Phase; Putting You In The Buy Phase"/>

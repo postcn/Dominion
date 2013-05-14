@@ -195,12 +195,6 @@
     <Resource Include="Silver1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Adventurer.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Adventurer1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Blank.jpg" />
   </ItemGroup>
   <ItemGroup>

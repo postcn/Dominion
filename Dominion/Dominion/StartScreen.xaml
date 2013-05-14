@@ -9,10 +9,14 @@
                     <GradientStop Color="Transparent" Offset="1"/>
                 </LinearGradientBrush>
             </Menu.Background>
+            <MenuItem Header="File" Foreground="White" IsTabStop="False">
+                <MenuItem x:Name="Load" Header="Load" Foreground="Black" Click="Load_Game"/>
+            </MenuItem>
             <MenuItem Header="Language" Foreground="White" IsTabStop="False">
                 <MenuItem x:Name="en_US" Header="English" Foreground="Black" IsChecked="True" Click="ChangeLanguage"/>
                 <MenuItem x:Name="de_DE" Header="Deutsch" Foreground="Black" Click="ChangeLanguage"/>
             </MenuItem>
+           
         </Menu>
         <Button x:Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Left" Height="40" Margin="360,86,0,0" VerticalAlignment="Top" Width="80" Click="ConfirmNames" TabIndex="5" ToolTip="Click To Start Game"/>
         <TextBox x:Name="NameBox1" HorizontalAlignment="Left" Height="33" Margin="93,173,0,0" TextWrapping="Wrap" Text="Player 1" VerticalAlignment="Top" Width="176" AllowDrop="False" IsHitTestVisible="True" TabIndex="1" GotFocus="NameBoxFocus"/>

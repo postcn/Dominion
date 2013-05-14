@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.IO;
 
 namespace Dominion {
     /// <summary>
@@ -83,7 +84,6 @@ namespace Dominion {
                 if (status.wasMinedCorrectly()) {
                     ResetSpecialAction();
                 }
-                //1.)not impelemented
                 if (status.needToDisardDeck()) {
                     YesNo();
                     actiondone = "Mine";
@@ -98,12 +98,6 @@ namespace Dominion {
                     if (status.needToContinueWithDelayedFunctions()) {
                         status = player.callDelayedFunctions();
                         if (status.wasMilitiaPlayed()) {
-                            //Play.Content = "Discard";
-                            //actiondone = "Militia Many";
-                            //End_Phase.IsEnabled = false;
-                            //End_Turn.IsEnabled = false;
-                            //SetFieldardsToNo();
-                            //SetHandButtonsToNormal();
                             militia();
                             RefreshHand();
                             return;
@@ -118,13 +112,6 @@ namespace Dominion {
                 
             }else if(actiondone.Equals("Spy Many")){
                 List<Card> spyCards = new List<Card>();
-               /* for (int i = 0; i < myGame.getPlayers().Count; i++) {
-                   if(StripImageSource(handImage[i].Source.ToString(),false).Contains("1")){
-                    spyCards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(),true)));
-                   }else{
-                    spyCards.Add(null);
-                   }
-                }*/
                 int count = 0;
                 for (int i = 0; i < specialusecards.Count; i++) {
                     if (specialusecards[i] != null) {
@@ -143,7 +130,7 @@ namespace Dominion {
                     RefreshWindow();
                 }
 
-            }else if(actiondone.Equals("Thief Many")){//sometimes cards disapear or are set to null
+            }else if(actiondone.Equals("Thief Many")){
                 List<Card> thiefTrash = new List<Card>();
                 int count = 0;
                 for (int i = 0; i <myGame.getPlayers().Count - 1; i++) {
@@ -737,6 +724,9 @@ namespace Dominion {
         /*********************************************************
          add playerinit and change start_click to initializegame
          ********************************************************/
+        private void Save_Game(object sender, RoutedEventArgs e) {
+            myGame.Save();
+        }
         private void Initialize() {
             player = myGame.getCurrentPlayer();
             stacks = myGame.getBuyables();

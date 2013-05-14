@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Dominion {
     /// <summary>
@@ -103,6 +104,16 @@ namespace Dominion {
         private void UncheckLanguages() {
             for (int i = 0; i < languages.Count; i++) {
                 languages[i].IsChecked = false;
+            }
+        }
+        private void Load_Game(object sender, RoutedEventArgs e) {
+            Game mygame = Game.Load();
+            if (mygame != null) {
+                List<Player> players = mygame.getPlayers();
+                main = new MainWindow(mygame, language);
+                PrepScreen Prep = new PrepScreen(mygame.getCurrentPlayer().getName(), main);
+                Prep.Show();
+                Close();
             }
         }
     }
