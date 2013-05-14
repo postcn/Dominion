@@ -22,5 +22,10 @@ namespace Dominion
         {
             return Internationalizer.manager.GetString(key).Replace("\\n","\n");
         }
+
+        static public Locale getLocale()
+        {
+            return Internationalizer.locale;
+        }
     }
 }

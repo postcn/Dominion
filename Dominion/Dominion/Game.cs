@@ -17,6 +17,7 @@ namespace Dominion {
         List<Player> winningPlayers;
         String gameOverStatus = "";
         String gameStatus = "";
+        int turnsSoFar;
 
         public Game(int numPlayers) {
             players = new List<Player>();
@@ -26,13 +27,23 @@ namespace Dominion {
             winningPlayers = new List<Player>();
             this.currentPlayer = 0;
             this.numPlayers = numPlayers;
+            this.turnsSoFar = 1;
             this.setupBuyables();
             this.initializePlayersToGame();
+        }
+
+        public int getTurnsPassed()
+        {
+            return this.turnsSoFar;
         }
 
         public int nextTurn() {
             this.addToGameMessage(this.getCurrentPlayer().getName() + Internationalizer.getMessage("NextTurn"));
             this.currentPlayer++;
+            if (this.currentPlayer == this.numPlayers)
+            {
+                turnsSoFar++;
+            }
             this.currentPlayer = currentPlayer % numPlayers;
             return this.currentPlayer;
         }
@@ -235,8 +246,9 @@ namespace Dominion {
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, this);
+                formatter.Serialize(stream, Internationalizer.getLocale());
+                stream.Close();
             }
-            stream.Close();
         }
 
         public static Game Load()
@@ -256,13 +268,15 @@ namespace Dominion {
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 Game g = (Game)formatter.Deserialize(stream);
+                Locale l = (Locale)formatter.Deserialize(stream);
+                Internationalizer.setLocale(l);
+                stream.Close();
                 return g;
             }
             else
             {
                 return null;
             }
-            stream.Close();
         }
     }
 }

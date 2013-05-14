@@ -358,6 +358,7 @@ namespace Dominion
         [Test()]
         public void testLoadAndSave()
         {
+            Internationalizer.setLocale(new Locale("de", "DE"));
             Game g = new Game(2);
             Player p = g.getPlayers()[0];
             p.getHand().getHand().Add(CardMother.Feast());
@@ -371,6 +372,8 @@ namespace Dominion
             FileStream stream = new FileStream(direc, FileMode.OpenOrCreate,FileAccess.ReadWrite);
             g.SaveFile(stream);
 
+            Internationalizer.setLocale(new Locale("en", "US"));
+
             stream = new FileStream(direc, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             Game g2 = Game.LoadFile(stream);
             Assert.AreEqual(1, g2.getCurrentPlayerNumber());
@@ -380,6 +383,34 @@ namespace Dominion
             Assert.AreEqual(3, g2.getPlayers()[1].getVictoryPts());
             Assert.AreEqual(12, g2.getPlayers()[0].getDeck().size() + g2.getPlayers()[0].getHand().size());
             Assert.AreEqual(11, g2.getPlayers()[1].getDeck().size() + g2.getPlayers()[1].getHand().size());
+            Assert.AreEqual("Aktionen", Internationalizer.getMessage("Actions"));
+
+            Internationalizer.setLocale(new Locale("en", "US"));
+        }
+
+        [Test()]
+        public void testLoadAndSaveNulls()
+        {
+            Assert.IsNull(Game.LoadFile(null));
+            gameOnePlayer.SaveFile(null);
+        }
+
+        [Test()]
+        public void testTurnsPassed()
+        {
+            Assert.AreEqual(1, gameOnePlayer.getTurnsPassed());
+            gameOnePlayer.nextTurn();
+            Assert.AreEqual(2, gameOnePlayer.getTurnsPassed());
+
+            Assert.AreEqual(1, gameTwoPlayer.getTurnsPassed());
+            gameTwoPlayer.nextTurn();
+            gameTwoPlayer.nextTurn();
+            Assert.AreEqual(2, gameTwoPlayer.getTurnsPassed());
+            gameTwoPlayer.nextTurn();
+            gameTwoPlayer.nextTurn();
+            gameTwoPlayer.nextTurn();
+            gameTwoPlayer.nextTurn();
+            Assert.AreEqual(4, gameTwoPlayer.getTurnsPassed());
         }
     }
 }
