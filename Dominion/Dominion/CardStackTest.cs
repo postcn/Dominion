@@ -17,9 +17,9 @@ namespace Dominion
         [SetUp()]
         public void setUp()
         {
-            this.stackDefault = new CardStack(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2));
-            this.stackFive = new CardStack(5, new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2));
-            this.stackOne = new CardStack(1, new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2));
+            this.stackDefault = new CardStack(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"));
+            this.stackFive = new CardStack(5, new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"));
+            this.stackOne = new CardStack(1, new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"));
         }
 
         
@@ -52,13 +52,13 @@ namespace Dominion
         public void testBuyOneCard()
         {
             Card drawn = this.stackOne.buyOne();
-            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), drawn);
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"), drawn);
             Assert.AreEqual(0, this.stackOne.cardsRemaining());
             drawn = this.stackFive.buyOne();
-            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), drawn);
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"), drawn);
             Assert.AreEqual(4, this.stackFive.cardsRemaining());
             drawn = this.stackDefault.buyOne();
-            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), drawn);
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"), drawn);
             Assert.AreEqual(9, this.stackDefault.cardsRemaining());
         }
 
@@ -68,9 +68,9 @@ namespace Dominion
         [Test()]
         public void testEmpty()
         {
-            CardStack s = new CardStack(0, new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0));
+            CardStack s = new CardStack(0, new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0, "Null"));
             Assert.True(s.isEmpty());
-            s = new CardStack(1, new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0));
+            s = new CardStack(1, new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0, "Null"));
             Assert.False(s.isEmpty());
         }
 
@@ -111,7 +111,7 @@ namespace Dominion
         public void drawMoreThanAll()
         {
             int rem = this.stackDefault.cardsRemaining();
-            Card test = new Card(0, 0, 0, 0, 0, 0, 0, "String one", "String two", 0);
+            Card test = new Card(0, 0, 0, 0, 0, 0, 0, "String one", "String two", 0, "String three");
             for (int i = 0; i <= rem; i++)
             {
                 test = this.stackDefault.buyOne();
@@ -140,9 +140,9 @@ namespace Dominion
         [Test()]
         public void testGetCard()
         {
-            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), this.stackDefault.getCard());
-            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), this.stackOne.getCard());
-            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2), this.stackFive.getCard());
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"), this.stackDefault.getCard());
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"), this.stackOne.getCard());
+            Assert.AreEqual(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "Single Victory Point", 2, "Estate"), this.stackFive.getCard());
         }
     }
 }

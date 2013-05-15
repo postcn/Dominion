@@ -44,9 +44,9 @@ namespace Dominion
         public void testContains()
         {
             Hand test = new Hand();
-            Card estate = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2);
-            Card copper = new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency", 0);
-            Card other = new Card(0, 0, 0, 0, 0, 0, 0, "NULL", "NULL", 0);
+            Card estate = new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2, "Estate");
+            Card copper = new Card(1, 1, 0, 0, 0, 0, 0, "Copper", "1 Currency", 0, "Copper");
+            Card other = new Card(0, 0, 0, 0, 0, 0, 0, "NULL", "NULL", 0, "Null");
             List<Card> smallDeck = new List<Card>();
             smallDeck.Add(estate);
             smallDeck.Add(copper);
@@ -110,7 +110,7 @@ namespace Dominion
             test.discard(test.getHand()[0], d);
             Assert.AreEqual(0, test.getHand().Count);
             Assert.AreEqual(1, d.getInDiscard().Count);
-            Assert.IsFalse(test.discard(new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0), d));
+            Assert.IsFalse(test.discard(new Card(0, 0, 0, 0, 0, 0, 0, "Null", "Null", 0, "Null"), d));
             Assert.AreEqual(1, d.getInDiscard().Count);
         }
 

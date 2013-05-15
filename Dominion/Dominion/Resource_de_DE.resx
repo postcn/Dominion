@@ -268,7 +268,7 @@
     <value>Nimm dir eine Karte kostet bis zu 5 Münzen.</value>
   </data>
   <data name="Festival" xml:space="preserve">
-    <value>Festival</value>
+    <value>Festspiele</value>
   </data>
   <data name="FestivalDesc" xml:space="preserve">
     <value>+2 Aktionen \n +1 \n buy \n +2 Währung</value>
@@ -280,7 +280,7 @@
     <value>Sie haben noch Gewinne übrig, Einstellung wieder zu gewinnen.</value>
   </data>
   <data name="Gardens" xml:space="preserve">
-    <value>Gardens</value>
+    <value>Gärten</value>
   </data>
   <data name="GardensDesc" xml:space="preserve">
     <value>1 Siegpunkt für je 10 Karten in deinem Deck (abgerundet).</value>
@@ -292,7 +292,7 @@
     <value>fertig machen</value>
   </data>
   <data name="Gold" xml:space="preserve">
-    <value>Gold</value>
+    <value>Goldton</value>
   </data>
   <data name="GoldDesc" xml:space="preserve">
     <value>3 Währung wert</value>
@@ -310,7 +310,7 @@
     <value>ist bereit</value>
   </data>
   <data name="Laboratory" xml:space="preserve">
-    <value>Laboratory</value>
+    <value>Labor</value>
   </data>
   <data name="LaboratoryDesc" xml:space="preserve">
     <value>+2 Cards \n +1 Aktion</value>
@@ -328,7 +328,7 @@
     <value>+1 Card \n +1 Aktion \n +1 Buy \n +1 Währung</value>
   </data>
   <data name="Militia" xml:space="preserve">
-    <value>Militia</value>
+    <value>Bürgerwehr</value>
   </data>
   <data name="MilitiaDesc" xml:space="preserve">
     <value>+2 Währung \nAlle anderen Spielern sofort verwerfen auf drei Karten.</value>

@@ -59,3 +59,5 @@ C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.R
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.Resource_en_US.resources
 C:\Users\Lashmd.ROSE-HULMAN\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.Resource_de_DE.resources
 C:\Users\postcn\Documents\GitHub\Dominion\Dominion\Dominion\obj\Debug\Dominion.Resource_de_DE.resources
+C:\Users\jarvisnw\Dominion\Dominion\Dominion\obj\Debug\Dominion.Resource_de_DE.resources
+C:\Users\jarvisnw\Dominion\Dominion\Dominion\obj\Debug\Dominion.Resource_en_US.resources

@@ -511,7 +511,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Festival.
+        ///   Looks up a localized string similar to Festspiele.
         /// </summary>
         internal static string Festival {
             get {
@@ -547,7 +547,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gardens.
+        ///   Looks up a localized string similar to Gärten.
         /// </summary>
         internal static string Gardens {
             get {
@@ -583,7 +583,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gold.
+        ///   Looks up a localized string similar to Goldton.
         /// </summary>
         internal static string Gold {
             get {
@@ -637,7 +637,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Laboratory.
+        ///   Looks up a localized string similar to Labor.
         /// </summary>
         internal static string Laboratory {
             get {
@@ -691,7 +691,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Militia.
+        ///   Looks up a localized string similar to Bürgerwehr.
         /// </summary>
         internal static string Militia {
             get {

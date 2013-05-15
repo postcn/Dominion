@@ -19,6 +19,7 @@ namespace Dominion
         int actions;
         int vict;
         int draw;
+        string englishName;
         /*
          * For funcNum the following are defined
          * 1: drawing only. Such as the smithy card.
@@ -38,7 +39,7 @@ namespace Dominion
         public long equalValidator;
 
         //Constructor
-        public Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum,string cardName,string desc,int cost){
+        public Card(int type, int cash, int buy, int actions, int vict, int draw, int funcNum,string cardName,string desc,int cost, string englishName){
             this.equalValidator = 0;
 
             this.type = type;
@@ -61,6 +62,7 @@ namespace Dominion
             this.equalValidator += desc.GetHashCode();
             this.funcNum = funcNum;
             this.equalValidator += funcNum * 100000000000000;
+            this.englishName = englishName;
         }
 
         public int getType()
@@ -116,6 +118,10 @@ namespace Dominion
         public int getCost()
         {
             return this.cost;
+        }
+        public string getEnglishName()
+        {
+            return this.englishName;
         }
 
         override

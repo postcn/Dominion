@@ -41,10 +41,10 @@ namespace Dominion
         {
             Deck temp = p.getDeck();
             //add two cards worth one victory point to the deck.
-            temp.getInDeck().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2));
-            temp.getInDiscard().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2));
+            temp.getInDeck().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2, "Estate"));
+            temp.getInDiscard().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2, "Estate"));
             //put a new victory card in the hand
-            p.getHand().getHand().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2));
+            p.getHand().getHand().Add(new Card(0, 0, 0, 0, 1, 0, 0, "Estate", "1 Victory Point", 2, "Estate"));
             Assert.AreEqual(6, p.getHand().getHand().Count);
             p.setVictoryPts();
 
@@ -77,7 +77,7 @@ namespace Dominion
         [Test()]
         public void testBuyAndVictory()
         {
-            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0));
+            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0, "Null"));
             p.buy(s);
             p.setVictoryPts();
             Assert.AreEqual(5, p.getVictoryPts());
@@ -88,7 +88,7 @@ namespace Dominion
         /// </summary>
         [Test()]
         public void testbuyandvictorywithgame() {
-            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0));
+            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0, "Null"));
             Player p = game.getCurrentPlayer();
             p.buy(s);
             p.setVictoryPts();
@@ -101,7 +101,7 @@ namespace Dominion
         [Test()]
         public void testBuyFailureBecauseOfCurrency()
         {
-            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 10));
+            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 10, "Null"));
             Assert.IsFalse(p.buy(s));
         }
 
@@ -111,7 +111,7 @@ namespace Dominion
         [Test()]
         public void testFailMultipleBuys()
         {
-            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0));
+            CardStack s = new CardStack(5, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0, "Null"));
             Assert.IsTrue(p.buy(s));
             Assert.IsFalse(p.buy(s));
         }
@@ -122,9 +122,9 @@ namespace Dominion
         [Test()]
         public void testFailBuyEmptyStack()
         {
-            CardStack s = new CardStack(0, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0));
+            CardStack s = new CardStack(0, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0, "Null"));
             Assert.IsFalse(p.buy(s));
-            s = new CardStack(1, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0));
+            s = new CardStack(1, new Card(0, 0, 0, 0, 2, 0, 0, "Test", "Null", 0, "Null"));
             Assert.IsTrue(p.buy(s));
             Assert.IsFalse(p.buy(s));
         }
@@ -181,7 +181,7 @@ namespace Dominion
         [Test()]
         public void testPlayCardNotInHand()
         {
-            Assert.IsFalse(p.play(new Card(0,0,0,0,0,0,0,"NULL","NULL",0)).wasPlayedProperly());
+            Assert.IsFalse(p.play(new Card(0, 0, 0, 0, 0, 0, 0, "NULL", "NULL", 0, "Null")).wasPlayedProperly());
         }
 
         /// <summary>
@@ -202,12 +202,12 @@ namespace Dominion
             List<Card> toBuildFrom = new List<Card>();
             for (int i = 0; i < 10; i++)
             {
-                toBuildFrom.Add(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0));
+                toBuildFrom.Add(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0, "Null"));
             }
             Deck d = new Deck(toBuildFrom);
             p.setDeck(d);
             p.getHand().draw(p.getDeck());
-            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0));
+            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "Null Action", "Null Action", 0, "Null"));
             Assert.AreEqual(1, p.getPlayed().Count);
         }
 
@@ -217,7 +217,7 @@ namespace Dominion
         [Test()]
         public void testGetCurrency()
         {
-            p.getPlayed().Add(new Card(2, 1, 0, 0, 0, 0, 0, "One Bonus Currency", "One Bonus Currency", 0));
+            p.getPlayed().Add(new Card(2, 1, 0, 0, 0, 0, 0, "One Bonus Currency", "One Bonus Currency", 0, "Null"));
             p.getTimesPlayed().Add(1);
             Assert.AreEqual(6, p.getCurrency());//the starter hand will always be five copper until shuffled.
         }
@@ -228,8 +228,8 @@ namespace Dominion
         [Test()]
         public void testPlayACardAndCleanup()
         {
-            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
-            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0, "Null"));
+            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0, "Null"));
             p.cleanUp();
             Assert.AreEqual(6, p.getDeck().getInDiscard().Count);
             Assert.AreEqual(0,p.getPlayed().Count);
@@ -272,11 +272,11 @@ namespace Dominion
         [Test()]
         public void testPlayReducesActions()
         {
-            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
-            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0, "Null"));
+            p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0, "Null"));
             Assert.AreEqual(0, p.getActionsLeft());
-            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0));
-            Assert.IsFalse(p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0)).wasPlayedProperly());
+            p.getHand().getHand().Add(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0, "Null"));
+            Assert.IsFalse(p.play(new Card(2, 0, 0, 0, 0, 0, 0, "NULL ACTION", "NULL ACTION", 0, "Null")).wasPlayedProperly());
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace Dominion
             p.play(CardMother.Laboratory());
             Assert.AreEqual(1, p.getActionsLeft());
             Assert.AreEqual(7, p.getHand().getHand().Count);
-            Card testMoreActions = new Card(2, 0, 0, 3, 0, 0, 2, "NULL TEST CARD", "NULL TEST CARD", 0);
+            Card testMoreActions = new Card(2, 0, 0, 3, 0, 0, 2, "NULL TEST CARD", "NULL TEST CARD", 0, "Null");
             p.getHand().getHand().Add(testMoreActions);
             p.play(testMoreActions);
             Assert.AreEqual(3, p.getActionsLeft());
@@ -307,8 +307,8 @@ namespace Dominion
             Assert.AreEqual(2, p.getBuysLeft());
             Assert.AreEqual(1, p.getActionsLeft());
             Assert.AreEqual(6, p.getHand().getHand().Count);
-            p.getHand().getHand().Add(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0));
-            Assert.IsTrue(p.play(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0)).wasPlayedProperly());
+            p.getHand().getHand().Add(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0, "Null"));
+            Assert.IsTrue(p.play(new Card(2, 0, 1, 2, 0, 0, 3, "Null Card for Test", "Null Card for Test", 0, "Null")).wasPlayedProperly());
             Assert.AreEqual(3, p.getBuysLeft());
             Assert.AreEqual(2, p.getActionsLeft());
         }
