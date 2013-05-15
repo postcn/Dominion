@@ -38,7 +38,12 @@
                 <MenuItem x:Name="Save" Header="Save" Foreground="Black" Click="Save_Game"/>
             </MenuItem>
         </Menu>
-        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="10,423,0,0" VerticalAlignment="Top" Width="230" Foreground="White"/>
+        <Label x:Name="Description" Content="Labez" HorizontalAlignment="Left" Height="45" Margin="14,432,0,0" VerticalAlignment="Top" Width="230" Foreground="White"/>
+        <ScrollViewer Margin="729,322,35,287" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <TextBlock x:Name="game_message" TextWrapping="WrapWithOverflow" Foreground="White" Margin="3,5,0,0"/>
+            </Grid>
+        </ScrollViewer>
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
         <Label x:Name="CardDrawnLabel" Content="Card Bought" HorizontalAlignment="Left" Height="44" Margin="729,82,0,0" VerticalAlignment="Top" Width="181" Foreground="White"/>
         <Image x:Name="Hand_Card" HorizontalAlignment="Left" Height="172" Margin="729,132,0,0" VerticalAlignment="Top" Width="111" Source="Blank.jpg"/>
@@ -262,8 +267,12 @@
             <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="79,52,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
             <Label x:Name="Gain_Label" Content="" HorizontalAlignment="Left" Height="26" Margin="12,-15,0,0" VerticalAlignment="Top" Width="96" Background="#00000000" Foreground="White"/>
         </Grid>
-        <Label x:Name="SelectCardDescription" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="88" Margin="10,195,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
+        <TextBlock x:Name="SelectCardDescription" HorizontalAlignment="Left" TextAlignment="Center"  Height="88" Margin="10,195,0,0" Width="192" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="SelectCardName" HorizontalAlignment="Left" TextAlignment="Center" Height="33" Margin="10,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="192"/>
+        <TextBlock x:Name="SelectCardType" HorizontalAlignment="Left" TextAlignment="Center" Height="33" Margin="10,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="192"/>
+        <!--<Label x:Name="SelectCardDescription" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="88" Margin="10,195,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
         <Label x:Name="SelectCardName" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,63,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
-        <Label x:Name="SelectCardType" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,285,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
+        <Label x:Name="SelectCardType" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,285,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>-->
+        
     </Grid>
 </Window>

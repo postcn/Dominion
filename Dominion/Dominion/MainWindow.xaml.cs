@@ -26,7 +26,6 @@ namespace Dominion {
             this.language = lang;
             Initialize();
         }
-        int turn = 0;
         Game myGame;
         Button _button = null;
         Stopwatch stopWatch = new Stopwatch();
@@ -35,6 +34,9 @@ namespace Dominion {
          * refershhand instead of window
          * set selected card to right dimentions. 
          * redue cards to eliminate white rightin at bottom of card
+         * i18n button contents 
+         * i18n status
+         * i18n phase
         *************************/
         Player player;
         List<CardStack> stacks;
@@ -115,8 +117,10 @@ namespace Dominion {
                 int count = 0;
                 for (int i = 0; i < specialusecards.Count; i++) {
                     if (specialusecards[i] != null) {
-                        if(StripImageSource(handImage[count].Source.ToString(),false).Contains("1")){
-                            spyCards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(),true)));
+                        if (StripImageSource(handImage[count].Source.ToString(), false).Contains("1")) {
+                            spyCards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(), true)));
+                        } else {
+                            spyCards.Add(null);
                         }
                         count++;
                     } else {
@@ -202,7 +206,7 @@ namespace Dominion {
 
             }else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
-                SelectCardDescription.Content = status.wasPlayedProperly();
+                //SelectCardDescription.Content = status.wasPlayedProperly();
                 Play.IsEnabled = false;
                 if (status.trashForGainCheck()) {
                     TrashAndGain();
@@ -237,6 +241,7 @@ namespace Dominion {
                     actiondone = "Spy Many";
                     Play.Content = "Discard";
                     Play.ToolTip = "Discard Selected Cards";
+                    End_Turn.IsEnabled = false;
                     //Buy.IsEnabled = false;
                     ResetHilightedCards();
                     int count = 0;
@@ -375,7 +380,7 @@ namespace Dominion {
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
             for (int i = 0; i < length; i++) {
-                if(CardFromString(myHand.getHand()[i].toString()).getPlayable()){
+                if(CardFromString(myHand.getHand()[i].toString()).getPlayable()&&!CardFromString(myHand.getHand()[i].toString()).getName().Equals("Throne Room")){
                     actioncard = true;
                 }
                 string name = myHand.getHand()[i].toString() + ".jpg";
@@ -386,8 +391,9 @@ namespace Dominion {
         }
         private void RefreshWindow() {
             ResetHilightedCards();
-            currentCard = "";
+            
             _button = null;
+            game_message.Text = myGame.getGameStatus();
             Play.IsEnabled = false;
             Boolean actioncard = RefreshHand();
             if ((!actioncard || player.getActionsLeft() == 0) && actiondone.Equals("") && !phase.Equals("Buy Phase")) {
@@ -395,6 +401,9 @@ namespace Dominion {
                 phase = "Buy Phase";
                 End_Phase.IsEnabled = false;
             }
+            //if (!currentCard.Equals("Throne Room")) {
+            //}
+            currentCard = "";
             Actions_Label.Content = player.getActionsLeft();
             Buys_Label.Content = player.getBuysLeft();
             Phase_Label.Content = phase;
@@ -518,8 +527,7 @@ namespace Dominion {
             
           //  RefreshWindow();
             ResetHilightedCards();
-            turn++;
-            Turn_Label.Content = Math.Floor(turn * 1.0 / totalplayers) + 1;
+            Turn_Label.Content = myGame.getTurnsPassed();
             RefreshWindow();
             StatusObject status = player.callDelayedFunctions();
             if (status.wasMilitiaPlayed()) {
@@ -619,14 +627,14 @@ namespace Dominion {
         private void SetSelected() {
             List<Card> cards = GetCardListFromHilighted();
             Card card = cards[cards.Count - 1];
-            SelectCardDescription.Content = card.getDescription();
-            SelectCardName.Content = card.getName();
+            SelectCardDescription.Text = card.getDescription();
+            SelectCardName.Text = card.getName();
         }
         private void UnHilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), true) + ".jpg";
             SetPicture(card, image);
-            SelectCardDescription.Content = "";
-            SelectCardName.Content = "";
+            SelectCardDescription.Text = "";
+            SelectCardName.Text = "";
             SetPicture("blank.jpg", Selected_Card);
         }
         private List<Card> GetCardListFromHilighted() {
@@ -748,7 +756,7 @@ namespace Dominion {
                 string name = stacks[i + currencyButton.Count + victoryButton.Count].getCard().getName() + ".jpg";
                 SetPicture(name, actionImage[i]);
             }
-            if(language.Equals("en_US")){
+            if (language.Equals("en_US")) {
                 var margin = SelectCardName.Margin;
                 margin.Top = 10;
                 SelectCardName.Margin = margin;
@@ -758,7 +766,7 @@ namespace Dominion {
                 SelectCardName.Foreground = Brushes.White;
                 SelectCardType.Foreground = Brushes.Transparent;
                 SelectCardDescription.Foreground = Brushes.White;
-            } 
+            }
             player.getCurrency();
             RefreshWindow();
 
