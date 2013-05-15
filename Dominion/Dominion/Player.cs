@@ -239,75 +239,91 @@ namespace Dominion
                             break;
                         case 1:
                             //Draw only
+                            retVal.setMessage(Internationalizer.getMessage("DrawMsg"));
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             break;
                         case 2:
                             //Draw and Add Actions.
+                            retVal.setMessage(Internationalizer.getMessage("DrawActionMsg"));
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             CardFunctions.actionAdd(this, aCard.getActions());
                             break;
                         case 3:
                             //Draw and Add and Buy
+                            retVal.setMessage(Internationalizer.getMessage("DrawActionBuyMsg"));
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             CardFunctions.actionAdd(this, aCard.getActions());
                             CardFunctions.buyAdd(this, aCard.getBuy());
                             break;
                         case 4:
                             //Add buy
+                            retVal.setMessage(Internationalizer.getMessage("BuyMsg"));
                             CardFunctions.buyAdd(this, aCard.getBuy());
                             break;
                         case 5:
                             //Add actions and draw
+                            retVal.setMessage(Internationalizer.getMessage("DrawActionMsg"));
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             CardFunctions.actionAdd(this, aCard.getActions());
                             break;
                         case 6:
                             //Add actions and buy
+                            retVal.setMessage(Internationalizer.getMessage("ActionBuyMsg"));
                             CardFunctions.actionAdd(this, aCard.getActions());
                             CardFunctions.buyAdd(this, aCard.getBuy());
                             break;
                         case 7:
                             //add cards and gain curses.
+                            retVal.setMessage(Internationalizer.getMessage("WitchMsg"));
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             CardFunctions.gainCurses(this);
                             break;
                         case 8:
                             //Remodel a card, trash and gain
+                            retVal.setMessage(Internationalizer.getMessage("RemodelMsg"));
                             CardFunctions.gainCardRemodel(this, retVal);
                             break;
                         case 9:
                             //Feast, trash and gain
+                            retVal.setMessage(Internationalizer.getMessage("FeastMsg"));
                             CardFunctions.gainCardFeast(this, retVal);
                             break;
                         case 10:
                             //Workshop, gain card worth 4
+                            retVal.setMessage(Internationalizer.getMessage("WorkshopMsg"));
                             CardFunctions.gainCardWorkshop(this, retVal);
                             break;
                         case 11:
                             //Throne Room. Double the number of next plays.
+                            retVal.setMessage(Internationalizer.getMessage("ThroneRoomMsg"));
                             CardFunctions.doubleNextPlay(this, this.timesToPlayLeft + 1);
                             this.timesToPlayLeft = 0;
                             CardFunctions.actionAdd(this, aCard.getActions());
                             break;
                         case 12:
                             //Cellar
+                            retVal.setMessage(Internationalizer.getMessage("CellarMsg"));
                             CardFunctions.actionAdd(this, aCard.getActions());
                             CardFunctions.setupDiscardCardsToDrawSameNumber(this, retVal);
                             break;
                         case 13:
                             //MoneyLender
+                            retVal.setMessage(Internationalizer.getMessage("MoneylenderMsg"));
                             CardFunctions.addNeededTrashes(this, retVal);
                             break;
                         case 14:
                             //Chapel
+                            retVal.setMessage(Internationalizer.getMessage("ChapelMsg"));
                             CardFunctions.trashUptoFourCards(this, retVal);
                             break;
                         case 15:
                             //Chancellor
+                            retVal.setMessage(Internationalizer.getMessage("ChancellorMsg"));
                             CardFunctions.discardDeckChancellor(this, retVal);
                             break;
                         case 16:
                             //Militia
+                            retVal.setMessage(Internationalizer.getMessage("MilitiaMsg"));
                             if (this.timesToPlayLeft == 0)
                             {
                                 CardFunctions.militiaAction(this);
@@ -315,26 +331,31 @@ namespace Dominion
                             break;
                         case 17:
                             //Bureaucrat
+                            retVal.setMessage(Internationalizer.getMessage("BureaucratMsg3"));
                             CardFunctions.bureaucratAction(this);
                             break;
                         case 18:
                             //Mine
+                            retVal.setMessage(Internationalizer.getMessage("MineMsg"));
                             CardFunctions.mineATreasure(this, retVal);
                             break;
                         case 19:
                             //Council Room;
+                            retVal.setMessage(Internationalizer.getMessage("CouncilRoomMsg"));
                             CardFunctions.councilRoomAction(this);
                             CardFunctions.draw(this, aCard.getAdditionalDraws());
                             CardFunctions.buyAdd(this, aCard.getBuy());
                             break;
                         case 20:
                             //Spy;
+                            retVal.setMessage(Internationalizer.getMessage("SpyMsg"));
                             CardFunctions.spyFunction(this, retVal);
                             CardFunctions.draw(this, 1);
                             CardFunctions.actionAdd(this, 1);
                             break;
                         case 21:
                             //Thief
+                            retVal.setMessage(Internationalizer.getMessage("ThiefMsg"));
                             CardFunctions.thiefAction(this, retVal);
                             break;
                     }

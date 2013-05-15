@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActionBuyMsg" xml:space="preserve">
+    <value>You gained extra actions and buys.</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
@@ -135,8 +138,14 @@
   <data name="BureaucratMsg2" xml:space="preserve">
     <value> back on the top of their deck.</value>
   </data>
+  <data name="BureaucratMsg3" xml:space="preserve">
+    <value>You put a silver on your deck. Each other player reveals a Victory card and puts it on top of his deck.</value>
+  </data>
   <data name="Buy" xml:space="preserve">
     <value>Buy</value>
+  </data>
+  <data name="BuyMsg" xml:space="preserve">
+    <value>You gained an extra buy(s).</value>
   </data>
   <data name="Buys" xml:space="preserve">
     <value>Buys</value>
@@ -147,17 +156,26 @@
   <data name="CellarDesc" xml:space="preserve">
     <value>+1 Action\nDiscard any number of cards.\n+1 Card per card discarded</value>
   </data>
+  <data name="CellarMsg" xml:space="preserve">
+    <value>Discard any number of cards. +1 Card per card discarded.</value>
+  </data>
   <data name="Chancellor" xml:space="preserve">
     <value>Chancellor</value>
   </data>
   <data name="ChancellorDesc" xml:space="preserve">
     <value>+ 2 currency\nYou may immediatly put your\ndeck into your discard pile</value>
   </data>
+  <data name="ChancellorMsg" xml:space="preserve">
+    <value>You can put your deck into your discard pile.</value>
+  </data>
   <data name="Chapel" xml:space="preserve">
     <value>Chapel</value>
   </data>
   <data name="ChapelDesc" xml:space="preserve">
     <value>Trash up to 4 cards from your hand</value>
+  </data>
+  <data name="ChapelMsg" xml:space="preserve">
+    <value>Pick up to 4 cards to trash from your hand.</value>
   </data>
   <data name="ClickToStart" xml:space="preserve">
     <value>Click To Start Game</value>
@@ -176,6 +194,9 @@
   </data>
   <data name="CouncilRoomDesc" xml:space="preserve">
     <value>+4 Cards, +1 Buy, Each other player draws a card.</value>
+  </data>
+  <data name="CouncilRoomMsg" xml:space="preserve">
+    <value>You gained 4 cards and a buy. Everyone else got to draw 1 card.</value>
   </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
@@ -207,6 +228,15 @@
   <data name="Displays" xml:space="preserve">
     <value>Displays Your:\n Actions, Buys, Currency, Gain Amount, and The Current Turn</value>
   </data>
+  <data name="DrawActionBuyMsg" xml:space="preserve">
+    <value>You drew cards and got extra actions and extra buys.</value>
+  </data>
+  <data name="DrawActionMsg" xml:space="preserve">
+    <value>You drew cards and got extra actions.</value>
+  </data>
+  <data name="DrawMsg" xml:space="preserve">
+    <value>You drew cards.</value>
+  </data>
   <data name="Duchy" xml:space="preserve">
     <value>Duchy</value>
   </data>
@@ -233,6 +263,9 @@
   </data>
   <data name="FeastDesc" xml:space="preserve">
     <value>Trash this card and gain a card costing up to 5 Currency</value>
+  </data>
+  <data name="FeastMsg" xml:space="preserve">
+    <value>Gain a card costing up to 5 Coins.</value>
   </data>
   <data name="Festival" xml:space="preserve">
     <value>Festival</value>
@@ -300,11 +333,17 @@
   <data name="MilitiaDesc" xml:space="preserve">
     <value>+2 Currency\nAll other players immediately discard down to three cards.</value>
   </data>
+  <data name="MilitiaMsg" xml:space="preserve">
+    <value>Other players had to discard down to 3 cards.</value>
+  </data>
   <data name="Mine" xml:space="preserve">
     <value>Mine</value>
   </data>
   <data name="MineDesc" xml:space="preserve">
     <value>Trash a Treasure card from your hand\nGain a Treasure card costing up to\n 3 Currency more; put it into your hand.</value>
+  </data>
+  <data name="MineMsg" xml:space="preserve">
+    <value>You may pick a treasure card to trash for a treasure card costing up to 3 more.</value>
   </data>
   <data name="MissingCards1" xml:space="preserve">
     <value>Missing one or more </value>
@@ -323,6 +362,9 @@
   </data>
   <data name="MoneylenderDesc" xml:space="preserve">
     <value>Trash a copper from your hand.\nIf you do +3 Currency</value>
+  </data>
+  <data name="MoneylenderMsg" xml:space="preserve">
+    <value>Trash a Copper card from your hand. If you do, +3 Coins.</value>
   </data>
   <data name="MoreThanFour" xml:space="preserve">
     <value>More than 4 cards selected!</value>
@@ -375,6 +417,9 @@
   <data name="RemodelDesc" xml:space="preserve">
     <value>Trash a card from your hand.\nGain a a card costing up to 2 Currency\nmore than the trashed card</value>
   </data>
+  <data name="RemodelMsg" xml:space="preserve">
+    <value>Pick a card to trash and remodel. Then pick a card to gain.</value>
+  </data>
   <data name="RevealNoVict" xml:space="preserve">
     <value> revealed a hand with no victory cards.</value>
   </data>
@@ -396,6 +441,9 @@
   <data name="SpyDesc" xml:space="preserve">
     <value>+1 Card\n+1 Action\nReveal the top card of each player's deck, and choose whether it stays or is discarded.</value>
   </data>
+  <data name="SpyMsg" xml:space="preserve">
+    <value>Each player (including you) reveals the top card of his deck and either discards it or puts it back, your choice.</value>
+  </data>
   <data name="StackEmpty" xml:space="preserve">
     <value>Card Stack was Empty</value>
   </data>
@@ -411,6 +459,9 @@
   <data name="ThiefDesc" xml:space="preserve">
     <value>Each other player reveals the top 2 cards of his deck.\nIf they revealed any Treasure cards, they trash one of them that you choose.\nYou may gain any or all of these trashed cards.\nThey discard the other revealed cards.</value>
   </data>
+  <data name="ThiefMsg" xml:space="preserve">
+    <value>Choose if you want to gain an opponents trashed treasure card.</value>
+  </data>
   <data name="ThiefMsg1" xml:space="preserve">
     <value> revealed a </value>
   </data>
@@ -422,6 +473,9 @@
   </data>
   <data name="ThroneRoomDesc" xml:space="preserve">
     <value>Choose and Action card in your hand. \nPlay it twice</value>
+  </data>
+  <data name="ThroneRoomMsg" xml:space="preserve">
+    <value>Pick an action card to play twice.</value>
   </data>
   <data name="Tie" xml:space="preserve">
     <value>It was a tie!</value>
@@ -474,6 +528,9 @@
   <data name="WitchDesc" xml:space="preserve">
     <value>+2 Cards.\nEach other player gains a Curse card.</value>
   </data>
+  <data name="WitchMsg" xml:space="preserve">
+    <value>You drew 2 cards and gave everyone curses.</value>
+  </data>
   <data name="Woodcutter" xml:space="preserve">
     <value>Woodcutter</value>
   </data>
@@ -485,6 +542,9 @@
   </data>
   <data name="WorkshopDesc" xml:space="preserve">
     <value>Gain a card costing up to 4 Currency</value>
+  </data>
+  <data name="WorkshopMsg" xml:space="preserve">
+    <value>Gain a card costing up to 4 Coins.</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
