@@ -97,7 +97,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Verschaffen Sie sich einen Silber-Karte;. \nput sie oben auf dein Deck \nJedes anderen Spieler deckt ein Victory-Karte \nvon seiner Hand und legt sie auf seinem Deck \n (oder zeigt eine Hand ohne Victory-Karten)..
+        ///   Looks up a localized string similar to Verschaffen Sie sich einen Silber-Karte;. \nput sie oben auf dein Spielkarten\nJedes anderen Spieler deckt ein Victory-Karte \nvon seiner händen und legt sie auf seinem spielkarten\n (oder zeigt eine händen ohne Victory-Karten)..
         /// </summary>
         internal static string BureaucratDesc {
             get {
@@ -115,7 +115,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zurück auf der Spitze ihrer Deck..
+        ///   Looks up a localized string similar to Zurück auf der Spitze ihrer Spielkarten..
         /// </summary>
         internal static string BureaucratMsg2 {
             get {
@@ -124,7 +124,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie legte eine Silber auf dein Deck. Jeder andere Spieler deckt ein Victory-Karte und legt sie oben auf seinem Deck..
+        ///   Looks up a localized string similar to Sie legte eine Silber auf dein Spielkarten. Jeder andere Spieler deckt ein Victory-Karte und legt sie oben auf seinem spielkarten..
         /// </summary>
         internal static string BureaucratMsg3 {
             get {
@@ -196,7 +196,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + 2 Währung \ nSie können sofort setzen Sie Ihre \n Deck in deinen Ablagestapel.
+        ///   Looks up a localized string similar to + 2 Währung \ nSie können sofort setzen Sie Ihre \n Spielkarten in deinen Ablagestapel.
         /// </summary>
         internal static string ChancellorDesc {
             get {
@@ -205,7 +205,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sie können Ihr Deck in deinen Ablagestapel legen..
+        ///   Looks up a localized string similar to Sie können Ihr Spielkarten in deinen Ablagestapel legen..
         /// </summary>
         internal static string ChancellorMsg {
             get {
@@ -223,7 +223,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trash bis zu 4 Karten von deiner Hand.
+        ///   Looks up a localized string similar to Papierkorb bis zu 4 Karten von deiner händen.
         /// </summary>
         internal static string ChapelDesc {
             get {
@@ -232,7 +232,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pick up to 4 cards to trash from your hand..
+        ///   Looks up a localized string similar to Wählen Sie bis zu 4 Karten aus den Händen Papierkorb..
         /// </summary>
         internal static string ChapelMsg {
             get {
@@ -286,7 +286,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +4 Karten, +1 Buy zieht jeder andere Spieler eine Karte..
+        ///   Looks up a localized string similar to +4 Karten, +1 kauft zieht jeder andere Spieler eine Karte..
         /// </summary>
         internal static string CouncilRoomDesc {
             get {
@@ -331,7 +331,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klicken Sie auf Nicht Place Your Deck auf den Ablagestapel.
+        ///   Looks up a localized string similar to Klicken Sie auf Nicht Place Your Spielkarten auf den Ablagestapel.
         /// </summary>
         internal static string DeckNotOnDiscard {
             get {
@@ -340,7 +340,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klicken Sie, um dein Deck auf den Ablagestapel Zeigen.
+        ///   Looks up a localized string similar to Klicken Sie, um dein spielkarten auf den Ablagestapel Zeigen.
         /// </summary>
         internal static string DeckOnDiscard {
             get {
@@ -385,7 +385,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zeigt Ihr: \n Aktionen, Buys, Währung, Gain-Betrag, und die aktuelle Schalten.
+        ///   Looks up a localized string similar to Zeigt Ihr: \n Aktionen, kauft, Währung, Gain-Betrag, und die aktuelle Schalten.
         /// </summary>
         internal static string Displays {
             get {
@@ -439,7 +439,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endet der Aktionsphase, indem Sie in der Buy-Phase.
+        ///   Looks up a localized string similar to Endet der Aktionsphase, indem Sie in der kauft-Phase.
         /// </summary>
         internal static string EndActionPhase {
             get {
@@ -493,7 +493,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trash diese Karte und gewinnen Sie eine Karte kostet bis zu 5 Währung.
+        ///   Looks up a localized string similar to Papierkorb diese Karte und gewinnen Sie eine Karte kostet bis zu 5 Währung.
         /// </summary>
         internal static string FeastDesc {
             get {
@@ -520,7 +520,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +2 Aktionen \n +1 \n buy \n +2 Währung.
+        ///   Looks up a localized string similar to +2 Aktionen \n +1 \n kauft \n +2 Währung.
         /// </summary>
         internal static string FestivalDesc {
             get {
@@ -556,7 +556,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Siegpunkt für je 10 Karten in deinem Deck (abgerundet)..
+        ///   Looks up a localized string similar to 1 Siegpunkt für je 10 Karten in deinem spielkarten (abgerundet)..
         /// </summary>
         internal static string GardensDesc {
             get {
@@ -646,7 +646,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +2 Cards \n +1 Aktion.
+        ///   Looks up a localized string similar to +2 Karten \n +1 Aktion.
         /// </summary>
         internal static string LaboratoryDesc {
             get {
@@ -682,7 +682,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +1 Card \n +1 Aktion \n +1 Buy \n +1 Währung.
+        ///   Looks up a localized string similar to +1 karten \n +1 Aktion \n +1 kauft \n +1 Währung.
         /// </summary>
         internal static string MarketDesc {
             get {
@@ -727,7 +727,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trash einen Schatz Karte von deiner Hand \n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die Hand..
+        ///   Looks up a localized string similar to Papierkorb einen Schatz Karte von deiner händen\n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die händen..
         /// </summary>
         internal static string MineDesc {
             get {
@@ -754,7 +754,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  von der Hand..
+        ///   Looks up a localized string similar to  von der handen..
         /// </summary>
         internal static string MissingCards2 {
             get {
@@ -772,7 +772,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +2 Karten\nWenn ein anderer Spieler einen Angriff Karte spielt, können Sie diese aus der Hand zu offenbaren. Wenn Sie das tun, sind Sie unabhängig von diesem Angriff..
+        ///   Looks up a localized string similar to +2 Karten\nWenn ein anderer Spieler einen Angriff Karte spielt, können Sie diese aus der händenzu offenbaren. Wenn Sie das tun, sind Sie unabhängig von diesem Angriff..
         /// </summary>
         internal static string MoatDesc {
             get {
@@ -790,7 +790,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trash ein Kupfer aus deiner Hand. \n Wenn Sie tun +3 Währung.
+        ///   Looks up a localized string similar to Papierkorb ein Kupfer aus deiner händen.\n Wenn Sie tun +3 Währung.
         /// </summary>
         internal static string MoneylenderDesc {
             get {
@@ -799,7 +799,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trash eine Kupfer Karte aus deiner Hand. Wenn Sie das tun, +3 Coins..
+        ///   Looks up a localized string similar to Papierkorb eine Kupfer Karte aus deiner händen.Wenn Sie das tun, +3 Wahrung..
         /// </summary>
         internal static string MoneylenderMsg {
             get {
@@ -952,7 +952,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trash eine Karte aus deiner Hand. \n Verstärkung aa-Karte kostet bis zu 2 Währung \n mehr als die Papierkorb-Karte.
+        ///   Looks up a localized string similar to Trash eine Karte aus deiner händen.\n Verstärkung aa-Karte kostet bis zu 2 Währung \n mehr als die Papierkorb-Karte.
         /// </summary>
         internal static string RemodelDesc {
             get {
@@ -970,7 +970,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ergab eine Hand ohne Sieg Karten..
+        ///   Looks up a localized string similar to ergab eine handen ohne Sieg Karten..
         /// </summary>
         internal static string RevealNoVict {
             get {
@@ -1078,7 +1078,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jeder andere Spieler deckt die obersten 2 Karten von seinem Deck\n Wenn sie irgendwelche Schatz Karten aufgedeckt, trash sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten..
+        ///   Looks up a localized string similar to Jeder andere Spieler deckt die obersten 2 Karten von seinem spielkarten \n Wenn sie irgendwelche Schatz Karten aufgedeckt, papierkorb sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten..
         /// </summary>
         internal static string ThiefDesc {
             get {
@@ -1087,7 +1087,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Did you mean: Choose if you want to gain an opponent&apos;s trashed treasure card.
+        ///   Looks up a localized string similar to 
         ///Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen..
         /// </summary>
         internal static string ThiefMsg {
@@ -1106,7 +1106,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  von der Spitze ihrer Deck..
+        ///   Looks up a localized string similar to  von der Spitze ihrer spielkarten..
         /// </summary>
         internal static string ThiefMsg2 {
             get {
@@ -1124,7 +1124,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wählen und Aktion Karte in Ihrer Hand. \n Play it zweimal.
+        ///   Looks up a localized string similar to Wählen und Aktion Karte in Ihrer händen.\n es spielen zweimal.
         /// </summary>
         internal static string ThroneRoomDesc {
             get {
@@ -1223,7 +1223,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klicken Sie auf &quot;Upgrade&quot; Währung.
+        ///   Looks up a localized string similar to Klicken Sie auf &quot;verbessern&quot; Währung.
         /// </summary>
         internal static string UpgradeCur {
             get {
@@ -1259,7 +1259,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +1 Card \n +2 Aktionen.
+        ///   Looks up a localized string similar to +1 Karten\n +2 Aktionen.
         /// </summary>
         internal static string VillageDesc {
             get {
@@ -1313,7 +1313,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to +1 Buy \ n +2 Währungen.
+        ///   Looks up a localized string similar to +1 Kauft\ n +2 Währungen.
         /// </summary>
         internal static string WoodcutterDesc {
             get {

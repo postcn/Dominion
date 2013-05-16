@@ -130,16 +130,16 @@
     <value>Bürokrat</value>
   </data>
   <data name="BureaucratDesc" xml:space="preserve">
-    <value>Verschaffen Sie sich einen Silber-Karte;. \nput sie oben auf dein Deck \nJedes anderen Spieler deckt ein Victory-Karte \nvon seiner Hand und legt sie auf seinem Deck \n (oder zeigt eine Hand ohne Victory-Karten).</value>
+    <value>Verschaffen Sie sich einen Silber-Karte;. \nput sie oben auf dein Spielkarten\nJedes anderen Spieler deckt ein Victory-Karte \nvon seiner händen und legt sie auf seinem spielkarten\n (oder zeigt eine händen ohne Victory-Karten).</value>
   </data>
   <data name="BureaucratMsg1" xml:space="preserve">
     <value>setzen ein</value>
   </data>
   <data name="BureaucratMsg2" xml:space="preserve">
-    <value>Zurück auf der Spitze ihrer Deck.</value>
+    <value>Zurück auf der Spitze ihrer Spielkarten.</value>
   </data>
   <data name="BureaucratMsg3" xml:space="preserve">
-    <value>Sie legte eine Silber auf dein Deck. Jeder andere Spieler deckt ein Victory-Karte und legt sie oben auf seinem Deck.</value>
+    <value>Sie legte eine Silber auf dein Spielkarten. Jeder andere Spieler deckt ein Victory-Karte und legt sie oben auf seinem spielkarten.</value>
   </data>
   <data name="Buy" xml:space="preserve">
     <value>kaufen</value>
@@ -163,19 +163,19 @@
     <value>Bundeskanzlerin</value>
   </data>
   <data name="ChancellorDesc" xml:space="preserve">
-    <value>+ 2 Währung \ nSie können sofort setzen Sie Ihre \n Deck in deinen Ablagestapel</value>
+    <value>+ 2 Währung \ nSie können sofort setzen Sie Ihre \n Spielkarten in deinen Ablagestapel</value>
   </data>
   <data name="ChancellorMsg" xml:space="preserve">
-    <value>Sie können Ihr Deck in deinen Ablagestapel legen.</value>
+    <value>Sie können Ihr Spielkarten in deinen Ablagestapel legen.</value>
   </data>
   <data name="Chapel" xml:space="preserve">
     <value>Kapelle</value>
   </data>
   <data name="ChapelDesc" xml:space="preserve">
-    <value>Trash bis zu 4 Karten von deiner Hand</value>
+    <value>Papierkorb bis zu 4 Karten von deiner händen</value>
   </data>
   <data name="ChapelMsg" xml:space="preserve">
-    <value>Pick up to 4 cards to trash from your hand.</value>
+    <value>Wählen Sie bis zu 4 Karten aus den Händen Papierkorb.</value>
   </data>
   <data name="ClickToStart" xml:space="preserve">
     <value>Klicken Sie zum Spielbeginn</value>
@@ -193,7 +193,7 @@
     <value>Ratssaal</value>
   </data>
   <data name="CouncilRoomDesc" xml:space="preserve">
-    <value>+4 Karten, +1 Buy zieht jeder andere Spieler eine Karte.</value>
+    <value>+4 Karten, +1 kauft zieht jeder andere Spieler eine Karte.</value>
   </data>
   <data name="CouncilRoomMsg" xml:space="preserve">
     <value>Sie hat 4 Karten und ein Kauf. Alle anderen bekamen, um 1 Karte zu ziehen.</value>
@@ -208,10 +208,10 @@
     <value>-1 Siegpunkt</value>
   </data>
   <data name="DeckNotOnDiscard" xml:space="preserve">
-    <value>Klicken Sie auf Nicht Place Your Deck auf den Ablagestapel</value>
+    <value>Klicken Sie auf Nicht Place Your Spielkarten auf den Ablagestapel</value>
   </data>
   <data name="DeckOnDiscard" xml:space="preserve">
-    <value>Klicken Sie, um dein Deck auf den Ablagestapel Zeigen</value>
+    <value>Klicken Sie, um dein spielkarten auf den Ablagestapel Zeigen</value>
   </data>
   <data name="Defended" xml:space="preserve">
     <value>verteidigt gegen den Angriff!</value>
@@ -226,7 +226,7 @@
     <value>Klicke, um eine Kupfer Verwerfen</value>
   </data>
   <data name="Displays" xml:space="preserve">
-    <value>Zeigt Ihr: \n Aktionen, Buys, Währung, Gain-Betrag, und die aktuelle Schalten</value>
+    <value>Zeigt Ihr: \n Aktionen, kauft, Währung, Gain-Betrag, und die aktuelle Schalten</value>
   </data>
   <data name="DrawActionBuyMsg" xml:space="preserve">
     <value>Sie zeichnete Karten und bekam zusätzliche Aktionen und extra kauft.</value>
@@ -244,7 +244,7 @@
     <value>3 Siegpunkte</value>
   </data>
   <data name="EndActionPhase" xml:space="preserve">
-    <value>Endet der Aktionsphase, indem Sie in der Buy-Phase</value>
+    <value>Endet der Aktionsphase, indem Sie in der kauft-Phase</value>
   </data>
   <data name="EndPhase" xml:space="preserve">
     <value>Endphase</value>
@@ -262,7 +262,7 @@
     <value>Fest</value>
   </data>
   <data name="FeastDesc" xml:space="preserve">
-    <value>Trash diese Karte und gewinnen Sie eine Karte kostet bis zu 5 Währung</value>
+    <value>Papierkorb diese Karte und gewinnen Sie eine Karte kostet bis zu 5 Währung</value>
   </data>
   <data name="FeastMsg" xml:space="preserve">
     <value>Nimm dir eine Karte kostet bis zu 5 Münzen.</value>
@@ -271,7 +271,7 @@
     <value>Festspiele</value>
   </data>
   <data name="FestivalDesc" xml:space="preserve">
-    <value>+2 Aktionen \n +1 \n buy \n +2 Währung</value>
+    <value>+2 Aktionen \n +1 \n kauft \n +2 Währung</value>
   </data>
   <data name="Gain" xml:space="preserve">
     <value>Gewinnen</value>
@@ -283,7 +283,7 @@
     <value>Gärten</value>
   </data>
   <data name="GardensDesc" xml:space="preserve">
-    <value>1 Siegpunkt für je 10 Karten in deinem Deck (abgerundet).</value>
+    <value>1 Siegpunkt für je 10 Karten in deinem spielkarten (abgerundet).</value>
   </data>
   <data name="German" xml:space="preserve">
     <value>Deutsch</value>
@@ -313,7 +313,7 @@
     <value>Labor</value>
   </data>
   <data name="LaboratoryDesc" xml:space="preserve">
-    <value>+2 Cards \n +1 Aktion</value>
+    <value>+2 Karten \n +1 Aktion</value>
   </data>
   <data name="Lang" xml:space="preserve">
     <value>Sprache</value>
@@ -325,7 +325,7 @@
     <value>Markt</value>
   </data>
   <data name="MarketDesc" xml:space="preserve">
-    <value>+1 Card \n +1 Aktion \n +1 Buy \n +1 Währung</value>
+    <value>+1 karten \n +1 Aktion \n +1 kauft \n +1 Währung</value>
   </data>
   <data name="Militia" xml:space="preserve">
     <value>Bürgerwehr</value>
@@ -340,7 +340,7 @@
     <value>Bergwerk</value>
   </data>
   <data name="MineDesc" xml:space="preserve">
-    <value>Trash einen Schatz Karte von deiner Hand \n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die Hand.</value>
+    <value>Papierkorb einen Schatz Karte von deiner händen\n Gewinnen eine Schatzkarte mit Kosten bis zu \n 3 Währung mehr, sondern setzen auf die händen.</value>
   </data>
   <data name="MineMsg" xml:space="preserve">
     <value>Sie können wählen Sie eine Schatzkarte für eine Schatzkarte mit Kosten bis zu 3 weitere Papierkorb.</value>
@@ -349,22 +349,22 @@
     <value>Vermissen Sie einen oder mehrere </value>
   </data>
   <data name="MissingCards2" xml:space="preserve">
-    <value> von der Hand.</value>
+    <value> von der handen.</value>
   </data>
   <data name="Moat" xml:space="preserve">
     <value>Graben</value>
   </data>
   <data name="MoatDesc" xml:space="preserve">
-    <value>+2 Karten\nWenn ein anderer Spieler einen Angriff Karte spielt, können Sie diese aus der Hand zu offenbaren. Wenn Sie das tun, sind Sie unabhängig von diesem Angriff.</value>
+    <value>+2 Karten\nWenn ein anderer Spieler einen Angriff Karte spielt, können Sie diese aus der händenzu offenbaren. Wenn Sie das tun, sind Sie unabhängig von diesem Angriff.</value>
   </data>
   <data name="Moneylender" xml:space="preserve">
     <value>Geldverleiher</value>
   </data>
   <data name="MoneylenderDesc" xml:space="preserve">
-    <value>Trash ein Kupfer aus deiner Hand. \n Wenn Sie tun +3 Währung</value>
+    <value>Papierkorb ein Kupfer aus deiner händen.\n Wenn Sie tun +3 Währung</value>
   </data>
   <data name="MoneylenderMsg" xml:space="preserve">
-    <value>Trash eine Kupfer Karte aus deiner Hand. Wenn Sie das tun, +3 Coins.</value>
+    <value>Papierkorb eine Kupfer Karte aus deiner händen.Wenn Sie das tun, +3 Wahrung.</value>
   </data>
   <data name="MoreThanFour" xml:space="preserve">
     <value>Mehr als 4 Karten ausgewählt!</value>
@@ -415,13 +415,13 @@
     <value>renovieren</value>
   </data>
   <data name="RemodelDesc" xml:space="preserve">
-    <value>Trash eine Karte aus deiner Hand. \n Verstärkung aa-Karte kostet bis zu 2 Währung \n mehr als die Papierkorb-Karte</value>
+    <value>Trash eine Karte aus deiner händen.\n Verstärkung aa-Karte kostet bis zu 2 Währung \n mehr als die Papierkorb-Karte</value>
   </data>
   <data name="RemodelMsg" xml:space="preserve">
     <value>Wählen Sie eine Karte in den Papierkorb und renovieren. Dann wählen Sie eine Karte zu gewinnen.</value>
   </data>
   <data name="RevealNoVict" xml:space="preserve">
-    <value>ergab eine Hand ohne Sieg Karten.</value>
+    <value>ergab eine handen ohne Sieg Karten.</value>
   </data>
   <data name="Silver" xml:space="preserve">
     <value>Silber</value>
@@ -457,23 +457,23 @@
     <value>Dieb</value>
   </data>
   <data name="ThiefDesc" xml:space="preserve">
-    <value>Jeder andere Spieler deckt die obersten 2 Karten von seinem Deck\n Wenn sie irgendwelche Schatz Karten aufgedeckt, trash sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten.</value>
+    <value>Jeder andere Spieler deckt die obersten 2 Karten von seinem spielkarten \n Wenn sie irgendwelche Schatz Karten aufgedeckt, papierkorb sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten.</value>
   </data>
   <data name="ThiefMsg" xml:space="preserve">
-    <value>Did you mean: Choose if you want to gain an opponent's trashed treasure card.
+    <value>
 Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen.</value>
   </data>
   <data name="ThiefMsg1" xml:space="preserve">
     <value>ergab eine</value>
   </data>
   <data name="ThiefMsg2" xml:space="preserve">
-    <value> von der Spitze ihrer Deck.</value>
+    <value> von der Spitze ihrer spielkarten.</value>
   </data>
   <data name="ThroneRoom" xml:space="preserve">
     <value>Thronsaal</value>
   </data>
   <data name="ThroneRoomDesc" xml:space="preserve">
-    <value>Wählen und Aktion Karte in Ihrer Hand. \n Play it zweimal</value>
+    <value>Wählen und Aktion Karte in Ihrer händen.\n es spielen zweimal</value>
   </data>
   <data name="ThroneRoomMsg" xml:space="preserve">
     <value>Wähle eine Aktionskarte zweimal spielen.</value>
@@ -506,7 +506,7 @@ Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen.</valu
     <value>Aktion - Reaktion</value>
   </data>
   <data name="UpgradeCur" xml:space="preserve">
-    <value>Klicken Sie auf "Upgrade" Währung</value>
+    <value>Klicken Sie auf "verbessern" Währung</value>
   </data>
   <data name="VictPts1" xml:space="preserve">
     <value> hatte </value>
@@ -518,7 +518,7 @@ Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen.</valu
     <value>Dorf</value>
   </data>
   <data name="VillageDesc" xml:space="preserve">
-    <value>+1 Card \n +2 Aktionen</value>
+    <value>+1 Karten\n +2 Aktionen</value>
   </data>
   <data name="WasRemodel" xml:space="preserve">
     <value>War ein renovieren. Wird er auf die nächste Karte Papierkorb.</value>
@@ -536,7 +536,7 @@ Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen.</valu
     <value>Holzfäller</value>
   </data>
   <data name="WoodcutterDesc" xml:space="preserve">
-    <value>+1 Buy \ n +2 Währungen</value>
+    <value>+1 Kauft\ n +2 Währungen</value>
   </data>
   <data name="Workshop" xml:space="preserve">
     <value>Werkstatt</value>
