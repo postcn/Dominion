@@ -193,7 +193,7 @@
     <value>Kupfer</value>
   </data>
   <data name="CopperDesc" xml:space="preserve">
-    <value>1 Währung wert</value>
+    <value />
   </data>
   <data name="CouncilRoom" xml:space="preserve">
     <value>Ratssaal</value>
@@ -211,7 +211,7 @@
     <value>Fluch</value>
   </data>
   <data name="CurseDesc" xml:space="preserve">
-    <value>-1 Siegpunkt</value>
+    <value />
   </data>
   <data name="DeckNotOnDiscard" xml:space="preserve">
     <value>Klicken Sie auf Nicht Place Your Spielkarten auf den Ablagestapel</value>
@@ -247,13 +247,13 @@
     <value>Herzogtum</value>
   </data>
   <data name="DuchyDesc" xml:space="preserve">
-    <value>3 Siegpunkte</value>
+    <value />
   </data>
   <data name="EndActionPhase" xml:space="preserve">
     <value>Endet der Aktionsphase, indem Sie in der kauft-Phase</value>
   </data>
   <data name="EndPhase" xml:space="preserve">
-    <value>Endphase</value>
+    <value>Ende Stufe</value>
   </data>
   <data name="EndTurn" xml:space="preserve">
     <value>Ende biegen</value>
@@ -262,7 +262,7 @@
     <value>Immobilien</value>
   </data>
   <data name="EstateDesc" xml:space="preserve">
-    <value>1 Siegpunkt</value>
+    <value />
   </data>
   <data name="Feast" xml:space="preserve">
     <value>Fest</value>
@@ -301,7 +301,7 @@
     <value>Goldton</value>
   </data>
   <data name="GoldDesc" xml:space="preserve">
-    <value>3 Währung wert</value>
+    <value />
   </data>
   <data name="Grats1" xml:space="preserve">
     <value>Herzlichen Glückwunsch, </value>
@@ -418,7 +418,7 @@
     <value>Provinz</value>
   </data>
   <data name="ProvinceDesc" xml:space="preserve">
-    <value>6 Siegpunkte</value>
+    <value />
   </data>
   <data name="Remodel" xml:space="preserve">
     <value>renovieren</value>
@@ -436,7 +436,7 @@
     <value>Silber</value>
   </data>
   <data name="SilverDesc" xml:space="preserve">
-    <value>2 Währung Wert</value>
+    <value />
   </data>
   <data name="Smithy" xml:space="preserve">
     <value>Schmiede</value>
@@ -518,10 +518,10 @@ Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen.</valu
     <value>Klicken Sie auf "verbessern" Währung</value>
   </data>
   <data name="VictPts1" xml:space="preserve">
-    <value> hatte </value>
+    <value>hatte </value>
   </data>
   <data name="VictPts2" xml:space="preserve">
-    <value> Siegpunkte. \n</value>
+    <value>Siegpunkte. \n</value>
   </data>
   <data name="Village" xml:space="preserve">
     <value>Dorf</value>

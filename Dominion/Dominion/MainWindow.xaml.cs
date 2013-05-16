@@ -34,9 +34,6 @@ namespace Dominion {
          * refershhand instead of window
          * set selected card to right dimentions. 
          * redue cards to eliminate white rightin at bottom of card
-         * i18n button contents 
-         * i18n status
-         * i18n phase
         *************************/
         Player player;
         List<CardStack> stacks;
@@ -50,17 +47,20 @@ namespace Dominion {
         private void Play_Click(object sender, RoutedEventArgs e) {
             if (actiondone.Contains("Gain")) {
                 StatusObject status = player.trashForGain(CardStackFromHilighted(currentCard).getCard());
+                Todo.Text = status.getMessage();
                 if (status.wasTrashedCorrectly()) {
                     GainCards();
                 }
             } else if (actiondone.Equals("Discard Many")) {
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.discardCardsAndDrawSameAmount(cards);
+                Todo.Text = status.getMessage();
                 if (status.wasDiscardedAndDrawnSuccessfully()) {
                     ResetSpecialAction();
                 }
             } else if (actiondone.Equals("Trash Copper")) {
                 StatusObject status = player.trashACopperForCurrencyBonus(CardMother.Copper());
+                Todo.Text = status.getMessage();
                 if (status.needToTrashCoppersForCurrency()) {
                     ReadyToTrashCopper();
                     RefreshHand();
@@ -71,6 +71,7 @@ namespace Dominion {
             } else if (actiondone.Equals("Trash Many")) {
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.trashCards(cards);
+                Todo.Text = status.getMessage();
                 if (status.wasTrashedCorrectly()) {
                     ResetSpecialAction();
                 }
@@ -83,19 +84,21 @@ namespace Dominion {
             }else if(actiondone.Equals("Mine")){
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.mineATreasureCard(cards[0]);
+                Todo.Text = status.getMessage();
                 if (status.wasMinedCorrectly()) {
                     ResetSpecialAction();
                 }
                 if (status.needToDisardDeck()) {
                     YesNo();
                     actiondone = "Mine";
-                    Play.ToolTip = "Click To 'Upgrade' Currency";
+                    Play.ToolTip = Internationalizer.getMessage("UpgradeCur");
                     RefreshHand();
                     return;
                 }
             } else if(actiondone.Equals("Militia Many")){
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.militiaDiscardEffect(cards);
+                Todo.Text = status.getMessage();
                 if (!status.wasMilitiaPlayed()) {
                     if (status.needToContinueWithDelayedFunctions()) {
                         status = player.callDelayedFunctions();
@@ -128,6 +131,7 @@ namespace Dominion {
                     }
                 }
                 StatusObject status = player.keepOrDiscardSpiedCards(spyCards);
+                Todo.Text = status.getMessage();
                 if (status.playerSpiedSuccessfully()) {
                     specialusecards=new List<Card>();
                     ResetSpecialAction();
@@ -168,6 +172,7 @@ namespace Dominion {
                     }
                 }
                 StatusObject status = player.validateThiefStolenCards(thiefTrash);
+                Todo.Text = status.getMessage();
                 if (!status.selectTrashFromThief()) {
                     specialusecards = new List<Card>();
                     specialusecards=player.getPossibleCardsToKeepFromThief();
@@ -195,6 +200,7 @@ namespace Dominion {
                     }
                 }
                 StatusObject status = player.keepCardsFromThief(thiefPick);
+                Todo.Text = status.getMessage();
                 if (status.needToKeepThief()) {
                     specialusecards = new List<Card>();
                     return;
@@ -206,7 +212,7 @@ namespace Dominion {
 
             }else {
                 StatusObject status = player.play(CardStackFromHilighted(currentCard).getCard());
-                //SelectCardDescription.Content = status.wasPlayedProperly();
+                Todo.Text = status.getMessage();
                 Play.IsEnabled = false;
                 if (status.trashForGainCheck()) {
                     TrashAndGain();
@@ -216,8 +222,8 @@ namespace Dominion {
                     return;
                 } else if (status.needToDiscardCardsFromHandToDrawSameNumber()) {
                     actiondone = "Discard Many";
-                    Play.Content = "Discard";
-                    Play.ToolTip = "Discard Selected Cards";
+                    Play.Content = Internationalizer.getMessage("Discard");
+                    Play.ToolTip = Internationalizer.getMessage("Discard")+" Deck";
                 } else if (status.needToTrashCoppersForCurrency()) {
                     ReadyToTrashCopper();
                     RefreshHand();
@@ -227,20 +233,20 @@ namespace Dominion {
                 } else if (status.needToDisardDeck()) {
                     YesNo();
                     actiondone = "Discard Deck";
-                    Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
-                    Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
+                    Play.ToolTip = Internationalizer.getMessage("DeckOnDiscard");
+                    Buy.ToolTip = Internationalizer.getMessage("DeckNotOnDiscard");
                     RefreshHand();
                     return;
                 } else if (status.needToMine()) {
                     actiondone = "Mine";
-                    Play.ToolTip = "Click To 'Upgrade' Currency";
+                    Play.ToolTip = Internationalizer.getMessage("UgradeCur");
                     RefreshHand();
                 } else if (status.canSpyOnDeck()) {
                     List<Card> SpiedCards = player.spyOnDecks();
                     specialusecards = SpiedCards;
                     actiondone = "Spy Many";
-                    Play.Content = "Discard";
-                    Play.ToolTip = "Discard Selected Cards";
+                    Play.Content = Internationalizer.getMessage("Discard");
+                    Play.ToolTip = Internationalizer.getMessage("DiscardCards");
                     End_Turn.IsEnabled = false;
                     //Buy.IsEnabled = false;
                     ResetHilightedCards();
@@ -301,9 +307,9 @@ namespace Dominion {
         }
         private void ResetSpecialAction() {
             actiondone = "";
-            Play.Content = "Play";
-            Buy.Content = "Buy";
-            Play.ToolTip = "Plays The Selected Card";
+            Play.Content = Internationalizer.getMessage("Play");
+            Buy.Content = Internationalizer.getMessage("Buy");
+            Play.ToolTip = Internationalizer.getMessage("PlayCards");
             //1.)
             Buy.ToolTip = "";
             End_Turn.IsEnabled = true;
@@ -311,26 +317,27 @@ namespace Dominion {
         }
         private void chancellor() {
             StatusObject status = player.discardDeck(true);
+            Todo.Text = status.getMessage();
             if (status.wasDeckDiscardedCorrectly()) {
                 ResetSpecialAction();
             }
             if (status.needToDisardDeck()) {
                 YesNo();
                 actiondone = "Discard Deck";
-                Play.ToolTip = "Click To Place Your Deck In The Discard Pile";
-                Buy.ToolTip = "Click To Not Place Your Deck In The Discard Pile";
+                Play.ToolTip = Internationalizer.getMessage("DeckOnDiscard");
+                Buy.ToolTip = Internationalizer.getMessage("DeckNotOnDiscard");
                 RefreshHand();
             }     
         }
         private void ReadyToTrashCopper() {
             YesNo();
             actiondone = "Trash Copper";
-            Play.ToolTip = "Click To Discard A Copper";
-            Buy.ToolTip = "Click To Not Discard A Copper";
+            Play.ToolTip = Internationalizer.getMessage("DiscardCopper");
+            Buy.ToolTip = Internationalizer.getMessage("NotDiscardCopper");
         }
         private void militia() {
             actiondone = "Militia Many";
-            Play.Content = "Discard";
+            Play.Content = Internationalizer.getMessage("Discard");
             End_Phase.IsEnabled = false;
             End_Turn.IsEnabled = false;
             SetFieldardsToNo();
@@ -338,14 +345,14 @@ namespace Dominion {
         }
         private void Trash() {
             actiondone = "Trash Many";
-            Play.Content = "Trash";
-            Play.ToolTip = "Trashes The Selected Cards";
+            Play.Content = Internationalizer.getMessage("Trash");
+            Play.ToolTip = Internationalizer.getMessage("TrashCards");
             End_Turn.IsEnabled = false;
             RefreshWindow();
         }
         private void YesNo() {
-            Play.Content = "Yes";
-            Buy.Content = "No";
+            Play.Content = Internationalizer.getMessage("Yes");
+            Buy.Content = Internationalizer.getMessage("No");
             Play.IsEnabled = true;
             Buy.IsEnabled = true;
             End_Phase.IsEnabled = false;
@@ -354,18 +361,18 @@ namespace Dominion {
         }
         private void TrashAndGain() {
             actiondone = "TrashGain";
-            Play.Content = "Trash";
-            Play.ToolTip = "Trashes The Selected Card";
+            Play.Content = Internationalizer.getMessage("Trash");
+            Play.ToolTip = Internationalizer.getMessage("TrashCards");
             End_Turn.IsEnabled = false;
             End_Phase.IsEnabled = false;
             RefreshWindow();
         }
         private void GainCards() {
-            Play.Content = "Play";
-            Play.ToolTip = "Plays The Selected Card";
+            Play.Content = Internationalizer.getMessage("Play");
+            Play.ToolTip = Internationalizer.getMessage("PlaysCards");
             actiondone = "Gain";
-            Buy.Content = "Gain";
-            Gain_Label.Content = "Gain:            " + player.getCurrencyForGain();
+            Buy.Content = Internationalizer.getMessage("Gain");
+            Gain_Label.Content = Internationalizer.getMessage("Gain")+":            " + player.getCurrencyForGain();
             End_Phase.IsEnabled = false;
             End_Turn.IsEnabled = false;
             RefreshWindow();
@@ -406,7 +413,11 @@ namespace Dominion {
             currentCard = "";
             Actions_Label.Content = player.getActionsLeft();
             Buys_Label.Content = player.getBuysLeft();
-            Phase_Label.Content = phase;
+            if (phase.Equals("Buy Phase")) {
+                Phase_Label.Content = Internationalizer.getMessage("BuyPhase");
+            } else {
+                Phase_Label.Content = Internationalizer.getMessage("ActionPhase");
+            }
             if (phase.Equals("Action Phase")) {
                 SetHandButtonsToNormal();
                 SetFieldardsToNo();
@@ -424,11 +435,8 @@ namespace Dominion {
                 CardStack cardstack = CardStackFromHilighted(currentCard);
                 work = player.buy(cardstack);
                 if (!work) {
-                    Description.Content = "buy failed " + player.getCurrencyValue();
                 } else {
-                    Description.Content = "Buy Sucessful";
                     string name = currentCard + ".jpg";
-                    SetPicture(name, Hand_Card);
                     if (cardstack.cardsRemaining() == 0) {
                         buyout();
                     }
@@ -436,17 +444,12 @@ namespace Dominion {
             } else if (actiondone.Equals("Gain")) {
                 int length = stacks.Count();
                 CardStack cardstack = CardStackFromHilighted(StripImageSource(HilightedImages[0].Source.ToString(), true));
-                //1.) this should be checked by caleb
-                if (cardstack.cardsRemaining() == 0) {
-                    Description.Content = "None Left For Gain Why did it get here";
-                    return;
-                }
-                //
                 StatusObject status = player.gainCard(cardstack);
+                Todo.Text = status.getMessage();
                 if (status.getGainedProperly()) {
                     ResetHilightedCards();
                     End_Turn.IsEnabled = true;
-                    Buy.Content = "Buy";
+                    Buy.Content = Internationalizer.getMessage("Buy");
                     actiondone = "";
                     Gain_Label.Content = "";
                     if (cardstack.cardsRemaining() == 0) {
@@ -464,6 +467,7 @@ namespace Dominion {
                 }
             } else if (actiondone.Equals("Trash Copper")) {
                 StatusObject status = player.trashACopperForCurrencyBonus(null);
+                Todo.Text = status.getMessage();
                 //.1) throne room play twice if choose no first time?
                 if (status.needToTrashCoppersForCurrency()) {
                     ReadyToTrashCopper();
@@ -512,32 +516,23 @@ namespace Dominion {
         private void End_Turn_Click(object sender, RoutedEventArgs e) {
             player.cleanUp();
             this.Hide();
+            Todo.Text = "";
             PrepScreen prep = new PrepScreen(myGame.nextPlayerName(), this);
             prep.Show();
             player = myGame.nextTurnPlayer();
-
-
-            //   SetPicture("blank.jpg", Selected_Card);
             actiondone = "";
             phase = "Action Phase";
             Player_Label.Content = player.getName() + "'s";
             Phase_Label.Content = phase;
             End_Phase.IsEnabled = true;
             player.getCurrency();
-            
-          //  RefreshWindow();
             ResetHilightedCards();
             Turn_Label.Content = myGame.getTurnsPassed();
             RefreshWindow();
             StatusObject status = player.callDelayedFunctions();
+            Todo.Text = status.getMessage();
             if (status.wasMilitiaPlayed()) {
                 militia();
-                //actiondone = "Militia Many";
-                //Play.Content = "Discard";
-                //End_Phase.IsEnabled = false;
-                //End_Turn.IsEnabled = false;
-                //SetFieldardsToNo();
-                //SetHandButtonsToNormal();   
                 return;
             }
             
@@ -577,7 +572,7 @@ namespace Dominion {
         private void ActionImage_Click(object sender, RoutedEventArgs e) {
             Image_Click(sender, actionButton, actionImage, false);
         }
-        private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {//somehow sometimes _button is getting set when a button in unhilighted at some point
+        private void Image_Click(object sender, List<Button> buttons, List<Image> images, Boolean handcard) {
             Button obj = (Button)sender;
             if (obj.Cursor == Cursors.Hand) {
                 if (_button == obj) {
@@ -633,7 +628,7 @@ namespace Dominion {
             Card card = cards[cards.Count - 1];
             SelectCardDescription.Text = card.getDescription();
             SelectCardName.Text = card.getName();
-            SelectCardType.Text = card.getName();
+            SelectCardType.Text = card.InternationlizedTypeString();
         }
         private void UnHilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), true) + ".jpg";
@@ -678,17 +673,8 @@ namespace Dominion {
                 Buy.IsEnabled = true;
                 Play.IsEnabled = false;
             }
-            //1.) fit all on screen
-            //List<Card> cards = GetCardListFromHilighted();
-            //Card card = cards[cards.Count - 1];
             SetSelected();
-            //SelectCardDescription.Content = card.getDescription();
-            //SelectCardName.Content = card.getName();
         }
-        /*
-         * currently gets send one string going to need to make funciton to get list of strings that are hilighted for thef card
-         * returns all cardstacks that are currently selected
-         */
         private Card CardFromString(String str) {
             int length = stacks.Count();
             Card card = null;
@@ -734,9 +720,6 @@ namespace Dominion {
             SetPicture("blank.jpg", Selected_Card);
             HilightedImages = new List<Image>();
         }
-        /*********************************************************
-         add playerinit and change start_click to initializegame
-         ********************************************************/
         private void Save_Game(object sender, RoutedEventArgs e) {
             myGame.Save();
         }
@@ -780,11 +763,16 @@ namespace Dominion {
 
             loc = new Locale(language.Substring(0,2),language.Substring(3,2));
             Internationalizer.setLocale(loc);
-           // Phase_Label.Content = Internationalizer.getMessage("Buy Phase");
+            Status_Label.Content = Internationalizer.getMessage("InfoList");
+            Phase_Label.Content = Internationalizer.getMessage("BuyPhase");
+            End_Phase.Content = Internationalizer.getMessage("EndPhase");
+            End_Turn.Content = Internationalizer.getMessage("EndTurn");
+            Play.Content = Internationalizer.getMessage("Play");
+            Buy.Content = Internationalizer.getMessage("Buy");
         }
         private void InitializeButtonImages() {
             //MainGrid
-          //  myGame.randomizeBuyables();
+            myGame.randomizeBuyables();
             HilightedImages = new List<Image>();
             victoryButton = new List<Button>();
             currencyButton = new List<Button>();
@@ -964,8 +952,6 @@ namespace Dominion {
             handButton.Add(HandButton48);
             handButton.Add(HandButton49);
             handButton.Add(HandButton50);
-        }
-        private void End_Game_Click(object sender, RoutedEventArgs e) {
         }
         /*  private void End_Game_Click(object sender, RoutedEventArgs e) {
               myGame.getPlayers()[0].setVictoryPts();

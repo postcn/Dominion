@@ -286,7 +286,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Währung wert.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string CopperDesc {
             get {
@@ -340,7 +340,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -1 Siegpunkt.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string CurseDesc {
             get {
@@ -448,7 +448,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3 Siegpunkte.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string DuchyDesc {
             get {
@@ -466,7 +466,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Endphase.
+        ///   Looks up a localized string similar to Ende Stufe.
         /// </summary>
         internal static string EndPhase {
             get {
@@ -493,7 +493,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Siegpunkt.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string EstateDesc {
             get {
@@ -610,7 +610,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3 Währung wert.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string GoldDesc {
             get {
@@ -961,7 +961,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6 Siegpunkte.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string ProvinceDesc {
             get {
@@ -1015,7 +1015,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2 Währung Wert.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string SilverDesc {
             get {
@@ -1259,7 +1259,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  hatte .
+        ///   Looks up a localized string similar to hatte .
         /// </summary>
         internal static string VictPts1 {
             get {
@@ -1268,7 +1268,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Siegpunkte. \n.
+        ///   Looks up a localized string similar to Siegpunkte. \n.
         /// </summary>
         internal static string VictPts2 {
             get {
