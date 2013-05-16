@@ -318,6 +318,9 @@
   <data name="IsReady" xml:space="preserve">
     <value>ist bereit</value>
   </data>
+  <data name="Keep" xml:space="preserve">
+    <value>halten</value>
+  </data>
   <data name="Laboratory" xml:space="preserve">
     <value>Labor</value>
   </data>
@@ -469,14 +472,16 @@
     <value>Jeder andere Spieler deckt die obersten 2 Karten von seinem spielkarten \n Wenn sie irgendwelche Schatz Karten aufgedeckt, papierkorb sie einer von ihnen, dass Sie sich entscheiden\nSie können gewinnen oder alle dieser Karten weggeworfen. Sie verwerfen die anderen aufgedeckten Karten.</value>
   </data>
   <data name="ThiefMsg" xml:space="preserve">
-    <value>
-Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen.</value>
+    <value>Wählen Sie eine Karte in den Papierkorb.</value>
   </data>
   <data name="ThiefMsg1" xml:space="preserve">
     <value>ergab eine</value>
   </data>
   <data name="ThiefMsg2" xml:space="preserve">
     <value> von der Spitze ihrer spielkarten.</value>
+  </data>
+  <data name="ThiefMsg3" xml:space="preserve">
+    <value>Wählen Sie die Karten, die Sie behalten möchten,</value>
   </data>
   <data name="ThroneRoom" xml:space="preserve">
     <value>Thronsaal</value>

@@ -313,10 +313,13 @@
     <value>Incorrect number of cards discarded for the Militia effect</value>
   </data>
   <data name="InfoList" xml:space="preserve">
-    <value>Actions:\nBuys:\nCurrency:\nturn:</value>
+    <value>Actions:\nBuys:\nCurrency:\nTurn:</value>
   </data>
   <data name="IsReady" xml:space="preserve">
     <value>Is Ready</value>
+  </data>
+  <data name="Keep" xml:space="preserve">
+    <value>Keep</value>
   </data>
   <data name="Laboratory" xml:space="preserve">
     <value>Laboratory</value>
@@ -469,13 +472,16 @@
     <value>Each other player reveals the top 2 cards of his deck.\nIf they revealed any Treasure cards, they trash one of them that you choose.\nYou may gain any or all of these trashed cards.\nThey discard the other revealed cards.</value>
   </data>
   <data name="ThiefMsg" xml:space="preserve">
-    <value>Choose if you want to gain an opponents trashed treasure card.</value>
+    <value>Choose cards to trash</value>
   </data>
   <data name="ThiefMsg1" xml:space="preserve">
     <value> revealed a </value>
   </data>
   <data name="ThiefMsg2" xml:space="preserve">
     <value> from the top of their deck.</value>
+  </data>
+  <data name="ThiefMsg3" xml:space="preserve">
+    <value>Choose the cards you want to keep</value>
   </data>
   <data name="ThroneRoom" xml:space="preserve">
     <value>Throne Room</value>

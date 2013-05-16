@@ -54,6 +54,7 @@ namespace Dominion
             this.timesToPlayNextCard = 1;
             this.id = id;
             myDeck = new Deck();
+            myDeck.reshuffle();
             myHand = new Hand();
             for (int i = 0; i < 5; i++)
             {
@@ -1011,6 +1012,7 @@ namespace Dominion
                 }
             }
             ret.setKeepTrashedFromThief(true);
+            ret.setMessage(Internationalizer.getMessage("ThiefMsg3"));
             return ret;
         }
 

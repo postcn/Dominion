@@ -83,7 +83,7 @@ namespace Dominion
         /// <param name="list">The list to be shuffled in place </param>
         public static void Shuffle<T>(List<T> list)
         {
-            Random rng = new Random();
+            Random rng = new Random(System.DateTime.Now.Millisecond+5);
             int n = list.Count;
             while (n > 1)
             {

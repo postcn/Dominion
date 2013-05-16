@@ -53,14 +53,14 @@ namespace Dominion {
             String num = obj.Content.ToString().Substring(0, 1);
             Int32.TryParse(num, out numValue);
             //1.)
-            if (numValue == 1) {
+           /* if (numValue == 1) {
                 Game mygame = new Game(1);
                 mygame.getPlayers()[0].setName("Admin");
                 main = new MainWindow(mygame, language);
                 main.Show();
                 Close();
                 return;
-            }
+            }*/
             //
             EnableText(numValue);
         }

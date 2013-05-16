@@ -79,6 +79,8 @@ namespace Dominion {
             this.buyables.Add(new CardStack(numInStack, CardMother.Estate()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Duchy()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
+           // this.buyables.Add(new CardStack(4, CardMother.Province()));
+
 
             //TODO find actual number
             this.buyables.Add(new CardStack(120, CardMother.Curse()));
@@ -96,8 +98,8 @@ namespace Dominion {
             this.buyables.Add(new CardStack(10, CardMother.Thief()));
             this.buyables.Add(new CardStack(10, CardMother.Spy()));
             //this.buyables.Add(new CardStack(10, CardMother.Witch()));
-            this.buyables.Add(new CardStack(10, CardMother.Mine()));
-            //this.buyables.Add(new CardStack(10, CardMother.Feast()));
+            //this.buyables.Add(new CardStack(10, CardMother.Mine()));
+            this.buyables.Add(new CardStack(10, CardMother.Feast()));
             //this.buyables.Add(new CardStack(10, CardMother.Remodel()));
             //this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
             this.buyables.Add(new CardStack(10, CardMother.Militia()));
@@ -133,6 +135,7 @@ namespace Dominion {
         }
 
         public Boolean isGameOver() {
+            this.winningPlayers = new List<Player>();
             bool over = false;
             if (this.buyables[5].isEmpty()) //Provinces are gone.
             {

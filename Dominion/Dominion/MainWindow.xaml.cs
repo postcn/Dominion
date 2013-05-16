@@ -34,6 +34,7 @@ namespace Dominion {
          * refershhand instead of window
          * set selected card to right dimentions. 
          * redue cards to eliminate white rightin at bottom of card
+         * unenable buttons after boughtout
         *************************/
         Player player;
         List<CardStack> stacks;
@@ -71,6 +72,7 @@ namespace Dominion {
             } else if (actiondone.Equals("Trash Many")) {
                 List<Card> cards = GetCardListFromHilighted();
                 StatusObject status = player.trashCards(cards);
+                End_Phase.IsEnabled = true;
                 Todo.Text = status.getMessage();
                 if (status.wasTrashedCorrectly()) {
                     ResetSpecialAction();
@@ -102,6 +104,7 @@ namespace Dominion {
                 if (!status.wasMilitiaPlayed()) {
                     if (status.needToContinueWithDelayedFunctions()) {
                         status = player.callDelayedFunctions();
+                        RefreshHand();
                         if (status.wasMilitiaPlayed()) {
                             militia();
                             RefreshHand();
@@ -149,6 +152,9 @@ namespace Dominion {
                                 ResetHilightedCards();
                                 return;
                             } else {
+                                if (StripImageSource(handImage[count].Source.ToString(), false).Equals("blank")) {
+                                    count++;
+                                } 
                                 if (StripImageSource(handImage[count].Source.ToString(), false).Contains("1")) {
                                     thiefTrash.Add(CardFromString(StripImageSource(handImage[count].Source.ToString(), true)));
                                 } else if (StripImageSource(handImage[count + 1].Source.ToString(), false).Contains("1")) {
@@ -157,26 +163,35 @@ namespace Dominion {
                                     ResetHilightedCards();
                                     return;
                                 }
+                                
                             }
                             count += 2;
                         } else {
+                            if (StripImageSource(handImage[count].Source.ToString(), false).Equals("blank")) {
+                                count++;
+                            } 
                             if (StripImageSource(handImage[count].Source.ToString(), false).Contains("1")) {
                                 thiefTrash.Add(CardFromString(StripImageSource(handImage[count].Source.ToString(), true)));
                             }
+                            
                             //player only had 1 currency
                             count++;
                         }
                     } else {
                         //player has no currency
+                        count++;
                         thiefTrash.Add(null);
                     }
                 }
                 StatusObject status = player.validateThiefStolenCards(thiefTrash);
                 Todo.Text = status.getMessage();
                 if (!status.selectTrashFromThief()) {
+                    SetHandButtonsToNormal();
                     specialusecards = new List<Card>();
                     specialusecards=player.getPossibleCardsToKeepFromThief();
-                    actiondone = "Pick Trash Many";
+                    actiondone = "Pick Thief Many";
+                    int panelsize = 400 + (myGame.getPlayers().Count - 1 - 5) * 80;
+                    stackpan.Width = panelsize;
                     count = 0;
                     for (int i = 0; i < specialusecards.Count; i++) {
                         SetPicture(specialusecards[i].getName() + ".jpg", handImage[i]);
@@ -186,19 +201,21 @@ namespace Dominion {
                         SetPicture("blank.jpg", handImage[j]);
                         handButton[j].Cursor = Cursors.Arrow;
                     }
-                    End_Phase.IsEnabled = false;
+                    Play.Content = Internationalizer.getMessage("Keep");
+                    End_Phase.IsEnabled = true;
                     End_Turn.IsEnabled = false;
                     HilightedImages = new List<Image>();
                     return;
                 }
                 return;
-            }else if(actiondone.Equals("Pick Trash Many")){
+            }else if(actiondone.Equals("Pick Thief Many")){
                 List<Card> thiefPick = new List<Card>();
                 for (int i = 0; i < specialusecards.Count; i++) {
                     if (StripImageSource(handImage[i].Source.ToString(), false).Contains("1")) {
-                        specialusecards.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(), true)));
+                        thiefPick.Add(CardFromString(StripImageSource(handImage[i].Source.ToString(), true)));
                     }
                 }
+                specialusecards = new List<Card>();
                 StatusObject status = player.keepCardsFromThief(thiefPick);
                 Todo.Text = status.getMessage();
                 if (status.needToKeepThief()) {
@@ -207,7 +224,6 @@ namespace Dominion {
                 } else {
                     ResetSpecialAction();
                     RefreshWindow();
-                    End_Phase.IsEnabled = true;
                 }
 
             }else {
@@ -239,7 +255,7 @@ namespace Dominion {
                     return;
                 } else if (status.needToMine()) {
                     actiondone = "Mine";
-                    Play.ToolTip = Internationalizer.getMessage("UgradeCur");
+                    Play.ToolTip = Internationalizer.getMessage("UpgradeCur");
                     RefreshHand();
                 } else if (status.canSpyOnDeck()) {
                     List<Card> SpiedCards = player.spyOnDecks();
@@ -278,9 +294,16 @@ namespace Dominion {
                                 count++;
                             }
                         }
+                        
+                        SetPicture("blank.jpg",handImage[count]);
+                        handButton[count].Cursor = Cursors.Arrow;
                         //1.)put blank set card cursor to arrow
-                        //count++;
+                        count++;
                     }
+                    Play.Content = Internationalizer.getMessage("Trash");
+                    Play.ToolTip = Internationalizer.getMessage("TrashCards");
+                    int panelsize = 400 + (count - 5) * 80;
+                    stackpan.Width = panelsize;
                     if (count == 0) {
                         specialusecards=new List<Card>();
                         specialusecards.Add(null);
@@ -369,7 +392,7 @@ namespace Dominion {
         }
         private void GainCards() {
             Play.Content = Internationalizer.getMessage("Play");
-            Play.ToolTip = Internationalizer.getMessage("PlaysCards");
+            Play.ToolTip = Internationalizer.getMessage("PlayCards");
             actiondone = "Gain";
             Buy.Content = Internationalizer.getMessage("Gain");
             Gain_Label.Content = Internationalizer.getMessage("Gain")+":            " + player.getCurrencyForGain();
@@ -398,7 +421,6 @@ namespace Dominion {
         }
         private void RefreshWindow() {
             ResetHilightedCards();
-            
             _button = null;
             game_message.Text = myGame.getGameStatus();
             Play.IsEnabled = false;
@@ -408,8 +430,6 @@ namespace Dominion {
                 phase = "Buy Phase";
                 End_Phase.IsEnabled = false;
             }
-            //if (!currentCard.Equals("Throne Room")) {
-            //}
             currentCard = "";
             Actions_Label.Content = player.getActionsLeft();
             Buys_Label.Content = player.getBuysLeft();
@@ -427,6 +447,7 @@ namespace Dominion {
                 SetFieldCardsToNormal();
                 Currency_Label.Content = player.getCurrencyValue();
             }
+            Scroller.ScrollToBottom();
         }
         private void Buy_Click(object sender, RoutedEventArgs e) {
             if (actiondone.Equals("")) {
@@ -530,6 +551,7 @@ namespace Dominion {
             Turn_Label.Content = myGame.getTurnsPassed();
             RefreshWindow();
             StatusObject status = player.callDelayedFunctions();
+            RefreshHand();
             Todo.Text = status.getMessage();
             if (status.wasMilitiaPlayed()) {
                 militia();
@@ -542,14 +564,19 @@ namespace Dominion {
             if (actiondone.Equals("Trash Many")) {
                 player.trashCards(new List<Card>());
                 ResetSpecialAction();
+                return;
             }else if(actiondone.Equals("Spy Many")){
                 ResetSpecialAction();
                 RefreshHand();
+                return;
             } else if (actiondone.Equals("Pick Thief Many")) {
                 ResetSpecialAction();
                 RefreshHand();
+                Todo.Text = "";
                 specialusecards = new List<Card>();
-           }
+                return;
+           }//else if(actiondone){
+        //   }
             Buy.IsEnabled = false;
             phase = "Buy Phase";
             Phase_Label.Content = phase;
@@ -772,7 +799,7 @@ namespace Dominion {
         }
         private void InitializeButtonImages() {
             //MainGrid
-            myGame.randomizeBuyables();
+          //  myGame.randomizeBuyables();
             HilightedImages = new List<Image>();
             victoryButton = new List<Button>();
             currencyButton = new List<Button>();

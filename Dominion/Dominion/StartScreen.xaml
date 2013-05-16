@@ -9,9 +9,9 @@
                     <GradientStop Color="Transparent" Offset="1"/>
                 </LinearGradientBrush>
             </Menu.Background>
-            <MenuItem Header="File" Foreground="White" IsTabStop="False">
+            <!--<MenuItem Header="File" Foreground="White" IsTabStop="False">
                 <MenuItem x:Name="Load" Header="Load" Foreground="Black" Click="Load_Game"/>
-            </MenuItem>
+            </MenuItem>-->
             <MenuItem Header="Language" Foreground="White" IsTabStop="False">
                 <MenuItem x:Name="en_US" Header="English" Foreground="Black" IsChecked="True" Click="ChangeLanguage"/>
                 <MenuItem x:Name="de_DE" Header="Deutsch" Foreground="Black" Click="ChangeLanguage"/>
@@ -28,6 +28,6 @@
             <RadioButton x:Name="PlayerRadio2" Content="3 Players" VerticalAlignment="Top" Foreground="White" Margin="0,5,0,0" Click="RadioCheck" IsTabStop="False"/>
             <RadioButton x:Name="PlayerRadio3" Content="4 Players" VerticalAlignment="Top" Foreground="White" Margin="0,5,0,0" Click="RadioCheck" IsTabStop="False"/>
         </StackPanel>
-        <RadioButton x:Name="PlayerRadio4" Content="1 Player" VerticalAlignment="Top" Foreground="White" Margin="119,55,368,0" Click="RadioCheck" IsTabStop="False"/>
+        <!--<RadioButton x:Name="PlayerRadio4" Content="1 Player" VerticalAlignment="Top" Foreground="White" Margin="119,55,368,0" Click="RadioCheck" IsTabStop="False"/>-->
     </Grid>
 </Window>

@@ -28,7 +28,7 @@
         </Style>
     </Window.Resources>
     <Grid x:Name="MainGrid" Margin="0,0,0,0" Background="#FF343131">
-        <Menu IsMainMenu="True" Foreground="White" Margin="0,10,0,-10">
+        <!--<Menu IsMainMenu="True" Foreground="White" Margin="0,10,0,-10">
             <Menu.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="Transparent" Offset="1"/>
@@ -37,8 +37,8 @@
             <MenuItem Header="File" Foreground="White" IsTabStop="False">
                 <MenuItem x:Name="Save" Header="Save" Foreground="Black" Click="Save_Game"/>
             </MenuItem>
-        </Menu>
-        <ScrollViewer Margin="729,322,35,287" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        </Menu>-->
+        <ScrollViewer x:Name="Scroller" Margin="729,322,35,287" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid>
                 <TextBlock x:Name="game_message" TextWrapping="WrapWithOverflow" Foreground="White" Margin="3,5,0,0"/>
             </Grid>
@@ -46,25 +46,25 @@
         <Button x:Name="Buy" Content="Buy" HorizontalAlignment="Left" Height="29" Margin="754,848,0,0" VerticalAlignment="Top" Width="47" Click="Buy_Click" IsEnabled="False"/>
         <Button x:Name="End_Turn" Content="End Turn" HorizontalAlignment="Left" Height="29" Margin="504,848,0,0" VerticalAlignment="Top" Width="59" Click="End_Turn_Click" ToolTip="Ends Your Turn"/>
         <Button x:Name="Play" Content="Play" HorizontalAlignment="Left" Height="29" Margin="673,848,0,0" VerticalAlignment="Top" Width="55" IsEnabled="False" Click="Play_Click" ToolTip="Plays The Selected Card"/>
-        <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="308,105,565,678">
+        <Button x:Name="VictoryButton1" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="308,105,565,677">
             <Image x:Name= "VictoryImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton2" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="393,105,480,678">
+        <Button x:Name="VictoryButton2" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="393,105,480,677">
             <Image x:Name= "VictoryImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton3" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="478,105,395,678">
+        <Button x:Name="VictoryButton3" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="478,105,395,677">
             <Image x:Name= "VictoryImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="VictoryButton4" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="563,105,310,678">
+        <Button x:Name="VictoryButton4" Style="{DynamicResource NoChromeButton}" Click="VictoryImage_Click" Margin="563,105,310,677">
             <Image x:Name= "VictoryImage4" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton1" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="308,233,565,550">
+        <Button x:Name="CurrencyButton1" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="308,233,565,549">
             <Image x:Name= "CurrencyImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton2" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="393,233,480,550">
+        <Button x:Name="CurrencyButton2" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="393,233,480,549">
             <Image x:Name= "CurrencyImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="CurrencyButton3" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="478,233,395,550">
+        <Button x:Name="CurrencyButton3" Style="{DynamicResource NoChromeButton}" Click="CurrencyImage_Click" Margin="478,233,395,549">
             <Image x:Name= "CurrencyImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
         <ScrollViewer Margin="0,636,10,81" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
@@ -221,19 +221,19 @@
                 </Button>
             </StackPanel>
         </ScrollViewer>
-        <Button x:Name="ActionButton1" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="249,368,624,415">
+        <Button x:Name="ActionButton1" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="249,368,624,414">
             <Image x:Name= "ActionImage1" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton2" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="336,368,537,415">
+        <Button x:Name="ActionButton2" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="336,368,537,414">
             <Image x:Name= "ActionImage2" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton3" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="422,368,451,415">
+        <Button x:Name="ActionButton3" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="422,368,451,414">
             <Image x:Name= "ActionImage3" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton4" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="508,368,365,415">
+        <Button x:Name="ActionButton4" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="508,368,365,414">
             <Image x:Name= "ActionImage4" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton5" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,368,279,415">
+        <Button x:Name="ActionButton5" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,368,279,414">
             <Image x:Name= "ActionImage5" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
         <Button x:Name="ActionButton6" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="249,496,624,287">
@@ -248,7 +248,7 @@
         <Button x:Name="ActionButton9" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="508,496,365,287">
             <Image x:Name= "ActionImage9" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,497,279,287">
+        <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,496,279,287">
             <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
         <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="376" Margin="10,51,0,0" VerticalAlignment="Top" Width="239" Source="blank.jpg"/>

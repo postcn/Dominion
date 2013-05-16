@@ -664,6 +664,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to halten.
+        /// </summary>
+        internal static string Keep {
+            get {
+                return ResourceManager.GetString("Keep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Labor.
         /// </summary>
         internal static string Laboratory {
@@ -1114,8 +1123,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
-        ///Wählen Sie, wenn Sie einen Gegner verwüstet Schatzkarte gewinnen wollen..
+        ///   Looks up a localized string similar to Wählen Sie eine Karte in den Papierkorb..
         /// </summary>
         internal static string ThiefMsg {
             get {
@@ -1138,6 +1146,15 @@ namespace Dominion {
         internal static string ThiefMsg2 {
             get {
                 return ResourceManager.GetString("ThiefMsg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wählen Sie die Karten, die Sie behalten möchten,.
+        /// </summary>
+        internal static string ThiefMsg3 {
+            get {
+                return ResourceManager.GetString("ThiefMsg3", resourceCulture);
             }
         }
         

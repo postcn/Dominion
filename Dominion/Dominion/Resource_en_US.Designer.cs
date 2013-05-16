@@ -646,7 +646,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actions:\nBuys:\nCurrency:\nturn:.
+        ///   Looks up a localized string similar to Actions:\nBuys:\nCurrency:\nTurn:.
         /// </summary>
         internal static string InfoList {
             get {
@@ -660,6 +660,15 @@ namespace Dominion {
         internal static string IsReady {
             get {
                 return ResourceManager.GetString("IsReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep.
+        /// </summary>
+        internal static string Keep {
+            get {
+                return ResourceManager.GetString("Keep", resourceCulture);
             }
         }
         
@@ -1114,7 +1123,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose if you want to gain an opponents trashed treasure card..
+        ///   Looks up a localized string similar to Choose cards to trash.
         /// </summary>
         internal static string ThiefMsg {
             get {
@@ -1137,6 +1146,15 @@ namespace Dominion {
         internal static string ThiefMsg2 {
             get {
                 return ResourceManager.GetString("ThiefMsg2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the cards you want to keep.
+        /// </summary>
+        internal static string ThiefMsg3 {
+            get {
+                return ResourceManager.GetString("ThiefMsg3", resourceCulture);
             }
         }
         
