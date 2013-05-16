@@ -40,6 +40,7 @@ namespace Dominion
         public Deck(List<Card> cards)
         {
             this.inDeck = cards;
+            this.inDiscard = new List<Card>();
         }
 
         /// <summary>

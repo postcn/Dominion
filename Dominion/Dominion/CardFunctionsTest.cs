@@ -159,5 +159,17 @@ namespace Dominion
             CardFunctions.mineATreasure(p, o);
             Assert.IsTrue(o.needToMine());
         }
+
+        [Test()]
+        public void testThiefActionWithNull()
+        {
+            Game g = new Game(3);
+            g.getPlayers()[1].setDeck(new Deck(new List<Card>()));
+            Player p = g.getCurrentPlayer();
+            StatusObject o = new StatusObject(false);
+            CardFunctions.thiefAction(p, o);
+            List<List<Card>> thiefed = p.getThiefList();
+            Assert.AreEqual(0, thiefed[0].Count);
+        }
     }
 }

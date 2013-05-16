@@ -174,7 +174,11 @@ namespace Dominion
                     for (int i = 0; i < 2; i++)
                     {
                         Card c = other.getDeck().draw();
-                        if (c.getType() == 1)
+                        if (c == null)
+                        {
+                            continue;
+                        }
+                        else if (c.getType() == 1)
                         {
                             cards.Add(c);
                         }
