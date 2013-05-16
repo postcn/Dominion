@@ -78,8 +78,8 @@ namespace Dominion {
             int numInStack = this.calculateSupplyForVictory();
             this.buyables.Add(new CardStack(numInStack, CardMother.Estate()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Duchy()));
-            //this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
-            this.buyables.Add(new CardStack(1, CardMother.Province()));
+            this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
+            //this.buyables.Add(new CardStack(1, CardMother.Province()));
 
 
             //TODO find actual number

@@ -29,7 +29,7 @@ namespace Dominion
                 case 1: //Militia
                     retVal.setMilitiaPlayed(true);
                     retVal.setContinueWithDelayedFunctions(true);
-                    retVal.setMessage("THIS NEEDS BE CHANGED MILITIA EFFECT!");
+                    retVal.setMessage(Internationalizer.getMessage("NeedMilitia"));
                     break;
             }
             return retVal;
