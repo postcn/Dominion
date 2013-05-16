@@ -70,6 +70,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktionen Stufe.
+        /// </summary>
+        internal static string ActionPhase {
+            get {
+                return ResourceManager.GetString("ActionPhase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aktionen.
         /// </summary>
         internal static string Actions {
@@ -147,6 +156,15 @@ namespace Dominion {
         internal static string BuyMsg {
             get {
                 return ResourceManager.GetString("BuyMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kauft Stufe.
+        /// </summary>
+        internal static string BuyPhase {
+            get {
+                return ResourceManager.GetString("BuyPhase", resourceCulture);
             }
         }
         
@@ -624,6 +642,15 @@ namespace Dominion {
         internal static string IncorrectForMilitia {
             get {
                 return ResourceManager.GetString("IncorrectForMilitia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktionen:\nKauft:\nWährung:\nwenden:.
+        /// </summary>
+        internal static string InfoList {
+            get {
+                return ResourceManager.GetString("InfoList", resourceCulture);
             }
         }
         

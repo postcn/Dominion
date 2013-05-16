@@ -120,6 +120,9 @@
   <data name="ActionBuyMsg" xml:space="preserve">
     <value>You gained extra actions and buys.</value>
   </data>
+  <data name="ActionPhase" xml:space="preserve">
+    <value>Action Phase</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="BuyMsg" xml:space="preserve">
     <value>You gained an extra buy(s).</value>
+  </data>
+  <data name="BuyPhase" xml:space="preserve">
+    <value>Buy Phase</value>
   </data>
   <data name="Buys" xml:space="preserve">
     <value>Buys</value>
@@ -305,6 +311,9 @@
   </data>
   <data name="IncorrectForMilitia" xml:space="preserve">
     <value>Incorrect number of cards discarded for the Militia effect</value>
+  </data>
+  <data name="InfoList" xml:space="preserve">
+    <value>Actions:\nBuys:\nCurrency:\nturn:</value>
   </data>
   <data name="IsReady" xml:space="preserve">
     <value>Is Ready</value>

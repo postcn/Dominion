@@ -120,6 +120,9 @@
   <data name="ActionBuyMsg" xml:space="preserve">
     <value>Sie hat zusätzliche Maßnahmen und kauft.</value>
   </data>
+  <data name="ActionPhase" xml:space="preserve">
+    <value>Aktionen Stufe</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Aktionen</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="BuyMsg" xml:space="preserve">
     <value>Sie hat eine extra kaufen (s).</value>
+  </data>
+  <data name="BuyPhase" xml:space="preserve">
+    <value>Kauft Stufe</value>
   </data>
   <data name="Buys" xml:space="preserve">
     <value>Kauft</value>
@@ -305,6 +311,9 @@
   </data>
   <data name="IncorrectForMilitia" xml:space="preserve">
     <value>Falsche Anzahl von Karten für die Miliz abgeworfen</value>
+  </data>
+  <data name="InfoList" xml:space="preserve">
+    <value>Aktionen:\nKauft:\nWährung:\nwenden:</value>
   </data>
   <data name="IsReady" xml:space="preserve">
     <value>ist bereit</value>
