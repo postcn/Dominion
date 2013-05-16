@@ -283,6 +283,7 @@ namespace Dominion {
                     return;
                 }else if(status.selectTrashFromThief()){//1.)seperate thief cards from eachother by blanks
                     List<List<Card>> ThiefList = player.getThiefList();
+                    Boolean work = false;
                     int count = 0;
                     for (int i = 0; i < myGame.getPlayers().Count-1; i++) {
                         for (int j = 0; j < 2; j++) {
@@ -292,6 +293,7 @@ namespace Dominion {
                                 specialusecards.Add(ThiefList[i][j]);
                                 SetPicture(ThiefList[i][j].getName() + ".jpg", handImage[count]);
                                 count++;
+                                work = true;
                             }
                         }
                         
@@ -304,10 +306,12 @@ namespace Dominion {
                     Play.ToolTip = Internationalizer.getMessage("TrashCards");
                     int panelsize = 400 + (count - 5) * 80;
                     stackpan.Width = panelsize;
-                    if (count == 0) {
+                   // if (count == 0) {
+                    if(!work){
                         specialusecards=new List<Card>();
                         specialusecards.Add(null);
                         player.validateThiefStolenCards(specialusecards);
+                        Todo.Text = "No Currency Cards To Thief";
                         RefreshWindow();
                         ResetSpecialAction();
                         return;
@@ -693,7 +697,7 @@ namespace Dominion {
             for (int i = 0; i < HilightedImages.Count; i++) {
                 HilightImage(HilightedImages[i]);
             }
-            if (handButton[0].Cursor == Cursors.Hand) {
+            if (handButton[0].Cursor == Cursors.Hand||actiondone.Equals("Thief Many")) {
                 Play.IsEnabled = true;
                 Buy.IsEnabled = false;
             } else {
