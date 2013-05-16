@@ -381,6 +381,9 @@
   <data name="MoreThanFour" xml:space="preserve">
     <value>Mehr als 4 Karten ausgewählt!</value>
   </data>
+  <data name="NeedMilitia" xml:space="preserve">
+    <value>Verwerfen bis zu 3 Karten</value>
+  </data>
   <data name="NextTurn" xml:space="preserve">
     <value> Beendet ihrerseits. \n ======== \n</value>
   </data>

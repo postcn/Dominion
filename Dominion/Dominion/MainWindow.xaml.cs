@@ -57,6 +57,7 @@ namespace Dominion {
                 StatusObject status = player.discardCardsAndDrawSameAmount(cards);
                 Todo.Text = status.getMessage();
                 if (status.wasDiscardedAndDrawnSuccessfully()) {
+                    player.getCurrency();
                     ResetSpecialAction();
                 }
             } else if (actiondone.Equals("Trash Copper")) {
@@ -555,7 +556,7 @@ namespace Dominion {
             Turn_Label.Content = myGame.getTurnsPassed();
             RefreshWindow();
             StatusObject status = player.callDelayedFunctions();
-            RefreshHand();
+            RefreshWindow();
             Todo.Text = status.getMessage();
             if (status.wasMilitiaPlayed()) {
                 militia();

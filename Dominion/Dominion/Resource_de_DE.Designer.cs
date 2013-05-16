@@ -853,6 +853,15 @@ namespace Dominion {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verwerfen bis zu 3 Karten.
+        /// </summary>
+        internal static string NeedMilitia {
+            get {
+                return ResourceManager.GetString("NeedMilitia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  Beendet ihrerseits. \n ======== \n.
         /// </summary>
         internal static string NextTurn {

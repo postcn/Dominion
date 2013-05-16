@@ -78,8 +78,8 @@ namespace Dominion {
             int numInStack = this.calculateSupplyForVictory();
             this.buyables.Add(new CardStack(numInStack, CardMother.Estate()));
             this.buyables.Add(new CardStack(numInStack, CardMother.Duchy()));
-            this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
-           // this.buyables.Add(new CardStack(4, CardMother.Province()));
+            //this.buyables.Add(new CardStack(numInStack, CardMother.Province()));
+            this.buyables.Add(new CardStack(1, CardMother.Province()));
 
 
             //TODO find actual number
@@ -90,21 +90,21 @@ namespace Dominion {
             this.buyables.Add(new CardStack(10, CardMother.Laboratory()));
             //this.buyables.Add(new CardStack(10, CardMother.Market()));
             // this.buyables.Add(new CardStack(10, CardMother.Festival()));
-            //this.buyables.Add(new CardStack(10, CardMother.Village()));
+            this.buyables.Add(new CardStack(10, CardMother.Village()));
             this.buyables.Add(new CardStack(10, CardMother.Moat()));
             // this.buyables.Add(new CardStack(10, CardMother.Cellar()));
             //this.buyables.Add(new CardStack(10, CardMother.Bureaucrat()));
             //this.buyables.Add(new CardStack(10, CardMother.Gardens()));
             this.buyables.Add(new CardStack(10, CardMother.Thief()));
             this.buyables.Add(new CardStack(10, CardMother.Spy()));
-            //this.buyables.Add(new CardStack(10, CardMother.Witch()));
+            this.buyables.Add(new CardStack(10, CardMother.Witch()));
             //this.buyables.Add(new CardStack(10, CardMother.Mine()));
-            this.buyables.Add(new CardStack(10, CardMother.Feast()));
+            //this.buyables.Add(new CardStack(10, CardMother.Feast()));
             //this.buyables.Add(new CardStack(10, CardMother.Remodel()));
             //this.buyables.Add(new CardStack(10, CardMother.Moneylender()));
             this.buyables.Add(new CardStack(10, CardMother.Militia()));
             //this.buyables.Add(new CardStack(10, CardMother.Workshop()));
-            this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
+            //this.buyables.Add(new CardStack(10, CardMother.Chancellor()));
             this.buyables.Add(new CardStack(10, CardMother.ThroneRoom()));
             // this.buyables.Add(new CardStack(10, CardMother.Woodcutter()));
             this.buyables.Add(new CardStack(10, CardMother.Chapel()));

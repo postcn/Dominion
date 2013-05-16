@@ -220,7 +220,7 @@
     <value>Click To Place Your Deck In The Discard Pile</value>
   </data>
   <data name="Defended" xml:space="preserve">
-    <value>defended against the attack!</value>
+    <value> defended against the attack!</value>
   </data>
   <data name="Discard" xml:space="preserve">
     <value>Discard</value>
@@ -380,6 +380,9 @@
   </data>
   <data name="MoreThanFour" xml:space="preserve">
     <value>More than 4 cards selected!</value>
+  </data>
+  <data name="NeedMilitia" xml:space="preserve">
+    <value>Discard down to 3 Cards.</value>
   </data>
   <data name="NextTurn" xml:space="preserve">
     <value> Ended their turn.\n========\n</value>

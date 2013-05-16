@@ -367,7 +367,7 @@ namespace Dominion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to defended against the attack!.
+        ///   Looks up a localized string similar to  defended against the attack!.
         /// </summary>
         internal static string Defended {
             get {
@@ -849,6 +849,15 @@ namespace Dominion {
         internal static string MoreThanFour {
             get {
                 return ResourceManager.GetString("MoreThanFour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discard down to 3 Cards..
+        /// </summary>
+        internal static string NeedMilitia {
+            get {
+                return ResourceManager.GetString("NeedMilitia", resourceCulture);
             }
         }
         
