@@ -380,10 +380,10 @@ namespace Dominion {
             int panelsize = 400 + (length - 5) * 80;
             stackpan.Width = panelsize;
             for (int i = 0; i < length; i++) {
-                if(CardFromString(myHand.getHand()[i].toString()).getPlayable()&&!CardFromString(myHand.getHand()[i].toString()).getName().Equals("Throne Room")){
+                if(CardFromString(myHand.getHand()[i].getEnglishName()).getPlayable()&&!CardFromString(myHand.getHand()[i].getEnglishName()).getName().Equals("Throne Room")){
                     actioncard = true;
                 }
-                string name = myHand.getHand()[i].toString() + ".jpg";
+                string name = myHand.getHand()[i].getEnglishName() + ".jpg";
                 SetPicture(name, handImage[i]);
             }
             HilightedImages = new List<Image>();
@@ -606,7 +606,11 @@ namespace Dominion {
         private Image GetImageFromButton(object obj, List<Button> buttons, List<Image> images) {
             for (int i = 0; i < buttons.Count(); i++) {
                 if (buttons[i] == obj) {
-                    currentCard = StripImageSource(images[i].Source.ToString(), false);
+                    Boolean stripmore=false;
+                    if (images[i].Source.ToString().Contains("i.jpg")) {
+                        stripmore = true;
+                    }
+                        currentCard = StripImageSource(images[i].Source.ToString(), stripmore);
                     return images[i];
                 }
             }
@@ -629,6 +633,7 @@ namespace Dominion {
             Card card = cards[cards.Count - 1];
             SelectCardDescription.Text = card.getDescription();
             SelectCardName.Text = card.getName();
+            SelectCardType.Text = card.getName();
         }
         private void UnHilightImage(Image image) {
             String card = StripImageSource(image.Source.ToString(), true) + ".jpg";
@@ -688,7 +693,7 @@ namespace Dominion {
             int length = stacks.Count();
             Card card = null;
             for (int i = 0; i < length; i++) {
-                if (stacks[i].getCard().toString().Equals(str)) {
+                if (stacks[i].getCard().getEnglishName().Equals(str)) {
                     card = stacks[i].getCard();
                 }
             }
@@ -698,7 +703,7 @@ namespace Dominion {
         private CardStack CardStackFromHilighted(String str) {
             int length = stacks.Count();
             for (int i = 0; i < length; i++) {
-                if (stacks[i].getCard().toString().Equals(str)) {
+                if (stacks[i].getCard().getEnglishName().Equals(str)) {
                     return stacks[i];
                 }
             }
@@ -745,19 +750,19 @@ namespace Dominion {
             Player_Label.Content = player.getName() + "'s";
             int size = stacks.Count(), i;
             for (i = 0; i < currencyButton.Count; i++) {
-                string name = stacks[i].getCard().getName() + ".jpg";
+                string name = stacks[i].getCard().getEnglishName() + ".jpg";
                 SetPicture(name, currencyImage[i]);
             }
             for (i = 0; i < victoryButton.Count; i++) {
-                string name = stacks[i + currencyButton.Count].getCard().getName() + ".jpg";
+                string name = stacks[i + currencyButton.Count].getCard().getEnglishName() + ".jpg";
                 SetPicture(name, victoryImage[i]);
             }
             for (i = 0; i < actionButton.Count; i++) {
-                string name = stacks[i + currencyButton.Count + victoryButton.Count].getCard().getName() + ".jpg";
+                string name = stacks[i + currencyButton.Count + victoryButton.Count].getCard().getEnglishName() + ".jpg";
                 SetPicture(name, actionImage[i]);
             }
             if (language.Equals("en_US")) {
-                var margin = SelectCardName.Margin;
+               /* var margin = SelectCardName.Margin;
                 margin.Top = 10;
                 SelectCardName.Margin = margin;
                 margin = SelectCardDescription.Margin;
@@ -765,13 +770,17 @@ namespace Dominion {
                 SelectCardDescription.Margin = margin;
                 SelectCardName.Foreground = Brushes.White;
                 SelectCardType.Foreground = Brushes.Transparent;
-                SelectCardDescription.Foreground = Brushes.White;
+                SelectCardDescription.Foreground = Brushes.White;*/
+                SelectCardName.Foreground = Brushes.Transparent;
+                SelectCardDescription.Foreground=Brushes.Transparent;
+                SelectCardType.Foreground=Brushes.Transparent;
             }
             player.getCurrency();
             RefreshWindow();
 
             loc = new Locale(language.Substring(0,2),language.Substring(3,2));
             Internationalizer.setLocale(loc);
+           // Phase_Label.Content = Internationalizer.getMessage("Buy Phase");
         }
         private void InitializeButtonImages() {
             //MainGrid

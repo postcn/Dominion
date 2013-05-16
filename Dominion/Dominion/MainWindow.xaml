@@ -254,7 +254,7 @@
         <Button x:Name="ActionButton10" Style="{DynamicResource NoChromeButton}" Click="ActionImage_Click" Margin="594,497,279,287">
             <Image x:Name= "ActionImage10" Source="Blank.jpg" Stretch="Uniform" Height="122" Width="78"/>
         </Button>
-        <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="274" Margin="10,51,0,0" VerticalAlignment="Top" Width="192" Source="Blank.jpg"/>
+        <Image x:Name="Selected_Card" HorizontalAlignment="Left" Height="376" Margin="10,51,0,0" VerticalAlignment="Top" Width="239" Source="Copper.jpg"/>
         <Button x:Name="End_Phase" Content="End Phase" HorizontalAlignment="Left" Height="29" Margin="584,848,0,0" VerticalAlignment="Top" Width="71" Click="EndPhase_Click" ToolTip="Ends The Action Phase; Putting You In The Buy Phase"/>
         <Label x:Name="Phase_Label" Content="" HorizontalContentAlignment="Center" Height="54" Margin="304,51,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
         <Label x:Name="Player_Label" Content="&#xD;&#xA;" HorizontalContentAlignment="Center" Height="49" Margin="304,0,308,0" VerticalAlignment="Top" Width="351" Background="#00000000" Foreground="White" FontSize="26" FontWeight="Bold"/>
@@ -267,9 +267,9 @@
             <Label x:Name="Turn_Label" Content="1" HorizontalAlignment="Left" Height="26" Margin="79,52,0,0" VerticalAlignment="Top" Width="29" Background="#00000000" Foreground="White"/>
             <Label x:Name="Gain_Label" Content="" HorizontalAlignment="Left" Height="26" Margin="12,-15,0,0" VerticalAlignment="Top" Width="96" Background="#00000000" Foreground="White"/>
         </Grid>
-        <TextBlock x:Name="SelectCardDescription" HorizontalAlignment="Left" TextAlignment="Center"  Height="88" Margin="10,195,0,0" Width="192" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock x:Name="SelectCardName" HorizontalAlignment="Left" TextAlignment="Center" Height="33" Margin="10,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="192"/>
-        <TextBlock x:Name="SelectCardType" HorizontalAlignment="Left" TextAlignment="Center" Height="33" Margin="10,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="192"/>
+        <TextBlock x:Name="SelectCardDescription" HorizontalAlignment="Left" TextAlignment="Center"  Height="99" Margin="31,263,0,0" Width="194" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="11"/>
+        <TextBlock x:Name="SelectCardName" HorizontalAlignment="Left" TextAlignment="Center" Height="33" Margin="30,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="194" FontSize="11"/>
+        <TextBlock x:Name="SelectCardType" HorizontalAlignment="Left" TextAlignment="Center" Height="26" Margin="30,376,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  Width="194" FontSize="11"/>
         <!--<Label x:Name="SelectCardDescription" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="88" Margin="10,195,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
         <Label x:Name="SelectCardName" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,63,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>
         <Label x:Name="SelectCardType" Content="Nothing Yet" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="33" Margin="10,285,0,0" VerticalAlignment="Top" Width="192" Foreground="Black"/>-->
